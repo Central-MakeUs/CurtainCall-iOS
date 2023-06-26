@@ -15,6 +15,7 @@
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
 		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
 		EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */; };
+		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
 		EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonTag.swift; sourceTree = "<group>"; };
+		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0BEDF72A4958DF008D9D05 /* View */,
-				EE0BEDF82A4958E3008D9D05 /* ViewController */,
+				EE0BEDF82A4958E3008D9D05 /* ViewModel */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -123,16 +125,17 @@
 		EE0BEDF72A4958DF008D9D05 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		EE0BEDF82A4958E3008D9D05 /* ViewController */ = {
+		EE0BEDF82A4958E3008D9D05 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */,
+				EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */,
 			);
-			path = ViewController;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EE0BEDFE2A497187008D9D05 /* Constants */ = {
@@ -222,6 +225,7 @@
 			files = (
 				EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
+				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
