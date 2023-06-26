@@ -14,6 +14,7 @@
 		EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */; };
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
 		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
+		EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		EE0BEDEB2A49553D008D9D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
+		EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */,
+				EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
