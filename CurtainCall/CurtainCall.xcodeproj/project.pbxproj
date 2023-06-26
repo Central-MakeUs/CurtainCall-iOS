@@ -13,6 +13,7 @@
 		EE0BEDEA2A49553D008D9D05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0BEDE82A49553D008D9D05 /* LaunchScreen.storyboard */; };
 		EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */; };
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
+		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		EE0BEDE92A49553D008D9D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE0BEDEB2A49553D008D9D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EE0BEDFE2A497187008D9D05 /* Constants */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -128,6 +131,14 @@
 				EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EE0BEDFE2A497187008D9D05 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +220,7 @@
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
+				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
