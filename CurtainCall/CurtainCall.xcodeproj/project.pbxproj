@@ -13,6 +13,11 @@
 		EE0BEDEA2A49553D008D9D05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0BEDE82A49553D008D9D05 /* LaunchScreen.storyboard */; };
 		EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */; };
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
+		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
+		EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */; };
+		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
+		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
+		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +28,12 @@
 		EE0BEDE92A49553D008D9D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE0BEDEB2A49553D008D9D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
+		EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonTag.swift; sourceTree = "<group>"; };
+		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
+		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 		EE0BEDDC2A495539008D9D05 /* CurtainCall */ = {
 			isa = PBXGroup;
 			children = (
+				EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */,
 				EE0BEDF12A49574F008D9D05 /* App */,
 				EE0BEDF52A4958B3008D9D05 /* Common */,
 				EE0BEDF32A49586C008D9D05 /* Presentation */,
@@ -80,6 +92,7 @@
 		EE0BEDF22A49584D008D9D05 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EEC60A4A2A4ACB0C001DDC2A /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -102,6 +115,8 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEC60A462A4AB262001DDC2A /* Enums */,
+				EE0BEDFE2A497187008D9D05 /* Constants */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -110,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0BEDF72A4958DF008D9D05 /* View */,
-				EE0BEDF82A4958E3008D9D05 /* ViewController */,
+				EE0BEDF82A4958E3008D9D05 /* ViewModel */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -118,16 +133,42 @@
 		EE0BEDF72A4958DF008D9D05 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		EE0BEDF82A4958E3008D9D05 /* ViewController */ = {
+		EE0BEDF82A4958E3008D9D05 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */,
+				EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */,
 			);
-			path = ViewController;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EE0BEDFE2A497187008D9D05 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */,
+				EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		EEC60A462A4AB262001DDC2A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				EEC60A472A4AB26D001DDC2A /* LoginType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		EEC60A4A2A4ACB0C001DDC2A /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,9 +247,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
+				EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
+				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
+				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
+				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +391,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
@@ -358,9 +406,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mandos.CurtainCall;
+				MARKETING_VERSION = 0.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mandos.curtain.call;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -372,6 +421,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
@@ -385,9 +436,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mandos.CurtainCall;
+				MARKETING_VERSION = 0.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mandos.curtain.call;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
