@@ -19,7 +19,7 @@ protocol LoginViewModelOutput {
 
 protocol LoginViewModelIO: LoginViewModelInput & LoginViewModelOutput { }
 
-final class LoginViewModel: NSObject, ObservableObject, LoginViewModelIO {
+final class LoginViewModel: NSObject, LoginViewModelIO {
     
     // MARK: - Properties
 
