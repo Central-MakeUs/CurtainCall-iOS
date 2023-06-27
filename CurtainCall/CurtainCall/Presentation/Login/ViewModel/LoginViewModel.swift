@@ -20,12 +20,19 @@ protocol LoginViewModelOutput {
 protocol LoginViewModelIO: LoginViewModelInput & LoginViewModelOutput { }
 
 final class LoginViewModel: NSObject, ObservableObject, LoginViewModelIO {
+    
+    // MARK: - Properties
 
+    private let useCase: LoginUseCase
+    private var cancellables = Set<AnyCancellable>()
     var loginPublisher = PassthroughSubject<LoginType, Error>()
     
-    override init() {
+    init(useCase: LoginUseCase) {
+        self.useCase = useCase
         super.init()
     }
+    
+    // MARK: - Helpers
 
     func didTappedLoginButton(tag: Int) {
         switch tag {
@@ -68,8 +75,17 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             return
         }
-        print(credential.user)
-        self.loginPublisher.send(.apple)
+        useCase.loginWithApple()
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.loginPublisher.send(completion: .failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] _ in
+                self?.loginPublisher.send(.apple)
+            }.store(in: &cancellables)
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
