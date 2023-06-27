@@ -16,6 +16,7 @@
 		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
 		EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */; };
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
+		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
 		EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonTag.swift; sourceTree = "<group>"; };
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,7 @@
 		EE0BEDDC2A495539008D9D05 /* CurtainCall */ = {
 			isa = PBXGroup;
 			children = (
+				EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */,
 				EE0BEDF12A49574F008D9D05 /* App */,
 				EE0BEDF52A4958B3008D9D05 /* Common */,
 				EE0BEDF32A49586C008D9D05 /* Presentation */,
@@ -108,6 +112,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEC60A462A4AB262001DDC2A /* Enums */,
 				EE0BEDFE2A497187008D9D05 /* Constants */,
 			);
 			path = Common;
@@ -145,6 +150,14 @@
 				EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		EEC60A462A4AB262001DDC2A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				EEC60A472A4AB26D001DDC2A /* LoginType.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
@@ -365,6 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -394,6 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

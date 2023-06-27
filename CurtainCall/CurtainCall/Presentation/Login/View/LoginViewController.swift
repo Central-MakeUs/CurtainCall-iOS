@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
@@ -51,6 +52,7 @@ final class LoginViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: LoginViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Lifecycles
     
@@ -67,6 +69,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
     }
     
     // MARK: - Helpers
@@ -95,6 +98,27 @@ final class LoginViewController: UIViewController {
         [kakaoLoginButton, naverLoginButton, facebookLoginButton, appleLoginButton].forEach {
             $0.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
         }
+    }
+    
+    private func bind() {
+        viewModel.loginPublisher
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .finished:
+                    print("끝남 처리")
+                }
+            } receiveValue: { loginType in
+                switch loginType {
+                case .apple:
+                    print("애플 로그인 성공")
+                default:
+                    print("다른거 성공")
+                    
+                }
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Action
