@@ -9,6 +9,10 @@ import Foundation
 import AuthenticationServices
 import Combine
 
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+
 protocol LoginViewModelInput {
     func didTappedLoginButton(tag: Int)
 }
@@ -37,7 +41,7 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
     func didTappedLoginButton(tag: Int) {
         switch tag {
         case LoginButtonTag.kakaoTag:
-            return
+            signInWithKakao()
         case LoginButtonTag.naverTag:
             return
         case LoginButtonTag.facebookTag:
@@ -75,6 +79,8 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             return
         }
+        // TODO: credential 처리
+        _ = credential
         useCase.loginWithApple()
             .sink { [weak self] completion in
                 switch completion {
@@ -90,5 +96,43 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         self.loginPublisher.send(completion: .failure(error))
+    }
+}
+
+// MARK: Kakao Login
+
+extension LoginViewModel {
+    private func signInWithKakao() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            kakaoLoginToKakaoTalk()
+        } else {
+            kakaoLoginToWebView()
+        }
+    }
+    
+    /// 카카오톡으로 로그인
+    private func kakaoLoginToKakaoTalk() {
+        UserApi.shared.loginWithKakaoTalk { oauthToken, error in
+            if let error {
+                // TODO: 에러 처리
+                print(error.localizedDescription)
+                return
+            }
+            // TODO: oauthToken 처리
+            _ = oauthToken
+        }
+    }
+    
+    /// 카카오 웹뷰로 로그인
+    private func kakaoLoginToWebView() {
+        UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+            if let error {
+                // TODO: 에러 처리
+                print(error.localizedDescription)
+                return
+            }
+            // TODO: oauthToken 처리
+            _ = oauthToken
+        }
     }
 }
