@@ -113,6 +113,8 @@ final class LoginViewController: UIViewController {
                 switch loginType {
                 case .apple:
                     print("애플 로그인 성공")
+                case .kakao:
+                    print("카카오 로그인 성공")
                 default:
                     print("다른거 성공")
                     

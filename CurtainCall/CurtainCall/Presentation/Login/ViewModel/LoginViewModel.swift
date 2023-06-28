@@ -9,6 +9,10 @@ import Foundation
 import AuthenticationServices
 import Combine
 
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+
 protocol LoginViewModelInput {
     func didTappedLoginButton(tag: Int)
 }
@@ -22,7 +26,7 @@ protocol LoginViewModelIO: LoginViewModelInput & LoginViewModelOutput { }
 final class LoginViewModel: NSObject, LoginViewModelIO {
     
     // MARK: - Properties
-
+    
     private let useCase: LoginUseCase
     private var cancellables = Set<AnyCancellable>()
     var loginPublisher = PassthroughSubject<LoginType, Error>()
@@ -33,11 +37,11 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
     }
     
     // MARK: - Helpers
-
+    
     func didTappedLoginButton(tag: Int) {
         switch tag {
         case LoginButtonTag.kakaoTag:
-            return
+            signInWithKakao()
         case LoginButtonTag.naverTag:
             return
         case LoginButtonTag.facebookTag:
@@ -57,10 +61,10 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
         let appleProvider = ASAuthorizationAppleIDProvider()
         let request = appleProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-
+        
         let controller = ASAuthorizationController(authorizationRequests: [request])
         controller.delegate = self
-
+        
         controller.performRequests()
     }
     
@@ -75,6 +79,8 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             return
         }
+        // TODO: credential 처리
+        _ = credential
         useCase.loginWithApple()
             .sink { [weak self] completion in
                 switch completion {
@@ -89,6 +95,58 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        self.loginPublisher.send(completion: .failure(error))
+        loginPublisher.send(completion: .failure(error))
+    }
+}
+
+// MARK: Kakao Login
+
+extension LoginViewModel {
+    private func signInWithKakao() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            kakaoLoginToKakaoTalk()
+        } else {
+            kakaoLoginToWebView()
+        }
+    }
+    
+    /// 카카오톡으로 로그인
+    private func kakaoLoginToKakaoTalk() {
+        UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+            if let error {
+                self?.loginPublisher.send(completion: .failure(error))
+                return
+            }
+            // TODO: oauthToken 처리
+            _ = oauthToken
+            self?.bindKakaoLogin()
+        }
+    }
+    
+    /// 카카오 웹뷰로 로그인
+    private func kakaoLoginToWebView() {
+        UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+            if let error {
+                self?.loginPublisher.send(completion: .failure(error))
+                return
+            }
+            // TODO: oauthToken 처리
+            _ = oauthToken
+            self?.bindKakaoLogin()
+        }
+    }
+    
+    private func bindKakaoLogin() {
+        useCase.loginWithKakao()
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.loginPublisher.send(completion: .failure(error))
+                case .finished:
+                    return
+                }
+            } receiveValue: { [weak self] _ in
+                self?.loginPublisher.send(.kakao)
+            }.store(in: &cancellables)
     }
 }
