@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 import SnapKit
+import GoogleSignIn
 
 final class LoginViewController: UIViewController {
     
@@ -59,6 +60,7 @@ final class LoginViewController: UIViewController {
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.loginViewController = self
     }
     
     @available (*, unavailable)
@@ -117,9 +119,8 @@ final class LoginViewController: UIViewController {
                     print("카카오 로그인 성공")
                 case .facebook:
                     print("페이스북 로그인 성공")
-                default:
-                    print("다른거 성공")
-                    
+                case .google:
+                    print("구글 로그인 성공")
                 }
             }
             .store(in: &cancellables)
@@ -130,5 +131,6 @@ final class LoginViewController: UIViewController {
     @objc
     private func loginButtonTouchUpInside(_ sender: UIButton) {
         viewModel.didTappedLoginButton(tag: sender.tag)
+        
     }
 }
