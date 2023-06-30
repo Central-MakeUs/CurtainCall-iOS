@@ -9,6 +9,7 @@ import UIKit
 
 import KakaoSDKAuth
 import FacebookCore
+import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -72,6 +73,11 @@ extension SceneDelegate {
             sourceApplication: nil,
             annotation: [UIApplication.OpenURLOptionsKey.annotation]
             )
+        
+        // 구글 로그인
+        _ = GIDSignIn.sharedInstance.handle(url)
+            
+        
         
     }
 }
