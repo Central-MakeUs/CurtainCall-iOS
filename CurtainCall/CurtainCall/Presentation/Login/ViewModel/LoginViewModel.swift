@@ -44,7 +44,7 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
         switch tag {
         case LoginButtonTag.kakaoTag:
             signInWithKakao()
-        case LoginButtonTag.naverTag:
+        case LoginButtonTag.googleTag:
             return
         case LoginButtonTag.facebookTag:
             signInWithFacebook()

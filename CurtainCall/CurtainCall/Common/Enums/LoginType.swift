@@ -9,7 +9,7 @@ import Foundation
 
 enum LoginType {
     case kakao
-    case naver
+    case google
     case facebook
     case apple
 }

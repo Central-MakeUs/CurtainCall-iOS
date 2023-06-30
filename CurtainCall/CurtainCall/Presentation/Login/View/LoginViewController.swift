@@ -28,10 +28,10 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let naverLoginButton: UIButton = {
+    private let googleLoginButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.loginButtonNaver), for: .normal)
-        button.tag = LoginButtonTag.naverTag
+        button.setImage(UIImage(named: ImageNamespace.loginButtonGoogle), for: .normal)
+        button.tag = LoginButtonTag.googleTag
         return button
     }()
     
@@ -83,7 +83,7 @@ final class LoginViewController: UIViewController {
     private func configureSubviews() {
         view.backgroundColor = .white
         view.addSubview(loginButtonStackView)
-        [kakaoLoginButton, naverLoginButton, facebookLoginButton, appleLoginButton].forEach {
+        [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)
         }
     }
@@ -95,7 +95,7 @@ final class LoginViewController: UIViewController {
     }
     
     private func addTargets() {
-        [kakaoLoginButton, naverLoginButton, facebookLoginButton, appleLoginButton].forEach {
+        [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             $0.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
         }
     }
