@@ -115,6 +115,8 @@ final class LoginViewController: UIViewController {
                     print("애플 로그인 성공")
                 case .kakao:
                     print("카카오 로그인 성공")
+                case .facebook:
+                    print("페이스북 로그인 성공")
                 default:
                     print("다른거 성공")
                     

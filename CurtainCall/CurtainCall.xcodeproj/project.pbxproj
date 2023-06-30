@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
+		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */; };
 		EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */; };
 		EE0BEDE72A49553D008D9D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0BEDE62A49553D008D9D05 /* Assets.xcassets */; };
@@ -18,7 +20,7 @@
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
 		EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */; };
 		EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE42A4C013B00939823 /* KakaoSDKUser */; };
-		EE4EBAEE2A4C113C00939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAED2A4C113C00939823 /* Secret.swift */; };
+		EE4EBAF32A4C303700939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAF22A4C303700939823 /* Secret.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 /* End PBXBuildFile section */
@@ -34,7 +36,7 @@
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
 		EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonTag.swift; sourceTree = "<group>"; };
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		EE4EBAED2A4C113C00939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		EE4EBAF22A4C303700939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -45,9 +47,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */,
 				EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */,
 				EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */,
 				EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */,
+				EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +77,7 @@
 		EE0BEDDC2A495539008D9D05 /* CurtainCall */ = {
 			isa = PBXGroup;
 			children = (
-				EE4EBAE92A4C103100939823 /* Secret */,
+				EE4EBAF12A4C302D00939823 /* Secret */,
 				EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */,
 				EE0BEDF12A49574F008D9D05 /* App */,
 				EE0BEDF52A4958B3008D9D05 /* Common */,
@@ -162,10 +166,10 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		EE4EBAE92A4C103100939823 /* Secret */ = {
+		EE4EBAF12A4C302D00939823 /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				EE4EBAED2A4C113C00939823 /* Secret.swift */,
+				EE4EBAF22A4C303700939823 /* Secret.swift */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -206,6 +210,8 @@
 				EE0BEDFC2A495AAB008D9D05 /* SnapKit */,
 				EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */,
 				EE4EBAE42A4C013B00939823 /* KakaoSDKUser */,
+				EE0304B32A4E816C0038A09E /* FacebookCore */,
+				EE0304B52A4E816C0038A09E /* FacebookLogin */,
 			);
 			productName = CurtainCall;
 			productReference = EE0BEDDA2A495539008D9D05 /* CurtainCall.app */;
@@ -238,6 +244,7 @@
 			packageReferences = (
 				EE0BEDFB2A495AAB008D9D05 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				EE4EBAE12A4C013B00939823 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				EE0304B22A4E816C0038A09E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = EE0BEDDB2A495539008D9D05 /* Products */;
 			projectDirPath = "";
@@ -272,7 +279,7 @@
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
-				EE4EBAEE2A4C113C00939823 /* Secret.swift in Sources */,
+				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +496,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EE0304B22A4E816C0038A09E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.1.2;
+			};
+		};
 		EE0BEDFB2A495AAB008D9D05 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -508,6 +523,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EE0304B32A4E816C0038A09E /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE0304B22A4E816C0038A09E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		EE0304B52A4E816C0038A09E /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE0304B22A4E816C0038A09E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
 		EE0BEDFC2A495AAB008D9D05 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EE0BEDFB2A495AAB008D9D05 /* XCRemoteSwiftPackageReference "SnapKit" */;

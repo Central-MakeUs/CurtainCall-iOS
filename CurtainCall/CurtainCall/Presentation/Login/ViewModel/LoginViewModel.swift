@@ -13,6 +13,8 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 
+import FacebookLogin
+
 protocol LoginViewModelInput {
     func didTappedLoginButton(tag: Int)
 }
@@ -45,7 +47,7 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
         case LoginButtonTag.naverTag:
             return
         case LoginButtonTag.facebookTag:
-            return
+            signInWithFacebook()
         case LoginButtonTag.appleTag:
             signInWithApple()
         default:
@@ -119,7 +121,7 @@ extension LoginViewModel {
             }
             // TODO: oauthToken 처리
             _ = oauthToken
-            self?.bindKakaoLogin()
+            self?.requestUsecaseToKakaoLogin()
         }
     }
     
@@ -132,11 +134,11 @@ extension LoginViewModel {
             }
             // TODO: oauthToken 처리
             _ = oauthToken
-            self?.bindKakaoLogin()
+            self?.requestUsecaseToKakaoLogin()
         }
     }
     
-    private func bindKakaoLogin() {
+    private func requestUsecaseToKakaoLogin() {
         useCase.loginWithKakao()
             .sink { [weak self] completion in
                 switch completion {
@@ -149,4 +151,37 @@ extension LoginViewModel {
                 self?.loginPublisher.send(.kakao)
             }.store(in: &cancellables)
     }
+}
+
+// MARK: Facebook Login
+
+extension LoginViewModel {
+    private func signInWithFacebook() {
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: [], from: nil) { [weak self] result, error in
+            if let error {
+                self?.loginPublisher.send(completion: .failure(error))
+                return
+            }
+            if let result, let token = result.token {
+                print(token.userID)
+                self?.requestUsecaseToFacebookLogin()
+            }
+        }
+    }
+    
+    private func requestUsecaseToFacebookLogin() {
+        useCase.loginWithFacebook()
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.loginPublisher.send(completion: .failure(error))
+                case .finished:
+                    return
+                }
+            } receiveValue: { [weak self] _ in
+                self?.loginPublisher.send(.facebook)
+            }.store(in: &cancellables)
+    }
+        
 }
