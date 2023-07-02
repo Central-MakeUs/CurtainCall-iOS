@@ -11,6 +11,9 @@ import AuthenticationServices
 
 import SnapKit
 import GoogleSignIn
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 final class LoginViewController: UIViewController {
     
@@ -130,6 +133,8 @@ final class LoginViewController: UIViewController {
         switch sender {
         case appleLoginButton:
             signInWithApple()
+        case kakaoLoginButton:
+            signInWithKakao()
         default:
             print("button Tapped: ",sender)
             return
@@ -163,5 +168,31 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         viewModel.requestLogin(crendential: nil, error: error)
+    }
+}
+
+// MARK: Kakao Login
+
+extension LoginViewController {
+    private func signInWithKakao() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            kakaoLoginToKakaoTalk()
+        } else {
+            kakaoLoginToWebView()
+        }
+    }
+    
+    /// 카카오톡으로 로그인
+    private func kakaoLoginToKakaoTalk() {
+        UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+            self?.viewModel.requestLogin(oauthToken: oauthToken, error: error)
+        }
+    }
+    
+    /// 카카오 웹뷰로 로그인
+    private func kakaoLoginToWebView() {
+        UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+            self?.viewModel.requestLogin(oauthToken: oauthToken, error: error)
+        }
     }
 }

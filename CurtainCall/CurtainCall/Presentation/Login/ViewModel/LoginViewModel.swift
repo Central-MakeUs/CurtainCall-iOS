@@ -19,6 +19,7 @@ import GoogleSignIn
 
 protocol LoginViewModelInput {
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
+    func requestLogin(oauthToken: OAuthToken?, error: Error?)
 }
 
 protocol LoginViewModelOutput {
@@ -27,7 +28,7 @@ protocol LoginViewModelOutput {
 
 protocol LoginViewModelIO: LoginViewModelInput & LoginViewModelOutput { }
 
-final class LoginViewModel: NSObject, LoginViewModelIO {
+final class LoginViewModel: LoginViewModelIO {
     
     // MARK: - Properties
     
@@ -38,7 +39,6 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
     
     init(useCase: LoginUseCase) {
         self.useCase = useCase
-        super.init()
     }
     
     // MARK: - Helpers
@@ -63,59 +63,27 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
                     self?.loginPublisher.send(.apple)
                 }.store(in: &cancellables)
         }
-        
-    }
-}
-
-// MARK: Kakao Login
-
-extension LoginViewModel {
-    private func signInWithKakao() {
-        if UserApi.isKakaoTalkLoginAvailable() {
-            kakaoLoginToKakaoTalk()
-        } else {
-            kakaoLoginToWebView()
-        }
     }
     
-    /// 카카오톡으로 로그인
-    private func kakaoLoginToKakaoTalk() {
-        UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            // TODO: oauthToken 처리
-            _ = oauthToken
-            self?.requestUsecaseToKakaoLogin()
+    func requestLogin(oauthToken: OAuthToken?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
         }
-    }
-    
-    /// 카카오 웹뷰로 로그인
-    private func kakaoLoginToWebView() {
-        UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            // TODO: oauthToken 처리
-            _ = oauthToken
-            self?.requestUsecaseToKakaoLogin()
+        if let oauthToken {
+            useCase.loginWithKakao(token: oauthToken.accessToken)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.kakao)
+                }.store(in: &cancellables)
+            
         }
-    }
-    
-    private func requestUsecaseToKakaoLogin() {
-        useCase.loginWithKakao()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    return
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.kakao)
-            }.store(in: &cancellables)
     }
 }
 
