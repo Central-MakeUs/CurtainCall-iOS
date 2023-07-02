@@ -20,6 +20,7 @@ import GoogleSignIn
 protocol LoginViewModelInput {
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
     func requestLogin(oauthToken: OAuthToken?, error: Error?)
+    func requestLogin(result: LoginManagerLoginResult?, error: Error?)
 }
 
 protocol LoginViewModelOutput {
@@ -85,39 +86,28 @@ final class LoginViewModel: LoginViewModelIO {
             
         }
     }
-}
-
-// MARK: Facebook Login
-
-extension LoginViewModel {
-    private func signInWithFacebook() {
-        let loginManager = LoginManager()
-        loginManager.logIn(permissions: [], from: nil) { [weak self] result, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            if let result, let token = result.token {
-                print(token.userID)
-                self?.requestUsecaseToFacebookLogin()
-            }
+    
+    func requestLogin(result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
+        }
+        
+        if let result, let token = result.token?.tokenString {
+            useCase.loginWithFacebook(token: token)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.facebook)
+                }.store(in: &cancellables)
         }
     }
     
-    private func requestUsecaseToFacebookLogin() {
-        useCase.loginWithFacebook()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    return
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.facebook)
-            }.store(in: &cancellables)
-    }
-        
 }
 
 extension LoginViewModel {

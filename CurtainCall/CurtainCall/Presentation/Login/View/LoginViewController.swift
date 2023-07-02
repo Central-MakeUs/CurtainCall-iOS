@@ -14,6 +14,7 @@ import GoogleSignIn
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import FacebookLogin
 
 final class LoginViewController: UIViewController {
     
@@ -135,6 +136,8 @@ final class LoginViewController: UIViewController {
             signInWithApple()
         case kakaoLoginButton:
             signInWithKakao()
+        case facebookLoginButton:
+            signInWithFacebook()
         default:
             print("button Tapped: ",sender)
             return
@@ -195,4 +198,17 @@ extension LoginViewController {
             self?.viewModel.requestLogin(oauthToken: oauthToken, error: error)
         }
     }
+}
+
+// MARK: Facebook Login
+
+extension LoginViewController {
+    private func signInWithFacebook() {
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: [], from: self) { [weak self] result, error in
+            self?.viewModel.requestLogin(result: result, error: error)
+        }
+            
+    }
+    
 }
