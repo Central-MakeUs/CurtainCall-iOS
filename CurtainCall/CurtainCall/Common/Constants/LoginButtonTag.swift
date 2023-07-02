@@ -9,7 +9,7 @@ import Foundation
 
 enum LoginButtonTag {
     static let kakaoTag = 1
-    static let naverTag = 2
+    static let googleTag = 2
     static let facebookTag = 3
     static let appleTag = 4
 }

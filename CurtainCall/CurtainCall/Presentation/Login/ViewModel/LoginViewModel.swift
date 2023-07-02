@@ -15,6 +15,8 @@ import KakaoSDKUser
 
 import FacebookLogin
 
+import GoogleSignIn
+
 protocol LoginViewModelInput {
     func didTappedLoginButton(tag: Int)
 }
@@ -32,6 +34,7 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
     private let useCase: LoginUseCase
     private var cancellables = Set<AnyCancellable>()
     var loginPublisher = PassthroughSubject<LoginType, Error>()
+    weak var loginViewController: UIViewController?
     
     init(useCase: LoginUseCase) {
         self.useCase = useCase
@@ -44,8 +47,8 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
         switch tag {
         case LoginButtonTag.kakaoTag:
             signInWithKakao()
-        case LoginButtonTag.naverTag:
-            return
+        case LoginButtonTag.googleTag:
+            signInWithGoogle()
         case LoginButtonTag.facebookTag:
             signInWithFacebook()
         case LoginButtonTag.appleTag:
@@ -184,4 +187,36 @@ extension LoginViewModel {
             }.store(in: &cancellables)
     }
         
+}
+
+extension LoginViewModel {
+    private func signInWithGoogle() {
+        guard let loginViewController = loginViewController else {
+            return
+        }
+        GIDSignIn.sharedInstance.signIn(withPresenting: loginViewController) { [weak self] result, error in
+            if let error {
+                self?.loginPublisher.send(completion: .failure(error))
+                return
+            }
+            if let result {
+                self?.requestUsecaseToGoogleLogin()
+            }
+            
+        }
+    }
+    
+    private func requestUsecaseToGoogleLogin() {
+        useCase.loginWithGoogle()
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.loginPublisher.send(completion: .failure(error))
+                case .finished:
+                    return
+                }
+            } receiveValue: { [weak self] _ in
+                self?.loginPublisher.send(.google)
+            }.store(in: &cancellables)
+    }
 }

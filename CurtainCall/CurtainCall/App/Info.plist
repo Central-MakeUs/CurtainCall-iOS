@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>GIDClientID</key>
+    <string>33777325574-gpgtipc20pc5tt4kk560n8trvj3g7uv8.apps.googleusercontent.com</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -10,28 +12,35 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakao6d279752ce5cce9c6ea60a24a57f745b</string>
-                <string>fb1212195426145119</string>
+				<string>fb1212195426145119</string>
+                <string>com.googleusercontent.apps.33777325574-gpgtipc20pc5tt4kk560n8trvj3g7uv8</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.33777325574-gpgtipc20pc5tt4kk560n8trvj3g7uv8</string>
 			</array>
 		</dict>
 	</array>
-    
-    <key>FacebookAppID</key>
-    <string>1212195426145119</string>
-    <key>FacebookClientToken</key>
-    <string>b5a163f64a74b6a55689f10a2af262d5</string>
-    <key>FacebookDisplayName</key>
-    <string>CurtainCall</string>
-    <key>FacebookAutoLogAppEventsEnabled</key>
-    <false/>
-    <key>FacebookAdvertiserIDCollectionEnabled</key>
-    <true/>
-    
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<true/>
+	<key>FacebookAppID</key>
+	<string>1212195426145119</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookClientToken</key>
+	<string>b5a163f64a74b6a55689f10a2af262d5</string>
+	<key>FacebookDisplayName</key>
+	<string>CurtainCall</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>
 		<string>kakaolink</string>
-        <string>fbapi</string>
-        <string>fb-messenger-share-api</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

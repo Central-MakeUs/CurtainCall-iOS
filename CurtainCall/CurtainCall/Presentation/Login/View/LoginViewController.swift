@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 import SnapKit
+import GoogleSignIn
 
 final class LoginViewController: UIViewController {
     
@@ -28,10 +29,10 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let naverLoginButton: UIButton = {
+    private let googleLoginButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.loginButtonNaver), for: .normal)
-        button.tag = LoginButtonTag.naverTag
+        button.setImage(UIImage(named: ImageNamespace.loginButtonGoogle), for: .normal)
+        button.tag = LoginButtonTag.googleTag
         return button
     }()
     
@@ -59,6 +60,7 @@ final class LoginViewController: UIViewController {
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.loginViewController = self
     }
     
     @available (*, unavailable)
@@ -83,7 +85,7 @@ final class LoginViewController: UIViewController {
     private func configureSubviews() {
         view.backgroundColor = .white
         view.addSubview(loginButtonStackView)
-        [kakaoLoginButton, naverLoginButton, facebookLoginButton, appleLoginButton].forEach {
+        [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)
         }
     }
@@ -95,7 +97,7 @@ final class LoginViewController: UIViewController {
     }
     
     private func addTargets() {
-        [kakaoLoginButton, naverLoginButton, facebookLoginButton, appleLoginButton].forEach {
+        [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             $0.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
         }
     }
@@ -117,9 +119,8 @@ final class LoginViewController: UIViewController {
                     print("카카오 로그인 성공")
                 case .facebook:
                     print("페이스북 로그인 성공")
-                default:
-                    print("다른거 성공")
-                    
+                case .google:
+                    print("구글 로그인 성공")
                 }
             }
             .store(in: &cancellables)
@@ -130,5 +131,6 @@ final class LoginViewController: UIViewController {
     @objc
     private func loginButtonTouchUpInside(_ sender: UIButton) {
         viewModel.didTappedLoginButton(tag: sender.tag)
+        
     }
 }
