@@ -7,8 +7,14 @@
 
 import UIKit
 import Combine
+import AuthenticationServices
 
 import SnapKit
+import GoogleSignIn
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+import FacebookLogin
 import GoogleSignIn
 
 final class LoginViewController: UIViewController {
@@ -25,28 +31,24 @@ final class LoginViewController: UIViewController {
     private let kakaoLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonKakao), for: .normal)
-        button.tag = LoginButtonTag.kakaoTag
         return button
     }()
     
     private let googleLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonGoogle), for: .normal)
-        button.tag = LoginButtonTag.googleTag
         return button
     }()
     
     private let facebookLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonFacebook), for: .normal)
-        button.tag = LoginButtonTag.facebookTag
         return button
     }()
     
     private let appleLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonApple), for: .normal)
-        button.tag = LoginButtonTag.appleTag
         return button
     }()
     
@@ -130,7 +132,95 @@ final class LoginViewController: UIViewController {
     
     @objc
     private func loginButtonTouchUpInside(_ sender: UIButton) {
-        viewModel.didTappedLoginButton(tag: sender.tag)
+        switch sender {
+        case appleLoginButton:
+            signInWithApple()
+        case kakaoLoginButton:
+            signInWithKakao()
+        case facebookLoginButton:
+            signInWithFacebook()
+        case googleLoginButton:
+            signInWithGoogle()
+        default:
+            fatalError("Invalid Button")
+        }
         
+    }
+}
+
+// MARK: Apple Login
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func signInWithApple() {
+        let appleProvider = ASAuthorizationAppleIDProvider()
+        let request = appleProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()
+    }
+    
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+            return
+        }
+        viewModel.requestLogin(crendential: credential, error: nil)
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        viewModel.requestLogin(crendential: nil, error: error)
+    }
+}
+
+// MARK: Kakao Login
+
+extension LoginViewController {
+    private func signInWithKakao() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            kakaoLoginToKakaoTalk()
+        } else {
+            kakaoLoginToWebView()
+        }
+    }
+    
+    /// 카카오톡으로 로그인
+    private func kakaoLoginToKakaoTalk() {
+        UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+            self?.viewModel.requestLogin(oauthToken: oauthToken, error: error)
+        }
+    }
+    
+    /// 카카오 웹뷰로 로그인
+    private func kakaoLoginToWebView() {
+        UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+            self?.viewModel.requestLogin(oauthToken: oauthToken, error: error)
+        }
+    }
+}
+
+// MARK: Facebook Login
+
+extension LoginViewController {
+    private func signInWithFacebook() {
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: [], from: self) { [weak self] result, error in
+            self?.viewModel.requestLogin(result: result, error: error)
+        }
+            
+    }
+}
+
+// MARK: Google Login
+
+extension LoginViewController {
+    private func signInWithGoogle() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            self?.viewModel.requestLogin(result: result, error: error)
+            
+        }
     }
 }

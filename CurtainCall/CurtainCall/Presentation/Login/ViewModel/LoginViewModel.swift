@@ -11,14 +11,14 @@ import Combine
 
 import KakaoSDKCommon
 import KakaoSDKAuth
-import KakaoSDKUser
-
 import FacebookLogin
-
 import GoogleSignIn
 
 protocol LoginViewModelInput {
-    func didTappedLoginButton(tag: Int)
+    func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
+    func requestLogin(oauthToken: OAuthToken?, error: Error?)
+    func requestLogin(result: LoginManagerLoginResult?, error: Error?)
+    func requestLogin(result: GIDSignInResult?, error: Error?)
 }
 
 protocol LoginViewModelOutput {
@@ -27,7 +27,7 @@ protocol LoginViewModelOutput {
 
 protocol LoginViewModelIO: LoginViewModelInput & LoginViewModelOutput { }
 
-final class LoginViewModel: NSObject, LoginViewModelIO {
+final class LoginViewModel: LoginViewModelIO {
     
     // MARK: - Properties
     
@@ -38,185 +38,94 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
     
     init(useCase: LoginUseCase) {
         self.useCase = useCase
-        super.init()
     }
     
     // MARK: - Helpers
-    
-    func didTappedLoginButton(tag: Int) {
-        switch tag {
-        case LoginButtonTag.kakaoTag:
-            signInWithKakao()
-        case LoginButtonTag.googleTag:
-            signInWithGoogle()
-        case LoginButtonTag.facebookTag:
-            signInWithFacebook()
-        case LoginButtonTag.appleTag:
-            signInWithApple()
-        default:
-            return
+
+    func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
         }
-    }
-}
-
-// MARK: Apple Login
-
-extension LoginViewModel: ASAuthorizationControllerDelegate {
-    func signInWithApple() {
-        let appleProvider = ASAuthorizationAppleIDProvider()
-        let request = appleProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
         
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        controller.delegate = self
-        
-        controller.performRequests()
-    }
-    
-    /// 애플 로그인 성공했을 시 ViewController에게 apple 로그인이라고 알려줌
-    /// - Parameters:
-    ///   - controller: ASAuthorizationController
-    ///   - authorization: ASAuthorization
-    func authorizationController(
-        controller: ASAuthorizationController,
-        didCompleteWithAuthorization authorization: ASAuthorization
-    ) {
-        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-            return
-        }
-        // TODO: credential 처리
-        _ = credential
-        useCase.loginWithApple()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.apple)
-            }.store(in: &cancellables)
-    }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        loginPublisher.send(completion: .failure(error))
-    }
-}
-
-// MARK: Kakao Login
-
-extension LoginViewModel {
-    private func signInWithKakao() {
-        if UserApi.isKakaoTalkLoginAvailable() {
-            kakaoLoginToKakaoTalk()
-        } else {
-            kakaoLoginToWebView()
+        if let crendential, let token = crendential.identityToken {
+            useCase.loginWithApple(token: token)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        return
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.apple)
+                }.store(in: &cancellables)
         }
     }
     
-    /// 카카오톡으로 로그인
-    private func kakaoLoginToKakaoTalk() {
-        UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            // TODO: oauthToken 처리
-            _ = oauthToken
-            self?.requestUsecaseToKakaoLogin()
+    func requestLogin(oauthToken: OAuthToken?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
         }
-    }
-    
-    /// 카카오 웹뷰로 로그인
-    private func kakaoLoginToWebView() {
-        UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            // TODO: oauthToken 처리
-            _ = oauthToken
-            self?.requestUsecaseToKakaoLogin()
-        }
-    }
-    
-    private func requestUsecaseToKakaoLogin() {
-        useCase.loginWithKakao()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    return
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.kakao)
-            }.store(in: &cancellables)
-    }
-}
-
-// MARK: Facebook Login
-
-extension LoginViewModel {
-    private func signInWithFacebook() {
-        let loginManager = LoginManager()
-        loginManager.logIn(permissions: [], from: nil) { [weak self] result, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            if let result, let token = result.token {
-                print(token.userID)
-                self?.requestUsecaseToFacebookLogin()
-            }
-        }
-    }
-    
-    private func requestUsecaseToFacebookLogin() {
-        useCase.loginWithFacebook()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    return
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.facebook)
-            }.store(in: &cancellables)
-    }
-        
-}
-
-extension LoginViewModel {
-    private func signInWithGoogle() {
-        guard let loginViewController = loginViewController else {
-            return
-        }
-        GIDSignIn.sharedInstance.signIn(withPresenting: loginViewController) { [weak self] result, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            if let result {
-                self?.requestUsecaseToGoogleLogin()
-            }
+        if let oauthToken {
+            useCase.loginWithKakao(token: oauthToken.accessToken)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.kakao)
+                }.store(in: &cancellables)
             
         }
     }
     
-    private func requestUsecaseToGoogleLogin() {
-        useCase.loginWithGoogle()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    return
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.google)
-            }.store(in: &cancellables)
+    func requestLogin(result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
+        }
+        
+        if let result, let token = result.token?.tokenString {
+            useCase.loginWithFacebook(token: token)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.facebook)
+                }.store(in: &cancellables)
+        }
     }
+    
+    func requestLogin(result: GIDSignInResult?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
+        }
+        
+        if let result {
+            useCase.loginWithGoogle(token: result.user.accessToken.tokenString)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.google)
+                }.store(in: &cancellables)
+        }
+    }
+    
+    
 }

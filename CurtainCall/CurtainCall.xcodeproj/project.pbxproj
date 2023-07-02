@@ -16,13 +16,13 @@
 		EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */; };
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
 		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
-		EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */; };
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
 		EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */; };
 		EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE42A4C013B00939823 /* KakaoSDKUser */; };
 		EE4EBAF32A4C303700939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAF22A4C303700939823 /* Secret.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
+		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -35,12 +35,12 @@
 		EE0BEDEB2A49553D008D9D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
-		EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonTag.swift; sourceTree = "<group>"; };
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EE4EBAF22A4C303700939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
+		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +128,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEE8F0B72A5195E500E31597 /* Errors */,
 				EEC60A462A4AB262001DDC2A /* Enums */,
 				EE0BEDFE2A497187008D9D05 /* Constants */,
 			);
@@ -163,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */,
-				EE0BEE012A498A26008D9D05 /* LoginButtonTag.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -190,6 +190,14 @@
 				EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		EEE8F0B72A5195E500E31597 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				EEE8F0B82A5195F300E31597 /* LoginError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,10 +285,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
-				EE0BEE022A498A26008D9D05 /* LoginButtonTag.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
+				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
