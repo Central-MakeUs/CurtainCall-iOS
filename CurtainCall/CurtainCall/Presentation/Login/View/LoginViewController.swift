@@ -15,6 +15,7 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 import FacebookLogin
+import GoogleSignIn
 
 final class LoginViewController: UIViewController {
     
@@ -138,9 +139,10 @@ final class LoginViewController: UIViewController {
             signInWithKakao()
         case facebookLoginButton:
             signInWithFacebook()
+        case googleLoginButton:
+            signInWithGoogle()
         default:
-            print("button Tapped: ",sender)
-            return
+            fatalError("Invalid Button")
         }
         
     }
@@ -210,5 +212,15 @@ extension LoginViewController {
         }
             
     }
-    
+}
+
+// MARK: Google Login
+
+extension LoginViewController {
+    private func signInWithGoogle() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            self?.viewModel.requestLogin(result: result, error: error)
+            
+        }
+    }
 }

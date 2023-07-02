@@ -11,16 +11,14 @@ import Combine
 
 import KakaoSDKCommon
 import KakaoSDKAuth
-import KakaoSDKUser
-
 import FacebookLogin
-
 import GoogleSignIn
 
 protocol LoginViewModelInput {
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
     func requestLogin(oauthToken: OAuthToken?, error: Error?)
     func requestLogin(result: LoginManagerLoginResult?, error: Error?)
+    func requestLogin(result: GIDSignInResult?, error: Error?)
 }
 
 protocol LoginViewModelOutput {
@@ -108,36 +106,26 @@ final class LoginViewModel: LoginViewModelIO {
         }
     }
     
-}
-
-extension LoginViewModel {
-    private func signInWithGoogle() {
-        guard let loginViewController = loginViewController else {
-            return
+    func requestLogin(result: GIDSignInResult?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
         }
-        GIDSignIn.sharedInstance.signIn(withPresenting: loginViewController) { [weak self] result, error in
-            if let error {
-                self?.loginPublisher.send(completion: .failure(error))
-                return
-            }
-            if let result {
-                self?.requestUsecaseToGoogleLogin()
-            }
-            
+        
+        if let result {
+            useCase.loginWithGoogle(token: result.user.accessToken.tokenString)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.google)
+                }.store(in: &cancellables)
         }
     }
     
-    private func requestUsecaseToGoogleLogin() {
-        useCase.loginWithGoogle()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    return
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.google)
-            }.store(in: &cancellables)
-    }
+    
 }
