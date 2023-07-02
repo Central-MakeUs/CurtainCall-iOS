@@ -18,7 +18,6 @@ import FacebookLogin
 import GoogleSignIn
 
 protocol LoginViewModelInput {
-    func didTappedLoginButton(tag: Int)
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
 }
 
@@ -43,19 +42,7 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
     }
     
     // MARK: - Helpers
-    
-    func didTappedLoginButton(tag: Int) {
-        switch tag {
-        case LoginButtonTag.kakaoTag:
-            signInWithKakao()
-        case LoginButtonTag.googleTag:
-            signInWithGoogle()
-        case LoginButtonTag.facebookTag:
-            signInWithFacebook()
-        default:
-            return
-        }
-    }
+
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?) {
         if let error {
             loginPublisher.send(completion: .failure(error))

@@ -26,28 +26,24 @@ final class LoginViewController: UIViewController {
     private let kakaoLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonKakao), for: .normal)
-        button.tag = LoginButtonTag.kakaoTag
         return button
     }()
     
     private let googleLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonGoogle), for: .normal)
-        button.tag = LoginButtonTag.googleTag
         return button
     }()
     
     private let facebookLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonFacebook), for: .normal)
-        button.tag = LoginButtonTag.facebookTag
         return button
     }()
     
     private let appleLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonApple), for: .normal)
-        button.tag = LoginButtonTag.appleTag
         return button
     }()
     
