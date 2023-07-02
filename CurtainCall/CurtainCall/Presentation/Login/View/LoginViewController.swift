@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import AuthenticationServices
 
 import SnapKit
 import GoogleSignIn
@@ -130,7 +131,41 @@ final class LoginViewController: UIViewController {
     
     @objc
     private func loginButtonTouchUpInside(_ sender: UIButton) {
-        viewModel.didTappedLoginButton(tag: sender.tag)
+        switch sender {
+        case appleLoginButton:
+            signInWithApple()
+        default:
+            print("button Tapped: ",sender)
+            return
+        }
         
+    }
+}
+
+// MARK: Apple Login
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func signInWithApple() {
+        let appleProvider = ASAuthorizationAppleIDProvider()
+        let request = appleProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()
+    }
+    
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+            return
+        }
+        viewModel.requestLogin(crendential: credential, error: nil)
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        viewModel.requestLogin(crendential: nil, error: error)
     }
 }

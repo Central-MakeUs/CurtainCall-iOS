@@ -19,6 +19,7 @@ import GoogleSignIn
 
 protocol LoginViewModelInput {
     func didTappedLoginButton(tag: Int)
+    func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
 }
 
 protocol LoginViewModelOutput {
@@ -51,56 +52,31 @@ final class LoginViewModel: NSObject, LoginViewModelIO {
             signInWithGoogle()
         case LoginButtonTag.facebookTag:
             signInWithFacebook()
-        case LoginButtonTag.appleTag:
-            signInWithApple()
         default:
             return
         }
     }
-}
-
-// MARK: Apple Login
-
-extension LoginViewModel: ASAuthorizationControllerDelegate {
-    func signInWithApple() {
-        let appleProvider = ASAuthorizationAppleIDProvider()
-        let request = appleProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        controller.delegate = self
-        
-        controller.performRequests()
-    }
-    
-    /// 애플 로그인 성공했을 시 ViewController에게 apple 로그인이라고 알려줌
-    /// - Parameters:
-    ///   - controller: ASAuthorizationController
-    ///   - authorization: ASAuthorization
-    func authorizationController(
-        controller: ASAuthorizationController,
-        didCompleteWithAuthorization authorization: ASAuthorization
-    ) {
-        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-            return
+    func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?) {
+        if let error {
+            loginPublisher.send(completion: .failure(error))
         }
-        // TODO: credential 처리
-        _ = credential
-        useCase.loginWithApple()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.loginPublisher.send(completion: .failure(error))
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] _ in
-                self?.loginPublisher.send(.apple)
-            }.store(in: &cancellables)
-    }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        loginPublisher.send(completion: .failure(error))
+        
+        if let crendential, let token = crendential.identityToken {
+            useCase.loginWithApple(token: token)
+                .sink { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        return
+                    case .failure(let error):
+                        self?.loginPublisher.send(completion: .failure(error))
+                        return
+                    }
+                } receiveValue: { [weak self] token in
+                    print(token)
+                    self?.loginPublisher.send(.apple)
+                }.store(in: &cancellables)
+        }
+        
     }
 }
 
