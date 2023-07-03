@@ -23,6 +23,7 @@
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
+		EEE8F0C12A52B17100E31597 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
 		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		EE0BEDD12A495539008D9D05 = {
 			isa = PBXGroup;
 			children = (
+				EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */,
 				EE0BEDDC2A495539008D9D05 /* CurtainCall */,
 				EE0BEDDB2A495539008D9D05 /* Products */,
 			);
@@ -274,6 +277,7 @@
 			files = (
 				EE0BEDEA2A49553D008D9D05 /* LaunchScreen.storyboard in Resources */,
 				EE0BEDE72A49553D008D9D05 /* Assets.xcassets in Resources */,
+				EEE8F0C12A52B17100E31597 /* Secrets.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +430,7 @@
 		};
 		EE0BEDEF2A49553D008D9D05 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +461,7 @@
 		};
 		EE0BEDF02A49553D008D9D05 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
