@@ -26,6 +26,7 @@
 		EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */; };
 		EEE8F0C72A52C37000E31597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE8F0C62A52C37000E31597 /* Assets.xcassets */; };
 		EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0CA2A53D10D00E31597 /* UIColor + Extension.swift */; };
+		EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0CC2A53ED3900E31597 /* UIViewController + Extension.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EEE8F0C62A52C37000E31597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEE8F0CA2A53D10D00E31597 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		EEE8F0CC2A53ED3900E31597 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				EEE8F0CA2A53D10D00E31597 /* UIColor + Extension.swift */,
+				EEE8F0CC2A53ED3900E31597 /* UIViewController + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
+				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
 				EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
