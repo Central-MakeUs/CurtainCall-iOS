@@ -25,6 +25,7 @@
 		EEE8F0C12A52B17100E31597 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */; };
 		EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */; };
 		EEE8F0C72A52C37000E31597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE8F0C62A52C37000E31597 /* Assets.xcassets */; };
+		EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0CA2A53D10D00E31597 /* UIColor + Extension.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EEE8F0C62A52C37000E31597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EEE8F0CA2A53D10D00E31597 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEE8F0C92A53D05B00E31597 /* Extension */,
 				EEE8F0B72A5195E500E31597 /* Errors */,
 				EEC60A462A4AB262001DDC2A /* Enums */,
 				EE0BEDFE2A497187008D9D05 /* Constants */,
@@ -220,6 +223,14 @@
 				EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EEE8F0C92A53D05B00E31597 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EEE8F0CA2A53D10D00E31597 /* UIColor + Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +322,7 @@
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
+				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
