@@ -12,4 +12,5 @@ enum ImageNamespace {
     static let loginButtonGoogle = "login_button_google"
     static let loginButtonKakao = "login_button_kakao"
     static let loginButtonFacebook = "login_button_facebook"
+    static let splashLogo = "splash_logo"
 }
