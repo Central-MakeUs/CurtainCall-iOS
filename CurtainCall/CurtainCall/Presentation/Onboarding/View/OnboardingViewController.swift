@@ -16,8 +16,7 @@ final class OnboardingViewController: UIViewController {
     
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: .zero)
-        pageControl.numberOfPages = 3
-        pageControl.currentPage = 0
+        pageControl.numberOfPages = OnboardingData.list.count
         return pageControl
     }()
     
@@ -34,7 +33,7 @@ final class OnboardingViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = UIColor(rgb: 0xF04E87)
         button.layer.cornerRadius = 15
-        button.setTitle("건너뛰기", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         return button
     }()
     
@@ -152,6 +151,10 @@ final class OnboardingViewController: UIViewController {
     private func bind() {
         viewModel.$currentPage.sink { [weak self] page in
             self?.pageControl.currentPage = page
+        }.store(in: &cancellables)
+        
+        viewModel.$buttonText.sink { [weak self] text in
+            self?.nextButton.setTitle(text, for: .normal)
         }.store(in: &cancellables)
     }
     
