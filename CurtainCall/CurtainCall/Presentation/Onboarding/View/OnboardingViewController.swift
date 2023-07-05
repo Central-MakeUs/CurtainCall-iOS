@@ -157,6 +157,13 @@ final class OnboardingViewController: UIViewController {
         }.store(in: &cancellables)
     }
     
+    private func moveToLoginViewController() {
+        let loginUsecase = LoginInteractor()
+        let loginViewModel = LoginViewModel(useCase: loginUsecase)
+        let loginViewController = LoginViewController(viewModel: loginViewModel)
+        changeRootViewController(loginViewController)
+    }
+    
     // MARK: Action
     
     private func addTargets() {
@@ -165,6 +172,10 @@ final class OnboardingViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
+        if viewModel.currentPage == 2 {
+            moveToLoginViewController()
+            return
+        }
         viewModel.nextButtonTapped()
         let x = collectionView.frame.size.width * CGFloat(viewModel.currentPage)
         collectionView.setContentOffset(
@@ -172,6 +183,7 @@ final class OnboardingViewController: UIViewController {
             animated: true
         )
     }
+    
 }
 
 extension OnboardingViewController: UICollectionViewDelegate {
