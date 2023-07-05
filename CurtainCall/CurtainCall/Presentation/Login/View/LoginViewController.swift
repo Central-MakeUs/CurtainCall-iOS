@@ -24,7 +24,7 @@ final class LoginViewController: UIViewController {
     private let loginButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 20
+        stackView.spacing = -8
         return stackView
     }()
     
@@ -50,6 +50,18 @@ final class LoginViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonApple), for: .normal)
         return button
+    }()
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.splashLogo)
+        return imageView
+    }()
+    
+    private let loginStart: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.loginStart)
+        return imageView
     }()
     
     // MARK: - Properties
@@ -85,16 +97,25 @@ final class LoginViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.backgroundColor = .white
-        view.addSubview(loginButtonStackView)
+        view.backgroundColor = UIColor(rgb: 0x273041)
+        [loginButtonStackView, logoImageView, loginStart].forEach { view.addSubview($0) }
         [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)
         }
     }
     
     private func configureConstraints() {
+        logoImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-100)
+        }
+        loginStart.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(100)
+        }
         loginButtonStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(loginStart.snp.bottom).offset(14)
         }
     }
     

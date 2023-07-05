@@ -52,9 +52,11 @@ final class SplashViewController: UIViewController {
             self.logoImageView.alpha = 1
         }, completion: { _ in
             // TODO: 자동로그인 확인해서 로그인뷰로 넘길지 메인으로 넘길지, 첫 화면이라면 사용법으로 넘기기
-            let usecase = LoginInteractor()
-            let loginViewModel = LoginViewModel(useCase: usecase)
-            self.changeRootViewController(LoginViewController(viewModel: loginViewModel))
+//            let usecase = LoginInteractor()
+//            let loginViewModel = LoginViewModel(useCase: usecase)
+//            self.changeRootViewController(LoginViewController(viewModel: loginViewModel))
+            let onboardingViewModel = OnboardingViewModel()
+            self.changeRootViewController(OnboardingViewController(viewModel: onboardingViewModel))
         })
     }
     
