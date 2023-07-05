@@ -26,6 +26,9 @@ final class OnboardingViewController: UIViewController {
             collectionViewLayout: createCollectionViewLayout()
         )
         collectionView.backgroundColor = UIColor(rgb: 0x273041)
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -66,6 +69,8 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         bind()
+        registerCell()
+        addTargets()
     }
     
     // MARK: - Helpers
@@ -74,10 +79,8 @@ final class OnboardingViewController: UIViewController {
         view.backgroundColor = UIColor(rgb: 0x273041)
         configureSubviews()
         configureConstraints()
-        registerCell()
         configureDatasource()
         configureSnapshot()
-        
     }
     
     private func configureSubviews() {
@@ -113,11 +116,9 @@ final class OnboardingViewController: UIViewController {
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .paging
-        section.visibleItemsInvalidationHandler = { [weak self] _ , offset, env in
-            self?.viewModel.scrollPage(x: offset.x, width: env.container.contentSize.width)
-        }
-        return UICollectionViewCompositionalLayout(section: section)
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.scrollDirection = .horizontal
+        return UICollectionViewCompositionalLayout(section: section, configuration: config)
     }
     
     private func registerCell() {
@@ -150,12 +151,31 @@ final class OnboardingViewController: UIViewController {
     
     private func bind() {
         viewModel.$currentPage.sink { [weak self] page in
-            self?.pageControl.currentPage = page
-        }.store(in: &cancellables)
-        
-        viewModel.$buttonText.sink { [weak self] text in
-            self?.nextButton.setTitle(text, for: .normal)
+            guard let self else { return }
+            self.pageControl.currentPage = page
+            self.nextButton.setTitle(page == 2 ? "로그인 하기" : "건너뛰기", for: .normal)
         }.store(in: &cancellables)
     }
     
+    // MARK: Action
+    
+    private func addTargets() {
+        nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
+    }
+    
+    @objc
+    private func nextButtonTouchUpInside() {
+        viewModel.nextButtonTapped()
+        let x = collectionView.frame.size.width * CGFloat(viewModel.currentPage)
+        collectionView.setContentOffset(
+            CGPoint(x: x, y: 0),
+            animated: true
+        )
+    }
+}
+
+extension OnboardingViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        viewModel.scrollPage(x: scrollView.contentOffset.x, width: scrollView.frame.width)
+    }
 }

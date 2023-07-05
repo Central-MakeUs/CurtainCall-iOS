@@ -10,11 +10,11 @@ import Combine
 
 protocol OnboardingViewModelInput {
     func scrollPage(x: Double, width: Double)
+    func nextButtonTapped()
 }
 
 protocol OnboardingViewModelOutput {
     var currentPage: Int { get set }
-    var buttonText: String { get set }
 }
 
 final class OnboardingViewModel: OnboardingViewModelInput, OnboardingViewModelOutput {
@@ -22,13 +22,15 @@ final class OnboardingViewModel: OnboardingViewModelInput, OnboardingViewModelOu
     // MARK: - Properties
     
     @Published var currentPage: Int = 0
-    @Published var buttonText: String = "건너뛰기"
     
     // MARK: - Helpers
     
     func scrollPage(x: Double, width: Double) {
         currentPage = Int((x / width).rounded(.up))
-        buttonText = currentPage == 2 ? "로그인 하기" : "건너뛰기"
+    }
+    
+    func nextButtonTapped() {
+        currentPage = min(currentPage + 1, 2)
     }
     
 }
