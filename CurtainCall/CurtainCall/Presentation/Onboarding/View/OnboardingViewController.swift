@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
@@ -16,7 +17,7 @@ final class OnboardingViewController: UIViewController {
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: .zero)
         pageControl.numberOfPages = 3
-        pageControl.currentPage = 1
+        pageControl.currentPage = 0
         return pageControl
     }()
     
@@ -38,16 +39,34 @@ final class OnboardingViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    typealias Section = String
-    typealias Item = String
+    
+    private let viewModel: OnboardingViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
+    enum Section {
+        case main
+    }
+    
+    typealias Item = OnboardingData
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     // MARK: - Lifecycles
     
+    init(viewModel: OnboardingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available (*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
     }
     
     // MARK: - Helpers
@@ -95,6 +114,10 @@ final class OnboardingViewController: UIViewController {
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .paging
+        section.visibleItemsInvalidationHandler = { [weak self] _ , offset, env in
+            self?.viewModel.scrollPage(x: offset.x, width: env.container.contentSize.width)
+        }
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -108,12 +131,12 @@ final class OnboardingViewController: UIViewController {
     private func configureDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, itemIdentifier in
+            cellProvider: { collectionView, indexPath, item in
                 guard let cell = collectionView.dequeueCell(
                     type: OnboardingCell.self,
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
-                
+                cell.setupUI(data: item)
                 return cell
             }
         )
@@ -121,9 +144,15 @@ final class OnboardingViewController: UIViewController {
     
     private func configureSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections(["main"])
-        snapshot.appendItems(["하하"], toSection: "main")
+        snapshot.appendSections([.main])
+        snapshot.appendItems(OnboardingData.list, toSection: .main)
         dataSource?.apply(snapshot)
+    }
+    
+    private func bind() {
+        viewModel.$currentPage.sink { [weak self] page in
+            self?.pageControl.currentPage = page
+        }.store(in: &cancellables)
     }
     
 }

@@ -66,7 +66,8 @@ final class OnboardingCell: UICollectionViewCell {
         }
     }
     
-    func setupUI() {
-        
+    func setupUI(data: OnboardingData) {
+        titleLabel.text = data.title
+        descriptionLabel.text = data.description
     }
 }

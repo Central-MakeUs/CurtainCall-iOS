@@ -55,7 +55,8 @@ final class SplashViewController: UIViewController {
 //            let usecase = LoginInteractor()
 //            let loginViewModel = LoginViewModel(useCase: usecase)
 //            self.changeRootViewController(LoginViewController(viewModel: loginViewModel))
-            self.changeRootViewController(OnboardingViewController())
+            let onboardingViewModel = OnboardingViewModel()
+            self.changeRootViewController(OnboardingViewController(viewModel: onboardingViewModel))
         })
     }
     
