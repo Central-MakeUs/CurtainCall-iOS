@@ -20,15 +20,6 @@ final class SplashViewController: UIViewController {
         return imageView
     }()
     
-    private let appNameLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = "Curtain Call"
-        label.textColor = UIColor(rgb: 0xFF71A4)
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        return label
-    }()
-    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -43,21 +34,17 @@ final class SplashViewController: UIViewController {
     
     private func configureUI() {
         // TODO: 디자인 컬러 나오면 자주사용하는 색상 따로 빼서 작성
-        view.backgroundColor = UIColor(rgb: 0x0340BF)
+        view.backgroundColor = UIColor(rgb: 0x273041)
         configureSubviews()
         configureConstraint()
     }
     
     private func configureSubviews() {
-        [logoImageView, appNameLabel].forEach { view.addSubview($0) }
+        view.addSubview(logoImageView)
     }
     
     private func configureConstraint() {
-        appNameLabel.snp.makeConstraints { $0.center.equalToSuperview() }
-        logoImageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(appNameLabel.snp.top).offset(-6)
-        }
+        logoImageView.snp.makeConstraints { $0.center.equalToSuperview() }
     }
     
     private func startAnimation() {
