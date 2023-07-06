@@ -20,8 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
 //        window?.rootViewController = SplashViewController()
-        let viewModel = LoginViewModel(useCase: LoginInteractor())
-        let rootViewController = LoginViewController(viewModel: viewModel)
+        let rootViewController = LoginViewController(
+            viewModel: LoginViewModel(
+            useCase: LoginInteractor())
+        )
         window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         window?.makeKeyAndVisible()
     }

@@ -153,9 +153,8 @@ final class LoginViewController: UIViewController {
                 // 홈
                 
                 // 회원가입
-                let termOfserviceViewModel = TermsOfServiceViewModel()
                 let termOfserviceViewController = TermsOfServiceViewController(
-                    viewModel: termOfserviceViewModel
+                    viewModel: TermsOfServiceViewModel()
                 )
                 self.navigationController?.pushViewController(
                     termOfserviceViewController,
