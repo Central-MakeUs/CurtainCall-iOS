@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
@@ -49,7 +50,12 @@ final class TermsOfServiceViewController: UIViewController {
         return stackView
     }()
     
-    private let allCheckButton = CheckMarkButton()
+    private let allCheckButton: CheckMarkButton = {
+        let button = CheckMarkButton()
+        button.tag = 0
+        return button
+    }()
+    
     private let allCheckLabelButton: UIButton = {
         let button = UIButton()
         button.setTitle("전체 동의(선택사항 포함)", for: .normal)
@@ -64,8 +70,11 @@ final class TermsOfServiceViewController: UIViewController {
         stackView.spacing = 10
         return stackView
     }()
-    
-    private let serviceCheckButton = CheckMarkButton()
+    private let serviceCheckButton: CheckMarkButton = {
+        let button = CheckMarkButton()
+        button.tag = 1
+        return button
+    }()
     private let serviceCheckLabelButton: UIButton = {
         let button = UIButton()
         button.setTitle("서비스 이용약관(필수)", for: .normal)
@@ -84,7 +93,11 @@ final class TermsOfServiceViewController: UIViewController {
         return stackView
     }()
     
-    private let locationCheckButton = CheckMarkButton()
+    private let locationCheckButton: CheckMarkButton = {
+        let button = CheckMarkButton()
+        button.tag = 2
+        return button
+    }()
     private let locationCheckLabelButton: UIButton = {
         let button = UIButton()
         button.setTitle("위치 (선택)", for: .normal)
@@ -101,7 +114,11 @@ final class TermsOfServiceViewController: UIViewController {
         return stackView
     }()
     
-    private let alarmCheckButton = CheckMarkButton()
+    private let alarmCheckButton: CheckMarkButton = {
+        let button = CheckMarkButton()
+        button.tag = 3
+        return button
+    }()
     private let alarmCheckLabelButton: UIButton = {
         let button = UIButton()
         button.setTitle("알림 (선택)", for: .normal)
@@ -118,7 +135,11 @@ final class TermsOfServiceViewController: UIViewController {
         return stackView
     }()
     
-    private let marketingCheckButton = CheckMarkButton()
+    private let marketingCheckButton: CheckMarkButton = {
+        let button = CheckMarkButton()
+        button.tag = 4
+        return button
+    }()
     private let marketingCheckLabelButton: UIButton = {
         let button = UIButton()
         button.setTitle("마케팅 정보 수신 동의 (선택)", for: .normal)
@@ -139,9 +160,10 @@ final class TermsOfServiceViewController: UIViewController {
         let button = UIButton()
         button.setTitle("동의하고 계속하기", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        button.backgroundColor = UIColor(rgb: 0x91959D)
+        button.backgroundColor = UIColor(rgb: 0xE1E4E9)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 15
+        button.isEnabled = false
         return button
     }()
     
@@ -153,12 +175,26 @@ final class TermsOfServiceViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let viewModel: TermsOfServiceViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: - Lifecycles
+    
+    init(viewModel: TermsOfServiceViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTargets()
+        bind()
     }
     
     // MARK: - Helpers
@@ -243,11 +279,43 @@ final class TermsOfServiceViewController: UIViewController {
         }
     }
     
+    private func bind() {
+        viewModel.isAllCheck.sink { [weak self] isSelected in
+            self?.allCheckButton.isSelected = isSelected
+        }.store(in: &cancellables)
+        
+        viewModel.isServiceCheck.sink { [weak self] isSelected in
+            self?.serviceCheckButton.isSelected = isSelected
+        }.store(in: &cancellables)
+        
+        viewModel.isLocationCheck.sink { [weak self] isSelected in
+            self?.locationCheckButton.isSelected = isSelected
+        }.store(in: &cancellables)
+        
+        viewModel.isAlarmCheck.sink { [weak self] isSelected in
+            self?.alarmCheckButton.isSelected = isSelected
+        }.store(in: &cancellables)
+        
+        viewModel.isMarketingCheck.sink { [weak self] isSelected in
+            self?.marketingCheckButton.isSelected = isSelected
+        }.store(in: &cancellables)
+        
+        viewModel.isCheckedRequire.sink { [weak self] isCheck in
+            self?.nextButton.backgroundColor = UIColor(rgb: isCheck ? 0x273041 : 0xE1E4E9)
+            self?.nextButton.setTitleColor(
+                UIColor(rgb: isCheck ? 0xFFFFFF : 0x91959D),
+                for: .normal
+            )
+            self?.nextButton.isEnabled = isCheck
+        }.store(in: &cancellables)
+
+    }
+    
     // MARK: Actions
     
     @objc
     func checkButtonTouchUpInside(sender: UIButton) {
-        sender.isSelected.toggle()
+        viewModel.checkButtonTouchUpInside(tag: sender.tag)
     }
     
 }

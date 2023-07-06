@@ -38,6 +38,7 @@
 		EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E72A56A87700E31597 /* ExpandButton.swift */; };
 		EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */; };
 		EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */; };
+		EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0EE2A56AFEB00E31597 /* TermsOfServiceViewModel.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		EEE8F0E72A56A87700E31597 /* ExpandButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandButton.swift; sourceTree = "<group>"; };
 		EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		EEE8F0EE2A56AFEB00E31597 /* TermsOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 		EEE8F0DF2A559F6700E31597 /* TermsOfService */ = {
 			isa = PBXGroup;
 			children = (
+				EEE8F0ED2A56AFDB00E31597 /* ViewModel */,
 				EEE8F0E22A559F8100E31597 /* View */,
 			);
 			path = TermsOfService;
@@ -323,6 +326,14 @@
 				EEE8F0E72A56A87700E31597 /* ExpandButton.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		EEE8F0ED2A56AFDB00E31597 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EEE8F0EE2A56AFEB00E31597 /* TermsOfServiceViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,6 +434,7 @@
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
+				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
 				EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */,
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
