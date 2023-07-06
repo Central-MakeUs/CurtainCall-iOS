@@ -75,6 +75,7 @@ final class NicknameSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        hideKeyboardWhenTappedArround()
     }
     
     // MARK: - Helpers
