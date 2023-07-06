@@ -161,7 +161,7 @@ final class OnboardingViewController: UIViewController {
         let loginUsecase = LoginInteractor()
         let loginViewModel = LoginViewModel(useCase: loginUsecase)
         let loginViewController = LoginViewController(viewModel: loginViewModel)
-        changeRootViewController(loginViewController)
+        changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
     
     // MARK: Action

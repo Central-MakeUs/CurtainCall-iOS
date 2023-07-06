@@ -14,4 +14,7 @@ enum ImageNamespace {
     static let loginButtonFacebook = "login_button_facebook"
     static let loginStart = "login_start"
     static let splashLogo = "splash_logo"
+    static let checkmarkButtonDeselected = "checkmark_button_deselected"
+    static let checkmarkButtonSelected = "checkmark_button_selected"
+    static let ExpandButtonArrowBottom = "expand_button_arrow_bottom"
 }

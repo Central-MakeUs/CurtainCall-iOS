@@ -93,6 +93,7 @@ final class LoginViewController: UIViewController {
     private func configureUI() {
         configureSubviews()
         configureConstraints()
+        configureNavigation()
         addTargets()
     }
     
@@ -119,6 +120,17 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    private func configureNavigation() {
+        let backBarbuttonItem = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: self,
+            action: nil
+        )
+        backBarbuttonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backBarbuttonItem
+    }
+    
     private func addTargets() {
         [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             $0.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
@@ -135,16 +147,30 @@ final class LoginViewController: UIViewController {
                     print("끝남 처리")
                 }
             } receiveValue: { loginType in
-                switch loginType {
-                case .apple:
-                    print("애플 로그인 성공")
-                case .kakao:
-                    print("카카오 로그인 성공")
-                case .facebook:
-                    print("페이스북 로그인 성공")
-                case .google:
-                    print("구글 로그인 성공")
-                }
+                _ = loginType
+                // TODO: 홈으로 넘길지, 약관동의 화면으로 넘길지 확인
+                
+                // 홈
+                
+                // 회원가입
+                let termOfserviceViewController = TermsOfServiceViewController(
+                    viewModel: TermsOfServiceViewModel()
+                )
+                self.navigationController?.pushViewController(
+                    termOfserviceViewController,
+                    animated: true
+                )
+                
+//                switch loginType {
+//                case .apple:
+//                    print("애플 로그인 성공")
+//                case .kakao:
+//                    print("카카오 로그인 성공")
+//                case .facebook:
+//                    print("페이스북 로그인 성공")
+//                case .google:
+//                    print("구글 로그인 성공")
+//                }
             }
             .store(in: &cancellables)
     }
