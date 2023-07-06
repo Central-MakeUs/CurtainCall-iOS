@@ -24,7 +24,7 @@ final class LoginViewController: UIViewController {
     private let loginButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = -8
+        stackView.spacing = 16
         return stackView
     }()
     
