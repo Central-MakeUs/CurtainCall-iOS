@@ -18,6 +18,4 @@ extension UIViewController {
             self.present(rootViewController, animated: true, completion: nil)
         }
     }
-    
-    func addSubviews(_ views: UIView...) { views.forEach { addSubviews($0) } }
 }
