@@ -38,12 +38,13 @@ final class NicknameSettingViewController: UIViewController {
         return view
     }()
     
-    private let nicknameTextField: UITextField = {
+    private lazy var nicknameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "닉네임을 입력해주세요."
         textField.textColor = UIColor(rgb: 0x91959D)
         textField.font = .systemFont(ofSize: 18, weight: .medium)
         textField.borderStyle = .none
+        textField.delegate = self
         return textField
     }()
     
@@ -69,6 +70,8 @@ final class NicknameSettingViewController: UIViewController {
     }()
     
     // MARK: - Properties
+    
+    private let NICKNAME_MAX_LENGTH: Int = 15
     
     // MARK: - Lifecycles
     
@@ -138,4 +141,23 @@ final class NicknameSettingViewController: UIViewController {
         nextButton.isEnabled = isCheck
     }
     
+}
+
+extension NicknameSettingViewController: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        if let char = string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        guard text.count < NICKNAME_MAX_LENGTH else { return false }
+        return true
+    }
 }
