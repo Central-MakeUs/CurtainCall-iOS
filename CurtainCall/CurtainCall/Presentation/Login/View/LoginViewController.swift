@@ -93,6 +93,7 @@ final class LoginViewController: UIViewController {
     private func configureUI() {
         configureSubviews()
         configureConstraints()
+        configureNavigation()
         addTargets()
     }
     
@@ -117,6 +118,17 @@ final class LoginViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(loginStart.snp.bottom).offset(14)
         }
+    }
+    
+    private func configureNavigation() {
+        let backBarbuttonItem = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: self,
+            action: nil
+        )
+        backBarbuttonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backBarbuttonItem
     }
     
     private func addTargets() {

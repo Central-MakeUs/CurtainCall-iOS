@@ -34,6 +34,10 @@
 		EEE8F0DB2A554ECE00E31597 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0DA2A554ECE00E31597 /* OnboardingData.swift */; };
 		EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0DD2A55515500E31597 /* OnboardingViewModel.swift */; };
 		EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E02A559F7D00E31597 /* TermsOfServiceViewController.swift */; };
+		EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E52A5690E200E31597 /* CheckMarkButton.swift */; };
+		EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E72A56A87700E31597 /* ExpandButton.swift */; };
+		EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */; };
+		EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +67,10 @@
 		EEE8F0DA2A554ECE00E31597 /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		EEE8F0DD2A55515500E31597 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		EEE8F0E02A559F7D00E31597 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		EEE8F0E52A5690E200E31597 /* CheckMarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkButton.swift; sourceTree = "<group>"; };
+		EEE8F0E72A56A87700E31597 /* ExpandButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandButton.swift; sourceTree = "<group>"; };
+		EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
+		EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +162,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEE8F0E42A5690CB00E31597 /* UI */,
 				EEE8F0C92A53D05B00E31597 /* Extension */,
 				EEE8F0B72A5195E500E31597 /* Errors */,
 				EEC60A462A4AB262001DDC2A /* Enums */,
@@ -250,6 +259,8 @@
 				EEE8F0CC2A53ED3900E31597 /* UIViewController + Extension.swift */,
 				EEE8F0D52A5539F800E31597 /* UICollectionView + Extension.swift */,
 				EEE8F0D72A553A2000E31597 /* UICollectionReusableView.swift */,
+				EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */,
+				EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -303,6 +314,15 @@
 				EEE8F0E02A559F7D00E31597 /* TermsOfServiceViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EEE8F0E42A5690CB00E31597 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EEE8F0E52A5690E200E31597 /* CheckMarkButton.swift */,
+				EEE8F0E72A56A87700E31597 /* ExpandButton.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +410,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
+				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
@@ -399,12 +421,14 @@
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
+				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */,
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
 				EEE8F0DB2A554ECE00E31597 /* OnboardingData.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
+				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
