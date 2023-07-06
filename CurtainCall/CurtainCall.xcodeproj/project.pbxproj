@@ -39,6 +39,7 @@
 		EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */; };
 		EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */; };
 		EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0EE2A56AFEB00E31597 /* TermsOfServiceViewModel.swift */; };
+		EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0F22A56E31F00E31597 /* NicknameSettingViewController.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		EEE8F0E92A56AC5D00E31597 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		EEE8F0EB2A56ACF000E31597 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		EEE8F0EE2A56AFEB00E31597 /* TermsOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewModel.swift; sourceTree = "<group>"; };
+		EEE8F0F22A56E31F00E31597 /* NicknameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		EE0BEDF32A49586C008D9D05 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EEE8F0F02A56E30800E31597 /* NicknameSetting */,
 				EEE8F0DF2A559F6700E31597 /* TermsOfService */,
 				EEE8F0CF2A552F5D00E31597 /* Onboarding */,
 				EEE8F0C22A52C1DA00E31597 /* Splash */,
@@ -336,6 +339,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		EEE8F0F02A56E30800E31597 /* NicknameSetting */ = {
+			isa = PBXGroup;
+			children = (
+				EEE8F0F12A56E31100E31597 /* View */,
+			);
+			path = NicknameSetting;
+			sourceTree = "<group>";
+		};
+		EEE8F0F12A56E31100E31597 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EEE8F0F22A56E31F00E31597 /* NicknameSettingViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -434,6 +453,7 @@
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
+				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
 				EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */,
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
