@@ -158,6 +158,7 @@ final class TermsOfServiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTargets()
     }
     
     // MARK: - Helpers
@@ -233,6 +234,13 @@ final class TermsOfServiceViewController: UIViewController {
             $0.height.equalTo(1)
         }
         
+    }
+    
+    private func addTargets() {
+        [allCheckButton, serviceCheckButton,
+         locationCheckButton, alarmCheckButton, marketingCheckButton].forEach {
+            $0.addTarget(self, action: #selector(checkButtonTouchUpInside), for: .touchUpInside)
+        }
     }
     
     // MARK: Actions
