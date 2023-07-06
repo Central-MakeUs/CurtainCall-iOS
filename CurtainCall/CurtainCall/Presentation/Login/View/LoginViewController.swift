@@ -135,16 +135,28 @@ final class LoginViewController: UIViewController {
                     print("끝남 처리")
                 }
             } receiveValue: { loginType in
-                switch loginType {
-                case .apple:
-                    print("애플 로그인 성공")
-                case .kakao:
-                    print("카카오 로그인 성공")
-                case .facebook:
-                    print("페이스북 로그인 성공")
-                case .google:
-                    print("구글 로그인 성공")
-                }
+                _ = loginType
+                // TODO: 홈으로 넘길지, 약관동의 화면으로 넘길지 확인
+                
+                // 홈
+                
+                // 회원가입
+                let termOfserviceViewController = TermsOfServiceViewController()
+                self.navigationController?.pushViewController(
+                    termOfserviceViewController,
+                    animated: true
+                )
+                
+//                switch loginType {
+//                case .apple:
+//                    print("애플 로그인 성공")
+//                case .kakao:
+//                    print("카카오 로그인 성공")
+//                case .facebook:
+//                    print("페이스북 로그인 성공")
+//                case .google:
+//                    print("구글 로그인 성공")
+//                }
             }
             .store(in: &cancellables)
     }
