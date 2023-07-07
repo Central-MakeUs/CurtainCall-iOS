@@ -277,6 +277,7 @@ final class TermsOfServiceViewController: UIViewController {
          locationCheckButton, alarmCheckButton, marketingCheckButton].forEach {
             $0.addTarget(self, action: #selector(checkButtonTouchUpInside), for: .touchUpInside)
         }
+        nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
     }
     
     private func bind() {
@@ -301,14 +302,18 @@ final class TermsOfServiceViewController: UIViewController {
         }.store(in: &cancellables)
         
         viewModel.isCheckedRequire.sink { [weak self] isCheck in
-            self?.nextButton.backgroundColor = UIColor(rgb: isCheck ? 0x273041 : 0xE1E4E9)
-            self?.nextButton.setTitleColor(
-                UIColor(rgb: isCheck ? 0xFFFFFF : 0x91959D),
-                for: .normal
-            )
-            self?.nextButton.isEnabled = isCheck
+            self?.nextButtonCheck(isCheck)
         }.store(in: &cancellables)
 
+    }
+    
+    private func nextButtonCheck(_ isCheck: Bool) {
+        nextButton.backgroundColor = UIColor(rgb: isCheck ? 0x273041 : 0xE1E4E9)
+        nextButton.setTitleColor(
+            UIColor(rgb: isCheck ? 0xFFFFFF : 0x91959D),
+            for: .normal
+        )
+        nextButton.isEnabled = isCheck
     }
     
     // MARK: Actions
@@ -318,4 +323,15 @@ final class TermsOfServiceViewController: UIViewController {
         viewModel.checkButtonTouchUpInside(tag: sender.tag)
     }
     
+    @objc
+    func nextButtonTouchUpInside() {
+        let nicknameSettingViewController = NicknameSettingViewController(
+            viewModel: NicknameSettingViewModel(
+            usecase: NicknameSettingInteractor()
+            )
+        )
+        navigationController?.pushViewController(nicknameSettingViewController, animated: true)
+    }
+    
+
 }

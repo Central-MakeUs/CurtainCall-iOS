@@ -18,4 +18,39 @@ extension UIViewController {
             self.present(rootViewController, animated: true, completion: nil)
         }
     }
+    
+    func hideKeyboardWhenTappedArround() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    /// Alert 띄우는 메서드
+    /// - Parameters:
+    ///   - title: 제목
+    ///   - message: 메시지
+    ///   - isCancelActionInclude: 취소 포함 여부
+    ///   - style: AlertStyle
+    ///   - handler: 확인 누른 후 작동될 액션
+    func presentAlert(
+        title: String,
+        message: String? = nil,
+        isCancelActionIncluded: Bool = false,
+        preferredStyle style: UIAlertController.Style = .alert,
+        handler: ((UIAlertAction) -> Void)? = nil
+    ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+        let actionDone = UIAlertAction(title: "확인", style: .default, handler: handler)
+        alert.addAction(actionDone)
+        if isCancelActionIncluded {
+            let actionCancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(actionCancel)
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
 }
