@@ -316,6 +316,15 @@ final class TermsOfServiceViewController: UIViewController {
         nextButton.isEnabled = isCheck
     }
     
+    private func moveToNicknameSettingViewController() {
+        let nicknameSettingViewController = NicknameSettingViewController(
+            viewModel: NicknameSettingViewModel(
+            usecase: NicknameSettingInteractor()
+            )
+        )
+        navigationController?.pushViewController(nicknameSettingViewController, animated: true)
+    }
+    
     // MARK: Actions
     
     @objc
@@ -325,12 +334,7 @@ final class TermsOfServiceViewController: UIViewController {
     
     @objc
     func nextButtonTouchUpInside() {
-        let nicknameSettingViewController = NicknameSettingViewController(
-            viewModel: NicknameSettingViewModel(
-            usecase: NicknameSettingInteractor()
-            )
-        )
-        navigationController?.pushViewController(nicknameSettingViewController, animated: true)
+        moveToNicknameSettingViewController()
     }
     
 

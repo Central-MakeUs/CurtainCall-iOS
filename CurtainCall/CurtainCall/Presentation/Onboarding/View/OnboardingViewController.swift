@@ -158,16 +158,21 @@ final class OnboardingViewController: UIViewController {
     }
     
     private func moveToLoginViewController() {
-        let loginUsecase = LoginInteractor()
-        let loginViewModel = LoginViewModel(useCase: loginUsecase)
-        let loginViewController = LoginViewController(viewModel: loginViewModel)
+        let loginViewController = LoginViewController(
+            viewModel: LoginViewModel(
+            useCase: LoginInteractor())
+        )
         changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
     
     // MARK: Action
     
     private func addTargets() {
-        nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
+        nextButton.addTarget(
+            self,
+            action: #selector(nextButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @objc
