@@ -149,17 +149,11 @@ final class NicknameSettingViewController: UIViewController {
     }
     
     private func buttonValidCheck(_ isValid: Bool) {
-        nextButton.backgroundColor = UIColor(rgb: isValid ? 0x273041 : 0xE1E4E9)
-        nextButton.setTitleColor(
-            UIColor(rgb: isValid ? 0xFFFFFF : 0x91959D),
-            for: .normal
-        )
+        nextButton.backgroundColor = isValid ? .deepDark : .gray1
+        nextButton.setTitleColor(isValid ? .white : .gray2, for: .normal)
         nextButton.isEnabled = isValid
-        duplicateCheckButton.backgroundColor = UIColor(rgb: isValid ? 0x9399A5 : 0xE1E4E9)
-        duplicateCheckButton.setTitleColor(
-            UIColor(rgb: isValid ? 0xFFFFFF : 0x91959D),
-            for: .normal
-        )
+        duplicateCheckButton.backgroundColor = isValid ? .gray2 : .gray1
+        duplicateCheckButton.setTitleColor(isValid ? .white : .gray2,for: .normal)
     }
     
     private func bind() {

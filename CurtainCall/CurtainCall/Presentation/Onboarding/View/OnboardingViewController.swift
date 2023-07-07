@@ -34,7 +34,7 @@ final class OnboardingViewController: UIViewController {
     
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(rgb: 0xF04E87)
+        button.backgroundColor = .sunsetPink
         button.layer.cornerRadius = 15
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         return button
