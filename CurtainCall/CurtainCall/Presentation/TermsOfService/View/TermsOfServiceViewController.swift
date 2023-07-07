@@ -325,7 +325,11 @@ final class TermsOfServiceViewController: UIViewController {
     
     @objc
     func nextButtonTouchUpInside() {
-        let nicknameSettingViewController = NicknameSettingViewController()
+        let nicknameSettingViewController = NicknameSettingViewController(
+            viewModel: NicknameSettingViewModel(
+            usecase: NicknameSettingInteractor()
+            )
+        )
         navigationController?.pushViewController(nicknameSettingViewController, animated: true)
     }
     

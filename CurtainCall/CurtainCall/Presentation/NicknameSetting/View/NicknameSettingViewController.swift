@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
@@ -72,12 +73,27 @@ final class NicknameSettingViewController: UIViewController {
     // MARK: - Properties
     
     private let NICKNAME_MAX_LENGTH: Int = 15
+    private let viewModel: NicknameSettingViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Lifecycles
+    
+    init(viewModel: NicknameSettingViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    @available (*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
+        addTargets()
         hideKeyboardWhenTappedArround()
     }
     
@@ -115,7 +131,7 @@ final class NicknameSettingViewController: UIViewController {
         
         nicknameTextField.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         duplicateCheckButton.snp.makeConstraints {
@@ -132,13 +148,51 @@ final class NicknameSettingViewController: UIViewController {
         }
     }
     
-    private func nextButtonCheck(_ isCheck: Bool) {
-        nextButton.backgroundColor = UIColor(rgb: isCheck ? 0x273041 : 0xE1E4E9)
+    private func buttonValidCheck(_ isValid: Bool) {
+        nextButton.backgroundColor = UIColor(rgb: isValid ? 0x273041 : 0xE1E4E9)
         nextButton.setTitleColor(
-            UIColor(rgb: isCheck ? 0xFFFFFF : 0x91959D),
+            UIColor(rgb: isValid ? 0xFFFFFF : 0x91959D),
             for: .normal
         )
-        nextButton.isEnabled = isCheck
+        nextButton.isEnabled = isValid
+        duplicateCheckButton.backgroundColor = UIColor(rgb: isValid ? 0x9399A5 : 0xE1E4E9)
+        duplicateCheckButton.setTitleColor(
+            UIColor(rgb: isValid ? 0xFFFFFF : 0x91959D),
+            for: .normal
+        )
+    }
+    
+    private func bind() {
+        viewModel.isValidRegexNickname
+            .sink { [weak self] nicknameValidType in
+                print(nicknameValidType.message)
+                self?.buttonValidCheck(nicknameValidType == .success)
+            }.store(in: &cancellables)
+    }
+    
+    private func addTargets() {
+        duplicateCheckButton.addTarget(
+            self,
+            action: #selector(duplicateButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        nextButton.addTarget(
+            self,
+            action: #selector(nextButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    func duplicateButtonTouchUpInside() {
+        viewModel.isValidNickname(nickname: nicknameTextField.text)
+    }
+    
+    @objc
+    func nextButtonTouchUpInside() {
+        // TODO: 회원가입 API 쏜 후 완료 화면으로 넘기기
     }
     
 }
