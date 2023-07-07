@@ -192,7 +192,7 @@ final class NicknameSettingViewController: UIViewController {
     
     @objc
     func nextButtonTouchUpInside() {
-        // TODO: 회원가입 API 쏜 후 완료 화면으로 넘기기
+        navigationController?.pushViewController(LoginCompleteViewController(), animated: true)
     }
     
 }

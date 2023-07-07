@@ -18,6 +18,7 @@
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
 		EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */; };
 		EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */; };
+		EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */; };
 		EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */; };
 		EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE42A4C013B00939823 /* KakaoSDKUser */; };
 		EE4EBAF32A4C303700939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAF22A4C303700939823 /* Secret.swift */; };
@@ -58,6 +59,7 @@
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingUsecase.swift; sourceTree = "<group>"; };
 		EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameValidType.swift; sourceTree = "<group>"; };
+		EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewController.swift; sourceTree = "<group>"; };
 		EE4EBAF22A4C303700939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				EEE8F0F22A56E31F00E31597 /* NicknameSettingViewController.swift */,
+				EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
+				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
