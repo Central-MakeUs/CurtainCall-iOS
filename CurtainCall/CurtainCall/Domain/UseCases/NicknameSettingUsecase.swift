@@ -24,7 +24,7 @@ final class NicknameSettingInteractor: NicknameSettingUsecase {
                 promise(.success(.length))
             }.eraseToAnyPublisher()
         }
-        guard nickname.isValidRegex("^[0-9a-zA-Zㄱ-힇]*$") else {
+        guard nickname.isValidRegex("^[0-9a-zA-Zㄱ-ㅎ가-힇]*$") else {
             return Future<NicknameValidType, Never> { promise in
                 promise(.success(.invalidForm))
             }.eraseToAnyPublisher()

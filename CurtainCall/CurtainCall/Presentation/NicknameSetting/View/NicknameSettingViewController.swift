@@ -165,7 +165,7 @@ final class NicknameSettingViewController: UIViewController {
     private func bind() {
         viewModel.isValidRegexNickname
             .sink { [weak self] nicknameValidType in
-                print(nicknameValidType.message)
+                self?.presentAlert(title: nicknameValidType.message)
                 self?.buttonValidCheck(nicknameValidType == .success)
             }.store(in: &cancellables)
     }
