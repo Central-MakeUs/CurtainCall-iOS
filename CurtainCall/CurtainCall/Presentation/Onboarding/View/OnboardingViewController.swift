@@ -34,7 +34,7 @@ final class OnboardingViewController: UIViewController {
     
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(rgb: 0xF04E87)
+        button.backgroundColor = .sunsetPink
         button.layer.cornerRadius = 15
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         return button
@@ -158,16 +158,21 @@ final class OnboardingViewController: UIViewController {
     }
     
     private func moveToLoginViewController() {
-        let loginUsecase = LoginInteractor()
-        let loginViewModel = LoginViewModel(useCase: loginUsecase)
-        let loginViewController = LoginViewController(viewModel: loginViewModel)
+        let loginViewController = LoginViewController(
+            viewModel: LoginViewModel(
+            useCase: LoginInteractor())
+        )
         changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
     
     // MARK: Action
     
     private func addTargets() {
-        nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
+        nextButton.addTarget(
+            self,
+            action: #selector(nextButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @objc

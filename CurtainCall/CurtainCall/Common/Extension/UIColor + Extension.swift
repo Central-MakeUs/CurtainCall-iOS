@@ -35,3 +35,13 @@ extension UIColor {
     }
 
 }
+
+// MARK: - Color Assets
+
+extension UIColor {
+    static let gray1 = UIColor(named: "gray1")
+    static let gray2 = UIColor(named: "gray2")
+    static let deepDark = UIColor(named: "deep_dark")
+    static let sunsetPink = UIColor(named: "sunset_pink")
+    
+}

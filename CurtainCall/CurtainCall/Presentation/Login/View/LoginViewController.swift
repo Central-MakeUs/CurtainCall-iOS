@@ -146,20 +146,14 @@ final class LoginViewController: UIViewController {
                 case .finished:
                     print("끝남 처리")
                 }
-            } receiveValue: { loginType in
+            } receiveValue: { [weak self] loginType in
                 _ = loginType
                 // TODO: 홈으로 넘길지, 약관동의 화면으로 넘길지 확인
                 
                 // 홈
                 
                 // 회원가입
-                let termOfserviceViewController = TermsOfServiceViewController(
-                    viewModel: TermsOfServiceViewModel()
-                )
-                self.navigationController?.pushViewController(
-                    termOfserviceViewController,
-                    animated: true
-                )
+                self?.pushToTermOfServiceViewController()
                 
 //                switch loginType {
 //                case .apple:
@@ -173,6 +167,16 @@ final class LoginViewController: UIViewController {
 //                }
             }
             .store(in: &cancellables)
+    }
+    
+    private func pushToTermOfServiceViewController() {
+        let termOfserviceViewController = TermsOfServiceViewController(
+            viewModel: TermsOfServiceViewModel()
+        )
+        self.navigationController?.pushViewController(
+            termOfserviceViewController,
+            animated: true
+        )
     }
     
     // MARK: - Action
