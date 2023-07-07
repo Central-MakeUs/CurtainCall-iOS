@@ -19,6 +19,7 @@
 		EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */; };
 		EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */; };
 		EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */; };
+		EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */; };
 		EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */; };
 		EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE42A4C013B00939823 /* KakaoSDKUser */; };
 		EE4EBAF32A4C303700939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAF22A4C303700939823 /* Secret.swift */; };
@@ -60,6 +61,7 @@
 		EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingUsecase.swift; sourceTree = "<group>"; };
 		EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameValidType.swift; sourceTree = "<group>"; };
 		EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewController.swift; sourceTree = "<group>"; };
+		EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		EE4EBAF22A4C303700939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			children = (
 				EEE8F0E52A5690E200E31597 /* CheckMarkButton.swift */,
 				EEE8F0E72A56A87700E31597 /* ExpandButton.swift */,
+				EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
+				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,

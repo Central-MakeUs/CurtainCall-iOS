@@ -91,6 +91,6 @@ final class LoginCompleteViewController: UIViewController {
     func startButtonTouchUpInside() {
         //  TODO: 홈 화면 으로 이동
         print("홈 이동")
-//        changeRootViewController(<#T##rootViewController: UIViewController##UIViewController#>)
+        changeRootViewController(MainTabBarController())
     }
 }
