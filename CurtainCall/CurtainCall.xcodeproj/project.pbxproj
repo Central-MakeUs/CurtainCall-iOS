@@ -20,6 +20,11 @@
 		EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */; };
 		EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */; };
 		EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */; };
+		EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE72A5811BA00BC539C /* HomeViewController.swift */; };
+		EE3F2FF22A58123600BC539C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF12A58123600BC539C /* MyPageViewController.swift */; };
+		EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */; };
+		EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */; };
+		EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF72A58129300BC539C /* ProductViewController.swift */; };
 		EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */; };
 		EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE42A4C013B00939823 /* KakaoSDKUser */; };
 		EE4EBAF32A4C303700939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAF22A4C303700939823 /* Secret.swift */; };
@@ -62,6 +67,11 @@
 		EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameValidType.swift; sourceTree = "<group>"; };
 		EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewController.swift; sourceTree = "<group>"; };
 		EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		EE3F2FE72A5811BA00BC539C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EE3F2FF12A58123600BC539C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberViewController.swift; sourceTree = "<group>"; };
+		EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkViewController.swift; sourceTree = "<group>"; };
+		EE3F2FF72A58129300BC539C /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EE4EBAF22A4C303700939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
@@ -160,6 +170,11 @@
 		EE0BEDF32A49586C008D9D05 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EE3F2FEC2A58121900BC539C /* MyPage */,
+				EE3F2FEB2A58121100BC539C /* PartyMember */,
+				EE3F2FEA2A58120A00BC539C /* LiveTalk */,
+				EE3F2FE92A58120300BC539C /* Product */,
+				EE3F2FE52A5811A500BC539C /* Home */,
 				EEE8F0F02A56E30800E31597 /* NicknameSetting */,
 				EEE8F0DF2A559F6700E31597 /* TermsOfService */,
 				EEE8F0CF2A552F5D00E31597 /* Onboarding */,
@@ -219,6 +234,86 @@
 				EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		EE3F2FE52A5811A500BC539C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FE62A5811AC00BC539C /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EE3F2FE62A5811AC00BC539C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FE72A5811BA00BC539C /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3F2FE92A58120300BC539C /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FED2A58121E00BC539C /* View */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		EE3F2FEA2A58120A00BC539C /* LiveTalk */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FEE2A58122100BC539C /* View */,
+			);
+			path = LiveTalk;
+			sourceTree = "<group>";
+		};
+		EE3F2FEB2A58121100BC539C /* PartyMember */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FEF2A58122700BC539C /* View */,
+			);
+			path = PartyMember;
+			sourceTree = "<group>";
+		};
+		EE3F2FEC2A58121900BC539C /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FF02A58122B00BC539C /* View */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		EE3F2FED2A58121E00BC539C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3F2FEE2A58122100BC539C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3F2FEF2A58122700BC539C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3F2FF02A58122B00BC539C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F2FF12A58123600BC539C /* MyPageViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EE4EBAF12A4C302D00939823 /* Secret */ = {
@@ -471,6 +566,8 @@
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
+				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
+				EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
@@ -479,6 +576,7 @@
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
+				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
@@ -489,10 +587,12 @@
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
 				EEE8F0DB2A554ECE00E31597 /* OnboardingData.swift in Sources */,
+				EE3F2FF22A58123600BC539C /* MyPageViewController.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
 				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
+				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
