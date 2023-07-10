@@ -58,6 +58,12 @@ final class PartyMemberViewController: UIViewController {
         return imageView
     }()
     
+    private let productButton: UIButton = {
+        let button = UIButton()
+        button.tag = 0
+        return button
+    }()
+    
     private let foodView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0xFFDC63)
@@ -88,6 +94,12 @@ final class PartyMemberViewController: UIViewController {
         return imageView
     }()
     
+    private let foodButton: UIButton = {
+        let button = UIButton()
+        button.tag = 1
+        return button
+    }()
+    
     private let otherView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0x051840)
@@ -112,6 +124,12 @@ final class PartyMemberViewController: UIViewController {
         return label
     }()
     
+    private let otherButton: UIButton = {
+        let button = UIButton()
+        button.tag = 2
+        return button
+    }()
+    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -119,6 +137,7 @@ final class PartyMemberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTargets()
     }
     
     // MARK: - Helpers
@@ -131,9 +150,11 @@ final class PartyMemberViewController: UIViewController {
     private func configureSubviews() {
         view.addSubviews(titleLabel, cardStackView)
         cardStackView.addArrangedSubviews(productView, foodView, otherView)
-        productView.addSubviews(productTitleLabel, productDescriptionLabel, productImageView)
-        foodView.addSubviews(foodTitleLabel, foodDescriptionLabel, foodImageView)
-        otherView.addSubviews(otherTitleLabel, otherDescriptionLabel)
+        productView.addSubviews(
+            productTitleLabel, productDescriptionLabel, productImageView, productButton
+        )
+        foodView.addSubviews(foodTitleLabel, foodDescriptionLabel, foodImageView, foodButton)
+        otherView.addSubviews(otherTitleLabel, otherDescriptionLabel, otherButton)
     }
     
     private func configureConstraints() {
@@ -158,6 +179,7 @@ final class PartyMemberViewController: UIViewController {
             $0.bottom.equalToSuperview().inset(25)
             $0.trailing.equalToSuperview().inset(15)
         }
+        productButton.snp.makeConstraints { $0.edges.equalToSuperview() }
         foodTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
             $0.leading.equalToSuperview().offset(24)
@@ -170,6 +192,7 @@ final class PartyMemberViewController: UIViewController {
             $0.bottom.equalToSuperview().inset(25)
             $0.trailing.equalToSuperview().inset(15)
         }
+        foodButton.snp.makeConstraints { $0.edges.equalToSuperview() }
         otherTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
             $0.leading.equalToSuperview().offset(24)
@@ -178,6 +201,29 @@ final class PartyMemberViewController: UIViewController {
             $0.top.equalTo(otherTitleLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().offset(24)
         }
+        otherButton.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
+    private func addTargets() {
+        [productButton, foodButton, otherButton].forEach {
+            $0.addTarget(self, action: #selector(cardViewTapped), for: .touchUpInside)
+        }
+    }
+    
+    // MARK: - Acions
+    
+    @objc
+    private func cardViewTapped(_ sender: UIButton) {
+//        navigationController?.pushViewController(PartyMemberDetailViewController(), animated: true)
+        moveToDetailViewController()
+    }
+    
+    private func moveToDetailViewController() {
+        let detailViewController = UINavigationController(
+            rootViewController:PartyMemberDetailViewController()
+        )
+        detailViewController.modalPresentationStyle = .fullScreen
+        present(detailViewController, animated: true)
     }
     
 }
