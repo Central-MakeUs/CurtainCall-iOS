@@ -29,4 +29,7 @@ enum ImageNamespace {
     static let tabbarMyPageSelected = "tabbar_my_page_selected"
     static let tabbarMyPageDeselected = "tabbar_my_page_deselected"
     static let tabbarEmpty = "tabbar_empty"
+    
+    static let partymemberProductCardSymbol = "partymember_product_card_symbol"
+    static let partymemberProductFoodSymbol = "partymember_product_food_symbol"
 }
