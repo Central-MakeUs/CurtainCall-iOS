@@ -109,7 +109,7 @@ final class PartyMemberViewController: UIViewController {
     
     private let otherTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "공연 관람"
+        label.text = "기타"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .white
         return label
@@ -214,13 +214,13 @@ final class PartyMemberViewController: UIViewController {
     
     @objc
     private func cardViewTapped(_ sender: UIButton) {
-//        navigationController?.pushViewController(PartyMemberDetailViewController(), animated: true)
-        moveToDetailViewController()
+        guard let partyType = PartyType(tag: sender.tag) else { return }
+        moveToDetailViewController(type: partyType)
     }
     
-    private func moveToDetailViewController() {
+    private func moveToDetailViewController(type: PartyType) {
         let detailViewController = UINavigationController(
-            rootViewController:PartyMemberDetailViewController()
+            rootViewController:PartyMemberDetailViewController(type: type)
         )
         detailViewController.modalPresentationStyle = .fullScreen
         present(detailViewController, animated: true)
