@@ -40,7 +40,6 @@ final class PartyMemberProductViewController: UIViewController {
     private enum Section { case main }
     typealias Item = ProductPartyInfo
     
-    private let type: PartyType
     private let viewModel: PartyMemberProductViewModel
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -48,8 +47,7 @@ final class PartyMemberProductViewController: UIViewController {
     
     // MARK: - Lifecycles
     
-    init(type: PartyType, viewModel: PartyMemberProductViewModel) {
-        self.type = type
+    init(viewModel: PartyMemberProductViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -99,7 +97,7 @@ final class PartyMemberProductViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        title = type.title
+        title = "공연 관람"
         let leftBarbuttonItem = UIBarButtonItem(
             image: UIImage(systemName: "chevron.left"),
             style: .plain,
