@@ -1,14 +1,14 @@
 //
-//  PartyMemberProductViewController.swift
+//  PartyMemberOtherViewController.swift
 //  CurtainCall
 //
-//  Created by 김민석 on 2023/07/10.
+//  Created by 김민석 on 2023/07/11.
 //
 
 import UIKit
 import Combine
 
-final class PartyMemberProductViewController: UIViewController {
+final class PartyMemberOtherViewController: UIViewController {
     
     // MARK: - UI properties
     
@@ -38,16 +38,16 @@ final class PartyMemberProductViewController: UIViewController {
     // MARK: - Properties
     
     private enum Section { case main }
-    typealias Item = ProductPartyInfo
+    typealias Item = OtherPartyInfo
     
-    private let viewModel: PartyMemberProductViewModel
+    private let viewModel: PartyMemberOtherViewModel
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     
     // MARK: - Lifecycles
     
-    init(viewModel: PartyMemberProductViewModel) {
+    init(viewModel: PartyMemberOtherViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -97,7 +97,7 @@ final class PartyMemberProductViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        title = "공연 관람"
+        title = "기타"
         let leftBarbuttonItem = UIBarButtonItem(
             image: UIImage(systemName: "chevron.left"),
             style: .plain,
@@ -127,7 +127,7 @@ final class PartyMemberProductViewController: UIViewController {
             heightDimension: .estimated(250)
         )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        group.edgeSpacing = .init(leading: nil, top: nil, trailing: nil, bottom: .fixed(20))
+        group.edgeSpacing = .init(leading: nil, top: nil, trailing: nil, bottom: .fixed(16))
         let section = NSCollectionLayoutSection(group: group)
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.scrollDirection = .vertical
@@ -136,8 +136,8 @@ final class PartyMemberProductViewController: UIViewController {
     
     private func registerCell() {
         collectionView.register(
-            PartyProductCell.self,
-            forCellWithReuseIdentifier: PartyProductCell.identifier
+            PartyOtherCell.self,
+            forCellWithReuseIdentifier: PartyOtherCell.identifier
         )
     }
     
@@ -146,7 +146,7 @@ final class PartyMemberProductViewController: UIViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 guard let cell = collectionView.dequeueCell(
-                    type: PartyProductCell.self,
+                    type: PartyOtherCell.self,
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
                 cell.setUI(item)
@@ -161,7 +161,7 @@ final class PartyMemberProductViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.productInfoData
+        viewModel.otherInfoData
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -182,3 +182,4 @@ final class PartyMemberProductViewController: UIViewController {
         dismiss(animated: true)
     }
 }
+

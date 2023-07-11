@@ -218,14 +218,29 @@ final class PartyMemberViewController: UIViewController {
         moveToDetailViewController(type: partyType)
     }
     
-    private func moveToDetailViewController(type: PartyType) {
-        let detailViewController = UINavigationController(
-            rootViewController: PartyMemberProductViewController(
-                type: type,
+    private func setDetailViewController(_ type: PartyType) -> UIViewController {
+        switch type {
+        case .product:
+            return PartyMemberProductViewController(
                 viewModel: PartyMemberProductViewModel(
                     usecase: PartyMemberProductInteractor()
-                )
-            )
+                ))
+        case .food:
+            return PartyMemberProductViewController(
+                viewModel: PartyMemberProductViewModel(
+                    usecase: PartyMemberProductInteractor()
+                ))
+        case .other:
+            return PartyMemberOtherViewController(
+                viewModel: PartyMemberOtherViewModel(
+                    usecase: PartyMemberOtherInteractor()
+                ))
+        }
+    }
+    
+    private func moveToDetailViewController(type: PartyType) {
+        let detailViewController = UINavigationController(
+            rootViewController: setDetailViewController(type)
         )
         detailViewController.modalPresentationStyle = .fullScreen
         present(detailViewController, animated: true)
