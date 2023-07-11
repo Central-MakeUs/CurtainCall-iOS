@@ -40,6 +40,11 @@
 		EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */; };
 		EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */; };
 		EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */; };
+		EEA944502A5D9C6F0081E784 /* PartyMemberFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9444F2A5D9C6F0081E784 /* PartyMemberFoodViewController.swift */; };
+		EEA944522A5D9CA50081E784 /* PartyFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */; };
+		EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */; };
+		EEA944562A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944552A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift */; };
+		EEA944582A5D9D860081E784 /* PartyMemberFoodUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944572A5D9D860081E784 /* PartyMemberFoodUsecase.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
@@ -97,6 +102,11 @@
 		EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherPartyInfo.swift; sourceTree = "<group>"; };
 		EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherViewModel.swift; sourceTree = "<group>"; };
 		EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherUsecase.swift; sourceTree = "<group>"; };
+		EEA9444F2A5D9C6F0081E784 /* PartyMemberFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberFoodViewController.swift; sourceTree = "<group>"; };
+		EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyFoodCell.swift; sourceTree = "<group>"; };
+		EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPartyInfo.swift; sourceTree = "<group>"; };
+		EEA944552A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberFoodViewModel.swift; sourceTree = "<group>"; };
+		EEA944572A5D9D860081E784 /* PartyMemberFoodUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberFoodUsecase.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -334,6 +344,8 @@
 				EEA944392A5D1BE80081E784 /* PartyProductCell.swift */,
 				EEA944452A5D5FA20081E784 /* PartyMemberOtherViewController.swift */,
 				EEA944472A5D82260081E784 /* PartyOtherCell.swift */,
+				EEA9444F2A5D9C6F0081E784 /* PartyMemberFoodViewController.swift */,
+				EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -359,6 +371,7 @@
 			children = (
 				EEA9443C2A5D2F140081E784 /* ProductPartyInfo.swift */,
 				EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */,
+				EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -368,6 +381,7 @@
 			children = (
 				EEA944402A5D440F0081E784 /* PartyMemberProductViewModel.swift */,
 				EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */,
+				EEA944552A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -389,6 +403,7 @@
 				EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */,
 				EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */,
 				EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */,
+				EEA944572A5D9D860081E784 /* PartyMemberFoodUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -629,10 +644,13 @@
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
+				EEA944522A5D9CA50081E784 /* PartyFoodCell.swift in Sources */,
 				EEA944442A5D44EF0081E784 /* PartyMemberProductUsecase.swift in Sources */,
 				EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
+				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
+				EEA944502A5D9C6F0081E784 /* PartyMemberFoodViewController.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
@@ -651,8 +669,10 @@
 				EE3F2FF22A58123600BC539C /* MyPageViewController.swift in Sources */,
 				EEA944372A5C03130081E784 /* PartyType.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
+				EEA944562A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
+				EEA944582A5D9D860081E784 /* PartyMemberFoodUsecase.swift in Sources */,
 				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
 				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,
 				EEA944412A5D440F0081E784 /* PartyMemberProductViewModel.swift in Sources */,

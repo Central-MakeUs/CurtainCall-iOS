@@ -226,9 +226,9 @@ final class PartyMemberViewController: UIViewController {
                     usecase: PartyMemberProductInteractor()
                 ))
         case .food:
-            return PartyMemberProductViewController(
-                viewModel: PartyMemberProductViewModel(
-                    usecase: PartyMemberProductInteractor()
+            return PartyMemberFoodViewController(
+                viewModel: PartyMemberFoodViewModel(
+                    usecase: PartyMemberFoodInteractor()
                 ))
         case .other:
             return PartyMemberOtherViewController(
