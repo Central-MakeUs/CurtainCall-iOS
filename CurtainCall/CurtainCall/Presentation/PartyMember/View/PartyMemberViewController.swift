@@ -220,9 +220,9 @@ final class PartyMemberViewController: UIViewController {
     
     private func moveToDetailViewController(type: PartyType) {
         let detailViewController = UINavigationController(
-            rootViewController: PartyMemberDetailViewController(
+            rootViewController: PartyMemberProductViewController(
                 type: type,
-                viewModel: PartyMemberDetailViewModel(
+                viewModel: PartyMemberProductViewModel(
                     usecase: PartyMemberProductInteractor()
                 )
             )

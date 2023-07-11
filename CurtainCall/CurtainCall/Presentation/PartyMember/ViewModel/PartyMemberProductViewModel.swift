@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class PartyMemberDetailViewModel {
+final class PartyMemberProductViewModel {
     
     // MARK: - Properties
     

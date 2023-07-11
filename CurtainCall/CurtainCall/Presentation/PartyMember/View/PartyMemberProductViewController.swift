@@ -1,5 +1,5 @@
 //
-//  PartyMemberDetailViewController.swift
+//  PartyMemberProductViewController.swift
 //  CurtainCall
 //
 //  Created by 김민석 on 2023/07/10.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PartyMemberDetailViewController: UIViewController {
+final class PartyMemberProductViewController: UIViewController {
     
     // MARK: - UI properties
     
@@ -41,14 +41,14 @@ final class PartyMemberDetailViewController: UIViewController {
     typealias Item = ProductPartyInfo
     
     private let type: PartyType
-    private let viewModel: PartyMemberDetailViewModel
+    private let viewModel: PartyMemberProductViewModel
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     
     // MARK: - Lifecycles
     
-    init(type: PartyType, viewModel: PartyMemberDetailViewModel) {
+    init(type: PartyType, viewModel: PartyMemberProductViewModel) {
         self.type = type
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
