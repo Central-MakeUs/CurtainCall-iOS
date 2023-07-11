@@ -33,6 +33,8 @@
 		EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944392A5D1BE80081E784 /* PartyProductCell.swift */; };
 		EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9443C2A5D2F140081E784 /* ProductPartyInfo.swift */; };
 		EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9443E2A5D303E0081E784 /* Date + Extension.swift */; };
+		EEA944412A5D440F0081E784 /* PartyMemberDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944402A5D440F0081E784 /* PartyMemberDetailViewModel.swift */; };
+		EEA944442A5D44EF0081E784 /* PartyMemberProductUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
@@ -83,6 +85,8 @@
 		EEA944392A5D1BE80081E784 /* PartyProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyProductCell.swift; sourceTree = "<group>"; };
 		EEA9443C2A5D2F140081E784 /* ProductPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPartyInfo.swift; sourceTree = "<group>"; };
 		EEA9443E2A5D303E0081E784 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
+		EEA944402A5D440F0081E784 /* PartyMemberDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberDetailViewModel.swift; sourceTree = "<group>"; };
+		EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberProductUsecase.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 		EE0BEDF22A49584D008D9D05 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EEA9443B2A5D2F000081E784 /* Entity */,
 				EEC60A4A2A4ACB0C001DDC2A /* UseCases */,
 			);
 			path = Domain;
@@ -197,7 +202,6 @@
 		EE0BEDF42A495894008D9D05 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				EEA9443B2A5D2F000081E784 /* Entity */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -283,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3F2FEF2A58122700BC539C /* View */,
+				EEA944422A5D44130081E784 /* ViewModel */,
 			);
 			path = PartyMember;
 			sourceTree = "<group>";
@@ -345,6 +350,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		EEA944422A5D44130081E784 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EEA944402A5D440F0081E784 /* PartyMemberDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		EEC60A462A4AB262001DDC2A /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +373,7 @@
 			children = (
 				EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */,
 				EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */,
+				EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -597,6 +611,7 @@
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
+				EEA944442A5D44EF0081E784 /* PartyMemberProductUsecase.swift in Sources */,
 				EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
@@ -620,6 +635,7 @@
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
 				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
 				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,
+				EEA944412A5D440F0081E784 /* PartyMemberDetailViewModel.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,

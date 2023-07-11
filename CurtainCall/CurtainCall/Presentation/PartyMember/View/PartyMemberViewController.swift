@@ -220,7 +220,12 @@ final class PartyMemberViewController: UIViewController {
     
     private func moveToDetailViewController(type: PartyType) {
         let detailViewController = UINavigationController(
-            rootViewController:PartyMemberDetailViewController(type: type)
+            rootViewController: PartyMemberDetailViewController(
+                type: type,
+                viewModel: PartyMemberDetailViewModel(
+                    usecase: PartyMemberProductInteractor()
+                )
+            )
         )
         detailViewController.modalPresentationStyle = .fullScreen
         present(detailViewController, animated: true)
