@@ -1,5 +1,5 @@
 //
-//  ProductOtherInfo.swift
+//  OtherPartyInfo.swift
 //  CurtainCall
 //
 //  Created by 김민석 on 2023/07/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct ProductOtherInfo: Hashable {
+struct OtherPartyInfo: Hashable {
     // TODO: URL로 변경 예정
     let profileImage: UIImage?
     let nickname: String
@@ -19,8 +19,8 @@ struct ProductOtherInfo: Hashable {
     
     // MARK: 더미데이터
     
-    static let list: [ProductOtherInfo] = [
-        ProductOtherInfo(
+    static let list: [OtherPartyInfo] = [
+        OtherPartyInfo(
             profileImage: UIImage(named: "dummy_profile"),
             nickname: "고라파덕",
             writeDate: Date(),
@@ -29,21 +29,21 @@ struct ProductOtherInfo: Hashable {
             content: "데스노트 굿즈 같이 만들 사람?",
             meetingDate: nil
         ),
-        ProductOtherInfo(
+        OtherPartyInfo(
             profileImage: UIImage(named: "dummy_profile"),
             nickname: "gorapaduck",
             writeDate: Date(),
-            maxCount: 3,
-            minCount: 5,
+            maxCount: 5,
+            minCount: 3,
             content: "김준수 포토카드 같이 만들어요~김준수 포토카드 같이 만들어요~김준수 포토카드 같이 만들어요~",
             meetingDate: Date()
         ),
-        ProductOtherInfo(
+        OtherPartyInfo(
             profileImage: UIImage(named: "dummy_profile"),
             nickname: "gorapaduck",
             writeDate: Date(),
-            maxCount: 3,
-            minCount: 5,
+            maxCount: 5,
+            minCount: 3,
             content: "400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자",
             meetingDate: Date()
         )

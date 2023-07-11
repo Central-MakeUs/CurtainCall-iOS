@@ -79,6 +79,7 @@ final class PartyOtherCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = UIColor(rgb: 0xF04E87)
         label.text = "날짜"
+        label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
     
@@ -118,7 +119,7 @@ final class PartyOtherCell: UICollectionViewCell {
             countLabel, contentLabel, borderView, dateBadgeView, dateLabel
         )
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, writeDateLabel)
-        dateBadgeView.addSubview(dateLabel)
+        dateBadgeView.addSubview(dateBadgeLabel)
     }
     
     private func configureConstraints() {
@@ -162,7 +163,7 @@ final class PartyOtherCell: UICollectionViewCell {
         }
     }
     
-    func setUI(_ item: ProductOtherInfo) {
+    func setUI(_ item: OtherPartyInfo) {
         profileImageView.image = item.profileImage
         nicknameLabel.text = item.nickname
         writeDateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()

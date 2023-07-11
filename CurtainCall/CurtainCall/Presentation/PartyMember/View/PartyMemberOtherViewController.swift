@@ -38,21 +38,31 @@ final class PartyMemberOtherViewController: UIViewController {
     // MARK: - Properties
     
     private enum Section { case main }
-    typealias Item = ProductPartyInfo
+    typealias Item = OtherPartyInfo
     
-//    private let viewModel: PartyMemberProductViewModel
+    private let viewModel: PartyMemberOtherViewModel
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     
     // MARK: - Lifecycles
     
+    init(viewModel: PartyMemberOtherViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available (*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         registerCell()
         bind()
-//        viewModel.requestPartyProductInfo()
+        viewModel.requestPartyProductInfo()
     }
     
     // MARK: - Helpers
@@ -117,7 +127,7 @@ final class PartyMemberOtherViewController: UIViewController {
             heightDimension: .estimated(250)
         )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        group.edgeSpacing = .init(leading: nil, top: nil, trailing: nil, bottom: .fixed(20))
+        group.edgeSpacing = .init(leading: nil, top: nil, trailing: nil, bottom: .fixed(16))
         let section = NSCollectionLayoutSection(group: group)
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.scrollDirection = .vertical
@@ -126,8 +136,8 @@ final class PartyMemberOtherViewController: UIViewController {
     
     private func registerCell() {
         collectionView.register(
-            PartyProductCell.self,
-            forCellWithReuseIdentifier: PartyProductCell.identifier
+            PartyOtherCell.self,
+            forCellWithReuseIdentifier: PartyOtherCell.identifier
         )
     }
     
@@ -136,7 +146,7 @@ final class PartyMemberOtherViewController: UIViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 guard let cell = collectionView.dequeueCell(
-                    type: PartyProductCell.self,
+                    type: PartyOtherCell.self,
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
                 cell.setUI(item)
@@ -151,17 +161,17 @@ final class PartyMemberOtherViewController: UIViewController {
     }
     
     private func bind() {
-//        viewModel.productInfoData
-//            .receive(on: DispatchQueue.main)
-//            .sink { completion in
-//                if case let .failure(error) = completion {
-//                    print(error.localizedDescription)
-//                }
-//            } receiveValue: { [weak self] item in
-//                guard var snapshot = self?.snapshot else { return }
-//                snapshot.appendItems(item, toSection: .main)
-//                self?.dataSource?.apply(snapshot)
-//            }.store(in: &cancellables)
+        viewModel.otherInfoData
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                }
+            } receiveValue: { [weak self] item in
+                guard var snapshot = self?.snapshot else { return }
+                snapshot.appendItems(item, toSection: .main)
+                self?.dataSource?.apply(snapshot)
+            }.store(in: &cancellables)
 
     }
     

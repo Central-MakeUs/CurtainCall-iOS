@@ -37,7 +37,9 @@
 		EEA944442A5D44EF0081E784 /* PartyMemberProductUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */; };
 		EEA944462A5D5FA20081E784 /* PartyMemberOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944452A5D5FA20081E784 /* PartyMemberOtherViewController.swift */; };
 		EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944472A5D82260081E784 /* PartyOtherCell.swift */; };
-		EEA9444A2A5D883D0081E784 /* ProductOtherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944492A5D883D0081E784 /* ProductOtherInfo.swift */; };
+		EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */; };
+		EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */; };
+		EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
@@ -92,7 +94,9 @@
 		EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberProductUsecase.swift; sourceTree = "<group>"; };
 		EEA944452A5D5FA20081E784 /* PartyMemberOtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherViewController.swift; sourceTree = "<group>"; };
 		EEA944472A5D82260081E784 /* PartyOtherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyOtherCell.swift; sourceTree = "<group>"; };
-		EEA944492A5D883D0081E784 /* ProductOtherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOtherInfo.swift; sourceTree = "<group>"; };
+		EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherPartyInfo.swift; sourceTree = "<group>"; };
+		EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherViewModel.swift; sourceTree = "<group>"; };
+		EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherUsecase.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -354,7 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				EEA9443C2A5D2F140081E784 /* ProductPartyInfo.swift */,
-				EEA944492A5D883D0081E784 /* ProductOtherInfo.swift */,
+				EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -363,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				EEA944402A5D440F0081E784 /* PartyMemberProductViewModel.swift */,
+				EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */,
 				EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */,
 				EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */,
+				EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -611,7 +617,7 @@
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
-				EEA9444A2A5D883D0081E784 /* ProductOtherInfo.swift in Sources */,
+				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
@@ -619,6 +625,7 @@
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
+				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
@@ -633,6 +640,7 @@
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
+				EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */,
 				EEA944462A5D5FA20081E784 /* PartyMemberOtherViewController.swift in Sources */,
 				EEE8F0F62A56FFF600E31597 /* NicknameSettingViewModel.swift in Sources */,
 				EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */,
