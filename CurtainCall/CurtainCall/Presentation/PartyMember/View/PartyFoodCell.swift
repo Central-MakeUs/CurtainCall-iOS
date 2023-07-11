@@ -1,5 +1,5 @@
 //
-//  PartyProductCell.swift
+//  PartyFoodCell.swift
 //  CurtainCall
 //
 //  Created by 김민석 on 2023/07/11.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class PartyProductCell: UICollectionViewCell {
+final class PartyFoodCell: UICollectionViewCell {
     
     // MARK: - UI properties
     
@@ -286,7 +286,7 @@ final class PartyProductCell: UICollectionViewCell {
         }
     }
     
-    func setUI(_ item: ProductPartyInfo) {
+    func setUI(_ item: FoodPartyInfo) {
         productTitleLabel.text = item.productName
         profileImageView.image = item.profileImage
         nicknameLabel.text = item.nickname
