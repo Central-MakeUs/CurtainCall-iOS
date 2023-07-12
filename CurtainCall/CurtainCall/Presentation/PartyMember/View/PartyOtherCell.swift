@@ -68,27 +68,52 @@ final class PartyOtherCell: UICollectionViewCell {
     
     private let dateBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(rgb: 0xFFDC63)
         view.layer.cornerRadius = 4
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(rgb: 0xF04E87).cgColor
         return view
     }()
     
     private let dateBadgeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0xF04E87)
-        label.text = "날짜"
+        label.textColor = UIColor(rgb: 0x051840)
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
     
-    private let dateLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.textColor = UIColor(rgb: 0x273041)
-        return label
+    private let partyMemberStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = -4
+        return stackView
     }()
+    
+    private let partyMemberImageView1: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 12
+        return imageView
+    }()
+    
+    private let partyMemberImageView2: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 12
+        return imageView
+    }()
+    private let partyMemberImageView3: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 12
+        return imageView
+    }()
+    private let partyMemberImageView4: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 12
+        return imageView
+    }()
+    private let partyMemberImageView5: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 12
+        return imageView
+    }()
+    
     
     // MARK: - Properties
     
@@ -115,10 +140,14 @@ final class PartyOtherCell: UICollectionViewCell {
     private func configureSubviews() {
         addSubviews(cardView)
         cardView.addSubviews(
-            profileImageView, nicknameDateStackView,
-            countLabel, contentLabel, borderView, dateBadgeView, dateLabel
+            profileImageView, nicknameDateStackView, countLabel,
+            contentLabel, borderView, dateBadgeView, partyMemberStackView
         )
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, writeDateLabel)
+        partyMemberStackView.addArrangedSubviews(
+            partyMemberImageView1, partyMemberImageView2, partyMemberImageView3,
+            partyMemberImageView4, partyMemberImageView5
+        )
         dateBadgeView.addSubview(dateBadgeLabel)
     }
     
@@ -151,15 +180,21 @@ final class PartyOtherCell: UICollectionViewCell {
             $0.bottom.equalTo(dateBadgeView.snp.top).offset(-12)
         }
         dateBadgeLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(18)
+            $0.horizontalEdges.equalToSuperview().inset(10)
             $0.verticalEdges.equalToSuperview().inset(4)
         }
         dateBadgeView.snp.makeConstraints {
             $0.leading.bottom.equalToSuperview().inset(20)
         }
-        dateLabel.snp.makeConstraints {
-            $0.centerY.equalTo(dateBadgeView)
-            $0.leading.equalTo(dateBadgeView.snp.trailing).offset(10)
+        [partyMemberImageView1, partyMemberImageView2, partyMemberImageView3,
+         partyMemberImageView4, partyMemberImageView5].forEach {
+            $0.snp.makeConstraints { make in
+                make.size.equalTo(24)
+            }
+        }
+        partyMemberStackView.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalTo(dateBadgeLabel)
         }
     }
     
@@ -170,9 +205,16 @@ final class PartyOtherCell: UICollectionViewCell {
         countLabel.text = "\(item.minCount)/\(item.maxCount)"
         contentLabel.text = item.content
         if let meetinDate = item.meetingDate {
-            dateLabel.text = meetinDate.convertToYearMonthDayHourMinString()
+            dateBadgeLabel.text = meetinDate.convertToYearMonthDayWeekString()
         } else {
-            dateLabel.text = "미정"
+            dateBadgeLabel.text = "날짜 미정"
+        }
+        let partymemberImageViews = [
+            partyMemberImageView5, partyMemberImageView4, partyMemberImageView3,
+            partyMemberImageView2, partyMemberImageView1
+        ]
+        item.partyMemberImages.enumerated().forEach { index, image in
+            partymemberImageViews[index].image = image
         }
     }
     

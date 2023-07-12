@@ -16,6 +16,7 @@ struct OtherPartyInfo: Hashable {
     let minCount: Int
     let content: String
     let meetingDate: Date?
+    let partyMemberImages: [UIImage?]
     
     // MARK: 더미데이터
     
@@ -27,7 +28,8 @@ struct OtherPartyInfo: Hashable {
             maxCount: 5,
             minCount: 1,
             content: "데스노트 굿즈 같이 만들 사람?",
-            meetingDate: nil
+            meetingDate: nil,
+            partyMemberImages: [UIImage(named: "dummy_party_member")]
         ),
         OtherPartyInfo(
             profileImage: UIImage(named: "dummy_profile"),
@@ -36,7 +38,11 @@ struct OtherPartyInfo: Hashable {
             maxCount: 5,
             minCount: 3,
             content: "김준수 포토카드 같이 만들어요~김준수 포토카드 같이 만들어요~김준수 포토카드 같이 만들어요~",
-            meetingDate: Date()
+            meetingDate: Date(),
+            partyMemberImages: [
+                UIImage(named: "dummy_party_member"), UIImage(named: "dummy_party_member"),
+                UIImage(named: "dummy_party_member")
+            ]
         ),
         OtherPartyInfo(
             profileImage: UIImage(named: "dummy_profile"),
@@ -45,7 +51,12 @@ struct OtherPartyInfo: Hashable {
             maxCount: 5,
             minCount: 3,
             content: "400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자",
-            meetingDate: Date()
+            meetingDate: Date(),
+            partyMemberImages: [
+                UIImage(named: "dummy_party_member"),
+                UIImage(named: "dummy_party_member"),
+                UIImage(named: "dummy_party_member")
+            ]
         )
     ]
 }
