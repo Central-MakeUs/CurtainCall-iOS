@@ -61,6 +61,7 @@ final class PartyMemberProductViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         registerCell()
+        addTarget()
         bind()
         viewModel.requestPartyProductInfo()
     }
@@ -114,6 +115,7 @@ final class PartyMemberProductViewController: UIViewController {
         searchBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarbuttonItem
         navigationItem.rightBarButtonItem = searchBarButtonItem
+        configureBackbarButton()
     }
     
     private func createCollectionViewLayout() -> UICollectionViewCompositionalLayout {
@@ -175,10 +177,31 @@ final class PartyMemberProductViewController: UIViewController {
 
     }
     
+    private func addTarget() {
+        writeButton.addTarget(
+            self,
+            action: #selector(writeButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
     // MARK: - Actions
     
     @objc
     private func backBarbuttonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc
+    private func writeButtonTouchUpInside() {
+        moveToWriteView()
+    }
+    
+    private func moveToWriteView() {
+        let writeViewController = PartyMemberRecruitingProductViewController(
+            viewModel: PartyMemberRecruitingProductViewModel(
+                usecase: PartyMemberRecruitingProductInteractor())
+        )
+        navigationController?.pushViewController(writeViewController, animated: true)
     }
 }

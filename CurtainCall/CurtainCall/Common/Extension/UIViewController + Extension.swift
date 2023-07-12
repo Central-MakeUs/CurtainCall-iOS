@@ -53,4 +53,15 @@ extension UIViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func configureBackbarButton() {
+        let backBarbuttonItem = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: self,
+            action: nil
+        )
+        backBarbuttonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backBarbuttonItem
+    }
 }

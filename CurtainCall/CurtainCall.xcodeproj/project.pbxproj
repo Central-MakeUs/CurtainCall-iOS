@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */; };
+		EE01323D2A5EFBE600873107 /* ProductPosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01323C2A5EFBE600873107 /* ProductPosterCell.swift */; };
+		EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01323E2A5F012500873107 /* ProductSelectInfo.swift */; };
+		EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */; };
+		EE0132432A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */; };
@@ -72,6 +77,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductViewController.swift; sourceTree = "<group>"; };
+		EE01323C2A5EFBE600873107 /* ProductPosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPosterCell.swift; sourceTree = "<group>"; };
+		EE01323E2A5F012500873107 /* ProductSelectInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectInfo.swift; sourceTree = "<group>"; };
+		EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductViewModel.swift; sourceTree = "<group>"; };
+		EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductUsecase.swift; sourceTree = "<group>"; };
 		EE0BEDDA2A495539008D9D05 /* CurtainCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurtainCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +160,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0132152A5E53C800873107 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EEA944392A5D1BE80081E784 /* PartyProductCell.swift */,
+				EEA944472A5D82260081E784 /* PartyOtherCell.swift */,
+				EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */,
+				EE01323C2A5EFBE600873107 /* ProductPosterCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		EE0BEDD12A495539008D9D05 = {
 			isa = PBXGroup;
 			children = (
@@ -339,13 +360,12 @@
 		EE3F2FEF2A58122700BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */,
+				EE0132152A5E53C800873107 /* Cell */,
 				EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */,
-				EEA944392A5D1BE80081E784 /* PartyProductCell.swift */,
 				EEA944452A5D5FA20081E784 /* PartyMemberOtherViewController.swift */,
-				EEA944472A5D82260081E784 /* PartyOtherCell.swift */,
 				EEA9444F2A5D9C6F0081E784 /* PartyMemberFoodViewController.swift */,
-				EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */,
+				EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */,
+				EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +392,7 @@
 				EEA9443C2A5D2F140081E784 /* ProductPartyInfo.swift */,
 				EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */,
 				EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */,
+				EE01323E2A5F012500873107 /* ProductSelectInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -382,6 +403,7 @@
 				EEA944402A5D440F0081E784 /* PartyMemberProductViewModel.swift */,
 				EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */,
 				EEA944552A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift */,
+				EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -404,6 +426,7 @@
 				EEA944432A5D44EF0081E784 /* PartyMemberProductUsecase.swift */,
 				EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */,
 				EEA944572A5D9D860081E784 /* PartyMemberFoodUsecase.swift */,
+				EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -629,22 +652,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */,
+				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
+				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
 				EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
 				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
+				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
 				EEA944522A5D9CA50081E784 /* PartyFoodCell.swift in Sources */,
+				EE0132432A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift in Sources */,
 				EEA944442A5D44EF0081E784 /* PartyMemberProductUsecase.swift in Sources */,
 				EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
@@ -665,6 +692,7 @@
 				EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */,
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
+				EE01323D2A5EFBE600873107 /* ProductPosterCell.swift in Sources */,
 				EEE8F0DB2A554ECE00E31597 /* OnboardingData.swift in Sources */,
 				EE3F2FF22A58123600BC539C /* MyPageViewController.swift in Sources */,
 				EEA944372A5C03130081E784 /* PartyType.swift in Sources */,
