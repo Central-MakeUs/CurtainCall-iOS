@@ -13,6 +13,7 @@ final class PartyMemberRecruitingProductViewModel {
     // MARK: - Properties
     private let usecase: PartyMemberRecruitingProductUsecase
     var productSelectInfo = CurrentValueSubject<[ProductSelectInfo], Error>([])
+    var isSelectProduct = CurrentValueSubject<Bool, Never>(false)
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
@@ -44,5 +45,6 @@ final class PartyMemberRecruitingProductViewModel {
             )
         }
         productSelectInfo.send(newValue)
+        isSelectProduct.send(!newValue.filter { $0.isSelected }.isEmpty)
     }
 }

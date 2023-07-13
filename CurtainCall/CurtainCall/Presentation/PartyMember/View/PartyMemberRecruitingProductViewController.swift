@@ -424,15 +424,21 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
                 snapshot.appendItems(item, toSection: .main)
                 self?.datasource?.apply(snapshot, animatingDifferences: false)
             }.store(in: &cancellables)
+        
+        viewModel.isSelectProduct
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isSelected in
+                self?.setNextButton(isSelected: isSelected)
+            }.store(in: &cancellables)
     }
     
-    private func setNextButton(isValid: Bool) {
-        nextButton.backgroundColor = isValid ? UIColor(rgb: 0xFF7CAB) : UIColor(rgb: 0xDCDEE1)
+    private func setNextButton(isSelected: Bool) {
+        nextButton.backgroundColor = isSelected ? UIColor(rgb: 0xFF7CAB) : UIColor(rgb: 0xDCDEE1)
         nextButton.setTitleColor(
-            isValid ? .white : UIColor(rgb: 0x99A1B2),
+            isSelected ? .white : UIColor(rgb: 0x99A1B2),
             for: .normal
         )
-        nextButton.isUserInteractionEnabled = isValid
+        nextButton.isUserInteractionEnabled = isSelected
         
     }
     
