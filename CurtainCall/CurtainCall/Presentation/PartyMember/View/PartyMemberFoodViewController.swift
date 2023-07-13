@@ -65,6 +65,11 @@ final class PartyMemberFoodViewController: UIViewController {
         viewModel.requestPartyFoodInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigation()
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
@@ -99,7 +104,7 @@ final class PartyMemberFoodViewController: UIViewController {
     private func configureNavigation() {
         title = "식사/카페"
         let leftBarbuttonItem = UIBarButtonItem(
-            image: UIImage(systemName: "chevron.left"),
+            image: UIImage(named: ImageNamespace.navigationBackButton),
             style: .plain,
             target: self,
             action: #selector(backBarbuttonTapped)

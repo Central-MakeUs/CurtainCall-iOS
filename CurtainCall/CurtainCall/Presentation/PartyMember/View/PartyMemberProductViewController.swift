@@ -61,8 +61,14 @@ final class PartyMemberProductViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         registerCell()
+        addTarget()
         bind()
         viewModel.requestPartyProductInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigation()
     }
     
     // MARK: - Helpers
@@ -99,7 +105,7 @@ final class PartyMemberProductViewController: UIViewController {
     private func configureNavigation() {
         title = "공연 관람"
         let leftBarbuttonItem = UIBarButtonItem(
-            image: UIImage(systemName: "chevron.left"),
+            image: UIImage(named: ImageNamespace.navigationBackButton),
             style: .plain,
             target: self,
             action: #selector(backBarbuttonTapped)
@@ -110,6 +116,7 @@ final class PartyMemberProductViewController: UIViewController {
             target: self,
             action: nil
         )
+        
         leftBarbuttonItem.tintColor = .black
         searchBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarbuttonItem
@@ -175,10 +182,32 @@ final class PartyMemberProductViewController: UIViewController {
 
     }
     
+    private func addTarget() {
+        writeButton.addTarget(
+            self,
+            action: #selector(writeButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
     // MARK: - Actions
     
     @objc
     private func backBarbuttonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc
+    private func writeButtonTouchUpInside() {
+        moveToWriteView()
+    }
+    
+    private func moveToWriteView() {
+        configureBackbarButton()
+        let writeViewController = PartyMemberRecruitingProductViewController(
+            viewModel: PartyMemberRecruitingProductViewModel(
+                usecase: PartyMemberRecruitingProductInteractor())
+        )
+        navigationController?.pushViewController(writeViewController, animated: true)
     }
 }

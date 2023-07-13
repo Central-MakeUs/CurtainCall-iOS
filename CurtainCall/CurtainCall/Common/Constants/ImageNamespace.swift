@@ -8,6 +8,9 @@
 import Foundation
 
 enum ImageNamespace {
+    static let navigationBackButton = "navigation_back_button"
+    static let navigationSearchButton = "navigation_search_button"
+    
     static let loginButtonApple = "login_button_apple"
     static let loginButtonGoogle = "login_button_google"
     static let loginButtonKakao = "login_button_kakao"
