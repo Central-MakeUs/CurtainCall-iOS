@@ -10,8 +10,8 @@ import UIKit
 struct ProductSelectInfo: Hashable {
     let title: String
     let posterImage: UIImage?
-    let isSelected: Bool = false
     let date: [Date]
+    var isSelected: Bool = false
     
     // MARK: - DummyData
     

@@ -19,6 +19,8 @@ final class ProductPosterCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
+        imageView.layer.borderWidth = 0
+        imageView.layer.borderColor = UIColor(rgb: 0xFF7CAB).cgColor
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -70,6 +72,7 @@ final class ProductPosterCell: UICollectionViewCell {
     func setUI(item: ProductSelectInfo) {
         posterImageView.image = item.posterImage
         titleLabel.text = item.title
+        posterImageView.layer.borderWidth = item.isSelected ? 4 : 0
     }
     
 }

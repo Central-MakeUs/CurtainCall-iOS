@@ -199,6 +199,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
             frame: .zero,
             collectionViewLayout: createCollectionViewLayout()
         )
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -419,10 +420,9 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
                     print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] item in
-                print(item)
                 guard var snapshot = self?.snapshot else { return }
                 snapshot.appendItems(item, toSection: .main)
-                self?.datasource?.apply(snapshot)
+                self?.datasource?.apply(snapshot, animatingDifferences: false)
             }.store(in: &cancellables)
     }
     
@@ -458,7 +458,13 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         reservationDotView.alpha = sender == reservationOrderButton ? 1 : 0
         dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
     }
-    
-    
-    
+}
+
+extension PartyMemberRecruitingProductViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let datasource, let item = datasource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        viewModel.didSelectProduct(item)
+    }
 }

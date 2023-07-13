@@ -12,7 +12,7 @@ final class PartyMemberRecruitingProductViewModel {
     
     // MARK: - Properties
     private let usecase: PartyMemberRecruitingProductUsecase
-    var productSelectInfo = PassthroughSubject<[ProductSelectInfo], Error>()
+    var productSelectInfo = CurrentValueSubject<[ProductSelectInfo], Error>([])
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
@@ -32,5 +32,17 @@ final class PartyMemberRecruitingProductViewModel {
             } receiveValue: { [weak self] result in
                 self?.productSelectInfo.send(result)
             }.store(in: &cancellables)
+    }
+    
+    func didSelectProduct(_ item: ProductSelectInfo) {
+        let newValue = productSelectInfo.value.map {
+            ProductSelectInfo(
+                title: $0.title,
+                posterImage: $0.posterImage,
+                date: $0.date,
+                isSelected: $0 == item
+            )
+        }
+        productSelectInfo.send(newValue)
     }
 }
