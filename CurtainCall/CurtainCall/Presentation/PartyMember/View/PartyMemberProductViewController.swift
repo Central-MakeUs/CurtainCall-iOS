@@ -66,6 +66,11 @@ final class PartyMemberProductViewController: UIViewController {
         viewModel.requestPartyProductInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigation()
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
@@ -100,7 +105,7 @@ final class PartyMemberProductViewController: UIViewController {
     private func configureNavigation() {
         title = "공연 관람"
         let leftBarbuttonItem = UIBarButtonItem(
-            image: UIImage(systemName: "chevron.left"),
+            image: UIImage(named: ImageNamespace.navigationBackButton),
             style: .plain,
             target: self,
             action: #selector(backBarbuttonTapped)
@@ -111,11 +116,11 @@ final class PartyMemberProductViewController: UIViewController {
             target: self,
             action: nil
         )
+        
         leftBarbuttonItem.tintColor = .black
         searchBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarbuttonItem
         navigationItem.rightBarButtonItem = searchBarButtonItem
-        configureBackbarButton()
     }
     
     private func createCollectionViewLayout() -> UICollectionViewCompositionalLayout {
@@ -198,6 +203,7 @@ final class PartyMemberProductViewController: UIViewController {
     }
     
     private func moveToWriteView() {
+        configureBackbarButton()
         let writeViewController = PartyMemberRecruitingProductViewController(
             viewModel: PartyMemberRecruitingProductViewModel(
                 usecase: PartyMemberRecruitingProductInteractor())

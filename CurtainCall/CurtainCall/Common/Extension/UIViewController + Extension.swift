@@ -55,13 +55,24 @@ extension UIViewController {
     }
     
     func configureBackbarButton() {
+        navigationItem.setHidesBackButton(true, animated: false)
+        let backImage = UIImage(named: ImageNamespace.navigationBackButton)
         let backBarbuttonItem = UIBarButtonItem(
-            title: "",
+            image: backImage,
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(backButtonTapped)
         )
-        backBarbuttonItem.tintColor = .black
-        navigationItem.backBarButtonItem = backBarbuttonItem
+        navigationItem.leftBarButtonItem = backBarbuttonItem
+        navigationItem.leftBarButtonItem?.tintColor = .black
+    }
+    
+    @objc
+    func backButtonTapped() {
+        guard let navigationController else {
+            dismiss(animated: true)
+            return
+        }
+        navigationController.popViewController(animated: true)
     }
 }
