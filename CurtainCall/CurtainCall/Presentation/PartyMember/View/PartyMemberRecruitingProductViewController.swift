@@ -49,7 +49,6 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0x273041)
         view.layer.cornerRadius = 4
-//        view.clipsToBounds = true
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         
         return view
@@ -149,7 +148,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         label.textColor = UIColor(rgb: 0xFF5792)
         label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
         label.layer.borderWidth = 1
-        label.layer.cornerRadius = 12.5
+        label.layer.cornerRadius = 11
         label.font = .systemFont(ofSize: 13, weight: .medium)
         return label
     }()
@@ -410,6 +409,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
                 for: .touchUpInside
             )
         }
+        nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
     }
     
     private func bind() {
@@ -439,7 +439,11 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
             for: .normal
         )
         nextButton.isUserInteractionEnabled = isSelected
-        
+    }
+    
+    private func moveToStep2() {
+        let step2ViewController = PartyMemberRecruitingDateViewController()
+        navigationController?.pushViewController(step2ViewController, animated: true)
     }
     
     // MARK: - Actions
@@ -463,6 +467,11 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         }
         reservationDotView.alpha = sender == reservationOrderButton ? 1 : 0
         dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
+    }
+    
+    @objc
+    private func nextButtonTouchUpInside() {
+        moveToStep2()
     }
 }
 
