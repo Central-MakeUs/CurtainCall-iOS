@@ -215,6 +215,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         return button
     }()
     
+    private let calendarView: CalendarView = {
+        let calendarView = CalendarView()
+        calendarView.layer.cornerRadius = 10
+        calendarView.isHidden = true
+        return calendarView
+    }()
+    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -222,6 +229,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTargets()
     }
     
     // MARK: - Helpers
@@ -238,7 +246,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             stepLabelStackView, stepViewStackView, titleView, dateSelectLabel,
              dateEssentialLabel, dateSelectButton, nextButton, timeSelectLabel,
             timeEssentialLabel, timeSelectButton, countSelectLabel,
-            countEssentialLabel, countStackView
+            countEssentialLabel, countStackView, calendarView
         )
         stepLabelStackView.addArrangedSubviews(step1Label, step2Label, step3Label)
         stepViewStackView.addArrangedSubviews(step1View, step2View, step3View)
@@ -316,6 +324,11 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             $0.height.equalTo(55)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
         }
+        calendarView.snp.makeConstraints {
+            $0.top.equalTo(dateSelectButton.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-15)
+        }
     }
     
     private func configureNavigation() {
@@ -330,7 +343,20 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             for: .normal
         )
         nextButton.isUserInteractionEnabled = isSelected
-        
     }
     
+    private func addTargets() {
+        dateSelectButton.addTarget(
+            self,
+            action: #selector(dateSelectButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    func dateSelectButtonTouchUpInside() {
+        calendarView.isHidden = false
+    }
 }

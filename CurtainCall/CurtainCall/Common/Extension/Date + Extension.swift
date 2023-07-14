@@ -26,4 +26,16 @@ extension Date {
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: self)
     }
+    
+    func convertToDayString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        return formatter.string(from: self)
+    }
+    
+    func convertToYearMonthKoreanString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월"
+        return formatter.string(from: self)
+    }
 }
