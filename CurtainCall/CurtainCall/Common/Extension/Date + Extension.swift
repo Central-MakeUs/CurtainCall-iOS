@@ -38,4 +38,10 @@ extension Date {
         formatter.dateFormat = "yyyy년 M월"
         return formatter.string(from: self)
     }
+    
+    func convertToYearMonthDayKoreanString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월 dd일"
+        return formatter.string(from: self)
+    }
 }

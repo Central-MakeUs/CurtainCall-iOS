@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CalendarView: UIView {
+final class CalendarView: UIView, CalendarDelegate {
     
     // MARK: - UI properties
     
@@ -74,6 +74,7 @@ final class CalendarView: UIView {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -92,14 +93,16 @@ final class CalendarView: UIView {
     private var days: [Item] = []
     private var calendar = Calendar.current
     private var dateComponents = DateComponents()
+    private let isSectableDates: [Date]
+    weak var delegate: CalendarViewDelegate?
     
     // MARK: - Lifecycles
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(isSectableDates: [Date]) {
+        self.isSectableDates = isSectableDates
+        super.init(frame: .zero)
         configureUI()
         registerCell()
-        days.forEach { print($0) }
     }
     
     @available (*, unavailable)
@@ -241,5 +244,15 @@ final class CalendarView: UIView {
             dateLabel.text = date.convertToYearMonthKoreanString()
         }
     }
-    
+}
+
+extension CalendarView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let dataSource,
+            let item = dataSource.itemIdentifier(for: indexPath),
+            let date = item.date
+        else { return }
+        
+        delegate?.selectedCalendar(date: date)
+    }
 }

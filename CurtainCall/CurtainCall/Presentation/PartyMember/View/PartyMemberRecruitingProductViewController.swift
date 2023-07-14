@@ -223,6 +223,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     private var datasource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
+    private var selectedItem: ProductSelectInfo?
     
     // MARK: - Lifecycles
     
@@ -442,7 +443,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     }
     
     private func moveToStep2() {
-        let step2ViewController = PartyMemberRecruitingDateViewController()
+        guard let selectedItem else { return }
+        let step2ViewController = PartyMemberRecruitingDateViewController(product: selectedItem)
         navigationController?.pushViewController(step2ViewController, animated: true)
     }
     
@@ -480,6 +482,7 @@ extension PartyMemberRecruitingProductViewController: UICollectionViewDelegate {
         guard let datasource, let item = datasource.itemIdentifier(for: indexPath) else {
             return
         }
+        selectedItem = item
         viewModel.didSelectProduct(item)
     }
 }

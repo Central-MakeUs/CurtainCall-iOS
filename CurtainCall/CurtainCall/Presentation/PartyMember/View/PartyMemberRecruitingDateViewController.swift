@@ -215,16 +215,29 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         return button
     }()
     
-    private let calendarView: CalendarView = {
-        let calendarView = CalendarView()
+    private lazy var calendarView: CalendarView = {
+        let calendarView = CalendarView(isSectableDates: product.date)
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
+        calendarView.delegate = self
         return calendarView
     }()
     
     // MARK: - Properties
     
+    private let product: ProductSelectInfo
+    
     // MARK: - Lifecycles
+    
+    init(product: ProductSelectInfo) {
+        self.product = product
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available (*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -358,5 +371,12 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     @objc
     func dateSelectButtonTouchUpInside() {
         calendarView.isHidden = false
+    }
+}
+
+extension PartyMemberRecruitingDateViewController: CalendarViewDelegate {
+    func selectedCalendar(date: Date) {
+        calendarView.isHidden = true
+        dateSelectButton.setTitle(date.convertToYearMonthDayKoreanString(), for: .normal)
     }
 }
