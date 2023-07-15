@@ -47,6 +47,17 @@ final class CalendarView: UIView, CalendarDelegate {
         return button
     }()
     
+    private let checkButton: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor(rgb: 0xFF5492), for: .normal)
+        button.setTitle("확인", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.layer.cornerRadius = 11.5
+        button.layer.borderColor = UIColor(rgb: 0xFF5492).cgColor
+        button.layer.borderWidth = 1
+        return button
+    }()
+    
     private let borderView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0xF2F3F5)
@@ -86,6 +97,7 @@ final class CalendarView: UIView, CalendarDelegate {
         let date: Date?
         let isSunday: Bool
         let isSaturday: Bool
+        let isSelected: Bool
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -94,6 +106,7 @@ final class CalendarView: UIView, CalendarDelegate {
     private var calendar = Calendar.current
     private var dateComponents = DateComponents()
     private let isSectableDates: [Date]
+    private var selectedDate: Date?
     weak var delegate: CalendarViewDelegate?
     
     // MARK: - Lifecycles
@@ -124,7 +137,7 @@ final class CalendarView: UIView, CalendarDelegate {
         backgroundColor = .white
         dateLabel.text = date.convertToYearMonthKoreanString()
         addSubviews(headerView, borderView, weekStackView, collectionView)
-        headerView.addSubview(headerStackView)
+        headerView.addSubviews(headerStackView, checkButton)
         headerStackView.addArrangedSubviews(prevButton, dateLabel, nextButton)
         weekLabels.forEach { weekStackView.addArrangedSubview($0) }
     }
@@ -135,7 +148,14 @@ final class CalendarView: UIView, CalendarDelegate {
             $0.height.equalTo(67)
         }
         headerStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview()
+        }
+        checkButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(20)
+            $0.width.equalTo(50)
+            $0.height.equalTo(23)
         }
         borderView.snp.makeConstraints {
             $0.top.equalTo(headerView.snp.bottom)
@@ -162,12 +182,12 @@ final class CalendarView: UIView, CalendarDelegate {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(20)
+            heightDimension: .absolute(40)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 22
+//        section.interGroupSpacing =
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -186,6 +206,11 @@ final class CalendarView: UIView, CalendarDelegate {
                 for: .touchUpInside
             )
         }
+        checkButton.addTarget(
+            self,
+            action: #selector(checkButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     private func configureDatasoruce() {
@@ -223,11 +248,16 @@ final class CalendarView: UIView, CalendarDelegate {
         
         for day in 0..<totalDays {
             if day < firstWeekIndex {
-                days.append(Item(date: nil, isSunday: false, isSaturday: false))
+                days.append(Item(date: nil, isSunday: false, isSaturday: false, isSelected: false))
             } else {
                 dateComponents.day = day - firstWeekIndex + 1
                 let date = calendar.date(from: dateComponents)
-                days.append(Item(date: date, isSunday: day % 7 == 0, isSaturday: day % 7 == 6))
+                days.append(Item(
+                    date: date,
+                    isSunday: day % 7 == 0,
+                    isSaturday: day % 7 == 6,
+                    isSelected: selectedDate == date)
+                )
             }
         }
         configureSnapshot()
@@ -244,6 +274,12 @@ final class CalendarView: UIView, CalendarDelegate {
             dateLabel.text = date.convertToYearMonthKoreanString()
         }
     }
+    
+    @objc
+    private func checkButtonTouchUpInside() {
+        guard let selectedDate else { return }
+        delegate?.selectedCalendar(date: selectedDate)
+    }
 }
 
 extension CalendarView: UICollectionViewDelegate {
@@ -252,7 +288,13 @@ extension CalendarView: UICollectionViewDelegate {
             let item = dataSource.itemIdentifier(for: indexPath),
             let date = item.date
         else { return }
-        
-        delegate?.selectedCalendar(date: date)
+        selectedDate = date
+        days = days.map { Item(
+            date: $0.date,
+            isSunday: $0.isSunday,
+            isSaturday: $0.isSaturday,
+            isSelected: $0.date == date
+        )}
+        configureSnapshot()
     }
 }

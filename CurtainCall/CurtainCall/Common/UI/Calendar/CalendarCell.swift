@@ -21,6 +21,12 @@ final class CalendarCell: UICollectionViewCell {
         return label
     }()
     
+    private let circleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        return view
+    }()
+    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -44,11 +50,18 @@ final class CalendarCell: UICollectionViewCell {
     }
     
     private func configureSubviews() {
-        addSubview(dayLabel)
+        addSubview(circleView)
+        circleView.addSubview(dayLabel)
     }
     
     private func configureConstraints() {
-        dayLabel.snp.makeConstraints { $0.center.equalToSuperview() }
+        circleView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(40)
+        }
+        dayLabel.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func configureUI(_ item: CalendarView.Item) {
@@ -62,7 +75,8 @@ final class CalendarCell: UICollectionViewCell {
         
         if let date = item.date {
             dayLabel.text = date.convertToDayString()
-            
+            dayLabel.textColor = item.isSelected ? .white : dayLabel.textColor
+            circleView.backgroundColor = item.isSelected ? UIColor(rgb: 0xFF7CAB) : .white
         } else {
             dayLabel.text = ""
         }
