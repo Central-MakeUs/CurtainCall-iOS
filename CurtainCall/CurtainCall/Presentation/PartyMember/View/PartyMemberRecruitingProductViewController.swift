@@ -444,7 +444,10 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private func moveToStep2() {
         guard let selectedItem else { return }
-        let step2ViewController = PartyMemberRecruitingDateViewController(product: selectedItem)
+        let step2ViewController = PartyMemberRecruitingDateViewController(
+            viewModel: PartyMemberRecruitingDateViewModel(),
+            product: selectedItem
+        )
         navigationController?.pushViewController(step2ViewController, animated: true)
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class PartyMemberRecruitingDateViewController: UIViewController {
     
@@ -185,6 +186,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         button.setImage(UIImage(systemName: "minus"), for: .normal)
         button.tintColor = UIColor(rgb: 0x111111)
         button.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        button.tag = -1
         return button
     }()
     private let plusButton: UIButton = {
@@ -192,6 +194,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = UIColor(rgb: 0x111111)
         button.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        button.tag = 1
         return button
     }()
     
@@ -225,11 +228,15 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let viewModel: PartyMemberRecruitingDateViewModel
     private let product: ProductSelectInfo
+    private var cancellabels: Set<AnyCancellable> = []
+    
     
     // MARK: - Lifecycles
     
-    init(product: ProductSelectInfo) {
+    init(viewModel: PartyMemberRecruitingDateViewModel, product: ProductSelectInfo) {
+        self.viewModel = viewModel
         self.product = product
         super.init(nibName: nil, bundle: nil)
     }
@@ -243,7 +250,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
-        print(product.date)
+        bind()
+        print("상영 날짜", product.date)
     }
     
     // MARK: - Helpers
@@ -350,6 +358,14 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         title = "파티원 모집"
     }
     
+    private func bind() {
+        viewModel.$countValue
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.countLabel.text = "\(value)"
+            }.store(in: &cancellabels)
+    }
+    
     private func setNextButton(isSelected: Bool) {
         nextButton.backgroundColor = isSelected ? UIColor(rgb: 0xFF7CAB) : UIColor(rgb: 0xDCDEE1)
         nextButton.setTitleColor(
@@ -360,6 +376,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     }
     
     private func addTargets() {
+        [plusButton, minusButton].forEach { $0.addTarget(
+            self,
+            action: #selector(stepperButtonTouchUpInside),
+            for: .touchUpInside
+            )
+        }
+        
         dateSelectButton.addTarget(
             self,
             action: #selector(dateSelectButtonTouchUpInside),
@@ -370,8 +393,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     // MARK: - Actions
     
     @objc
-    func dateSelectButtonTouchUpInside() {
+    private func dateSelectButtonTouchUpInside() {
         calendarView.isHidden = false
+    }
+    
+    @objc
+    private func stepperButtonTouchUpInside(_ sender: UIButton) {
+        viewModel.countValueChanged(sender.tag)
     }
 }
 

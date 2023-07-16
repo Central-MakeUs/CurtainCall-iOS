@@ -30,6 +30,7 @@
 		EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */; };
 		EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */; };
 		EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF72A58129300BC539C /* ProductViewController.swift */; };
+		EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */; };
 		EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */; };
 		EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = EE4EBAE42A4C013B00939823 /* KakaoSDKUser */; };
 		EE4EBAF32A4C303700939823 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EBAF22A4C303700939823 /* Secret.swift */; };
@@ -103,6 +104,7 @@
 		EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberViewController.swift; sourceTree = "<group>"; };
 		EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkViewController.swift; sourceTree = "<group>"; };
 		EE3F2FF72A58129300BC539C /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewModel.swift; sourceTree = "<group>"; };
 		EE4EBAF22A4C303700939823 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				EEA9444B2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift */,
 				EEA944552A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift */,
 				EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */,
+				EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
+				EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */,
 				EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */,
 				EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */,
 			);
