@@ -243,6 +243,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
+        print(product.date)
     }
     
     // MARK: - Helpers

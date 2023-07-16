@@ -98,6 +98,7 @@ final class CalendarView: UIView, CalendarDelegate {
         let isSunday: Bool
         let isSaturday: Bool
         let isSelected: Bool
+        let isSelectable: Bool
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -107,12 +108,14 @@ final class CalendarView: UIView, CalendarDelegate {
     private var dateComponents = DateComponents()
     private let isSectableDates: [Date]
     private var selectedDate: Date?
+    private let dateDict: [String: [String]]
     weak var delegate: CalendarViewDelegate?
     
     // MARK: - Lifecycles
     
     init(isSectableDates: [Date]) {
         self.isSectableDates = isSectableDates
+        self.dateDict = isSectableDates.convertToYearMonthDayKeyHourValue()
         super.init(frame: .zero)
         configureUI()
         registerCell()
@@ -131,6 +134,7 @@ final class CalendarView: UIView, CalendarDelegate {
         configureDatasoruce()
         setCalendar(date: date)
         addTarget()
+        print(dateDict)
     }
     
     private func configureSubviews() {
@@ -248,15 +252,23 @@ final class CalendarView: UIView, CalendarDelegate {
         
         for day in 0..<totalDays {
             if day < firstWeekIndex {
-                days.append(Item(date: nil, isSunday: false, isSaturday: false, isSelected: false))
+                days.append(Item(
+                    date: nil,
+                    isSunday: false,
+                    isSaturday: false,
+                    isSelected: false,
+                    isSelectable: false
+                ))
             } else {
                 dateComponents.day = day - firstWeekIndex + 1
-                let date = calendar.date(from: dateComponents)
+                guard let date = calendar.date(from: dateComponents) else { return }
                 days.append(Item(
                     date: date,
                     isSunday: day % 7 == 0,
                     isSaturday: day % 7 == 6,
-                    isSelected: selectedDate == date)
+                    isSelected: selectedDate == date,
+                    isSelectable: dateDict[date.convertToYearMonthDayString()] != nil
+                )
                 )
             }
         }
@@ -286,14 +298,15 @@ extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dataSource,
             let item = dataSource.itemIdentifier(for: indexPath),
-            let date = item.date
+              let date = item.date, dateDict[date.convertToYearMonthDayString()] != nil
         else { return }
         selectedDate = date
         days = days.map { Item(
             date: $0.date,
             isSunday: $0.isSunday,
             isSaturday: $0.isSaturday,
-            isSelected: $0.date == date
+            isSelected: $0.date == date,
+            isSelectable: $0.isSelectable
         )}
         configureSnapshot()
     }

@@ -75,6 +75,7 @@ final class CalendarCell: UICollectionViewCell {
         
         if let date = item.date {
             dayLabel.text = date.convertToDayString()
+            dayLabel.alpha = item.isSelectable ? 1 : 0.3
             dayLabel.textColor = item.isSelected ? .white : dayLabel.textColor
             circleView.backgroundColor = item.isSelected ? UIColor(rgb: 0xFF7CAB) : .white
         } else {

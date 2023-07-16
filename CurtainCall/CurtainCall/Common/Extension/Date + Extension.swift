@@ -8,6 +8,12 @@
 import Foundation
 
 extension Date {
+    func convertToYearMonthDayString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.M.dd"
+        return formatter.string(from: self)
+    }
+    
     func convertToYearMonthDayHourMinString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.M.dd HH:mm"
@@ -43,5 +49,15 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 dd일"
         return formatter.string(from: self)
+    }
+}
+
+extension [Date] {
+    func convertToYearMonthDayKeyHourValue() -> [String: [String]] {
+        var dateDict: [String: [String]] = [:]
+        for date in self.map({ $0.convertToYearMonthDayHourMinString().split(separator: " ").map { String($0) } }) {
+            dateDict[date[0], default: []].append(date[1])
+        }
+        return dateDict
     }
 }
