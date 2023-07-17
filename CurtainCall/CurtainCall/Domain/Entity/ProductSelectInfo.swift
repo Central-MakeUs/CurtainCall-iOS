@@ -19,12 +19,12 @@ struct ProductSelectInfo: Hashable {
         ProductSelectInfo(
             title: "BIRTH",
             posterImage: UIImage(named: "dummy_poster1"),
-            date: [Date(), Date(timeInterval: 60*60*24, since: Date())]
+            date: [Date(), Date(timeInterval: 60, since: Date())]
         ),
         ProductSelectInfo(
             title: "별이 빛나는 밤에",
             posterImage: UIImage(named: "dummy_poster2"),
-            date: [Date(), Date(timeInterval: 60*60*24*2, since: Date())]
+            date: [Date(), Date(timeInterval: 60*60*24*2 + 60, since: Date())]
         )
         ,ProductSelectInfo(
             title: "테베랜드",

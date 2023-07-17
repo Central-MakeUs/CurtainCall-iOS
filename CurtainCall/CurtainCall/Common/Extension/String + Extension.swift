@@ -12,4 +12,10 @@ extension String {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: self)
     }
+    
+    func convertYearMonthDayHourMinStringToDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월 dd일 HH:mm"
+        return formatter.date(from: self)
+    }
 }
