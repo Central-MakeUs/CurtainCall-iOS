@@ -195,6 +195,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTarget()
         hideKeyboardWhenTappedArround()
         bind()
         
@@ -307,6 +308,20 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         nextButton.isUserInteractionEnabled = isSelected
     }
     
+    private func addTarget() {
+        nextButton.addTarget(
+            self,
+            action: #selector(nextButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    private func nextButtonTouchUpInside() {
+        let completeViewController = PartyMemberWriteCompleteViewController()
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.pushViewController(completeViewController, animated: true)
+    }
 }
 
 extension PartyMemberRecruitingContentViewController: UITextFieldDelegate {
