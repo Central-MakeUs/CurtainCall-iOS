@@ -115,7 +115,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let textField = UITextField()
         textField.delegate = self
         textField.backgroundColor = UIColor(rgb: 0xF5F6F8)
-        textField.placeholder = "예시) OOO 함께 볼 사람 구해요!"
+        textField.placeholder = Constants.PARTY_MEMBER_PRODUCT_TITLE_TEXTFIELD_PLACEHOLDER
         textField.font = .systemFont(ofSize: 15, weight: .medium)
         textField.textColor = UIColor(rgb: 0x828996)
         textField.layer.cornerRadius = 10
@@ -333,6 +333,10 @@ extension PartyMemberRecruitingContentViewController: UITextFieldDelegate {
         viewModel.titleTextFieldChanged(text: textField.text)
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        viewModel.titleTextFieldChanged(text: textField.text)
+    }
 }
 
 extension PartyMemberRecruitingContentViewController: UITextViewDelegate {
@@ -346,6 +350,7 @@ extension PartyMemberRecruitingContentViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = Constants.PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER
+            viewModel.contentTextViewChanged(text: textView.text)
             return
         }
         

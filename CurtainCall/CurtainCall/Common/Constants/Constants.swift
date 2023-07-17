@@ -8,6 +8,14 @@
 import Foundation
 
 enum Constants {
+    static let PARTY_MEMBER_PRODUCT_TITLE_TEXTFIELD_PLACEHOLDER =
+    """
+    예시) OOO 함께 볼 사람 구해요!
+    """
+    static let PARTY_MEMBER_FOOD_TITLE_TEXTFIELD_PLACEHOLDER =
+    """
+    예시) OOO 공연 전에 맛집 같이 갈 사람 구해요!
+    """
     static let PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER =
     """
     예시)

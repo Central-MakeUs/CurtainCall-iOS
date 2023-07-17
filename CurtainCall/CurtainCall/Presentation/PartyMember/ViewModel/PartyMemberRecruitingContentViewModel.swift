@@ -24,7 +24,8 @@ final class PartyMemberRecruitingContentViewModel {
     // MARK: - Helpers
     
     func titleTextFieldChanged(text: String?) {
-        guard text != nil else {
+        guard let text, !text.isEmpty,
+              text != Constants.PARTY_MEMBER_PRODUCT_TITLE_TEXTFIELD_PLACEHOLDER else {
             isValidTitle = false
             return
         }
@@ -32,7 +33,8 @@ final class PartyMemberRecruitingContentViewModel {
     }
     
     func contentTextViewChanged(text: String?) {
-        guard text != nil else {
+        guard let text, !text.isEmpty,
+               text != Constants.PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER else {
             isValidContent = false
             return
         }
