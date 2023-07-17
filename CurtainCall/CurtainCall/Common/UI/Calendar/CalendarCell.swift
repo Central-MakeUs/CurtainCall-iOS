@@ -16,7 +16,7 @@ final class CalendarCell: UICollectionViewCell {
     private let dayLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textAlignment = .center
         return label
     }()
@@ -66,16 +66,16 @@ final class CalendarCell: UICollectionViewCell {
     
     func configureUI(_ item: CalendarView.Item) {
         if item.isSunday {
-            dayLabel.textColor = .red
+            dayLabel.textColor = UIColor(rgb: 0xFF334B)
         } else if item.isSaturday {
-            dayLabel.textColor = .blue
+            dayLabel.textColor = UIColor(rgb: 0x3D50FF)
         } else {
-            dayLabel.textColor = .black
+            dayLabel.textColor = UIColor(rgb: 0x2B313A)
         }
         
         if let date = item.date {
             dayLabel.text = date.convertToDayString()
-            dayLabel.alpha = item.isSelectable ? 1 : 0.3
+            dayLabel.alpha = item.isSelectable ? 1 : 0.5
             dayLabel.textColor = item.isSelected ? .white : dayLabel.textColor
             circleView.backgroundColor = item.isSelected ? UIColor(rgb: 0xFF7CAB) : .white
         } else {

@@ -222,6 +222,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let calendarView = CalendarView(isSectableDates: product.date)
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
+        calendarView.layer.borderColor = UIColor.black.cgColor
+        calendarView.layer.borderWidth = 1
         calendarView.delegate = self
         return calendarView
     }()
@@ -231,6 +233,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let viewModel: PartyMemberRecruitingDateViewModel
     private let product: ProductSelectInfo
     private var cancellabels: Set<AnyCancellable> = []
+    private var dateDict: [String: [String]]
+    private var selectDate: Date?
     
     
     // MARK: - Lifecycles
@@ -238,6 +242,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     init(viewModel: PartyMemberRecruitingDateViewModel, product: ProductSelectInfo) {
         self.viewModel = viewModel
         self.product = product
+        self.dateDict = product.date.convertToYearMonthDayKeyHourValue()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -388,6 +393,27 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             action: #selector(dateSelectButtonTouchUpInside),
             for: .touchUpInside
         )
+        timeSelectButton.addTarget(
+            self,
+            action: #selector(timeSelectButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    private func configureTimeSelectView(times: [String]) {
+        let timeSelectView: TimeSelectView = {
+            let view = TimeSelectView(times: times)
+            view.layer.cornerRadius = 10
+            view.layer.borderColor = UIColor.black.cgColor
+            view.layer.borderWidth = 1
+            return view
+        }()
+        view.addSubview(timeSelectView)
+        timeSelectView.snp.makeConstraints {
+            $0.top.equalTo(timeSelectButton.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(min(60 * times.count, 180))
+        }
     }
     
     // MARK: - Actions
@@ -395,6 +421,16 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     @objc
     private func dateSelectButtonTouchUpInside() {
         calendarView.isHidden = false
+    }
+    
+    @objc
+    private func timeSelectButtonTouchUpInside() {
+        guard let selectDate,
+              let times = dateDict[selectDate.convertToYearMonthDayString()] else {
+            return
+        }
+        configureTimeSelectView(times: times)
+        
     }
     
     @objc
@@ -407,5 +443,6 @@ extension PartyMemberRecruitingDateViewController: CalendarViewDelegate {
     func selectedCalendar(date: Date) {
         calendarView.isHidden = true
         dateSelectButton.setTitle(date.convertToYearMonthDayKoreanString(), for: .normal)
+        selectDate = date
     }
 }

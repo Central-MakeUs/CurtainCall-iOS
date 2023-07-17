@@ -25,7 +25,7 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private let prevButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor(rgb: 0x273041)
+        button.tintColor = UIColor(rgb: 0xFF5492)
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tag = -1
         button.contentEdgeInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
@@ -40,7 +40,7 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor(rgb: 0x273041)
+        button.tintColor = UIColor(rgb: 0xFF5492)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.tag = 1
         button.contentEdgeInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
