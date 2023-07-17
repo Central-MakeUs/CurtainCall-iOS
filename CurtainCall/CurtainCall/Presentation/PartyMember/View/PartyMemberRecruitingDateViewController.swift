@@ -235,6 +235,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private var cancellabels: Set<AnyCancellable> = []
     private var dateDict: [String: [String]]
     private var selectDate: Date?
+    private var selectTime: String?
     
     
     // MARK: - Lifecycles
@@ -369,6 +370,17 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             .sink { [weak self] value in
                 self?.countLabel.text = "\(value)"
             }.store(in: &cancellabels)
+        
+        viewModel.selectedDate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] date in
+                print(date)
+                guard let date else {
+                    self?.setNextButton(isSelected: false)
+                    return
+                }
+                self?.setNextButton(isSelected: true)
+            }.store(in: &cancellabels)
     }
     
     private func setNextButton(isSelected: Bool) {
@@ -406,6 +418,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             view.layer.cornerRadius = 10
             view.layer.borderColor = UIColor.black.cgColor
             view.layer.borderWidth = 1
+            view.tag = 100
+            view.delegate = self
             return view
         }()
         view.addSubview(timeSelectView)
@@ -421,6 +435,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     @objc
     private func dateSelectButtonTouchUpInside() {
         calendarView.isHidden = false
+        let viewWithTag = view.viewWithTag(100)
+        viewWithTag?.removeFromSuperview()
+        timeSelectButton.setTitle("시간대를 선택해주세요.", for: .normal)
+        viewModel.isValidDate(
+            date: dateSelectButton.titleLabel?.text,
+            time: timeSelectButton.titleLabel?.text
+        )
     }
     
     @objc
@@ -429,8 +450,12 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
               let times = dateDict[selectDate.convertToYearMonthDayString()] else {
             return
         }
+        calendarView.isHidden = true
         configureTimeSelectView(times: times)
-        
+        viewModel.isValidDate(
+            date: dateSelectButton.titleLabel?.text,
+            time: timeSelectButton.titleLabel?.text
+        )
     }
     
     @objc
@@ -444,5 +469,23 @@ extension PartyMemberRecruitingDateViewController: CalendarViewDelegate {
         calendarView.isHidden = true
         dateSelectButton.setTitle(date.convertToYearMonthDayKoreanString(), for: .normal)
         selectDate = date
+        selectTime = nil
+        viewModel.isValidDate(
+            date: dateSelectButton.titleLabel?.text,
+            time: timeSelectButton.titleLabel?.text
+        )
+    }
+}
+
+extension PartyMemberRecruitingDateViewController: TimeSelectViewDelegate {
+    func selectedTime(time: String) {
+        timeSelectButton.setTitle(time, for: .normal)
+        let viewWithTag = view.viewWithTag(100)
+        viewWithTag?.removeFromSuperview()
+        selectTime = time
+        viewModel.isValidDate(
+            date: dateSelectButton.titleLabel?.text,
+            time: timeSelectButton.titleLabel?.text
+        )
     }
 }

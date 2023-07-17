@@ -13,6 +13,7 @@ final class PartyMemberRecruitingDateViewModel {
     // MARK: - Properties
     
     @Published var countValue: Int = 1
+    var selectedDate = CurrentValueSubject<Date?, Never>(nil)
     
     // MARK: - Lifecycles
     
@@ -20,5 +21,16 @@ final class PartyMemberRecruitingDateViewModel {
     
     func countValueChanged(_ value: Int) {
         countValue = max(countValue + value, 1)
+    }
+    
+    func isValidDate(date: String?, time: String?) {
+        guard let dateString = date,
+              let time,
+              let date = "\(dateString) \(time)".convertYearMonthDayHourMinStringToDate()
+        else {
+            selectedDate.send(nil)
+            return
+        }
+        selectedDate.send(date)
     }
 }

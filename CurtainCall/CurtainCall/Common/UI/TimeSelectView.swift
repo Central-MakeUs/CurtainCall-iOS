@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class TimeSelectView: UIView {
+final class TimeSelectView: UIView, TimeSelectDelegate {
     
     // MARK: - UI properties
     
@@ -25,6 +25,7 @@ final class TimeSelectView: UIView {
     // MARK: - Properties
     
     private let times: [String]
+    weak var delegate: TimeSelectViewDelegate?
     
     // MARK: - Lifecycles
     init(times: [String]) {
@@ -55,7 +56,9 @@ final class TimeSelectView: UIView {
 }
 
 extension TimeSelectView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.selectedTime(time: times[indexPath.row])
+    }
 }
 
 extension TimeSelectView: UITableViewDataSource {
@@ -75,6 +78,7 @@ extension TimeSelectView: UITableViewDataSource {
             type: TimeSelectCell.self,
             indexPath: indexPath
         ) else { return UITableViewCell() }
+        cell.selectionStyle = .none
         cell.setUI(time: times[indexPath.row])
         return cell
     }
@@ -112,4 +116,12 @@ final class TimeSelectCell: UITableViewCell {
     func setUI(time: String) {
         timeLabel.text = time
     }
+}
+
+protocol TimeSelectDelegate: AnyObject {
+    var delegate: TimeSelectViewDelegate? { get set }
+}
+
+protocol TimeSelectViewDelegate: AnyObject {
+    func selectedTime(time: String)
 }
