@@ -55,7 +55,8 @@ extension UIViewController {
     }
     
     func configureBackbarButton() {
-        navigationItem.setHidesBackButton(true, animated: false)
+//        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.hidesBackButton = true
         let backImage = UIImage(named: ImageNamespace.navigationBackButton)
         let backBarbuttonItem = UIBarButtonItem(
             image: backImage,

@@ -37,6 +37,10 @@
 		EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */; };
 		EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */; };
 		EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */; };
+		EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED082A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift */; };
+		EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0A2A654EE20027B0D4 /* UITextField + Extension.swift */; };
+		EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0C2A6563A60027B0D4 /* Constants.swift */; };
+		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */; };
 		EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */; };
@@ -112,6 +116,10 @@
 		EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectView.swift; sourceTree = "<group>"; };
 		EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Extension.swift"; sourceTree = "<group>"; };
 		EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
+		EE5DED082A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewController.swift; sourceTree = "<group>"; };
+		EE5DED0A2A654EE20027B0D4 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		EE5DED0C2A6563A60027B0D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberProductViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */,
+				EE5DED0C2A6563A60027B0D4 /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -383,6 +392,7 @@
 				EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */,
 				EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */,
 				EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */,
+				EE5DED082A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -432,6 +442,7 @@
 				EEA944552A5D9D5C0081E784 /* PartyMemberFoodViewModel.swift */,
 				EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */,
 				EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */,
+				EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -496,6 +507,7 @@
 				EEA9443E2A5D303E0081E784 /* Date + Extension.swift */,
 				EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */,
 				EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */,
+				EE5DED0A2A654EE20027B0D4 /* UITextField + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -698,6 +710,7 @@
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
 				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
+				EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
@@ -710,10 +723,13 @@
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
+				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
 				EEA944502A5D9C6F0081E784 /* PartyMemberFoodViewController.swift in Sources */,
+				EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
+				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,

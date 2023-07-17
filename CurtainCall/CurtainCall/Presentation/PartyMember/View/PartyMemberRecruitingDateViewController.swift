@@ -374,7 +374,6 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         viewModel.selectedDate
             .receive(on: DispatchQueue.main)
             .sink { [weak self] date in
-                print(date)
                 guard let date else {
                     self?.setNextButton(isSelected: false)
                     return
@@ -408,6 +407,11 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         timeSelectButton.addTarget(
             self,
             action: #selector(timeSelectButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        nextButton.addTarget(
+            self,
+            action: #selector(nextButtonTouchUpInside),
             for: .touchUpInside
         )
     }
@@ -461,6 +465,14 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     @objc
     private func stepperButtonTouchUpInside(_ sender: UIButton) {
         viewModel.countValueChanged(sender.tag)
+    }
+    
+    @objc
+    private func nextButtonTouchUpInside() {
+        let step3ViewController = PartyMemberRecruitingContentViewController(
+            viewModel: PartyMemberRecruitingContentViewModel()
+        )
+        navigationController?.pushViewController(step3ViewController, animated: true)
     }
 }
 
