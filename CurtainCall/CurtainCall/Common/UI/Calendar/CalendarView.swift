@@ -34,7 +34,7 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -51,7 +51,7 @@ final class CalendarView: UIView, CalendarDelegate {
         let button = UIButton()
         button.setTitleColor(.pointColor2, for: .normal)
         button.setTitle("확인", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.titleLabel?.font = .body3
         button.layer.cornerRadius = 11.5
         button.layer.borderColor = UIColor.pointColor2?.cgColor
         button.layer.borderWidth = 1

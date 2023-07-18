@@ -18,6 +18,6 @@ extension UIFont {
     static let body2 = UIFont(name: "SpoqaHanSansNeo-Medium", size: 15)
     static let body3 = UIFont(name: "SpoqaHanSansNeo-Medium", size: 14)
     static let body4 = UIFont(name: "SpoqaHanSansNeo-Medium", size: 13)
-    static let body5 = UIFont(name: "SpoqaHanSansNeo-Regular", size: 12)
+    static let body5 = UIFont(name: "SpoqaHanSansNeo-Medium", size: 12)
     static let caption = UIFont(name: "SpoqaHanSansNeo-Regular", size: 10)
 }

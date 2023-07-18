@@ -15,7 +15,7 @@ final class PartyMemberProductViewController: UIViewController {
     private let guideLabel: UILabel = {
         let label = UILabel()
         label.text = "모든 게시물은 최신순으로 제공됩니다."
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .body3
         label.textColor = .hex5A6271
         return label
     }()

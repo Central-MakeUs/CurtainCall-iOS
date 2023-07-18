@@ -90,7 +90,7 @@ final class TimeSelectCell: UITableViewCell {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = .body1
         label.textColor = .black
         return label
     }()

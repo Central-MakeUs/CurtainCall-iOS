@@ -33,7 +33,7 @@ final class PartyOtherCell: UICollectionViewCell {
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .subTitle4
         label.textColor = .black
         return label
     }()
@@ -41,21 +41,21 @@ final class PartyOtherCell: UICollectionViewCell {
     private let writeDateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .hexE4E7EC
-        label.font = .systemFont(ofSize: 12)
+        label.font = .body5
         return label
     }()
     
     private let countLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .body1
         return label
     }()
     
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16)
+        label.font = .body1
         label.numberOfLines = 0
         return label
     }()

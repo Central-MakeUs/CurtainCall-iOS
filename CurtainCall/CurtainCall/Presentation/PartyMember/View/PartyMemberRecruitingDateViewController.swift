@@ -93,7 +93,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let label = UILabel()
         label.text = "공연 날짜를 선택해주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -105,7 +105,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
     
@@ -114,7 +114,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         button.setTitle("날짜를 선택해주세요.", for: .normal)
         button.setTitleColor(.hex828996, for: .normal)
         button.backgroundColor = .hexF5F6F8
-        button.titleLabel?.font = .systemFont(ofSize: 15)
+        button.titleLabel?.font = .body2
         button.layer.cornerRadius = 10
         button.contentHorizontalAlignment = .left
         button.titleEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
@@ -125,7 +125,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let label = UILabel()
         label.text = "시간대를 선택해주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -146,7 +146,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         button.setTitle("시간대를 선택해주세요.", for: .normal)
         button.setTitleColor(.hex828996, for: .normal)
         button.backgroundColor = .hexF5F6F8
-        button.titleLabel?.font = .systemFont(ofSize: 15)
+        button.titleLabel?.font = .body2
         button.layer.cornerRadius = 10
         button.contentHorizontalAlignment = .left
         button.titleEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
@@ -157,7 +157,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let label = UILabel()
         label.text = "인원을 선택해주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -169,7 +169,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
     

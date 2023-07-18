@@ -87,7 +87,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let label = UILabel()
         label.text = "공연 관람"
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .body5
         return label
     }()
     
@@ -95,7 +95,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let label = UILabel()
         label.text = "분류를 선택해주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -110,7 +110,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private let theaterButton: UIButton = {
         let button = UIButton()
         button.setTitle("연극", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.titleLabel?.font = .subTitle4
         button.setTitleColor(.white, for: .selected)
         button.setTitleColor(.hexBEC2CA, for: .normal)
         button.backgroundColor = .white
@@ -123,7 +123,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private let musicalButton: UIButton = {
         let button = UIButton()
         button.setTitle("뮤지컬", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.titleLabel?.font = .subTitle4
         button.setTitleColor(.white, for: .selected)
         button.setTitleColor(.hexBEC2CA, for: .normal)
         button.backgroundColor = .white
@@ -137,7 +137,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let label = UILabel()
         label.text = "작품을 선택해주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -149,7 +149,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
 
@@ -187,7 +187,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let updateTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 11)
+        label.font = .caption
         label.text = "8:00 업데이트"
         label.textColor = .hexBEC2CA
         return label

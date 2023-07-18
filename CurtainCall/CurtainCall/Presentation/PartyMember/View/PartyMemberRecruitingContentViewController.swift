@@ -95,7 +95,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let label = UILabel()
         label.text = "제목을 적어주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -107,7 +107,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
     
@@ -116,7 +116,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         textField.delegate = self
         textField.backgroundColor = .hexF5F6F8
         textField.placeholder = Constants.PARTY_MEMBER_PRODUCT_TITLE_TEXTFIELD_PLACEHOLDER
-        textField.font = .systemFont(ofSize: 15, weight: .medium)
+        textField.font = .body2
         textField.textColor = .hex828996
         textField.layer.cornerRadius = 10
         textField.addLeftPadding(width: 18)
@@ -128,7 +128,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let label = UILabel()
         label.text = "내용을 적어주세요."
         label.textColor = .hex161A20
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle2
         return label
     }()
     
@@ -140,7 +140,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
     
@@ -148,7 +148,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let textView = UITextView()
         textView.backgroundColor = .hexF5F6F8
         textView.textColor = .hex828996
-        textView.font = .systemFont(ofSize: 15, weight: .medium)
+        textView.font = .body2
         textView.textContainerInset = .init(top: 12, left: 18, bottom: 12, right: 18)
         textView.layer.cornerRadius = 12
         textView.text = Constants.PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER
@@ -159,7 +159,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     private let contentCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .hex828996
-        label.font = .systemFont(ofSize: 12)
+        label.font = .body5
         label.text = "글자수 제한 (0/400)"
         return label
     }()

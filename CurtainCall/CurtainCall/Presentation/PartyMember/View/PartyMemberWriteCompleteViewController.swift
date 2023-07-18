@@ -21,7 +21,7 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "파티원 모집글이 게시되었습니다."
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .subTitle1
         label.textColor = .body1
         return label
     }()
@@ -32,7 +32,7 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
                      해당 게시물은 파티원 모집과
                      마이페이지에서 확인할 수 있습니다.
                      """
-        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.font = .body2
         label.textColor = .hex828996
         label.textAlignment = .center
         label.numberOfLines = 2
@@ -43,7 +43,7 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
         let label = UILabel()
         label.text = "게시물 확인하기"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.font = .body2
         label.textColor = .hex828996
         label.layer.cornerRadius = 15
         label.layer.borderWidth = 1

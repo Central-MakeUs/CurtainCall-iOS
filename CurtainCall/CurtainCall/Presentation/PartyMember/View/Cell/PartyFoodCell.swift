@@ -33,7 +33,7 @@ final class PartyFoodCell: UICollectionViewCell {
     private let productTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .subTitle4
         return label
     }()
     
@@ -52,7 +52,7 @@ final class PartyFoodCell: UICollectionViewCell {
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .subTitle4
         label.textColor = .black
         return label
     }()
@@ -60,21 +60,21 @@ final class PartyFoodCell: UICollectionViewCell {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .hexBEC2CA
-        label.font = .systemFont(ofSize: 12)
+        label.font = .body5
         return label
     }()
     
     private let countLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .body1
         return label
     }()
     
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16)
+        label.font = .body1
         label.numberOfLines = 0
         return label
     }()

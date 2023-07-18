@@ -28,7 +28,7 @@ final class ProductPosterCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.font = .body2
         return label
     }()
     
