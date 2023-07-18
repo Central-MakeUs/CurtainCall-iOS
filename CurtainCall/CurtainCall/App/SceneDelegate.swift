@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        )
 //        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         
-        window?.rootViewController = MainTabBarController()
+        window?.rootViewController = PartyMemberWriteCompleteViewController()
         
         window?.makeKeyAndVisible()
     }
