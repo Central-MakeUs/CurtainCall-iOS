@@ -14,7 +14,7 @@ extension UITextField {
         self.leftViewMode = .always
     }
     
-    func setPlaceholderColor(color: UIColor) {
+    func setPlaceholderColor(color: UIColor?) {
         guard let string = self.placeholder else {
             return
         }

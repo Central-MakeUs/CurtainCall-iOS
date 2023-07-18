@@ -21,8 +21,8 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "파티원 모집글이 게시되었습니다."
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textColor = UIColor(rgb: 0x1A1A1A)
+        label.font = .subTitle1
+        label.textColor = .body1
         return label
     }()
     
@@ -32,8 +32,8 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
                      해당 게시물은 파티원 모집과
                      마이페이지에서 확인할 수 있습니다.
                      """
-        label.font = .systemFont(ofSize: 15, weight: .medium)
-        label.textColor = UIColor(rgb: 0x828996)
+        label.font = .body2
+        label.textColor = .hex828996
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -43,11 +43,11 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
         let label = UILabel()
         label.text = "게시물 확인하기"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 15, weight: .medium)
-        label.textColor = UIColor(rgb: 0x828996)
+        label.font = .body2
+        label.textColor = .hex828996
         label.layer.cornerRadius = 15
         label.layer.borderWidth = 1
-        label.layer.borderColor = UIColor(rgb: 0x828996).cgColor
+        label.layer.borderColor = UIColor.hex828996?.cgColor
         return label
     }()
     
@@ -55,7 +55,7 @@ final class PartyMemberWriteCompleteViewController: UIViewController {
         let button = UIButton()
         button.setTitle("홈으로 이동", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = UIColor(rgb: 0xFF7CAB)
+        button.backgroundColor = .pointColor2
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         return button

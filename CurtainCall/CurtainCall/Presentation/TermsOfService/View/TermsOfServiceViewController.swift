@@ -30,7 +30,7 @@ final class TermsOfServiceViewController: UIViewController {
         label.text = "커튼콜 서비스 이용을 위해\n약관 동의가 필요해요."
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 26, weight: .bold)
-        label.textColor = UIColor(rgb: 0x111111)
+        label.textColor = .title
         return label
     }()
     
@@ -169,7 +169,7 @@ final class TermsOfServiceViewController: UIViewController {
     
     private let borderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xF2F3F5)
+        view.backgroundColor = .hexF2F3F5
         return view
     }()
     

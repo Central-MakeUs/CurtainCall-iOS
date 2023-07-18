@@ -16,7 +16,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let step1Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         label.text = "Step 1"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -24,7 +24,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let step2Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         label.text = "Step 2"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -32,7 +32,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let step3Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         label.text = "Step 3"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -47,7 +47,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let step1View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         
@@ -56,13 +56,13 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let step2View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         return view
     }()
     
     private let step3View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         return view
@@ -78,7 +78,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let titleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 12
         return view
     }()
@@ -94,8 +94,8 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     private let titleWriteLabel: UILabel = {
         let label = UILabel()
         label.text = "제목을 적어주세요."
-        label.textColor = UIColor(rgb: 0x273041)
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .hex161A20
+        label.font = .subTitle2
         return label
     }()
     
@@ -103,32 +103,32 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let label = UILabel()
         label.text = "필수"
         label.textAlignment = .center
-        label.textColor = UIColor(rgb: 0xFF5792)
-        label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
+        label.textColor = .pointColor2
+        label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
     
     private lazy var titleWriteTextField: UITextField = {
         let textField = UITextField()
         textField.delegate = self
-        textField.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        textField.backgroundColor = .hexF5F6F8
         textField.placeholder = Constants.PARTY_MEMBER_PRODUCT_TITLE_TEXTFIELD_PLACEHOLDER
-        textField.font = .systemFont(ofSize: 15, weight: .medium)
-        textField.textColor = UIColor(rgb: 0x828996)
+        textField.font = .body2
+        textField.textColor = .hex828996
         textField.layer.cornerRadius = 10
         textField.addLeftPadding(width: 18)
-        textField.setPlaceholderColor(color: UIColor(rgb: 0x828996))
+        textField.setPlaceholderColor(color: .hex828996)
         return textField
     }()
     
     private let contentWriteLabel: UILabel = {
         let label = UILabel()
         label.text = "내용을 적어주세요."
-        label.textColor = UIColor(rgb: 0x273041)
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .hex161A20
+        label.font = .subTitle2
         return label
     }()
     
@@ -136,19 +136,19 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let label = UILabel()
         label.text = "필수"
         label.textAlignment = .center
-        label.textColor = UIColor(rgb: 0xFF5792)
-        label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
+        label.textColor = .pointColor2
+        label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.font = .body4
         return label
     }()
     
     private lazy var contentTextView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = UIColor(rgb: 0xF5F6F8)
-        textView.textColor = UIColor(rgb: 0x828996)
-        textView.font = .systemFont(ofSize: 15, weight: .medium)
+        textView.backgroundColor = .hexF5F6F8
+        textView.textColor = .hex828996
+        textView.font = .body2
         textView.textContainerInset = .init(top: 12, left: 18, bottom: 12, right: 18)
         textView.layer.cornerRadius = 12
         textView.text = Constants.PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER
@@ -158,8 +158,8 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private let contentCountLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x828996)
-        label.font = .systemFont(ofSize: 12)
+        label.textColor = .hex828996
+        label.font = .body5
         label.text = "글자수 제한 (0/400)"
         return label
     }()
@@ -168,8 +168,8 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let button = UIButton()
         button.setTitle("작성 완료", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = UIColor(rgb: 0xDCDEE1)
-        button.setTitleColor(UIColor(rgb: 0x99A1B2), for: .normal)
+        button.backgroundColor = .hexE4E7EC
+        button.setTitleColor(.hexBEC2CA, for: .normal)
         button.layer.cornerRadius = 12
         button.isUserInteractionEnabled = false
         return button
@@ -300,9 +300,9 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     }
     
     private func setNextButton(isSelected: Bool) {
-        nextButton.backgroundColor = isSelected ? UIColor(rgb: 0xFF7CAB) : UIColor(rgb: 0xDCDEE1)
+        nextButton.backgroundColor = isSelected ? .pointColor2 : .hexE4E7EC
         nextButton.setTitleColor(
-            isSelected ? .white : UIColor(rgb: 0x99A1B2),
+            isSelected ? .white : .hexBEC2CA,
             for: .normal
         )
         nextButton.isUserInteractionEnabled = isSelected

@@ -25,7 +25,7 @@ final class OnboardingViewController: UIViewController {
             frame: .zero,
             collectionViewLayout: createCollectionViewLayout()
         )
-        collectionView.backgroundColor = UIColor(rgb: 0x273041)
+        collectionView.backgroundColor = .pointColor1
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
@@ -34,7 +34,7 @@ final class OnboardingViewController: UIViewController {
     
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .sunsetPink
+        button.backgroundColor = .pointColor2
         button.layer.cornerRadius = 15
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         return button
@@ -76,7 +76,7 @@ final class OnboardingViewController: UIViewController {
     // MARK: - Helpers
     
     private func configureUI() {
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         configureSubviews()
         configureConstraints()
         configureDatasource()

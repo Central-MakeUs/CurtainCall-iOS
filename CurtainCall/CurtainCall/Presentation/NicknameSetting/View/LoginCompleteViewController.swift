@@ -38,7 +38,7 @@ final class LoginCompleteViewController: UIViewController {
         let button = UIButton()
         button.setTitle("시작하기", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        button.backgroundColor = UIColor(rgb: 0x273041)
+        button.backgroundColor = .pointColor2
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 15
         return button

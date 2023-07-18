@@ -22,7 +22,7 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let productLabelView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFF7CAB)
+        view.backgroundColor = .pointColor2
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = CACornerMask(
             arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner
@@ -33,7 +33,7 @@ final class PartyProductCell: UICollectionViewCell {
     private let productTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .subTitle4
         return label
     }()
     
@@ -52,36 +52,36 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .subTitle4
         label.textColor = .black
         return label
     }()
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x99A1B2)
-        label.font = .systemFont(ofSize: 12)
+        label.textColor = .hexBEC2CA
+        label.font = .body5
         return label
     }()
     
     private let countLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .body1
         return label
     }()
     
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16)
+        label.font = .body1
         label.numberOfLines = 0
         return label
     }()
     
     private let borderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xF2F3F5)
+        view.backgroundColor = .hexF2F3F5
         return view
     }()
     
@@ -94,7 +94,7 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let dateBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFFDC63)
+        view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
         return view
     }()
@@ -102,13 +102,13 @@ final class PartyProductCell: UICollectionViewCell {
     private let dateBadgeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = UIColor(rgb: 0x051840)
+        label.textColor = .pointColor1
         return label
     }()
     
     private let timeBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFFDC63)
+        view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
         return view
     }()
@@ -116,13 +116,13 @@ final class PartyProductCell: UICollectionViewCell {
     private let timeBadgeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = UIColor(rgb: 0x051840)
+        label.textColor = .pointColor1
         return label
     }()
     
     private let locationBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFFDC63)
+        view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
         return view
     }()
@@ -130,7 +130,7 @@ final class PartyProductCell: UICollectionViewCell {
     private let locationBadgeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = UIColor(rgb: 0x051840)
+        label.textColor = .pointColor1
         return label
     }()
     

@@ -20,7 +20,7 @@ final class ProductPosterCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 0
-        imageView.layer.borderColor = UIColor(rgb: 0xFF7CAB).cgColor
+        imageView.layer.borderColor = UIColor.pointColor2?.cgColor
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -28,7 +28,7 @@ final class ProductPosterCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.font = .body2
         return label
     }()
     

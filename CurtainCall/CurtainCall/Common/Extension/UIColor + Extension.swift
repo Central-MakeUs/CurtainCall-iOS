@@ -39,9 +39,23 @@ extension UIColor {
 // MARK: - Color Assets
 
 extension UIColor {
-    static let gray1 = UIColor(named: "gray1")
-    static let gray2 = UIColor(named: "gray2")
-    static let deepDark = UIColor(named: "deep_dark")
-    static let sunsetPink = UIColor(named: "sunset_pink")
+    static let hex2B313A = UIColor(named: "#2B313A")
+    static let hex3B4350 = UIColor(named: "#3B4350")
+    static let hex5A6271 = UIColor(named: "#5A6271")
+    static let hex161A20 = UIColor(named: "#161A20")
+    static let hex828996 = UIColor(named: "#828996")
+    static let hexBEC2CA = UIColor(named: "#BEC2CA")
+    static let hexE4E7EC = UIColor(named: "#E4E7EC")
+    static let hexF2F3F5 = UIColor(named: "#F2F3F5")
+    static let hexF5F6F8 = UIColor(named: "#F5F6F8")
+    static let heading = UIColor(named: "heading")
+    static let body1 = UIColor(named: "body 1")
+    static let myBlue = UIColor(named: "myBlue")
+    static let myRed = UIColor(named: "myRed")
+    static let pointColor1 = UIColor(named: "point color 1")
+    static let pointColor2 = UIColor(named: "point color 2")
+    static let pointColor3 = UIColor(named: "point color 3")
+    static let title = UIColor(named: "title")
+    
     
 }

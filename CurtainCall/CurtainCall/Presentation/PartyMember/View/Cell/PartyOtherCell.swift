@@ -33,49 +33,49 @@ final class PartyOtherCell: UICollectionViewCell {
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .subTitle4
         label.textColor = .black
         return label
     }()
     
     private let writeDateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x99A1B2)
-        label.font = .systemFont(ofSize: 12)
+        label.textColor = .hexE4E7EC
+        label.font = .body5
         return label
     }()
     
     private let countLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .body1
         return label
     }()
     
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16)
+        label.font = .body1
         label.numberOfLines = 0
         return label
     }()
     
     private let borderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xF2F3F5)
+        view.backgroundColor = .hexF2F3F5
         return view
     }()
     
     private let dateBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFFDC63)
+        view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
         return view
     }()
     
     private let dateBadgeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x051840)
+        label.textColor = .pointColor1
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
