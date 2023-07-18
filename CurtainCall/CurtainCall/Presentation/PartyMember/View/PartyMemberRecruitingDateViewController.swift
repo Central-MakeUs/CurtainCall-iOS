@@ -14,7 +14,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let step1Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         label.text = "Step 1"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -22,7 +22,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let step2Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         label.text = "Step 2"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -30,7 +30,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let step3Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0xE1E4E9)
+        label.textColor = .hexE4E7EC
         label.text = "Step 3"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -45,7 +45,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let step1View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         
@@ -54,13 +54,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let step2View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         return view
     }()
     
     private let step3View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xE1E4E9)
+        view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         return view
@@ -76,7 +76,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let titleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 12
         return view
     }()
@@ -92,7 +92,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let dateSelectLabel: UILabel = {
         let label = UILabel()
         label.text = "공연 날짜를 선택해주세요."
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .hex161A20
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -101,8 +101,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let label = UILabel()
         label.text = "필수"
         label.textAlignment = .center
-        label.textColor = UIColor(rgb: 0xFF5792)
-        label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
+        label.textColor = .pointColor2
+        label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
         label.font = .systemFont(ofSize: 13, weight: .medium)
@@ -112,8 +112,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let dateSelectButton: UIButton = {
         let button = UIButton()
         button.setTitle("날짜를 선택해주세요.", for: .normal)
-        button.setTitleColor(UIColor(rgb: 0x999999), for: .normal)
-        button.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        button.setTitleColor(.hex828996, for: .normal)
+        button.backgroundColor = .hexF5F6F8
         button.titleLabel?.font = .systemFont(ofSize: 15)
         button.layer.cornerRadius = 10
         button.contentHorizontalAlignment = .left
@@ -124,7 +124,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let timeSelectLabel: UILabel = {
         let label = UILabel()
         label.text = "시간대를 선택해주세요."
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .hex161A20
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -133,8 +133,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let label = UILabel()
         label.text = "필수"
         label.textAlignment = .center
-        label.textColor = UIColor(rgb: 0xFF5792)
-        label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
+        label.textColor = .pointColor2
+        label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
         label.font = .systemFont(ofSize: 13, weight: .medium)
@@ -144,8 +144,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let timeSelectButton: UIButton = {
         let button = UIButton()
         button.setTitle("시간대를 선택해주세요.", for: .normal)
-        button.setTitleColor(UIColor(rgb: 0x999999), for: .normal)
-        button.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        button.setTitleColor(.hex828996, for: .normal)
+        button.backgroundColor = .hexF5F6F8
         button.titleLabel?.font = .systemFont(ofSize: 15)
         button.layer.cornerRadius = 10
         button.contentHorizontalAlignment = .left
@@ -156,7 +156,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let countSelectLabel: UILabel = {
         let label = UILabel()
         label.text = "인원을 선택해주세요."
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .hex161A20
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -165,8 +165,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let label = UILabel()
         label.text = "필수"
         label.textAlignment = .center
-        label.textColor = UIColor(rgb: 0xFF5792)
-        label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
+        label.textColor = .pointColor2
+        label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
         label.font = .systemFont(ofSize: 13, weight: .medium)
@@ -184,23 +184,23 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private let minusButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "minus"), for: .normal)
-        button.tintColor = UIColor(rgb: 0x111111)
-        button.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        button.tintColor = .title
+        button.backgroundColor = .hexF5F6F8
         button.tag = -1
         return button
     }()
     private let plusButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = UIColor(rgb: 0x111111)
-        button.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        button.tintColor = .title
+        button.backgroundColor = .hexF5F6F8
         button.tag = 1
         return button
     }()
     
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x111111)
+        label.textColor = .title
         label.text = "1"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -211,8 +211,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = UIColor(rgb: 0xDCDEE1)
-        button.setTitleColor(UIColor(rgb: 0x99A1B2), for: .normal)
+        button.backgroundColor = .hexE4E7EC
+        button.setTitleColor(.hexBEC2CA, for: .normal)
         button.layer.cornerRadius = 12
         button.isUserInteractionEnabled = false
         return button
@@ -383,9 +383,9 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     }
     
     private func setNextButton(isSelected: Bool) {
-        nextButton.backgroundColor = isSelected ? UIColor(rgb: 0xFF7CAB) : UIColor(rgb: 0xDCDEE1)
+        nextButton.backgroundColor = isSelected ? .pointColor2 : .hexE4E7EC
         nextButton.setTitleColor(
-            isSelected ? .white : UIColor(rgb: 0x99A1B2),
+            isSelected ? .white : .hexBEC2CA,
             for: .normal
         )
         nextButton.isUserInteractionEnabled = isSelected

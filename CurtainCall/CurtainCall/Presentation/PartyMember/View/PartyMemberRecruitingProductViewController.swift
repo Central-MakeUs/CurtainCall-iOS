@@ -16,7 +16,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let step1Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         label.text = "Step 1"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -24,7 +24,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let step2Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0xE1E4E9)
+        label.textColor = .hexE4E7EC
         label.text = "Step 2"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -32,7 +32,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let step3Label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0xE1E4E9)
+        label.textColor = .hexE4E7EC
         label.text = "Step 3"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -47,7 +47,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let step1View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         
@@ -56,13 +56,13 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let step2View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xE1E4E9)
+        view.backgroundColor = .hexE4E7EC
         return view
     }()
     
     private let step3View: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xE1E4E9)
+        view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         return view
@@ -78,7 +78,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     private let titleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 12
         return view
     }()
@@ -94,7 +94,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private let typeSelectLabel: UILabel = {
         let label = UILabel()
         label.text = "분류를 선택해주세요."
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .hex161A20
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -112,7 +112,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         button.setTitle("연극", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.setTitleColor(.white, for: .selected)
-        button.setTitleColor(UIColor(rgb: 0x99A1B2), for: .normal)
+        button.setTitleColor(.hexBEC2CA, for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
@@ -125,7 +125,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         button.setTitle("뮤지컬", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.setTitleColor(.white, for: .selected)
-        button.setTitleColor(UIColor(rgb: 0x99A1B2), for: .normal)
+        button.setTitleColor(.hexBEC2CA, for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
@@ -136,7 +136,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private let productSelectLabel: UILabel = {
         let label = UILabel()
         label.text = "작품을 선택해주세요."
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .hex161A20
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -145,8 +145,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let label = UILabel()
         label.text = "필수"
         label.textAlignment = .center
-        label.textColor = UIColor(rgb: 0xFF5792)
-        label.layer.borderColor = UIColor(rgb: 0xFF5792).cgColor
+        label.textColor = .pointColor2
+        label.layer.borderColor = UIColor.pointColor2?.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 11
         label.font = .systemFont(ofSize: 13, weight: .medium)
@@ -155,7 +155,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
 
     private let reservationDotView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFD517A)
+        view.backgroundColor = .pointColor2
         view.layer.cornerRadius = 2
         return view
     }()
@@ -164,14 +164,14 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let button = UIButton()
         button.setTitle("예매율순", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.setTitleColor(UIColor(rgb: 0x2A313B), for: .selected)
-        button.setTitleColor(UIColor(rgb: 0xC8CFDC), for: .normal)
+        button.setTitleColor(.body1, for: .selected)
+        button.setTitleColor(.hexBEC2CA, for: .normal)
         return button
     }()
     
     private let dictionaryOrderDotView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFD517A)
+        view.backgroundColor = .pointColor2
         view.layer.cornerRadius = 2
         return view
     }()
@@ -180,8 +180,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let button = UIButton()
         button.setTitle("가나다순", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.setTitleColor(UIColor(rgb: 0x2A313B), for: .selected)
-        button.setTitleColor(UIColor(rgb: 0xC8CFDC), for: .normal)
+        button.setTitleColor(.body1, for: .selected)
+        button.setTitleColor(.hexBEC2CA, for: .normal)
         return button
     }()
     
@@ -189,7 +189,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 11)
         label.text = "8:00 업데이트"
-        label.textColor = UIColor(rgb: 0x848484)
+        label.textColor = .hexBEC2CA
         return label
     }()
     
@@ -206,8 +206,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = UIColor(rgb: 0xDCDEE1)
-        button.setTitleColor(UIColor(rgb: 0x99A1B2), for: .normal)
+        button.backgroundColor = .hexBEC2CA
+        button.setTitleColor(.hexE4E7EC, for: .normal)
         button.layer.cornerRadius = 12
         button.isUserInteractionEnabled = false
         return button
@@ -434,9 +434,9 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     }
     
     private func setNextButton(isSelected: Bool) {
-        nextButton.backgroundColor = isSelected ? UIColor(rgb: 0xFF7CAB) : UIColor(rgb: 0xDCDEE1)
+        nextButton.backgroundColor = isSelected ? .pointColor2 : .hexE4E7EC
         nextButton.setTitleColor(
-            isSelected ? .white : UIColor(rgb: 0x99A1B2),
+            isSelected ? .white : .hexBEC2CA,
             for: .normal
         )
         nextButton.isUserInteractionEnabled = isSelected
@@ -458,9 +458,9 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         [theaterButton, musicalButton].forEach {
             $0.isSelected = sender == $0
             $0.isUserInteractionEnabled = !(sender == $0)
-            $0.backgroundColor = sender == $0 ? UIColor(rgb: 0xFF7CAB) : .white
-            $0.layer.borderColor = sender == $0 ? UIColor(rgb: 0xFF659C).cgColor
-                                                : UIColor(rgb: 0xC8CFDC).cgColor
+            $0.backgroundColor = sender == $0 ? .pointColor2 : .white
+            $0.layer.borderColor = sender == $0 ? UIColor.pointColor2?.cgColor
+            : UIColor.hexBEC2CA?.cgColor
         }
     }
     

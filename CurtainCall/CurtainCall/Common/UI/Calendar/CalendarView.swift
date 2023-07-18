@@ -25,7 +25,7 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private let prevButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor(rgb: 0xFF5492)
+        button.tintColor = .pointColor2
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tag = -1
         button.contentEdgeInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
@@ -40,7 +40,7 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor(rgb: 0xFF5492)
+        button.tintColor = .pointColor2
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.tag = 1
         button.contentEdgeInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
@@ -49,18 +49,18 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private let checkButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(UIColor(rgb: 0xFF5492), for: .normal)
+        button.setTitleColor(.pointColor2, for: .normal)
         button.setTitle("확인", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
         button.layer.cornerRadius = 11.5
-        button.layer.borderColor = UIColor(rgb: 0xFF5492).cgColor
+        button.layer.borderColor = UIColor.pointColor2?.cgColor
         button.layer.borderWidth = 1
         return button
     }()
     
     private let borderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xF2F3F5)
+        view.backgroundColor = .hexF2F3F5
         return view
     }()
     
@@ -75,7 +75,7 @@ final class CalendarView: UIView, CalendarDelegate {
         var labels: [UILabel] = []
         for week in "일월화수목금토".map({ String($0) }) {
             let label = UILabel()
-            label.textColor = UIColor(rgb: 0x2A313B)
+            label.textColor = .hex3B4350
             label.textAlignment = .center
             label.text = week
             labels.append(label)

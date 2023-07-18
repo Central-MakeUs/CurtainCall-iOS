@@ -98,7 +98,7 @@ final class LoginViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.backgroundColor = UIColor(rgb: 0x273041)
+        view.backgroundColor = .pointColor1
         [loginButtonStackView, logoImageView, loginStart].forEach { view.addSubview($0) }
         [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)

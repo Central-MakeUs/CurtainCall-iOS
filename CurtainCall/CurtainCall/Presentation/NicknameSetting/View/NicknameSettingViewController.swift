@@ -19,13 +19,13 @@ final class NicknameSettingViewController: UIViewController {
         label.text = "커튼콜에서 사용할\n닉네임을 입력해주세요."
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 26, weight: .bold)
-        label.textColor = UIColor(rgb: 0x111111)
+        label.textColor = .title
         return label
     }()
     
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "닉네임은 공백없이 15자리 이하로,\n특수문자를 포함해주세요."
+        label.text = "닉네임은 공백없이 최소 6자에서 최대 15자 이하로,\n한글, 영문, 숫자를 자유롭게 조합해주세요."
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = UIColor(rgb: 0x91959D)
@@ -34,7 +34,7 @@ final class NicknameSettingViewController: UIViewController {
     
     private let nicknameView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 10
         return view
     }()
@@ -149,11 +149,11 @@ final class NicknameSettingViewController: UIViewController {
     }
     
     private func buttonValidCheck(_ isValid: Bool) {
-        nextButton.backgroundColor = isValid ? .deepDark : .gray1
-        nextButton.setTitleColor(isValid ? .white : .gray2, for: .normal)
+        nextButton.backgroundColor = isValid ? .hexE4E7EC : .pointColor2
+        nextButton.setTitleColor(isValid ? .white : .hexBEC2CA, for: .normal)
         nextButton.isEnabled = isValid
-        duplicateCheckButton.backgroundColor = isValid ? .gray2 : .gray1
-        duplicateCheckButton.setTitleColor(isValid ? .white : .gray2,for: .normal)
+        duplicateCheckButton.backgroundColor = isValid ? .hexE4E7EC : .pointColor2
+        duplicateCheckButton.setTitleColor(isValid ? .white : .hexBEC2CA, for: .normal)
     }
     
     private func bind() {

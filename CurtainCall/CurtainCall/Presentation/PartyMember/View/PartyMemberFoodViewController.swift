@@ -16,7 +16,7 @@ final class PartyMemberFoodViewController: UIViewController {
         let label = UILabel()
         label.text = "모든 게시물은 최신순으로 제공됩니다."
         label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.textColor = UIColor(rgb: 0x717A90)
+        label.textColor = .hex5A6271
         return label
     }()
     
@@ -81,7 +81,7 @@ final class PartyMemberFoodViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.backgroundColor = UIColor(rgb: 0xF5F6F8)
+        view.backgroundColor = .hexF5F6F8
         view.addSubviews(guideLabel, collectionView, writeButton)
     }
     

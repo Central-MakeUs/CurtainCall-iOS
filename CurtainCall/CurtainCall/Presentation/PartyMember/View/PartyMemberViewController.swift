@@ -30,7 +30,7 @@ final class PartyMemberViewController: UIViewController {
     
     private let productView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFF7CAB)
+        view.backgroundColor = .pointColor2
         view.layer.cornerRadius = 10
         return view
     }()
@@ -66,7 +66,7 @@ final class PartyMemberViewController: UIViewController {
     
     private let foodView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0xFFDC63)
+        view.backgroundColor = .pointColor3
         view.layer.cornerRadius = 10
         return view
     }()
@@ -75,7 +75,7 @@ final class PartyMemberViewController: UIViewController {
         let label = UILabel()
         label.text = "식사/카페"
         label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .heading
         return label
     }()
     
@@ -84,7 +84,7 @@ final class PartyMemberViewController: UIViewController {
         label.text = "공연장 근처의 맛집이나 카페에서\n맛있는 음식을 즐기며\n이야기를 나눌 수 있어요!"
         label.font = .systemFont(ofSize: 13, weight: .medium)
         label.numberOfLines = 3
-        label.textColor = UIColor(rgb: 0x273041)
+        label.textColor = .pointColor1
         return label
     }()
     
@@ -102,7 +102,7 @@ final class PartyMemberViewController: UIViewController {
     
     private let otherView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(rgb: 0x051840)
+        view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 10
         return view
     }()

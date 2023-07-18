@@ -20,7 +20,7 @@ final class ProductPosterCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 0
-        imageView.layer.borderColor = UIColor(rgb: 0xFF7CAB).cgColor
+        imageView.layer.borderColor = UIColor.pointColor2?.cgColor
         imageView.clipsToBounds = true
         return imageView
     }()
