@@ -83,9 +83,9 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "공연 관람"
+        label.text = partyType.title
         label.textColor = .white
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
@@ -177,12 +177,14 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let partyType: PartyType
     private let viewModel: PartyMemberRecruitingContentViewModel
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
-    init(viewModel: PartyMemberRecruitingContentViewModel) {
+    init(partyType: PartyType, viewModel: PartyMemberRecruitingContentViewModel) {
+        self.partyType = partyType
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

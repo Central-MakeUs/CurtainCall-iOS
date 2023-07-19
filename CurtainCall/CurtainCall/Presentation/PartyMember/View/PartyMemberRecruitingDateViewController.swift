@@ -81,9 +81,9 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "공연 관람"
+        label.text = partyType.title
         label.textColor = .white
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
@@ -230,6 +230,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let partyType: PartyType
     private let viewModel: PartyMemberRecruitingDateViewModel
     private let product: ProductSelectInfo
     private var cancellabels: Set<AnyCancellable> = []
@@ -240,7 +241,12 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     // MARK: - Lifecycles
     
-    init(viewModel: PartyMemberRecruitingDateViewModel, product: ProductSelectInfo) {
+    init(
+        partyType: PartyType,
+        viewModel: PartyMemberRecruitingDateViewModel,
+        product: ProductSelectInfo
+    ) {
+        self.partyType = partyType
         self.viewModel = viewModel
         self.product = product
         self.dateDict = product.date.convertToYearMonthDayKeyHourValue()
@@ -470,6 +476,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     @objc
     private func nextButtonTouchUpInside() {
         let step3ViewController = PartyMemberRecruitingContentViewController(
+            partyType: partyType,
             viewModel: PartyMemberRecruitingContentViewModel()
         )
         navigationController?.pushViewController(step3ViewController, animated: true)
