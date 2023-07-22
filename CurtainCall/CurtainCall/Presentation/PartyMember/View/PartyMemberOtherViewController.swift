@@ -61,6 +61,7 @@ final class PartyMemberOtherViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         registerCell()
+        addTarget()
         bind()
         viewModel.requestPartyProductInfo()
     }
@@ -180,11 +181,31 @@ final class PartyMemberOtherViewController: UIViewController {
 
     }
     
+    private func addTarget() {
+        writeButton.addTarget(
+            self,
+            action: #selector(writeButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
     // MARK: - Actions
     
     @objc
     private func backBarbuttonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc
+    private func writeButtonTouchUpInside() {
+        moveToWriteView()
+    }
+    
+    private func moveToWriteView() {
+        configureBackbarButton()
+        let writeViewController = PartyMemberOtherRecruitingDateViewController(
+            viewModel: PartyMemberOtherRecruitingDateViewModel()
+        )
+        navigationController?.pushViewController(writeViewController, animated: true)
     }
 }
 

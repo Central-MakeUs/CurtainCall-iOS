@@ -30,6 +30,7 @@
 		EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */; };
 		EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */; };
 		EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF72A58129300BC539C /* ProductViewController.swift */; };
+		EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4467352A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift */; };
 		EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */; };
 		EE4B34282A66D28900E6EB01 /* SpoqaHanSansNeo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34232A66D28700E6EB01 /* SpoqaHanSansNeo-Light.otf */; };
 		EE4B34292A66D28900E6EB01 /* SpoqaHanSansNeo-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34242A66D28800E6EB01 /* SpoqaHanSansNeo-Medium.otf */; };
@@ -49,6 +50,8 @@
 		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
+		EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */; };
+		EE93AA312A6BB17A00E30C76 /* BottomNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */; };
 		EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */; };
 		EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */; };
 		EEA944372A5C03130081E784 /* PartyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944362A5C03130081E784 /* PartyType.swift */; };
@@ -115,6 +118,7 @@
 		EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberViewController.swift; sourceTree = "<group>"; };
 		EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkViewController.swift; sourceTree = "<group>"; };
 		EE3F2FF72A58129300BC539C /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		EE4467352A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewModel.swift; sourceTree = "<group>"; };
 		EE4B34232A66D28700E6EB01 /* SpoqaHanSansNeo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.otf"; sourceTree = "<group>"; };
 		EE4B34242A66D28800E6EB01 /* SpoqaHanSansNeo-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.otf"; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberWriteCompleteViewController.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
+		EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingDateViewModel.swift; sourceTree = "<group>"; };
+		EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNextButton.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberProductViewController.swift; sourceTree = "<group>"; };
 		EEA944362A5C03130081E784 /* PartyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyType.swift; sourceTree = "<group>"; };
@@ -402,6 +408,7 @@
 				EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */,
 				EE5DED082A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift */,
 				EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */,
+				EE4467352A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -471,6 +478,7 @@
 				EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */,
 				EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */,
 				EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */,
+				EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -598,6 +606,7 @@
 				EEE8F0E52A5690E200E31597 /* CheckMarkButton.swift */,
 				EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */,
 				EEE8F0E72A56A87700E31597 /* ExpandButton.swift */,
+				EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */,
 				EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */,
 				EE7F05FF2A61444D002F83ED /* Calendar */,
 			);
@@ -758,6 +767,7 @@
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
+				EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */,
 				EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
@@ -768,6 +778,7 @@
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
 				EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */,
+				EE93AA312A6BB17A00E30C76 /* BottomNextButton.swift in Sources */,
 				EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */,
 				EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */,
 				EEA944462A5D5FA20081E784 /* PartyMemberOtherViewController.swift in Sources */,
@@ -782,6 +793,7 @@
 				EE3F2FF22A58123600BC539C /* MyPageViewController.swift in Sources */,
 				EEA944372A5C03130081E784 /* PartyType.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
+				EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
 				EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */,
