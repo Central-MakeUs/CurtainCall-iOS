@@ -16,6 +16,11 @@ enum Constants {
     """
     예시) OOO 공연 전에 맛집 같이 갈 사람 구해요!
     """
+    static let PARTY_MEMBER_OTHER_TITLE_TEXTFIELD_PLACEHOLDER =
+    """
+    예시) 굿즈 같이 만들 사람 구합니다.
+    """
+    
     static let PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER =
     """
     예시)
@@ -28,4 +33,10 @@ enum Constants {
     예시)
     이번주 OOO 공연 전에 근처 맛집에서 같이 식사하실 분 있나요?
     """
+    static let PARTY_MEMBER_OTHER_CONTENT_TEXTVIEW_PLACEHOLDER =
+    """
+    예시)
+    OOO 배우 관련한 간단한 굿즈 같이 만들 분들 함께 만들어요!
+    """
+
 }

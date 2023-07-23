@@ -378,7 +378,10 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
-        
+        let step2ViewController = PartyMemberOtherRecruitingContentViewController(
+            viewModel: PartyMemberRecruitingContentViewModel()
+        )
+        navigationController?.pushViewController(step2ViewController, animated: true)
     }
 }
 
