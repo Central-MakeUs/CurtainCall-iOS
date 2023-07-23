@@ -220,20 +220,16 @@ final class PartyMemberViewController: UIViewController {
     
     private func setDetailViewController(_ type: PartyType) -> UIViewController {
         switch type {
-        case .product:
-            return PartyMemberProductViewController(
-                viewModel: PartyMemberProductViewModel(
-                    usecase: PartyMemberProductInteractor()
-                ))
-        case .food:
-            return PartyMemberFoodViewController(
-                viewModel: PartyMemberFoodViewModel(
-                    usecase: PartyMemberFoodInteractor()
-                ))
         case .other:
             return PartyMemberOtherViewController(
                 viewModel: PartyMemberOtherViewModel(
                     usecase: PartyMemberOtherInteractor()
+                ))
+        default:
+            return PartyMemberProductViewController(
+                partyType: type,
+                viewModel: PartyMemberProductViewModel(
+                    usecase: PartyMemberProductInteractor()
                 ))
         }
     }

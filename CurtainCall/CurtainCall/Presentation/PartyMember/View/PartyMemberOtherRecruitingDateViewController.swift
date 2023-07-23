@@ -1,14 +1,14 @@
 //
-//  PartyMemberRecruitingDateViewController.swift
+//  PartyMemberOtherRecruitingDateViewController.swift.swift
 //  CurtainCall
 //
-//  Created by 김민석 on 2023/07/13.
+//  Created by 김민석 on 2023/07/19.
 //
 
 import UIKit
 import Combine
 
-final class PartyMemberRecruitingDateViewController: UIViewController {
+final class PartyMemberOtherRecruitingDateViewController: UIViewController {
     
     // MARK: - UI properties
     
@@ -22,16 +22,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let step2Label: UILabel = {
         let label = UILabel()
-        label.textColor = .pointColor1
-        label.text = "Step 2"
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
-        return label
-    }()
-    
-    private let step3Label: UILabel = {
-        let label = UILabel()
         label.textColor = .hexE4E7EC
-        label.text = "Step 3"
+        label.text = "Step 2"
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
     }()
@@ -43,6 +35,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         return stackView
     }()
     
+    
     private let step1View: UIView = {
         let view = UIView()
         view.backgroundColor = .pointColor1
@@ -51,14 +44,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         
         return view
     }()
-    
+
     private let step2View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pointColor1
-        return view
-    }()
-    
-    private let step3View: UIView = {
         let view = UIView()
         view.backgroundColor = .hexE4E7EC
         view.layer.cornerRadius = 4
@@ -83,15 +70,15 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = partyType.title
+        label.text = "기타"
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .body5
         return label
     }()
     
     private let dateSelectLabel: UILabel = {
         let label = UILabel()
-        label.text = "공연 날짜를 선택해주세요."
+        label.text = "날짜를 선택해주세요."
         label.textColor = .hex161A20
         label.font = .subTitle2
         return label
@@ -116,40 +103,19 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         button.backgroundColor = .hexF5F6F8
         button.titleLabel?.font = .body2
         button.layer.cornerRadius = 10
+        button.layer.borderColor = UIColor.hex828996?.cgColor
+        button.layer.borderWidth = 0
         button.contentHorizontalAlignment = .left
         button.titleEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
         return button
     }()
-    
-    private let timeSelectLabel: UILabel = {
-        let label = UILabel()
-        label.text = "시간대를 선택해주세요."
-        label.textColor = .hex161A20
-        label.font = .subTitle2
-        return label
-    }()
-    
-    private let timeEssentialLabel: UILabel = {
-        let label = UILabel()
-        label.text = "필수"
-        label.textAlignment = .center
-        label.textColor = .pointColor2
-        label.layer.borderColor = UIColor.pointColor2?.cgColor
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 11
-        label.font = .systemFont(ofSize: 13, weight: .medium)
-        return label
-    }()
-    
-    private let timeSelectButton: UIButton = {
+    private let noDateButton: UIButton = {
         let button = UIButton()
-        button.setTitle("시간대를 선택해주세요.", for: .normal)
+        button.setTitle("날짜 미정", for: .normal)
         button.setTitleColor(.hex828996, for: .normal)
         button.backgroundColor = .hexF5F6F8
         button.titleLabel?.font = .body2
         button.layer.cornerRadius = 10
-        button.contentHorizontalAlignment = .left
-        button.titleEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
         return button
     }()
     
@@ -207,19 +173,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         return label
     }()
     
-    private let nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("다음", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = .hexE4E7EC
-        button.setTitleColor(.hexBEC2CA, for: .normal)
-        button.layer.cornerRadius = 12
-        button.isUserInteractionEnabled = false
-        return button
-    }()
-    
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: product.date)
+        let calendarView = CalendarView(isSectableDates: [Date()])
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.borderColor = UIColor.black.cgColor
@@ -228,28 +183,22 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         return calendarView
     }()
     
+    private let nextButton: BottomNextButton = {
+        let button = BottomNextButton()
+        button.setTitle("다음", for: .normal)
+        button.isUserInteractionEnabled = false
+        return button
+    }()
+    
     // MARK: - Properties
     
-    private let partyType: PartyType
-    private let viewModel: PartyMemberRecruitingDateViewModel
-    private let product: ProductSelectInfo
-    private var cancellabels: Set<AnyCancellable> = []
-    private var dateDict: [String: [String]]
-    private var selectDate: Date?
-    private var selectTime: String?
-    
+    private let viewModel: PartyMemberOtherRecruitingDateViewModel
+    private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
-    init(
-        partyType: PartyType,
-        viewModel: PartyMemberRecruitingDateViewModel,
-        product: ProductSelectInfo
-    ) {
-        self.partyType = partyType
+    init(viewModel: PartyMemberOtherRecruitingDateViewModel) {
         self.viewModel = viewModel
-        self.product = product
-        self.dateDict = product.date.convertToYearMonthDayKeyHourValue()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -257,13 +206,12 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTargets()
         bind()
-        print("상영 날짜", product.date)
     }
     
     // MARK: - Helpers
@@ -278,12 +226,11 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubviews(
             stepLabelStackView, stepViewStackView, titleView, dateSelectLabel,
-             dateEssentialLabel, dateSelectButton, nextButton, timeSelectLabel,
-            timeEssentialLabel, timeSelectButton, countSelectLabel,
-            countEssentialLabel, countStackView, calendarView
+            dateEssentialLabel, dateSelectButton, noDateButton, countStackView,
+            countEssentialLabel, countSelectLabel, calendarView, nextButton
         )
-        stepLabelStackView.addArrangedSubviews(step1Label, step2Label, step3Label)
-        stepViewStackView.addArrangedSubviews(step1View, step2View, step3View)
+        stepLabelStackView.addArrangedSubviews(step1Label, step2Label)
+        stepViewStackView.addArrangedSubviews(step1View, step2View)
         titleView.addSubview(titleLabel)
         countStackView.addArrangedSubviews(minusButton, countLabel, plusButton)
     }
@@ -317,28 +264,19 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             $0.height.equalTo(22)
         }
         dateSelectButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
             $0.top.equalTo(dateSelectLabel.snp.bottom).offset(10)
             $0.height.equalTo(42)
+            $0.width.equalToSuperview().multipliedBy(0.57)
         }
-        
-        timeSelectLabel.snp.makeConstraints {
-            $0.top.equalTo(dateSelectButton.snp.bottom).offset(40)
-            $0.leading.equalToSuperview().offset(24)
-        }
-        timeEssentialLabel.snp.makeConstraints {
-            $0.centerY.equalTo(timeSelectLabel)
+        noDateButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(24)
-            $0.width.equalTo(40)
-            $0.height.equalTo(22)
-        }
-        timeSelectButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalTo(timeSelectLabel.snp.bottom).offset(10)
+            $0.centerY.equalTo(dateSelectButton)
             $0.height.equalTo(42)
+            $0.leading.equalTo(dateSelectButton.snp.trailing).offset(8)
         }
         countSelectLabel.snp.makeConstraints {
-            $0.top.equalTo(timeSelectButton.snp.bottom).offset(40)
+            $0.top.equalTo(dateSelectButton.snp.bottom).offset(40)
             $0.leading.equalToSuperview().offset(24)
         }
         countEssentialLabel.snp.makeConstraints {
@@ -352,49 +290,21 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(42)
         }
-        
+        calendarView.snp.makeConstraints {
+            $0.top.equalTo(dateSelectButton.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().offset(-15)
+        }
         nextButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(55)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
-        }
-        calendarView.snp.makeConstraints {
-            $0.top.equalTo(dateSelectButton.snp.bottom).offset(10)
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-15)
         }
     }
     
     private func configureNavigation() {
         configureBackbarButton()
         title = "파티원 모집"
-    }
-    
-    private func bind() {
-        viewModel.$countValue
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
-                self?.countLabel.text = "\(value)"
-            }.store(in: &cancellabels)
-        
-        viewModel.selectedDate
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] date in
-                guard let date else {
-                    self?.setNextButton(isSelected: false)
-                    return
-                }
-                self?.setNextButton(isSelected: true)
-            }.store(in: &cancellabels)
-    }
-    
-    private func setNextButton(isSelected: Bool) {
-        nextButton.backgroundColor = isSelected ? .pointColor2 : .hexE4E7EC
-        nextButton.setTitleColor(
-            isSelected ? .white : .hexBEC2CA,
-            for: .normal
-        )
-        nextButton.isUserInteractionEnabled = isSelected
     }
     
     private func addTargets() {
@@ -410,11 +320,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             action: #selector(dateSelectButtonTouchUpInside),
             for: .touchUpInside
         )
-        timeSelectButton.addTarget(
+        
+        noDateButton.addTarget(
             self,
-            action: #selector(timeSelectButtonTouchUpInside),
+            action: #selector(noDateButtonTouchUpInside),
             for: .touchUpInside
         )
+
         nextButton.addTarget(
             self,
             action: #selector(nextButtonTouchUpInside),
@@ -422,51 +334,42 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         )
     }
     
-    private func configureTimeSelectView(times: [String]) {
-        let timeSelectView: TimeSelectView = {
-            let view = TimeSelectView(times: times)
-            view.layer.cornerRadius = 10
-            view.layer.borderColor = UIColor.black.cgColor
-            view.layer.borderWidth = 1
-            view.tag = 100
-            view.delegate = self
-            return view
-        }()
-        view.addSubview(timeSelectView)
-        timeSelectView.snp.makeConstraints {
-            $0.top.equalTo(timeSelectButton.snp.bottom).offset(10)
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(min(60 * times.count, 180))
-        }
+    private func bind() {
+        viewModel.$countValue
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.countLabel.text = "\(value)"
+            }.store(in: &cancellables)
+        
+        viewModel.selectedDate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] date in
+                self?.nextButton.setNextButton(isSelected: true)
+            }.store(in: &cancellables)
     }
-    
-    // MARK: - Actions
     
     @objc
     private func dateSelectButtonTouchUpInside() {
         calendarView.isHidden = false
-        let viewWithTag = view.viewWithTag(100)
-        viewWithTag?.removeFromSuperview()
-        timeSelectButton.setTitle("시간대를 선택해주세요.", for: .normal)
-        viewModel.isValidDate(
-            date: dateSelectButton.titleLabel?.text,
-            time: timeSelectButton.titleLabel?.text
-        )
+        noDateButton.isSelected = false
+        dateSelectButton.isSelected = true
+        dateSelectButton.layer.borderWidth = 1
+        noDateButton.backgroundColor = .hexF5F6F8
+        noDateButton.setTitleColor(.hex828996, for: .normal)
     }
     
     @objc
-    private func timeSelectButtonTouchUpInside() {
-        guard let selectDate,
-              let times = dateDict[selectDate.convertToYearMonthDayString()] else {
-            return
-        }
+    private func noDateButtonTouchUpInside() {
         calendarView.isHidden = true
-        configureTimeSelectView(times: times)
-        viewModel.isValidDate(
-            date: dateSelectButton.titleLabel?.text,
-            time: timeSelectButton.titleLabel?.text
-        )
+        noDateButton.isSelected = true
+        dateSelectButton.isSelected = false
+        dateSelectButton.layer.borderWidth = 0
+        noDateButton.backgroundColor = .pointColor2
+        noDateButton.setTitleColor(.white, for: .normal)
+        dateSelectButton.setTitle("날짜를 선택해주세요.", for: .normal)
+        viewModel.selectedDate.send(nil)
     }
+    
     
     @objc
     private func stepperButtonTouchUpInside(_ sender: UIButton) {
@@ -475,36 +378,17 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
-        let step3ViewController = PartyMemberRecruitingContentViewController(
-            partyType: partyType,
+        let step2ViewController = PartyMemberOtherRecruitingContentViewController(
             viewModel: PartyMemberRecruitingContentViewModel()
         )
-        navigationController?.pushViewController(step3ViewController, animated: true)
+        navigationController?.pushViewController(step2ViewController, animated: true)
     }
 }
 
-extension PartyMemberRecruitingDateViewController: CalendarViewDelegate {
+extension PartyMemberOtherRecruitingDateViewController: CalendarViewDelegate {
     func selectedCalendar(date: Date) {
         calendarView.isHidden = true
+        viewModel.selectedDate.send(date)
         dateSelectButton.setTitle(date.convertToYearMonthDayKoreanString(), for: .normal)
-        selectDate = date
-        selectTime = nil
-        viewModel.isValidDate(
-            date: dateSelectButton.titleLabel?.text,
-            time: timeSelectButton.titleLabel?.text
-        )
-    }
-}
-
-extension PartyMemberRecruitingDateViewController: TimeSelectViewDelegate {
-    func selectedTime(time: String) {
-        timeSelectButton.setTitle(time, for: .normal)
-        let viewWithTag = view.viewWithTag(100)
-        viewWithTag?.removeFromSuperview()
-        selectTime = time
-        viewModel.isValidDate(
-            date: dateSelectButton.titleLabel?.text,
-            time: timeSelectButton.titleLabel?.text
-        )
     }
 }

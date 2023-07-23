@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        window?.rootViewController = SplashViewController()
+//        window?.rootViewController = SplashViewController()
         
 //        let rootViewController = LoginViewController(
 //            viewModel: LoginViewModel(
@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        )
 //        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         
-//        window?.rootViewController = PartyMemberWriteCompleteViewController()
+        window?.rootViewController = MainTabBarController()
         
         window?.makeKeyAndVisible()
     }

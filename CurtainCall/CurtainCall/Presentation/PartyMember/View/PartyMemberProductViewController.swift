@@ -41,13 +41,16 @@ final class PartyMemberProductViewController: UIViewController {
     typealias Item = ProductPartyInfo
     
     private let viewModel: PartyMemberProductViewModel
+    private let partyType: PartyType
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     
+    
     // MARK: - Lifecycles
     
-    init(viewModel: PartyMemberProductViewModel) {
+    init(partyType: PartyType, viewModel: PartyMemberProductViewModel) {
+        self.partyType = partyType
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -103,7 +106,7 @@ final class PartyMemberProductViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        title = "공연 관람"
+        title = partyType.title
         let leftBarbuttonItem = UIBarButtonItem(
             image: UIImage(named: ImageNamespace.navigationBackButton),
             style: .plain,
@@ -205,6 +208,7 @@ final class PartyMemberProductViewController: UIViewController {
     private func moveToWriteView() {
         configureBackbarButton()
         let writeViewController = PartyMemberRecruitingProductViewController(
+            partyType: partyType,
             viewModel: PartyMemberRecruitingProductViewModel(
                 usecase: PartyMemberRecruitingProductInteractor())
         )

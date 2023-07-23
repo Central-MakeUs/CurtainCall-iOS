@@ -10,7 +10,7 @@ import Combine
 
 import SnapKit
 
-final class PartyMemberRecruitingContentViewController: UIViewController {
+final class PartyMemberOtherRecruitingContentViewController: UIViewController {
     
     // MARK: - UI properties
     
@@ -30,20 +30,13 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         return label
     }()
     
-    private let step3Label: UILabel = {
-        let label = UILabel()
-        label.textColor = .pointColor1
-        label.text = "Step 3"
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
-        return label
-    }()
-    
     private let stepLabelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         return stackView
     }()
+    
     
     private let step1View: UIView = {
         let view = UIView()
@@ -53,14 +46,8 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         
         return view
     }()
-    
+
     private let step2View: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pointColor1
-        return view
-    }()
-    
-    private let step3View: UIView = {
         let view = UIView()
         view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 4
@@ -85,7 +72,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = partyType.title
+        label.text = "기타"
         label.textColor = .white
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
@@ -176,15 +163,13 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    
-    private let partyType: PartyType
+
     private let viewModel: PartyMemberRecruitingContentViewModel
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyType, viewModel: PartyMemberRecruitingContentViewModel) {
-        self.partyType = partyType
+    init(viewModel: PartyMemberRecruitingContentViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -200,7 +185,6 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         addTarget()
         hideKeyboardWhenTappedArround()
         bind()
-        
     }
     
     // MARK: - Helpers
@@ -218,8 +202,8 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
             titleWriteEssentialLabel, titleWriteTextField, contentWriteLabel,
             contentWriteEssentialLabel, contentTextView, contentCountLabel, nextButton
         )
-        stepLabelStackView.addArrangedSubviews(step1Label, step2Label, step3Label)
-        stepViewStackView.addArrangedSubviews(step1View, step2View, step3View)
+        stepLabelStackView.addArrangedSubviews(step1Label, step2Label)
+        stepViewStackView.addArrangedSubviews(step1View, step2View)
         titleView.addSubview(titleLabel)
     }
     
@@ -326,7 +310,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     }
 }
 
-extension PartyMemberRecruitingContentViewController: UITextFieldDelegate {
+extension PartyMemberOtherRecruitingContentViewController: UITextFieldDelegate {
     func textField(
         _ textField: UITextField,
         shouldChangeCharactersIn range: NSRange,
@@ -335,13 +319,13 @@ extension PartyMemberRecruitingContentViewController: UITextFieldDelegate {
         viewModel.titleTextFieldChanged(text: textField.text)
         return true
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         viewModel.titleTextFieldChanged(text: textField.text)
     }
 }
 
-extension PartyMemberRecruitingContentViewController: UITextViewDelegate {
+extension PartyMemberOtherRecruitingContentViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == Constants.PARTY_MEMBER_PRODUCT_CONTENT_TEXTVIEW_PLACEHOLDER {
             textView.text = nil

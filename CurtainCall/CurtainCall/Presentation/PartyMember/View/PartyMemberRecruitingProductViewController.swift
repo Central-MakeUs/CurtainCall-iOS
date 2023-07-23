@@ -83,9 +83,9 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "공연 관람"
+        label.text = partyType.title
         label.textColor = .white
         label.font = .body5
         return label
@@ -215,6 +215,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let partyType: PartyType
     private let viewModel: PartyMemberRecruitingProductViewModel
     
     enum Section { case main }
@@ -227,7 +228,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     // MARK: - Lifecycles
     
-    init(viewModel: PartyMemberRecruitingProductViewModel) {
+    init(partyType: PartyType, viewModel: PartyMemberRecruitingProductViewModel) {
+        self.partyType = partyType
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -445,6 +447,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private func moveToStep2() {
         guard let selectedItem else { return }
         let step2ViewController = PartyMemberRecruitingDateViewController(
+            partyType: partyType,
             viewModel: PartyMemberRecruitingDateViewModel(),
             product: selectedItem
         )
