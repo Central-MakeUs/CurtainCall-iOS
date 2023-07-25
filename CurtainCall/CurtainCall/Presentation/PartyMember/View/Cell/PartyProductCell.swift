@@ -71,7 +71,7 @@ final class PartyProductCell: UICollectionViewCell {
         return label
     }()
     
-    private let contentLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .body1
@@ -192,7 +192,7 @@ final class PartyProductCell: UICollectionViewCell {
     private func configureSubviews() {
         addSubviews(cardView, productLabelView)
         cardView.addSubviews(
-            profileImageView, nicknameDateStackView, countLabel, contentLabel, borderView,
+            profileImageView, nicknameDateStackView, countLabel, titleLabel, borderView,
             posterImageView, dateBadgeView, timeBadgeView, locationBadgeView, partyMemberStackView
         )
         productLabelView.addSubview(productTitleLabel)
@@ -233,7 +233,7 @@ final class PartyProductCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(31)
             $0.trailing.equalToSuperview().offset(-20)
         }
-        contentLabel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.top.equalTo(profileImageView.snp.bottom).offset(16)
             $0.bottom.equalTo(borderView.snp.top).offset(-15)
@@ -292,7 +292,7 @@ final class PartyProductCell: UICollectionViewCell {
         nicknameLabel.text = item.nickname
         dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
         countLabel.text = "\(item.minCount)/\(item.maxCount)"
-        contentLabel.text = item.content
+        titleLabel.text = item.title
         posterImageView.image = item.posterImage
         dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
         timeBadgeLabel.text = item.productDate.convertToHourMinString()
