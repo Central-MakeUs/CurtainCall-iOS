@@ -26,6 +26,7 @@ final class PartyMemberProductViewController: UIViewController {
             collectionViewLayout: createCollectionViewLayout()
         )
         collectionView.backgroundColor = .clear
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -213,5 +214,18 @@ final class PartyMemberProductViewController: UIViewController {
                 usecase: PartyMemberRecruitingProductInteractor())
         )
         navigationController?.pushViewController(writeViewController, animated: true)
+    }
+}
+
+extension PartyMemberProductViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let dataSource, let item = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        let detailViewController = PartyMemberRecruitingDetailViewController(
+            partyType: partyType,
+            partyInfo: item
+        )
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

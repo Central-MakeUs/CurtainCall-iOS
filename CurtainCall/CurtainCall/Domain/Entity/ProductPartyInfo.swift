@@ -16,6 +16,7 @@ struct ProductPartyInfo: Hashable {
     let productDate: Date
     let maxCount: Int
     let minCount: Int
+    let title: String
     let content: String
     let posterImage: UIImage?
     let location: String
@@ -32,7 +33,8 @@ struct ProductPartyInfo: Hashable {
             productDate: Date(),
             maxCount: 5,
             minCount: 2,
-            content: "비스티 이번주 토욜 저녁 공연 같이 봐요~",
+            title: "비스티 이번주 토욜 저녁 공연 같이 봐요~",
+            content: "같이볼분 구함 구함 구해요 구해요 완전구함",
             posterImage: UIImage(named: "dummy_poster"),
             location: "링크아트센터",
             partyMemberImages: [
@@ -48,7 +50,8 @@ struct ProductPartyInfo: Hashable {
             productDate: Date(),
             maxCount: 5,
             minCount: 3,
-            content: "6/11 일요일 19:30 공연 같이 보실 분6/11 일요일 19:30 공연 같이 보실 분6/11 일요일 19:30 공연 같이 보실 분",
+            title: "6/11 일요일 19:30 공연 같이 보실 분",
+            content: "재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요재밌어요",
             posterImage: UIImage(named: "dummy_poster"),
             location: "블루스퀘어",
             partyMemberImages: [
@@ -65,6 +68,7 @@ struct ProductPartyInfo: Hashable {
             productDate: Date(),
             maxCount: 5,
             minCount: 3,
+            title: "죽음의 데에쓰 노오트",
             content: "400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자400자",
             posterImage: UIImage(named: "dummy_poster"),
             location: "블루스퀘어",
