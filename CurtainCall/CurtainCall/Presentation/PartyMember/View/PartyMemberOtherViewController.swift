@@ -26,6 +26,7 @@ final class PartyMemberOtherViewController: UIViewController {
             collectionViewLayout: createCollectionViewLayout()
         )
         collectionView.backgroundColor = .clear
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -209,3 +210,12 @@ final class PartyMemberOtherViewController: UIViewController {
     }
 }
 
+extension PartyMemberOtherViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let dataSource, let item = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        let detailViewController = PartyMemberRecruitingOtherDetailViewController(partyInfo: item)
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
