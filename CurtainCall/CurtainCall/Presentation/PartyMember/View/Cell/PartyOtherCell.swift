@@ -52,7 +52,7 @@ final class PartyOtherCell: UICollectionViewCell {
         return label
     }()
     
-    private let contentLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .body1
@@ -141,7 +141,7 @@ final class PartyOtherCell: UICollectionViewCell {
         addSubviews(cardView)
         cardView.addSubviews(
             profileImageView, nicknameDateStackView, countLabel,
-            contentLabel, borderView, dateBadgeView, partyMemberStackView
+            titleLabel, borderView, dateBadgeView, partyMemberStackView
         )
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, writeDateLabel)
         partyMemberStackView.addArrangedSubviews(
@@ -168,7 +168,7 @@ final class PartyOtherCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(31)
             $0.trailing.equalToSuperview().offset(-20)
         }
-        contentLabel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.top.equalTo(profileImageView.snp.bottom).offset(16)
             $0.bottom.equalTo(borderView.snp.top).offset(-15)
@@ -203,7 +203,7 @@ final class PartyOtherCell: UICollectionViewCell {
         nicknameLabel.text = item.nickname
         writeDateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
         countLabel.text = "\(item.minCount)/\(item.maxCount)"
-        contentLabel.text = item.content
+        titleLabel.text = item.title
         if let meetinDate = item.meetingDate {
             dateBadgeLabel.text = meetinDate.convertToYearMonthDayWeekString()
         } else {
