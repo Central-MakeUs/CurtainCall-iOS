@@ -52,6 +52,8 @@
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */; };
 		EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */; };
+		EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */; };
+		EE9301262A72470200C8FBA5 /* ProductSearchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9301252A72470200C8FBA5 /* ProductSearchInfo.swift */; };
 		EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */; };
 		EE93AA312A6BB17A00E30C76 /* BottomNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */; };
 		EE93AA332A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */; };
@@ -142,6 +144,8 @@
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLineView.swift; sourceTree = "<group>"; };
 		EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingOtherDetailViewController.swift; sourceTree = "<group>"; };
+		EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchCell.swift; sourceTree = "<group>"; };
+		EE9301252A72470200C8FBA5 /* ProductSearchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchInfo.swift; sourceTree = "<group>"; };
 		EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingDateViewModel.swift; sourceTree = "<group>"; };
 		EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNextButton.swift; sourceTree = "<group>"; };
 		EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingContentViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +396,7 @@
 		EE3F2FED2A58121E00BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
 			);
 			path = View;
@@ -408,10 +413,9 @@
 		EE3F2FEF2A58122700BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE0132152A5E53C800873107 /* Cell */,
+				EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */,
 				EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */,
 				EEA944452A5D5FA20081E784 /* PartyMemberOtherViewController.swift */,
-				EE3F2FF32A58127200BC539C /* PartyMemberViewController.swift */,
 				EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */,
 				EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */,
 				EE5DED082A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift */,
@@ -420,6 +424,7 @@
 				EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */,
 				EE93AA352A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift */,
 				EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */,
+				EE0132152A5E53C800873107 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -470,6 +475,14 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		EE9301222A723A8E00C8FBA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		EEA9443B2A5D2F000081E784 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +490,7 @@
 				EEA944492A5D883D0081E784 /* OtherPartyInfo.swift */,
 				EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */,
 				EE01323E2A5F012500873107 /* ProductSelectInfo.swift */,
+				EE9301252A72470200C8FBA5 /* ProductSearchInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -762,6 +776,7 @@
 				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
 				EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */,
+				EE9301262A72470200C8FBA5 /* ProductSearchInfo.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
@@ -787,6 +802,7 @@
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
+				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
