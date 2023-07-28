@@ -77,6 +77,7 @@
 		EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776372A6031B300BFCAAD /* CalendarCell.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
+		EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
 		EEE8F0C12A52B17100E31597 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */; };
 		EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */; };
@@ -99,6 +100,12 @@
 		EEE8F0F62A56FFF600E31597 /* NicknameSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0F52A56FFF600E31597 /* NicknameSettingViewModel.swift */; };
 		EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0F72A57025000E31597 /* String + Extension.swift */; };
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
+		EEF8153E2A735BC5009C1C57 /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8153D2A735BC5009C1C57 /* DetailInfoView.swift */; };
+		EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8153F2A7361F6009C1C57 /* BorderView.swift */; };
+		EEF815432A736C4F009C1C57 /* DetailReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF815422A736C4F009C1C57 /* DetailReviewView.swift */; };
+		EEF815452A738325009C1C57 /* StarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF815442A738325009C1C57 /* StarImageView.swift */; };
+		EEF815472A73867A009C1C57 /* GradeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF815462A73867A009C1C57 /* GradeStackView.swift */; };
+		EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF815482A73885F009C1C57 /* ReviewInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +177,7 @@
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
+		EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailMainViewController.swift; sourceTree = "<group>"; };
 		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +199,12 @@
 		EEE8F0F22A56E31F00E31597 /* NicknameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingViewController.swift; sourceTree = "<group>"; };
 		EEE8F0F52A56FFF600E31597 /* NicknameSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingViewModel.swift; sourceTree = "<group>"; };
 		EEE8F0F72A57025000E31597 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		EEF8153D2A735BC5009C1C57 /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
+		EEF8153F2A7361F6009C1C57 /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
+		EEF815422A736C4F009C1C57 /* DetailReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReviewView.swift; sourceTree = "<group>"; };
+		EEF815442A738325009C1C57 /* StarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarImageView.swift; sourceTree = "<group>"; };
+		EEF815462A73867A009C1C57 /* GradeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStackView.swift; sourceTree = "<group>"; };
+		EEF815482A73885F009C1C57 /* ReviewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +412,8 @@
 			children = (
 				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
+				EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */,
+				EEF815412A736C40009C1C57 /* DetailViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -491,6 +507,7 @@
 				EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */,
 				EE01323E2A5F012500873107 /* ProductSelectInfo.swift */,
 				EE9301252A72470200C8FBA5 /* ProductSearchInfo.swift */,
+				EEF815482A73885F009C1C57 /* ReviewInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -633,8 +650,11 @@
 				EEE8F0E72A56A87700E31597 /* ExpandButton.swift */,
 				EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */,
 				EE3F2FE32A5802C400BC539C /* MainTabBarController.swift */,
+				EEF8153F2A7361F6009C1C57 /* BorderView.swift */,
 				EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */,
 				EE7F05FF2A61444D002F83ED /* Calendar */,
+				EEF815442A738325009C1C57 /* StarImageView.swift */,
+				EEF815462A73867A009C1C57 /* GradeStackView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -671,6 +691,15 @@
 				EEE8F0F52A56FFF600E31597 /* NicknameSettingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EEF815412A736C40009C1C57 /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				EEF8153D2A735BC5009C1C57 /* DetailInfoView.swift */,
+				EEF815422A736C4F009C1C57 /* DetailReviewView.swift */,
+			);
+			path = DetailViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -764,6 +793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4B34322A66D3E300E6EB01 /* UIFont + Extension.swift in Sources */,
+				EEF815452A738325009C1C57 /* StarImageView.swift in Sources */,
 				EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
@@ -779,8 +809,10 @@
 				EE9301262A72470200C8FBA5 /* ProductSearchInfo.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
+				EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
 				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
+				EEF815472A73867A009C1C57 /* GradeStackView.swift in Sources */,
 				EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
@@ -797,10 +829,12 @@
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
+				EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */,
 				EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */,
 				EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
+				EEF815432A736C4F009C1C57 /* DetailReviewView.swift in Sources */,
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
 				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
@@ -820,6 +854,7 @@
 				EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */,
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
+				EEF8153E2A735BC5009C1C57 /* DetailInfoView.swift in Sources */,
 				EE01323D2A5EFBE600873107 /* ProductPosterCell.swift in Sources */,
 				EEE8F0DB2A554ECE00E31597 /* OnboardingData.swift in Sources */,
 				EE3F2FF22A58123600BC539C /* MyPageViewController.swift in Sources */,
@@ -828,6 +863,7 @@
 				EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EE4EBAF32A4C303700939823 /* Secret.swift in Sources */,
+				EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */,
 				EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */,
 				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
 				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,

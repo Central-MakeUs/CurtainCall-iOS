@@ -108,7 +108,7 @@ final class ProductViewController: UIViewController {
             ProductSearchCell.self,
             forCellWithReuseIdentifier: ProductSearchCell.identifier
         )
-        
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -267,5 +267,12 @@ final class ProductViewController: UIViewController {
         }
         reservationDotView.alpha = sender == reservationOrderButton ? 1 : 0
         dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
+    }
+}
+
+extension ProductViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = ProductDetailMainViewController()
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
