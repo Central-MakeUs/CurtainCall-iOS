@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AE959D30E1325E953B34349 /* Pods_CurtainCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B6EE00ADF81B01C90D173 /* Pods_CurtainCall.framework */; };
 		EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */; };
 		EE01323D2A5EFBE600873107 /* ProductPosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01323C2A5EFBE600873107 /* ProductPosterCell.swift */; };
 		EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01323E2A5F012500873107 /* ProductSelectInfo.swift */; };
@@ -113,6 +114,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30BC81784667B23249725CBA /* Pods-CurtainCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurtainCall.release.xcconfig"; path = "Target Support Files/Pods-CurtainCall/Pods-CurtainCall.release.xcconfig"; sourceTree = "<group>"; };
+		4F5B6EE00ADF81B01C90D173 /* Pods_CurtainCall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurtainCall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5977E0BD409073342204321E /* Pods-CurtainCall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurtainCall.debug.xcconfig"; path = "Target Support Files/Pods-CurtainCall/Pods-CurtainCall.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0132162A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductViewController.swift; sourceTree = "<group>"; };
 		EE01323C2A5EFBE600873107 /* ProductPosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPosterCell.swift; sourceTree = "<group>"; };
 		EE01323E2A5F012500873107 /* ProductSelectInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectInfo.swift; sourceTree = "<group>"; };
@@ -226,12 +230,31 @@
 				EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */,
 				EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */,
 				EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */,
+				0AE959D30E1325E953B34349 /* Pods_CurtainCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A75E7E2A0CD0DACD8D695892 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5977E0BD409073342204321E /* Pods-CurtainCall.debug.xcconfig */,
+				30BC81784667B23249725CBA /* Pods-CurtainCall.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BF01F703A60BC3ED024BB950 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B6EE00ADF81B01C90D173 /* Pods_CurtainCall.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE0132152A5E53C800873107 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +272,8 @@
 				EEE8F0C02A52B17100E31597 /* Secrets.xcconfig */,
 				EE0BEDDC2A495539008D9D05 /* CurtainCall */,
 				EE0BEDDB2A495539008D9D05 /* Products */,
+				A75E7E2A0CD0DACD8D695892 /* Pods */,
+				BF01F703A60BC3ED024BB950 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -721,9 +746,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE0BEDEE2A49553D008D9D05 /* Build configuration list for PBXNativeTarget "CurtainCall" */;
 			buildPhases = (
+				4B32CA3448B1DDC0BC09CA8D /* [CP] Check Pods Manifest.lock */,
 				EE0BEDD62A495539008D9D05 /* Sources */,
 				EE0BEDD72A495539008D9D05 /* Frameworks */,
 				EE0BEDD82A495539008D9D05 /* Resources */,
+				CCC0A44FACE6D40F59AC1670 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -798,6 +825,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B32CA3448B1DDC0BC09CA8D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CurtainCall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCC0A44FACE6D40F59AC1670 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CurtainCall/Pods-CurtainCall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CurtainCall/Pods-CurtainCall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CurtainCall/Pods-CurtainCall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EE0BEDD62A495539008D9D05 /* Sources */ = {
