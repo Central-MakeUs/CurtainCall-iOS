@@ -36,7 +36,7 @@ struct ReviewInfo {
             nickName: "재야",
             grade: 0.5,
             date: Date(),
-            content: "별 1개도 아까워요"
+            content: "별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요"
         ),
         ReviewInfo(
             nickName: "니카",

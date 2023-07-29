@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DetailReviewViewDelegate: AnyObject {
+    func didTappedDetailReviewViewInAllViewButton()
+}
+
 final class DetailReviewView: UIView {
     
     // MARK: UI Property
@@ -23,6 +27,7 @@ final class DetailReviewView: UIView {
         let button = UIButton()
         button.setTitle("모두 보기", for: .normal)
         button.setTitleColor(.pointColor2, for: .normal)
+        button.titleLabel?.font = .body4
         button.layer.cornerRadius = 14
         button.layer.borderColor = UIColor.pointColor2?.cgColor
         button.layer.borderWidth = 1
@@ -43,12 +48,21 @@ final class DetailReviewView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        allViewButton.addTarget(
+            self,
+            action: #selector(allViewButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @available (*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Property
+    
+    weak var delegate: DetailReviewViewDelegate?
     
     // MARK: Configure
     
@@ -58,6 +72,7 @@ final class DetailReviewView: UIView {
     }
     
     private func configureSubviews() {
+        backgroundColor = .white
         addSubviews(titleLabel, allViewButton, tableView)
     }
     
@@ -69,6 +84,7 @@ final class DetailReviewView: UIView {
         allViewButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
             $0.trailing.equalToSuperview().inset(24)
+            $0.width.equalTo(71)
         }
         tableView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(17)
@@ -76,6 +92,11 @@ final class DetailReviewView: UIView {
             $0.height.equalTo(min(ReviewInfo.list.count, 3) * 112)
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    @objc
+    private func allViewButtonTouchUpInside() {
+        delegate?.didTappedDetailReviewViewInAllViewButton()
     }
 }
 

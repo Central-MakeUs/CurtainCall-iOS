@@ -163,6 +163,8 @@ final class DetailInfoView: UIView {
         label.textColor = .body1
         return label
     }()
+    
+    private let emptyView = UIView()
     	
     // MARK: Property
     
@@ -186,10 +188,10 @@ final class DetailInfoView: UIView {
     }
     
     private func configureSubviews() {
-        backgroundColor = .brown
+        backgroundColor = .white
         addSubviews(
             timeTitleLabel, reservationDotView, reservationLabel, duringDotView, duringLabel,
-            locationTitleLabel, infoStackView
+            locationTitleLabel, infoStackView, emptyView
         )
         infoStackView.addArrangedSubviews(
             concertHallStackView, addressStackView, phoneStackView, websiteStackView
@@ -227,14 +229,22 @@ final class DetailInfoView: UIView {
             $0.top.equalTo(duringLabel.snp.bottom).offset(30)
             $0.leading.equalTo(24)
         }
-        addressTitleLabel.snp.makeConstraints {
-            $0.width.equalTo(52)
+        
+        [concertHallTitleLabel, addressTitleLabel, phoneTitleLabel, websiteTitleLabel].forEach {
+            $0.snp.makeConstraints { make in
+                make.width.equalTo(52)
+            }
         }
+        
         infoStackView.snp.makeConstraints {
             $0.top.equalTo(locationTitleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(24)
-            $0.bottom.equalToSuperview().offset(-10)
         }
-        
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(infoStackView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(20)
+        }
     }
 }

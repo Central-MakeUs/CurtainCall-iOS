@@ -10,6 +10,7 @@ import Foundation
 enum ImageNamespace {
     static let navigationBackButton = "navigation_back_button"
     static let navigationSearchButton = "navigation_search_button"
+    static let navigationBackButtonWhite = "navigation_back_button_white"
     
     static let loginButtonApple = "login_button_apple"
     static let loginButtonGoogle = "login_button_google"
@@ -48,4 +49,14 @@ enum ImageNamespace {
     static let productKeepSelect = "product_keep_select"
     static let productKeepDeselect = "product_keep_deselect"
     static let productStarEmptySymbol = "product_star_empty_symbol"
+    static let thumbUpSelectedSymbol = "thumb_up_selected_symbol"
+    static let thumb_up_deselected_symbol = "thumb_up_deselected_symbol"
+    static let productHeader = "product_header"
+    
+    static let detailInfoButtonSelect = "detail_info_button_select"
+    static let detailInfoButtonDeselect = "detail_info_button_deselect"
+    static let detailReviewButtonSelect = "detail_review_button_select"
+    static let detailReviewButtonDeselect = "detail_review_button_deselect"
+    static let detailLostButtonSelect = "detail_lost_button_select"
+    static let detailLostButtonDeselect = "detail_lost_button_deselect"
 }

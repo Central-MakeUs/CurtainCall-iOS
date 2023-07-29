@@ -6,3 +6,68 @@
 //
 
 import Foundation
+
+import UIKit
+
+final class ReviewViewController: UIViewController {
+    
+    // MARK: UI Property
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ProductReviewCell.self, forCellReuseIdentifier: ProductReviewCell.identifier)
+        return tableView
+    }()
+    
+    // MARK: Property
+    
+    // MARK: Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+    }
+    
+    // MARK: Configure
+    
+    private func configureUI() {
+        configureSubviews()
+        configureConstarints()
+        configureNavigation()
+    }
+    
+    private func configureSubviews() {
+        view.addSubview(tableView)
+    }
+    
+    private func configureConstarints() {
+        tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+    
+    private func configureNavigation() {
+        title = "한 줄 리뷰"
+    }
+}
+
+extension ReviewViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ReviewInfo.list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: ProductReviewCell.identifier
+        ) as? ProductReviewCell else { return UITableViewCell() }
+        
+        cell.draw(item: ReviewInfo.list[indexPath.row])
+        return cell
+    }
+}
+
+extension ReviewViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}

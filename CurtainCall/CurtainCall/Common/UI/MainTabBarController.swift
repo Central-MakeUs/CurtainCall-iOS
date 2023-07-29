@@ -16,6 +16,7 @@ final class MainTabBarController: UIViewController {
     private let wholeView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.clipsToBounds = true
         return view
     }()
     

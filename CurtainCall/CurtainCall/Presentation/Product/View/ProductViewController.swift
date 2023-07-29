@@ -186,7 +186,7 @@ final class ProductViewController: UIViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(reservationOrderButton.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-120)
+            $0.bottom.equalToSuperview().offset(-90)
         }
     }
     
@@ -272,7 +272,10 @@ final class ProductViewController: UIViewController {
 
 extension ProductViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailViewController = ProductDetailMainViewController()
-        navigationController?.pushViewController(detailViewController, animated: true)
+        let detailViewController = UINavigationController(
+            rootViewController: ProductDetailMainViewController()
+        )
+        detailViewController.modalPresentationStyle = .overFullScreen
+        present(detailViewController, animated: true)
     }
 }
