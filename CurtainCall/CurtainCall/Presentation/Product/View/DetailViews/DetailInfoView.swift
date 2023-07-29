@@ -7,6 +7,8 @@
 
 import UIKit
 
+import NMapsMap
+
 final class DetailInfoView: UIView {
     
     // MARK: UI Property
@@ -164,6 +166,13 @@ final class DetailInfoView: UIView {
         return label
     }()
     
+    private let mapView: NMFMapView = {
+        let mapView = NMFMapView(frame: .zero)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: 37.5846, lng: 127.002298))
+        mapView.moveCamera(cameraUpdate)
+        return mapView
+    }()
+    
     private let emptyView = UIView()
     	
     // MARK: Property
@@ -173,6 +182,7 @@ final class DetailInfoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        configureMarker()
     }
     
     @available (*, unavailable)
@@ -191,7 +201,7 @@ final class DetailInfoView: UIView {
         backgroundColor = .white
         addSubviews(
             timeTitleLabel, reservationDotView, reservationLabel, duringDotView, duringLabel,
-            locationTitleLabel, infoStackView, emptyView
+            locationTitleLabel, infoStackView, mapView, emptyView
         )
         infoStackView.addArrangedSubviews(
             concertHallStackView, addressStackView, phoneStackView, websiteStackView
@@ -240,11 +250,22 @@ final class DetailInfoView: UIView {
             $0.top.equalTo(locationTitleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(24)
         }
+        
+        mapView.snp.makeConstraints {
+            $0.top.equalTo(infoStackView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(152)
+        }
         emptyView.snp.makeConstraints {
-            $0.top.equalTo(infoStackView.snp.bottom)
+            $0.top.equalTo(mapView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.height.equalTo(20)
         }
+    }
+    
+    private func configureMarker() {
+        let marker = NMFMarker(position: NMGLatLng(lat: 37.5846, lng: 127.002298))
+        marker.mapView = mapView
     }
 }
