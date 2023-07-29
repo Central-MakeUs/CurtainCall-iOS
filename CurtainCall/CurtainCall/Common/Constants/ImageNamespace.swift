@@ -50,7 +50,7 @@ enum ImageNamespace {
     static let productKeepDeselect = "product_keep_deselect"
     static let productStarEmptySymbol = "product_star_empty_symbol"
     static let thumbUpSelectedSymbol = "thumb_up_selected_symbol"
-    static let thumb_up_deselected_symbol = "thumb_up_deselected_symbol"
+    static let thumbUpDeselectedSymbol = "thumb_up_deselected_symbol"
     static let productHeader = "product_header"
     
     static let detailInfoButtonSelect = "detail_info_button_select"

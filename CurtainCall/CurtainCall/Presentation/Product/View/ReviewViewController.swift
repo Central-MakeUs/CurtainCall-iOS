@@ -21,6 +21,12 @@ final class ReviewViewController: UIViewController {
         return tableView
     }()
     
+    private let writeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: ImageNamespace.partymemberWriteButton), for: .normal)
+        return button
+    }()
+    
     // MARK: Property
     
     // MARK: Life Cycle
@@ -28,6 +34,7 @@ final class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTarget()
     }
     
     // MARK: Configure
@@ -39,15 +46,33 @@ final class ReviewViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.addSubview(tableView)
+        view.addSubviews(tableView, writeButton)
     }
     
     private func configureConstarints() {
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        writeButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-60)
+            $0.trailing.equalToSuperview().offset(-24)
+        }
     }
     
     private func configureNavigation() {
+        configureBackbarButton()
         title = "한 줄 리뷰"
+    }
+    
+    private func addTarget() {
+        writeButton.addTarget(
+            self,
+            action: #selector(writeButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    private func writeButtonTouchUpInside() {
+        print("작성하기 화면으로")
     }
 }
 

@@ -20,37 +20,33 @@ final class GradeStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func draw(grade: Double) {
+    func draw(grade: Int) {
         switch grade {
-        case 0.5..<1:
-            addArrangedSubview(StarImageView(isEmpty: true))
-        case 1..<1.5:
-            addArrangedSubview(StarImageView(isEmpty: false))
-        case 1.5..<2:
-            addArrangedSubviews(StarImageView(isEmpty: false), StarImageView(isEmpty: true))
-        case 2..<2.5:
-            addArrangedSubviews(StarImageView(isEmpty: false), StarImageView(isEmpty: false))
-        case 2.5..<3:
+        case 1:
             addArrangedSubviews(
+                StarImageView(isEmpty: false), StarImageView(isEmpty: true),
+                StarImageView(isEmpty: true), StarImageView(isEmpty: true),
+                StarImageView(isEmpty: true)
+            )
+        case 2:
+            addArrangedSubviews(
+                StarImageView(isEmpty: false), StarImageView(isEmpty: false),
+                StarImageView(isEmpty: true), StarImageView(isEmpty: true),
+                StarImageView(isEmpty: true)
+            )
+        case 3:
+            addArrangedSubviews(
+                StarImageView(isEmpty: false), StarImageView(isEmpty: false),
+                StarImageView(isEmpty: false), StarImageView(isEmpty: true),
+                StarImageView(isEmpty: true)
+            )
+        case 4:
+            addArrangedSubviews(
+                StarImageView(isEmpty: false), StarImageView(isEmpty: false),
                 StarImageView(isEmpty: false), StarImageView(isEmpty: false),
                 StarImageView(isEmpty: true)
             )
-        case 3..<3.5:
-            addArrangedSubviews(
-                StarImageView(isEmpty: false), StarImageView(isEmpty: false),
-                StarImageView(isEmpty: false)
-            )
-        case 3.5..<4:
-            addArrangedSubviews(
-                StarImageView(isEmpty: false), StarImageView(isEmpty: false),
-                StarImageView(isEmpty: false), StarImageView(isEmpty: true)
-            )
-        case 4..<4.5:
-            addArrangedSubviews(
-                StarImageView(isEmpty: false), StarImageView(isEmpty: false),
-                StarImageView(isEmpty: false), StarImageView(isEmpty: false)
-            )
-        case 4.5...:
+        case 5:
             addArrangedSubviews(
                 StarImageView(isEmpty: false), StarImageView(isEmpty: false),
                 StarImageView(isEmpty: false), StarImageView(isEmpty: false),

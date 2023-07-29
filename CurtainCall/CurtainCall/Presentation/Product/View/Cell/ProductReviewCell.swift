@@ -18,6 +18,8 @@ final class ProductReviewCell: UITableViewCell {
         return imageView
     }()
     
+    private let gradeNameView = UIView()
+    
     private let gradeStackView = GradeStackView()
     private let nickNameDateLabel: UILabel = {
         let label = UILabel()
@@ -34,22 +36,54 @@ final class ProductReviewCell: UITableViewCell {
         return label
     }()
     
+    private let reportButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("신고", for: .normal)
+        button.setTitleColor(.hexBEC2CA, for: .normal)
+        button.titleLabel?.font = .body4
+        button.layer.cornerRadius = 12
+        button.layer.borderColor = UIColor.hexBEC2CA?.cgColor
+        button.layer.borderWidth = 1
+        return button
+    }()
+    
+    private let thumbupView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .hexF2F3F5
+        view.layer.cornerRadius = 6
+        return view
+    }()
+    
+    private let thumbupImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.thumbUpDeselectedSymbol)
+        return imageView
+    }()
+    
+    private let thumbupLabel: UILabel = {
+        let label = UILabel()
+        label.text = "37"
+        label.textColor = UIColor(rgb: 0x99A1B2)
+        label.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 11)
+        return label
+    }()
     private let thumbupButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.thumb_up_deselected_symbol), for: .normal)
-        button.setTitle("0", for: .normal)
-        button.backgroundColor = UIColor(rgb: 0xF9F9FA)
         return button
     }()
     
     
     // MARK: Property
     
+    private var isHeart: Bool = false
+    
     // MARK: Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         configureUI()
+        thumbupButton.addTarget(self, action: #selector(thumbupButtonTouchUpInside), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -64,7 +98,9 @@ final class ProductReviewCell: UITableViewCell {
     }
     
     private func configureSubviews() {
-        addSubviews(profileImageView, gradeStackView, nickNameDateLabel, contentLabel)
+        addSubviews(profileImageView, gradeNameView, contentLabel, reportButton, thumbupView)
+        gradeNameView.addSubviews(gradeStackView, nickNameDateLabel)
+        thumbupView.addSubviews(thumbupImageView, thumbupLabel, thumbupButton)
     }
     
     private func configureConstraints() {
@@ -73,18 +109,48 @@ final class ProductReviewCell: UITableViewCell {
             $0.top.equalToSuperview().offset(20)
             $0.leading.equalToSuperview().offset(24)
         }
+        gradeNameView.snp.makeConstraints {
+            $0.centerY.equalTo(profileImageView)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+        }
         gradeStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(25)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+            $0.top.leading.equalToSuperview()
+            $0.width.equalTo(80)
         }
+        
         nickNameDateLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview()
             $0.top.equalTo(gradeStackView.snp.bottom).offset(4)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+            $0.bottom.equalToSuperview()
         }
+        
+        reportButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(29)
+            $0.trailing.equalToSuperview().offset(-24)
+            $0.width.equalTo(40)
+            $0.height.equalTo(24)
+        }
+        
         contentLabel.snp.makeConstraints {
             $0.top.equalTo(nickNameDateLabel.snp.bottom).offset(23)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(20)
+        }
+        
+        thumbupView.snp.makeConstraints {
+            $0.top.equalTo(contentLabel.snp.bottom).offset(14)
+            $0.leading.equalToSuperview().offset(24)
+            $0.height.equalTo(22)
+            $0.bottom.equalToSuperview().inset(24)
+        }
+        thumbupButton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        thumbupImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(6)
+            $0.centerY.equalToSuperview()
+        }
+        thumbupLabel.snp.makeConstraints {
+            $0.leading.equalTo(thumbupImageView.snp.trailing).offset(4)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-4)
         }
     }
     
@@ -93,6 +159,19 @@ final class ProductReviewCell: UITableViewCell {
         gradeStackView.draw(grade: item.grade)
         nickNameDateLabel.text = "\(item.nickName)|\(item.date.convertToYearMonthDayString())"
         contentLabel.text = item.content
+    }
+    
+    @objc
+    func thumbupButtonTouchUpInside() {
+        isHeart.toggle()
+        setupThumbUpButton()
+    }
+    
+    func setupThumbUpButton() {
+        thumbupView.backgroundColor = isHeart ? .pointColor2 : .hexF2F3F5
+        thumbupImageView.image = isHeart ?
+                                UIImage(named: ImageNamespace.thumbUpSelectedSymbol) :
+                                UIImage(named: ImageNamespace.thumbUpDeselectedSymbol)
     }
     
 }

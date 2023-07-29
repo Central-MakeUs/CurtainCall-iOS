@@ -316,6 +316,17 @@ final class ProductDetailMainViewController: UIViewController {
         setupInfoView()
         detailReviewView.delegate = self
         detailLostItemView.delegate = self
+        subButtonTouchUpInside(detailButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Helpers
@@ -323,7 +334,6 @@ final class ProductDetailMainViewController: UIViewController {
     private func configureUI() {
         configureSubviews()
         configureConstraints()
-        configureNavigation()
     }
     
     private func configureSubviews() {
@@ -466,30 +476,30 @@ final class ProductDetailMainViewController: UIViewController {
         }
     }
     
-    private func configureNavigation() {
-        navigationController?.navigationBar.isHidden = true
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = .red
-        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-    }
-    
     private func addTarget() {
         [detailButton, reviewButton, lostItemButton].forEach {
             $0.addTarget(self, action: #selector(subButtonTouchUpInside), for: .touchUpInside)
         }
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        keepButton.addTarget(self, action: #selector(keepButtonTouchUpInside), for: .touchUpInside)
     }
     
     @objc
     private func subButtonTouchUpInside(_ sender: UIButton) {
+        sender.isSelected = true
         switch sender {
         case detailButton:
             setupInfoView()
+            reviewButton.isSelected = false
+            lostItemButton.isSelected = false
         case reviewButton:
             setupReviewView()
+            detailButton.isSelected = false
+            lostItemButton.isSelected = false
         case lostItemButton:
             setupLostItemView()
+            detailButton.isSelected = false
+            reviewButton.isSelected = false
         default:
             fatalError("Error: Not Button")
         }
@@ -538,13 +548,16 @@ final class ProductDetailMainViewController: UIViewController {
     override func backButtonTapped() {
         dismiss(animated: true)
     }
+    
+    @objc
+    func keepButtonTouchUpInside() {
+        keepButton.isSelected.toggle()
+    }
 }
 
 extension ProductDetailMainViewController: DetailReviewViewDelegate {
     func didTappedDetailReviewViewInAllViewButton() {
-        let reviewViewController = UINavigationController(rootViewController: ReviewViewController())
-        reviewViewController.modalPresentationStyle = .overFullScreen
-        present(reviewViewController, animated: true)
+        show(ReviewViewController(), sender: nil)
     }
 }
 

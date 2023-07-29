@@ -9,20 +9,20 @@ import Foundation
 
 struct ReviewInfo {
     let nickName: String
-    let grade: Double
+    let grade: Int
     let date: Date
     let content: String
     
     static let list: [ReviewInfo] = [
         ReviewInfo(
             nickName: "만도스",
-            grade: 3.5,
+            grade: 3,
             date: Date(),
             content: "우와 재밌다"
         ),
         ReviewInfo(
             nickName: "준",
-            grade: 0.5,
+            grade: 1,
             date: Date(),
             content: "노잼"
         ),
@@ -34,7 +34,7 @@ struct ReviewInfo {
         ),
         ReviewInfo(
             nickName: "재야",
-            grade: 0.5,
+            grade: 2,
             date: Date(),
             content: "별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요별 1개도 아까워요"
         ),
