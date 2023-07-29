@@ -16,6 +16,7 @@ final class MainTabBarController: UIViewController {
     private let wholeView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.clipsToBounds = true
         return view
     }()
     
@@ -75,7 +76,8 @@ final class MainTabBarController: UIViewController {
     
     
     private var viewControllers = [
-        HomeViewController(), ProductViewController(), LiveTalkViewController(),
+        HomeViewController(),
+        UINavigationController(rootViewController: ProductViewController()), LiveTalkViewController(),
         PartyMemberViewController(), MyPageViewController()
     ]
     
