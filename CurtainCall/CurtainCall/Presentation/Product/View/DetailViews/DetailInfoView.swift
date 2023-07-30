@@ -168,7 +168,7 @@ final class DetailInfoView: UIView {
     
     private let mapView: NMFMapView = {
         let mapView = NMFMapView(frame: .zero)
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: 37.5846, lng: 127.002298))
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: 37.5846, lng: 127.002298), zoomTo: 15)
         mapView.moveCamera(cameraUpdate)
         return mapView
     }()
