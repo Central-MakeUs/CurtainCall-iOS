@@ -62,4 +62,6 @@ enum ImageNamespace {
     
     static let reviewGradeStarSymbol = "review_grade_star_symbol"
     static let reviewGradeStarEmptySymbol = "review_grade_star_empty_symbol"
+    
+    static let expandBottomArrow = "expand_bottom_arrow"
 }
