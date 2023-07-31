@@ -73,7 +73,7 @@ final class LostItemViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: [])
+        let calendarView = CalendarView(isSectableDates: [Date()])
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
@@ -176,6 +176,7 @@ final class LostItemViewController: UIViewController {
     @objc
     private func dateButtonTouchUpInside() {
         calendarView.isHidden = false
+        lostedDateView.layer.borderWidth = 1
     }
     
     @objc
@@ -186,6 +187,10 @@ final class LostItemViewController: UIViewController {
 
 extension LostItemViewController: CalendarViewDelegate {
     func selectedCalendar(date: Date) {
-        print(date)
+        calendarView.isHidden = true
+        lostedDateView.layer.borderWidth = 0
+        lostedLabel.text = date.convertToYearMonthDayString()
+        lostedLabel.textColor = .body1
+        
     }
 }
