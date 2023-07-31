@@ -38,5 +38,8 @@ enum Constants {
     예시)
     OOO 배우 관련한 간단한 굿즈 같이 만들 분들 함께 만들어요!
     """
-
+    static let REVIEW_WRITE_TEXTVIEW_PLACEHOLDER =
+    """
+    공연 후기를 남겨주세요.
+    """
 }
