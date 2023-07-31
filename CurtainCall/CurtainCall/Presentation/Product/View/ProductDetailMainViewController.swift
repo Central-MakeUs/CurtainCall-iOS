@@ -563,6 +563,6 @@ extension ProductDetailMainViewController: DetailReviewViewDelegate {
 
 extension ProductDetailMainViewController: DetailLostItemViewDelegate {
     func didTappedLostViewInAllViewButton() {
-        print("분실물안에 allviewbutton 탭")
+        show(LostItemViewController(), sender: nil)
     }
 }

@@ -22,6 +22,7 @@
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
 		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
+		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */; };
 		EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */; };
 		EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */; };
@@ -132,6 +133,7 @@
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingUsecase.swift; sourceTree = "<group>"; };
 		EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameValidType.swift; sourceTree = "<group>"; };
 		EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +396,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		EE3E02912A77EF35007C3D71 /* LostItem */ = {
+			isa = PBXGroup;
+			children = (
+				EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */,
+			);
+			path = LostItem;
+			sourceTree = "<group>";
+		};
 		EE3F2FE52A5811A500BC539C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +460,7 @@
 				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
 				EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */,
+				EE3E02912A77EF35007C3D71 /* LostItem */,
 				EEC441D52A76336800CD93BC /* Review */,
 				EEF815412A736C40009C1C57 /* DetailViews */,
 			);
@@ -917,6 +928,7 @@
 				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
 				EEF815472A73867A009C1C57 /* GradeStackView.swift in Sources */,
 				EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */,
+				EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */,
 				EEF815512A73B2D5009C1C57 /* ProductReviewCell.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
