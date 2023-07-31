@@ -72,6 +72,22 @@ final class LostItemViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var calendarView: CalendarView = {
+        let calendarView = CalendarView(isSectableDates: [])
+        calendarView.layer.cornerRadius = 10
+        calendarView.isHidden = true
+        calendarView.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
+        calendarView.delegate = self
+        return calendarView
+    }()
+    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -79,6 +95,7 @@ final class LostItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTargets()
     }
     
     // MARK: - Helpers
@@ -91,7 +108,7 @@ final class LostItemViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .white
-        view.addSubviews(topView)
+        view.addSubviews(topView, calendarView)
         topView.addSubviews(filterStackView)
         filterStackView.addArrangedSubviews(lostedDateView, categoryView)
         lostedDateView.addSubviews(lostedButton, lostedLabel, lostedExpandImageView)
@@ -111,6 +128,8 @@ final class LostItemViewController: UIViewController {
         lostedDateView.snp.makeConstraints {
             $0.height.equalTo(42)
         }
+        lostedButton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        categoryButton.snp.makeConstraints { $0.edges.equalToSuperview() }
         categoryView.snp.makeConstraints {
             $0.height.equalTo(42)
         }
@@ -130,6 +149,10 @@ final class LostItemViewController: UIViewController {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-8)
         }
+        calendarView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+        }
     }
     
     private func configureNavigation() {
@@ -145,4 +168,24 @@ final class LostItemViewController: UIViewController {
         configureBackbarButton()
     }
     
+    private func addTargets() {
+        lostedButton.addTarget(self, action: #selector(dateButtonTouchUpInside), for: .touchUpInside)
+        categoryButton.addTarget(self, action: #selector(categoryButtonTouchUpInside), for: .touchUpInside)
+    }
+    
+    @objc
+    private func dateButtonTouchUpInside() {
+        calendarView.isHidden = false
+    }
+    
+    @objc
+    private func categoryButtonTouchUpInside() {
+        print("categoryTapped")
+    }
+}
+
+extension LostItemViewController: CalendarViewDelegate {
+    func selectedCalendar(date: Date) {
+        print(date)
+    }
 }

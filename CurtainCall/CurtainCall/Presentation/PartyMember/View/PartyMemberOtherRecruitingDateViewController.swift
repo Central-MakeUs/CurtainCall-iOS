@@ -177,8 +177,14 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
         let calendarView = CalendarView(isSectableDates: [Date()])
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
-        calendarView.layer.borderColor = UIColor.black.cgColor
-        calendarView.layer.borderWidth = 1
+        calendarView.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
         calendarView.delegate = self
         return calendarView
     }()
@@ -293,7 +299,6 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
         calendarView.snp.makeConstraints {
             $0.top.equalTo(dateSelectButton.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().offset(-15)
         }
         nextButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
