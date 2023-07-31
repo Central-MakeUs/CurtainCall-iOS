@@ -59,7 +59,4 @@ enum ImageNamespace {
     static let detailReviewButtonDeselect = "detail_review_button_deselect"
     static let detailLostButtonSelect = "detail_lost_button_select"
     static let detailLostButtonDeselect = "detail_lost_button_deselect"
-    
-    static let reviewGradeStarSymbol = "review_grade_star_symbol"
-    static let reviewGradeStarEmptySymbol = "review_grade_star_empty_symbol"
 }
