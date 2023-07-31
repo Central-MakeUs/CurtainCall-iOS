@@ -76,6 +76,8 @@
 		EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */; };
 		EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776352A602B0500BFCAAD /* CalendarView.swift */; };
 		EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776372A6031B300BFCAAD /* CalendarCell.swift */; };
+		EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */; };
+		EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */; };
@@ -182,6 +184,8 @@
 		EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPartyInfo.swift; sourceTree = "<group>"; };
 		EEB776352A602B0500BFCAAD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		EEB776372A6031B300BFCAAD /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
+		EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewModel.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -243,7 +247,6 @@
 				5977E0BD409073342204321E /* Pods-CurtainCall.debug.xcconfig */,
 				30BC81784667B23249725CBA /* Pods-CurtainCall.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -410,6 +413,7 @@
 		EE3F2FE92A58120300BC539C /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				EEC441D62A77E26400CD93BC /* ViewModel */,
 				EE3F2FED2A58121E00BC539C /* View */,
 			);
 			path = Product;
@@ -446,7 +450,7 @@
 				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
 				EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */,
-				EEF8154E2A73AE69009C1C57 /* ReviewViewController.swift */,
+				EEC441D52A76336800CD93BC /* Review */,
 				EEF815412A736C40009C1C57 /* DetailViews */,
 			);
 			path = View;
@@ -557,6 +561,23 @@
 				EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */,
 				EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */,
 				EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EEC441D52A76336800CD93BC /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				EEF8154E2A73AE69009C1C57 /* ReviewViewController.swift */,
+				EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		EEC441D62A77E26400CD93BC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -875,6 +896,7 @@
 			files = (
 				EE4B34322A66D3E300E6EB01 /* UIFont + Extension.swift in Sources */,
 				EEF815452A738325009C1C57 /* StarImageView.swift in Sources */,
+				EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */,
 				EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
@@ -899,6 +921,7 @@
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
+				EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
 				EEA944522A5D9CA50081E784 /* PartyFoodCell.swift in Sources */,

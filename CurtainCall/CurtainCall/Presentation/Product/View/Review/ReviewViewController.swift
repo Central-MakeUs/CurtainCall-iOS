@@ -5,8 +5,6 @@
 //  Created by 김민석 on 2023/07/28.
 //
 
-import Foundation
-
 import UIKit
 
 final class ReviewViewController: UIViewController {
@@ -72,7 +70,10 @@ final class ReviewViewController: UIViewController {
     
     @objc
     private func writeButtonTouchUpInside() {
-        print("작성하기 화면으로")
+        let writeViewController = ReviewWriteViewController(
+            viewModel: ReviewWriteViewModel()
+        )
+        navigationController?.pushViewController(writeViewController, animated: true)
     }
 }
 
