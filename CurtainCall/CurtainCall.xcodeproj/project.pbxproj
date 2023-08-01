@@ -24,6 +24,7 @@
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
+		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
 		EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */; };
 		EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */; };
 		EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */; };
@@ -136,6 +137,7 @@
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
+		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
 		EE3F2FDD2A57D2A300BC539C /* NicknameSettingUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingUsecase.swift; sourceTree = "<group>"; };
 		EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameValidType.swift; sourceTree = "<group>"; };
 		EE3F2FE12A57E4CC00BC539C /* LoginCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewController.swift; sourceTree = "<group>"; };
@@ -726,6 +728,7 @@
 				EE7F05FF2A61444D002F83ED /* Calendar */,
 				EEF815442A738325009C1C57 /* StarImageView.swift */,
 				EEF815462A73867A009C1C57 /* GradeStackView.swift */,
+				EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -959,6 +962,7 @@
 				EEF815432A736C4F009C1C57 /* DetailReviewView.swift in Sources */,
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
 				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
+				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
