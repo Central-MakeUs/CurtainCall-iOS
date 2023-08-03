@@ -270,6 +270,8 @@ final class LostItemLargeCategoryView: UIView {
     
     // MARK: Property
     
+    weak var delegate: LostItemViewDelegate?
+    
     // MARK: Life Cycle
     
     override init(frame: CGRect) {
@@ -414,6 +416,14 @@ final class LostItemLargeCategoryView: UIView {
     
     @objc
     private func categoryButtonTapped(sender: UIButton) {
-        print("sender: ", LostItemCategoryType(rawValue: sender.tag) ?? .bag)
+        delegate?.didTappedCategoryButton(
+            categoryType: LostItemCategoryType(
+                rawValue: sender.tag
+            ) ?? .bag
+        )
     }
+}
+
+protocol LostItemViewDelegate: AnyObject {
+    func didTappedCategoryButton(categoryType: LostItemCategoryType)
 }

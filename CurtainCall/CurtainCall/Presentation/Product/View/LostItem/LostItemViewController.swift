@@ -52,7 +52,7 @@ final class LostItemViewController: UIViewController {
         return label
     }()
     
-    private let cateogyLabel: UILabel = {
+    private let categoryLabel: UILabel = {
         let label = UILabel()
         label.text = "물건 분류"
         label.font = .body3
@@ -72,7 +72,7 @@ final class LostItemViewController: UIViewController {
         return imageView
     }()
     
-    private let lostItemCategoryView: LostItemLargeCategoryView = {
+    private lazy var lostItemCategoryView: LostItemLargeCategoryView = {
         let view = LostItemLargeCategoryView()
         view.isHidden = true
         view.layer.applySketchShadow(
@@ -84,6 +84,7 @@ final class LostItemViewController: UIViewController {
             spread: 0
         )
         view.layer.cornerRadius = 10
+        view.delegate = self
         return view
     }()
     
@@ -101,6 +102,12 @@ final class LostItemViewController: UIViewController {
         calendarView.layer.cornerRadius = 10
         calendarView.delegate = self
         return calendarView
+    }()
+    
+    private let writeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: ImageNamespace.partymemberWriteButton), for: .normal)
+        return button
     }()
     
     // MARK: - Properties
@@ -123,11 +130,11 @@ final class LostItemViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .white
-        view.addSubviews(topView, calendarView, lostItemCategoryView)
+        view.addSubviews(topView, calendarView, lostItemCategoryView, writeButton)
         topView.addSubviews(filterStackView)
         filterStackView.addArrangedSubviews(lostedDateView, categoryView)
         lostedDateView.addSubviews(lostedButton, lostedLabel, lostedExpandImageView)
-        categoryView.addSubviews(categoryButton, cateogyLabel, categoryExpandImageView)
+        categoryView.addSubviews(categoryButton, categoryLabel, categoryExpandImageView)
     }
     
     private func configureConstraints() {
@@ -156,7 +163,7 @@ final class LostItemViewController: UIViewController {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-8)
         }
-        cateogyLabel.snp.makeConstraints {
+        categoryLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(12)
         }
@@ -171,6 +178,10 @@ final class LostItemViewController: UIViewController {
         lostItemCategoryView.snp.makeConstraints {
             $0.top.equalTo(topView.snp.bottom)
             $0.horizontalEdges.equalToSuperview().inset(24)
+        }
+        writeButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-60)
+            $0.trailing.equalToSuperview().offset(-24)
         }
     }
     
@@ -188,8 +199,21 @@ final class LostItemViewController: UIViewController {
     }
     
     private func addTargets() {
-        lostedButton.addTarget(self, action: #selector(dateButtonTouchUpInside), for: .touchUpInside)
-        categoryButton.addTarget(self, action: #selector(categoryButtonTouchUpInside), for: .touchUpInside)
+        lostedButton.addTarget(
+            self,
+            action: #selector(dateButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        categoryButton.addTarget(
+            self,
+            action: #selector(categoryButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        writeButton.addTarget(
+            self,
+            action: #selector(writeButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @objc
@@ -207,6 +231,13 @@ final class LostItemViewController: UIViewController {
         calendarView.isHidden = true
         lostItemCategoryView.isHidden = false
     }
+    
+    @objc
+    private func writeButtonTouchUpInside() {
+//        moveToWriteView()
+    }
+    
+    
 }
 
 extension LostItemViewController: CalendarViewDelegate {
@@ -216,5 +247,14 @@ extension LostItemViewController: CalendarViewDelegate {
         lostedLabel.text = date.convertToYearMonthDayString()
         lostedLabel.textColor = .body1
         
+    }
+}
+
+extension LostItemViewController: LostItemViewDelegate {
+    func didTappedCategoryButton(categoryType: LostItemCategoryType) {
+        lostItemCategoryView.isHidden = true
+        categoryLabel.text = categoryType.name
+        categoryView.layer.borderWidth = 0
+        categoryLabel.textColor = .body1
     }
 }
