@@ -157,7 +157,7 @@ final class ProductReviewCell: UITableViewCell {
     func draw(item: ReviewInfo) {
         profileImageView.image = UIImage(named: "dummy_profile")
         gradeStackView.draw(grade: item.grade)
-        nickNameDateLabel.text = "\(item.nickName)|\(item.date.convertToYearMonthDayString())"
+        nickNameDateLabel.text = "\(item.nickName) | \(item.date.convertToYearMonthDayString())"
         contentLabel.text = item.content
     }
     

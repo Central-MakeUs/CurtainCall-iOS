@@ -15,6 +15,7 @@
 		EE0132432A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
+		EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */; };
 		EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */; };
 		EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */; };
 		EE0BEDEA2A49553D008D9D05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0BEDE82A49553D008D9D05 /* LaunchScreen.storyboard */; };
@@ -127,6 +128,7 @@
 		EE01323E2A5F012500873107 /* ProductSelectInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectInfo.swift; sourceTree = "<group>"; };
 		EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductViewModel.swift; sourceTree = "<group>"; };
 		EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductUsecase.swift; sourceTree = "<group>"; };
+		EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCategoryType.swift; sourceTree = "<group>"; };
 		EE0BEDDA2A495539008D9D05 /* CurtainCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurtainCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 				EEC60A472A4AB26D001DDC2A /* LoginType.swift */,
 				EE3F2FDF2A57DE3A00BC539C /* NicknameValidType.swift */,
 				EEA944362A5C03130081E784 /* PartyType.swift */,
+				EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */,
 				EE4B34322A66D3E300E6EB01 /* UIFont + Extension.swift in Sources */,
 				EEF815452A738325009C1C57 /* StarImageView.swift in Sources */,
 				EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */,

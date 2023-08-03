@@ -72,9 +72,23 @@ final class LostItemViewController: UIViewController {
         return imageView
     }()
     
+    private let lostItemCategoryView: LostItemLargeCategoryView = {
+        let view = LostItemLargeCategoryView()
+        view.isHidden = true
+        view.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
     private lazy var calendarView: CalendarView = {
         let calendarView = CalendarView(isSectableDates: [Date()])
-        calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
             color: UIColor(rgb: 0x273041),
@@ -84,6 +98,7 @@ final class LostItemViewController: UIViewController {
             blur: 20,
             spread: 0
         )
+        calendarView.layer.cornerRadius = 10
         calendarView.delegate = self
         return calendarView
     }()
@@ -108,7 +123,7 @@ final class LostItemViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .white
-        view.addSubviews(topView, calendarView)
+        view.addSubviews(topView, calendarView, lostItemCategoryView)
         topView.addSubviews(filterStackView)
         filterStackView.addArrangedSubviews(lostedDateView, categoryView)
         lostedDateView.addSubviews(lostedButton, lostedLabel, lostedExpandImageView)
@@ -153,6 +168,10 @@ final class LostItemViewController: UIViewController {
             $0.top.equalTo(topView.snp.bottom)
             $0.horizontalEdges.equalToSuperview().inset(24)
         }
+        lostItemCategoryView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+        }
     }
     
     private func configureNavigation() {
@@ -177,11 +196,16 @@ final class LostItemViewController: UIViewController {
     private func dateButtonTouchUpInside() {
         calendarView.isHidden = false
         lostedDateView.layer.borderWidth = 1
+        lostItemCategoryView.isHidden = true
+        categoryView.layer.borderWidth = 0
     }
     
     @objc
     private func categoryButtonTouchUpInside() {
-        print("categoryTapped")
+        categoryView.layer.borderWidth = 1
+        lostedDateView.layer.borderWidth = 0
+        calendarView.isHidden = true
+        lostItemCategoryView.isHidden = false
     }
 }
 
