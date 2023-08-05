@@ -208,7 +208,7 @@ final class LostItemWriteViewController: UIViewController {
         return label
     }()
     
-    private let otherTextView: UITextView = {
+    private lazy var otherTextView: UITextView = {
         let textView = UITextView()
         textView.contentInset = .init(top: 3, left: 16, bottom: 0, right: 16)
         textView.backgroundColor = .hexF5F6F8
@@ -217,6 +217,7 @@ final class LostItemWriteViewController: UIViewController {
         textView.textColor = .hexBEC2CA
         textView.text = Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER
         textView.tintColor = .pointColor2
+        textView.delegate = self
         return textView
     }()
     
@@ -574,34 +575,35 @@ extension LostItemWriteViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER {
             textView.text = nil
+            textView.textColor = .body1
             return
         }
     }
     
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-//            textView.text = Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER
-//            viewModel.contentTextViewChanged(text: textView.text)
-//            return
-//        }
-//
-//    }
-//
-//    func textView(
-//        _ textView: UITextView,
-//        shouldChangeTextIn range: NSRange,
-//        replacementText text: String
-//    ) -> Bool {
-//        guard let content = textView.text else { return false }
-//        viewModel.contentTextViewChanged(text: textView.text)
-//        if let char = text.cString(using: String.Encoding.utf8) {
-//            let isBackSpace = strcmp(char, "\\b")
-//            if isBackSpace == -92 {
-//                return true
-//            }
-//        }
-//        guard content.count <= 400 else { return false }
-//        updateCountLabel(count: content.count)
-//        return true
-//    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER
+            textView.textColor = .hexBEC2CA
+            return
+        }
+
+    }
+
+    func textView(
+        _ textView: UITextView,
+        shouldChangeTextIn range: NSRange,
+        replacementText text: String
+    ) -> Bool {
+        guard let content = textView.text else { return false }
+        if let char = text.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        
+        // TODO: count 변경
+        guard content.count <= 5 else { return false }
+        return true
+    }
 }

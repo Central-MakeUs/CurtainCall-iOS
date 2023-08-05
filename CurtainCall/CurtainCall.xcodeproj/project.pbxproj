@@ -60,6 +60,7 @@
 		EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0C2A6563A60027B0D4 /* Constants.swift */; };
 		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
+		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */; };
 		EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */; };
@@ -177,6 +178,7 @@
 		EE5DED0C2A6563A60027B0D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberWriteCompleteViewController.swift; sourceTree = "<group>"; };
+		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLineView.swift; sourceTree = "<group>"; };
 		EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingOtherDetailViewController.swift; sourceTree = "<group>"; };
@@ -433,10 +435,8 @@
 		EE3E02912A77EF35007C3D71 /* LostItem */ = {
 			isa = PBXGroup;
 			children = (
-				EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */,
-				EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */,
-				EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */,
-				EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */,
+				EE7C1AD72A7EA075000B208C /* ViewModel */,
+				EE7C1AD62A7EA070000B208C /* View */,
 			);
 			path = LostItem;
 			sourceTree = "<group>";
@@ -557,6 +557,25 @@
 				EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		EE7C1AD62A7EA070000B208C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */,
+				EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */,
+				EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */,
+				EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE7C1AD72A7EA075000B208C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EE7F05FF2A61444D002F83ED /* Calendar */ = {
@@ -946,6 +965,7 @@
 				EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
+				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
