@@ -145,6 +145,7 @@ final class LostItemViewController: UIViewController {
             LostItemCollectionViewCell.self,
             forCellWithReuseIdentifier: LostItemCollectionViewCell.identifier
         )
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -268,9 +269,6 @@ final class LostItemViewController: UIViewController {
             heightDimension: .estimated(243)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-//        group.edgeSpacing = .init(leading: nil, top: .fixed(9), trailing: nil, bottom: .fixed(9))
-        
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .init(top: 0, leading: 18, bottom: 0, trailing: 18)
         return UICollectionViewCompositionalLayout(section: section)
@@ -334,8 +332,17 @@ final class LostItemViewController: UIViewController {
     private func writeButtonTouchUpInside() {
 //        moveToWriteView()
     }
-    
-    
+}
+
+extension LostItemViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = datasource?.itemIdentifier(for: indexPath) else {
+            return
+        }
+        let detailViewController = LostItemDetailViewController(item: item)
+        navigationController?.pushViewController(detailViewController, animated: true)
+        
+    }
 }
 
 extension LostItemViewController: CalendarViewDelegate {
