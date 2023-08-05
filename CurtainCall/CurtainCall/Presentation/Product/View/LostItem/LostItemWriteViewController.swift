@@ -35,6 +35,7 @@ final class LostItemWriteViewController: UIViewController {
         textField.placeholder = "제목을 적어주세요."
         textField.font = .body1
         textField.textColor = .body1
+        textField.tintColor = .pointColor2
         return textField
     }()
     
@@ -136,6 +137,7 @@ final class LostItemWriteViewController: UIViewController {
         textField.placeholder = "세부 장소를 적어주세요."
         textField.font = .body1
         textField.textColor = .body1
+        textField.tintColor = .pointColor2
         return textField
     }()
     
@@ -214,6 +216,7 @@ final class LostItemWriteViewController: UIViewController {
         textView.font = .body1
         textView.textColor = .hexBEC2CA
         textView.text = Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER
+        textView.tintColor = .pointColor2
         return textView
     }()
     
