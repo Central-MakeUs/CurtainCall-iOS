@@ -74,5 +74,6 @@ enum ImageNamespace {
     static let lostItemCategoryOther60px = "lostItem_category_other_60px"
     static let lostItemCategoryPhone60px = "lostItem_category_phone_60px"
     static let lostItemCategoryWallet60px = "lostItem_category_wallet_60px"
+    static let lostItemEmptyImage = "lostItem_empty_image"
     
 }

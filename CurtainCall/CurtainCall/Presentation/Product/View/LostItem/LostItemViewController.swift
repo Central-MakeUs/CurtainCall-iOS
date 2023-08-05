@@ -110,7 +110,52 @@ final class LostItemViewController: UIViewController {
         return button
     }()
     
+    private let emptyView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        
+        let emptyLabel: UILabel = {
+            let label = UILabel()
+            label.text = "아직 분실물이 없어요!"
+            label.textColor = .hexBEC2CA
+            label.font = .body1
+            return label
+        }()
+        
+        let emptyImageView = UIImageView(image: UIImage(named: ImageNamespace.lostItemEmptyImage))
+        view.addSubviews(emptyImageView, emptyLabel)
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        emptyImageView.snp.makeConstraints {
+            $0.bottom.equalTo(emptyLabel.snp.top).offset(-18)
+            $0.centerX.equalToSuperview()
+        }
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createLayout()
+        )
+        collectionView.backgroundColor = .white
+        collectionView.register(
+            LostItemCollectionViewCell.self,
+            forCellWithReuseIdentifier: LostItemCollectionViewCell.identifier
+        )
+        return collectionView
+    }()
+    
     // MARK: - Properties
+//    typealias Datasource = UICollectionViewDiffableDataSource<
+    enum Section { case main }
+    typealias Item = LostItemInfo
+    typealias Datasource = UICollectionViewDiffableDataSource<Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
+    
+    private var datasource: Datasource?
     
     // MARK: - Lifecycles
     
@@ -118,6 +163,7 @@ final class LostItemViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
+        requestItem()
     }
     
     // MARK: - Helpers
@@ -126,11 +172,14 @@ final class LostItemViewController: UIViewController {
         configureSubviews()
         configureConstraints()
         configureNavigation()
+        configureDatasource()
     }
     
     private func configureSubviews() {
         view.backgroundColor = .white
-        view.addSubviews(topView, calendarView, lostItemCategoryView, writeButton)
+        view.addSubviews(
+            topView, collectionView, emptyView, calendarView, lostItemCategoryView, writeButton, emptyView
+        )
         topView.addSubviews(filterStackView)
         filterStackView.addArrangedSubviews(lostedDateView, categoryView)
         lostedDateView.addSubviews(lostedButton, lostedLabel, lostedExpandImageView)
@@ -183,6 +232,16 @@ final class LostItemViewController: UIViewController {
             $0.bottom.equalToSuperview().offset(-60)
             $0.trailing.equalToSuperview().offset(-24)
         }
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
     }
     
     private func configureNavigation() {
@@ -196,6 +255,45 @@ final class LostItemViewController: UIViewController {
         searchBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = searchBarButtonItem
         configureBackbarButton()
+    }
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1/2),
+            heightDimension: .estimated(243)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(243)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+//        group.edgeSpacing = .init(leading: nil, top: .fixed(9), trailing: nil, bottom: .fixed(9))
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 18, bottom: 0, trailing: 18)
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    private func configureDatasource() {
+        datasource = Datasource(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, item in
+                guard let cell = collectionView.dequeueCell(type: LostItemCollectionViewCell.self, indexPath: indexPath) else {
+                    return UICollectionViewCell()
+                }
+                cell.drawUI(item: item)
+                return cell
+            }
+        )
+    }
+    
+    private func requestItem() {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(LostItemInfo.list, toSection: .main)
+        datasource?.apply(snapshot)
     }
     
     private func addTargets() {
