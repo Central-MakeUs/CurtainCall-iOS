@@ -42,4 +42,8 @@ enum Constants {
     """
     공연 후기를 남겨주세요.
     """
+    static let LOSTITEM_OTHER_CONTENT_PLACEHOLDER =
+    """
+    내용을 적어주세요.
+    """
 }

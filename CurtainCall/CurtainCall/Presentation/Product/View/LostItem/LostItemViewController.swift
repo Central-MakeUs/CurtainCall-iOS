@@ -330,7 +330,17 @@ final class LostItemViewController: UIViewController {
     
     @objc
     private func writeButtonTouchUpInside() {
-//        moveToWriteView()
+        moveToWriteView()
+    }
+    
+    private func moveToWriteView() {
+        // MARK: Case 1
+//        let writeViewController = UINavigationController(rootViewController: LostItemWriteViewController())
+//        writeViewController.modalPresentationStyle = .overFullScreen
+//        present(writeViewController, animated: true)
+//        
+        // MARK: Case2
+        navigationController?.pushViewController(LostItemWriteViewController(), animated: true)
     }
 }
 

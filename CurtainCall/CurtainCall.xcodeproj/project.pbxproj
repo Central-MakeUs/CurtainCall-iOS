@@ -21,6 +21,7 @@
 		EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */; };
 		EE0669DB2A7E0985000C8296 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DA2A7E0985000C8296 /* APIService.swift */; };
 		EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DC2A7E0E95000C8296 /* APIResource.swift */; };
+		EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */; };
 		EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */; };
 		EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */; };
 		EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */; };
@@ -138,6 +139,7 @@
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		EE0669DC2A7E0E95000C8296 /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
+		EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewController.swift; sourceTree = "<group>"; };
 		EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCategoryType.swift; sourceTree = "<group>"; };
 		EE0BEDDA2A495539008D9D05 /* CurtainCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurtainCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */,
 				EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */,
 				EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */,
+				EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */,
 			);
 			path = LostItem;
 			sourceTree = "<group>";
@@ -991,6 +994,7 @@
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
+				EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
