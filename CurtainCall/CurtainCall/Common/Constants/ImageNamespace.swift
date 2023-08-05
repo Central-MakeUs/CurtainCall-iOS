@@ -80,4 +80,5 @@ enum ImageNamespace {
     static let lostItemDetailLocationSearching = "lostItem_detail_location_searching"
     static let lostItemDetailMyLocation = "lostItem_detail_my_location"
     static let lostItemDetailStars = "lostItem_detail_stars"
+    static let lostItemDetailAlarmOn = "lostItem_detail_alarm_on"
 }
