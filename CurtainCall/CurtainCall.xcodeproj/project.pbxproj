@@ -19,6 +19,8 @@
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
 		EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */; };
+		EE0669DB2A7E0985000C8296 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DA2A7E0985000C8296 /* APIService.swift */; };
+		EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DC2A7E0E95000C8296 /* APIResource.swift */; };
 		EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */; };
 		EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */; };
 		EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */; };
@@ -134,6 +136,8 @@
 		EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductUsecase.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
+		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		EE0669DC2A7E0E95000C8296 /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCategoryType.swift; sourceTree = "<group>"; };
 		EE0BEDDA2A495539008D9D05 /* CurtainCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurtainCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +293,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		EE0669D92A7E0943000C8296 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EE0669DA2A7E0985000C8296 /* APIService.swift */,
+				EE0669DC2A7E0E95000C8296 /* APIResource.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		EE0BEDD12A495539008D9D05 = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +384,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EE0669D92A7E0943000C8296 /* Network */,
 				EEE8F0E42A5690CB00E31597 /* UI */,
 				EEE8F0C92A53D05B00E31597 /* Extension */,
 				EEE8F0B72A5195E500E31597 /* Errors */,
@@ -942,6 +956,7 @@
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */,
+				EE0669DB2A7E0985000C8296 /* APIService.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
 				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
 				EEF815472A73867A009C1C57 /* GradeStackView.swift in Sources */,
@@ -1013,6 +1028,7 @@
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,
+				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
 				EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */,
 				EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */,

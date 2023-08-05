@@ -231,6 +231,7 @@ extension LoginViewController {
     private func kakaoLoginToKakaoTalk() {
         UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
             self?.viewModel.requestLogin(oauthToken: oauthToken, error: error)
+            print(oauthToken?.accessToken)
         }
     }
     

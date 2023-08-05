@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
@@ -20,6 +21,8 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: - Properties
+    
+    var c = Set<AnyCancellable>()
     
     // MARK: - Lifecycles
     
