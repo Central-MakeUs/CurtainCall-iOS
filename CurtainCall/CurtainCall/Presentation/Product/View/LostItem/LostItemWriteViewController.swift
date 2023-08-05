@@ -265,6 +265,8 @@ final class LostItemWriteViewController: UIViewController {
         return button
     }()
     
+    private let emptyView = UIView()
+    
     
     // MARK: Property
     
@@ -273,6 +275,18 @@ final class LostItemWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        hideKeyboardWhenTappedArround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: Configure
@@ -285,7 +299,7 @@ final class LostItemWriteViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .white
-        view.addSubviews(scrollView, completeButton)
+        view.addSubviews(scrollView, completeButton, emptyView)
         scrollView.addSubview(contentView)
         
         contentView.addSubviews(
@@ -476,8 +490,14 @@ final class LostItemWriteViewController: UIViewController {
         
         completeButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
+            $0.bottom.equalTo(emptyView.snp.top).offset(-16)
             $0.height.equalTo(55)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
         }
         
         titleDotView.snp.makeConstraints {
@@ -516,6 +536,33 @@ final class LostItemWriteViewController: UIViewController {
     private func configureNavigation() {
         title = "분실물 게시물 작성"
         configureBackbarButton()
+    }
+    
+}
+
+// MARK: Keyboard
+
+extension LostItemWriteViewController {
+    @objc
+    private func keyboardUp(notification: NSNotification) {
+        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            
+            UIView.animate(
+                withDuration: 0.3, animations: { [weak self] in
+                    self?.emptyView.snp.updateConstraints {
+                        $0.height.equalTo(keyboardRectangle.height)
+                    }
+                }
+            )
+        }
+    }
+    
+    @objc
+    private func keyboardDown() {
+        emptyView.snp.updateConstraints {
+            $0.height.equalTo(1)
+        }
     }
     
 }
