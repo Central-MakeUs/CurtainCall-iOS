@@ -86,6 +86,7 @@ final class CalendarView: UIView, CalendarDelegate {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     
@@ -173,6 +174,7 @@ final class CalendarView: UIView, CalendarDelegate {
         }
         collectionView.snp.makeConstraints {
             $0.top.equalTo(weekStackView.snp.bottom).offset(16)
+            $0.height.equalTo(240)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
@@ -273,6 +275,13 @@ final class CalendarView: UIView, CalendarDelegate {
             }
         }
         configureSnapshot()
+        configureHeight(dayCount: totalDays)
+    }
+    
+    private func configureHeight(dayCount: Int) {
+        collectionView.snp.updateConstraints {
+                $0.height.equalTo(dayCount > 35 ? 250 : 210)
+        }
     }
     
     @objc

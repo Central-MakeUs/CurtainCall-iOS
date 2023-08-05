@@ -62,4 +62,22 @@ enum ImageNamespace {
     
     static let reviewGradeStarSymbol = "review_grade_star_symbol"
     static let reviewGradeStarEmptySymbol = "review_grade_star_empty_symbol"
+    
+    static let expandBottomArrow = "expand_bottom_arrow"
+    
+    static let lostItemCategoryBag60px = "lostItem_category_bag_60px"
+    static let lostItemCategoryBook60px = "lostItem_category_book_60px"
+    static let lostItemCategoryCard60px = "lostItem_category_card_60px"
+    static let lostItemCategoryCash60px = "lostItem_category_cash_60px"
+    static let lostItemCategoryClothes60px = "lostItem_category_clothes_60px"
+    static let lostItemCategoryJewel60px = "lostItem_category_jewel_60px"
+    static let lostItemCategoryOther60px = "lostItem_category_other_60px"
+    static let lostItemCategoryPhone60px = "lostItem_category_phone_60px"
+    static let lostItemCategoryWallet60px = "lostItem_category_wallet_60px"
+    static let lostItemEmptyImage = "lostItem_empty_image"
+    static let lostItemDetailCategory = "lostItem_detail_category"
+    static let lostItemDetailEventAvailable = "lostItem_detail_event_available"
+    static let lostItemDetailLocationSearching = "lostItem_detail_location_searching"
+    static let lostItemDetailMyLocation = "lostItem_detail_my_location"
+    static let lostItemDetailStars = "lostItem_detail_stars"
 }

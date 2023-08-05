@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct LostItemInfo {
+struct LostItemInfo: Hashable {
     let image: UIImage?
     let name: String
     let getLocation: String

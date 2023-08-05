@@ -474,6 +474,12 @@ final class ProductDetailMainViewController: UIViewController {
             $0.top.equalTo(lostItemButton.snp.bottom).offset(10)
             $0.centerX.equalTo(lostItemButton)
         }
+        
+        [detailButton, reviewButton, lostItemButton].forEach { button in
+            button.snp.makeConstraints { make in
+                make.height.equalTo(button.snp.width)
+            }
+        }
     }
     
     private func addTarget() {
@@ -563,6 +569,6 @@ extension ProductDetailMainViewController: DetailReviewViewDelegate {
 
 extension ProductDetailMainViewController: DetailLostItemViewDelegate {
     func didTappedLostViewInAllViewButton() {
-        print("분실물안에 allviewbutton 탭")
+        show(LostItemViewController(), sender: nil)
     }
 }
