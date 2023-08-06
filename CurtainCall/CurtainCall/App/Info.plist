@@ -67,5 +67,9 @@
 		<string>SpoqaHanSansNeo-Regular.otf</string>
 		<string>SpoqaHanSansNeo-Thin.otf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>카메라 허용 문구</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>갤러리 허용 문구</string>
 </dict>
 </plist>

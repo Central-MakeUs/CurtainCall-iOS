@@ -335,6 +335,20 @@ final class LostItemWriteViewController: UIViewController {
     
     private let emptyView = UIView()
     
+    private lazy var picker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        return picker
+    }()
+    
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.contentMode = .scaleAspectFill
+        imageView.isHidden = true
+        return imageView
+    }()
     
     // MARK: Property
     
@@ -377,7 +391,7 @@ final class LostItemWriteViewController: UIViewController {
             keepTimeView, otherLabel, addFileLabel, addFileView, otherTextView,
             addFileDescriptionLabel, titleDotView, categoryDotView, getLocationDotView,
             keepDateDotView, addFileDotView, lostItemCategoryView, calendarView, timePickerView,
-            lostItemAddFileView
+            lostItemAddFileView, photoImageView
         )
         titleView.addSubviews(titleTextField)
         categoryView.addSubviews(
@@ -538,10 +552,16 @@ final class LostItemWriteViewController: UIViewController {
         }
         
         addFileView.snp.makeConstraints {
+            $0.top.equalTo(otherTextView.snp.bottom).offset(12)
             $0.leading.equalTo(addFileLabel.snp.trailing).offset(25)
-            $0.centerY.equalTo(addFileLabel)
             $0.height.equalTo(42)
             $0.trailing.equalToSuperview().inset(24)
+        }
+        
+        photoImageView.snp.makeConstraints {
+            $0.top.equalTo(otherTextView.snp.bottom).offset(12)
+            $0.leading.equalTo(addFileLabel.snp.trailing).offset(25)
+            $0.size.equalTo(80)
         }
         
         addFilePlaceHoldeLabel.snp.makeConstraints {
@@ -555,7 +575,7 @@ final class LostItemWriteViewController: UIViewController {
             $0.top.equalTo(addFileView.snp.bottom).offset(10)
             $0.leading.equalTo(addFileView)
             $0.trailing.equalToSuperview().inset(24)
-//            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(130)
         }
         
         completeButton.snp.makeConstraints {
@@ -620,8 +640,9 @@ final class LostItemWriteViewController: UIViewController {
             $0.top.equalTo(addFileView.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(addFileView)
             $0.height.equalTo(122)
-            $0.bottom.equalToSuperview().inset(20)
         }
+        
+    
     }
     
     private func configureNavigation() {
@@ -782,11 +803,37 @@ extension LostItemWriteViewController: TimePickerViewDelegate {
 extension LostItemWriteViewController: AddFileViewDelegate {
     func didTapSelectImage() {
         lostItemAddFileView.isHidden = true
-        print("사진첩으로 이동")
+        openLibrary()
     }
     
     func didTapPhoto() {
         lostItemAddFileView.isHidden = true
-        print("포토 화면으로 이동")
+        openCamera()
     }
 }
+
+extension LostItemWriteViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    private func openLibrary() {
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
+    
+    private func openCamera() {
+        picker.sourceType = .camera
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            photoImageView.isHidden = false
+            photoImageView.image = image
+            addFileView.isHidden = true
+            addFileDescriptionLabel.isHidden = true
+            dismiss(animated: true)
+        }
+    }
+}
+
