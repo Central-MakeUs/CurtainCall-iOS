@@ -74,6 +74,7 @@
 		EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */; };
 		EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132232A7F5A690016D01A /* TimePickerView.swift */; };
 		EEA132262A7F6D490016D01A /* AddFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132252A7F6D490016D01A /* AddFileView.swift */; };
+		EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132272A7F88310016D01A /* LostItemWriteCompleteViewController.swift */; };
 		EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */; };
 		EEA944372A5C03130081E784 /* PartyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944362A5C03130081E784 /* PartyType.swift */; };
 		EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944392A5D1BE80081E784 /* PartyProductCell.swift */; };
@@ -195,6 +196,7 @@
 		EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemSmallCategoryView.swift; sourceTree = "<group>"; };
 		EEA132232A7F5A690016D01A /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		EEA132252A7F6D490016D01A /* AddFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileView.swift; sourceTree = "<group>"; };
+		EEA132272A7F88310016D01A /* LostItemWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteCompleteViewController.swift; sourceTree = "<group>"; };
 		EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberProductViewController.swift; sourceTree = "<group>"; };
 		EEA944362A5C03130081E784 /* PartyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyType.swift; sourceTree = "<group>"; };
 		EEA944392A5D1BE80081E784 /* PartyProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyProductCell.swift; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 				EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */,
 				EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */,
 				EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */,
+				EEA132272A7F88310016D01A /* LostItemWriteCompleteViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
+				EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */,
 				EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,

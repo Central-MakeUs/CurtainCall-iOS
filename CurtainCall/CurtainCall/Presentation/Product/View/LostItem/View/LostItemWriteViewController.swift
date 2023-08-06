@@ -730,6 +730,11 @@ final class LostItemWriteViewController: UIViewController {
             action: #selector(textFieldChanged),
             for: .editingChanged
         )
+        completeButton.addTarget(
+            self,
+            action: #selector(completeButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @objc
@@ -773,6 +778,12 @@ final class LostItemWriteViewController: UIViewController {
     @objc
     private func textFieldChanged(sender: UITextField) {
         viewModel.titleTextFieldChanged(text: sender.text)
+    }
+    
+    @objc
+    private func completeButtonTouchUpInside() {
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
     }
     
 }
