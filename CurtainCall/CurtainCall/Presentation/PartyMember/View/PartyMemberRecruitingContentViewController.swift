@@ -316,6 +316,11 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
             action: #selector(nextButtonTouchUpInside),
             for: .touchUpInside
         )
+        titleWriteTextField.addTarget(
+            self,
+            action: #selector(textFieldChanged),
+            for: .editingChanged
+        )
     }
     
     @objc
@@ -323,6 +328,11 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
         let completeViewController = PartyMemberWriteCompleteViewController()
         navigationController?.isNavigationBarHidden = true
         navigationController?.pushViewController(completeViewController, animated: true)
+    }
+    
+    @objc
+    private func textFieldChanged(sender: UITextField) {
+        viewModel.titleTextFieldChanged(text: sender.text)
     }
 }
 
@@ -374,5 +384,9 @@ extension PartyMemberRecruitingContentViewController: UITextViewDelegate {
         guard content.count <= 400 else { return false }
         updateCountLabel(count: content.count)
         return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.contentTextViewChanged(text: textView.text)
     }
 }

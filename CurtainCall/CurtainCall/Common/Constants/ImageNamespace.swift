@@ -74,10 +74,26 @@ enum ImageNamespace {
     static let lostItemCategoryOther60px = "lostItem_category_other_60px"
     static let lostItemCategoryPhone60px = "lostItem_category_phone_60px"
     static let lostItemCategoryWallet60px = "lostItem_category_wallet_60px"
+    
+    static let lostItemCategoryBag50px = "lostItem_category_bag_50px"
+    static let lostItemCategoryBook50px = "lostItem_category_book_50px"
+    static let lostItemCategoryCard50px = "lostItem_category_card_50px"
+    static let lostItemCategoryCash50px = "lostItem_category_cash_50px"
+    static let lostItemCategoryClothes50px = "lostItem_category_clothes_50px"
+    static let lostItemCategoryJewel50px = "lostItem_category_jewel_50px"
+    static let lostItemCategoryOther50px = "lostItem_category_other_50px"
+    static let lostItemCategoryPhone50px = "lostItem_category_phone_50px"
+    static let lostItemCategoryWallet50px = "lostItem_category_wallet_50px"
+    
     static let lostItemEmptyImage = "lostItem_empty_image"
     static let lostItemDetailCategory = "lostItem_detail_category"
     static let lostItemDetailEventAvailable = "lostItem_detail_event_available"
     static let lostItemDetailLocationSearching = "lostItem_detail_location_searching"
     static let lostItemDetailMyLocation = "lostItem_detail_my_location"
     static let lostItemDetailStars = "lostItem_detail_stars"
+    static let lostItemDetailAlarmOn = "lostItem_detail_alarm_on"
+    
+    static let lostItemSelectImage = "lostItem_select_image"
+    static let lostItemPhoto = "lostItem_photo"
+    static let photoRemoveButton = "photo_remove_button"
 }

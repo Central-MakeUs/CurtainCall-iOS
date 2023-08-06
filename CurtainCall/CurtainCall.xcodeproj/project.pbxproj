@@ -21,6 +21,7 @@
 		EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */; };
 		EE0669DB2A7E0985000C8296 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DA2A7E0985000C8296 /* APIService.swift */; };
 		EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DC2A7E0E95000C8296 /* APIResource.swift */; };
+		EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */; };
 		EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */; };
 		EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */; };
 		EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDDF2A495539008D9D05 /* SceneDelegate.swift */; };
@@ -59,6 +60,7 @@
 		EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0C2A6563A60027B0D4 /* Constants.swift */; };
 		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
+		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */; };
 		EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */; };
@@ -69,6 +71,10 @@
 		EE93AA332A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */; };
 		EE93AA362A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA352A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift */; };
 		EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */; };
+		EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */; };
+		EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132232A7F5A690016D01A /* TimePickerView.swift */; };
+		EEA132262A7F6D490016D01A /* AddFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132252A7F6D490016D01A /* AddFileView.swift */; };
+		EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132272A7F88310016D01A /* LostItemWriteCompleteViewController.swift */; };
 		EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */; };
 		EEA944372A5C03130081E784 /* PartyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944362A5C03130081E784 /* PartyType.swift */; };
 		EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944392A5D1BE80081E784 /* PartyProductCell.swift */; };
@@ -138,6 +144,7 @@
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		EE0669DC2A7E0E95000C8296 /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
+		EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewController.swift; sourceTree = "<group>"; };
 		EE0B44862A789DA200312E24 /* LostItemCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCategoryType.swift; sourceTree = "<group>"; };
 		EE0BEDDA2A495539008D9D05 /* CurtainCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurtainCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0BEDDD2A495539008D9D05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +182,7 @@
 		EE5DED0C2A6563A60027B0D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberWriteCompleteViewController.swift; sourceTree = "<group>"; };
+		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLineView.swift; sourceTree = "<group>"; };
 		EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingOtherDetailViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +193,10 @@
 		EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingContentViewController.swift; sourceTree = "<group>"; };
 		EE93AA352A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDetailViewController.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
+		EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemSmallCategoryView.swift; sourceTree = "<group>"; };
+		EEA132232A7F5A690016D01A /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		EEA132252A7F6D490016D01A /* AddFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileView.swift; sourceTree = "<group>"; };
+		EEA132272A7F88310016D01A /* LostItemWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteCompleteViewController.swift; sourceTree = "<group>"; };
 		EEA944342A5BF55C0081E784 /* PartyMemberProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberProductViewController.swift; sourceTree = "<group>"; };
 		EEA944362A5C03130081E784 /* PartyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyType.swift; sourceTree = "<group>"; };
 		EEA944392A5D1BE80081E784 /* PartyProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyProductCell.swift; sourceTree = "<group>"; };
@@ -431,9 +443,8 @@
 		EE3E02912A77EF35007C3D71 /* LostItem */ = {
 			isa = PBXGroup;
 			children = (
-				EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */,
-				EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */,
-				EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */,
+				EE7C1AD72A7EA075000B208C /* ViewModel */,
+				EE7C1AD62A7EA070000B208C /* View */,
 			);
 			path = LostItem;
 			sourceTree = "<group>";
@@ -554,6 +565,26 @@
 				EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		EE7C1AD62A7EA070000B208C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */,
+				EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */,
+				EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */,
+				EE0669DE2A7E2E81000C8296 /* LostItemWriteViewController.swift */,
+				EEA132272A7F88310016D01A /* LostItemWriteCompleteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE7C1AD72A7EA075000B208C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EE7F05FF2A61444D002F83ED /* Calendar */ = {
@@ -752,6 +783,9 @@
 				EEF815442A738325009C1C57 /* StarImageView.swift */,
 				EEF815462A73867A009C1C57 /* GradeStackView.swift */,
 				EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */,
+				EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */,
+				EEA132232A7F5A690016D01A /* TimePickerView.swift */,
+				EEA132252A7F6D490016D01A /* AddFileView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -941,8 +975,10 @@
 				EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */,
+				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
+				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
@@ -966,6 +1002,7 @@
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
+				EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */,
 				EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,
 				EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */,
@@ -991,10 +1028,12 @@
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
+				EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
 				EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */,
+				EEA132262A7F6D490016D01A /* AddFileView.swift in Sources */,
 				EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */,
 				EE93AA312A6BB17A00E30C76 /* BottomNextButton.swift in Sources */,
 				EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */,
@@ -1029,6 +1068,7 @@
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,
 				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
+				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
 				EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */,
 				EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */,
