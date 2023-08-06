@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class LostItemWriteViewController: UIViewController {
     
@@ -30,7 +31,7 @@ final class LostItemWriteViewController: UIViewController {
         return view
     }()
     
-    private let titleTextField: UITextField = {
+    private lazy var titleTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "제목을 적어주세요."
         textField.font = .body1
@@ -359,13 +360,27 @@ final class LostItemWriteViewController: UIViewController {
     
     // MARK: Property
     
+    private let viewModel: LostItemWriteViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: Life Cycle
+    
+    init(viewModel: LostItemWriteViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         hideKeyboardWhenTappedArround()
         addTargets()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -663,6 +678,19 @@ final class LostItemWriteViewController: UIViewController {
         configureBackbarButton()
     }
     
+    private func bind() {
+        viewModel.$isTitleWrite.combineLatest(
+            viewModel.$isCategoryWrite,
+            viewModel.$isKeepDateWrite,
+            viewModel.$isAddFile)
+        .receive(on: DispatchQueue.main)
+        .map { $0 && $1 && $2 && $3 }
+        .sink { [weak self] isValid in
+            self?.completeButton.setNextButton(isSelected: isValid)
+        }.store(in: &cancellables)
+        
+    }
+    
     private func viewBorderInit() {
         [titleView, categoryView, detailLocationView, keepDateView, keepTimeView, otherTextView,
             addFileView
@@ -696,6 +724,11 @@ final class LostItemWriteViewController: UIViewController {
             self,
             action: #selector(photoRemoveButtonTouchUpInside),
             for: .touchUpInside
+        )
+        titleTextField.addTarget(
+            self,
+            action: #selector(textFieldChanged),
+            for: .editingChanged
         )
     }
     
@@ -734,7 +767,14 @@ final class LostItemWriteViewController: UIViewController {
         photoImageView.image = nil
         addFileView.isHidden = false
         addFileDescriptionLabel.isHidden = false
+        viewModel.isAddFile = false
     }
+    
+    @objc
+    private func textFieldChanged(sender: UITextField) {
+        viewModel.titleTextFieldChanged(text: sender.text)
+    }
+    
 }
 
 // MARK: Keyboard
@@ -806,6 +846,7 @@ extension LostItemWriteViewController: LostItemViewDelegate {
         lostItemCategoryView.isHidden = true
         categoryPlaceHoldeLabel.text = categoryType.name
         categoryPlaceHoldeLabel.textColor = .body1
+        viewModel.isCategoryWrite = true
         
     }
 }
@@ -815,6 +856,7 @@ extension LostItemWriteViewController: CalendarViewDelegate {
         calendarView.isHidden = true
         keepDatePlaceHoldeLabel.text = date.convertToYearMonthDayString()
         keepDatePlaceHoldeLabel.textColor = .body1
+        viewModel.selectDate(date: date)
     }
 }
 
@@ -823,6 +865,7 @@ extension LostItemWriteViewController: TimePickerViewDelegate {
         timePickerView.isHidden = true
         keepTimePlaceHoldeLabel.text = time.convertToHourMinString()
         keepTimePlaceHoldeLabel.textColor = .body1
+        viewModel.selectTime(date: time)
     }
     
 }
@@ -860,6 +903,7 @@ extension LostItemWriteViewController: UIImagePickerControllerDelegate & UINavig
             photoImageView.image = image
             addFileView.isHidden = true
             addFileDescriptionLabel.isHidden = true
+            viewModel.addFile()
             dismiss(animated: true)
         }
     }

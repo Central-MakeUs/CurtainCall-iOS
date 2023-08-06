@@ -340,7 +340,7 @@ final class LostItemViewController: UIViewController {
 //        present(writeViewController, animated: true)
 //        
         // MARK: Case2
-        navigationController?.pushViewController(LostItemWriteViewController(), animated: true)
+        navigationController?.pushViewController(LostItemWriteViewController(viewModel: LostItemWriteViewModel()), animated: true)
     }
 }
 
