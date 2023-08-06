@@ -269,6 +269,70 @@ final class LostItemWriteViewController: UIViewController {
         return button
     }()
     
+    private lazy var lostItemCategoryView: LostItemSmallCategoryView = {
+        let view = LostItemSmallCategoryView()
+        view.isHidden = true
+        view.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
+        view.layer.cornerRadius = 10
+        view.delegate = self
+        return view
+    }()
+    
+    private lazy var calendarView: CalendarView = {
+        let calendarView = CalendarView(isSectableDates: [Date()])
+        calendarView.layer.cornerRadius = 10
+        calendarView.isHidden = true
+        calendarView.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
+        calendarView.delegate = self
+        return calendarView
+    }()
+    
+    private lazy var timePickerView: TimePickerView = {
+        let pickerView = TimePickerView()
+        pickerView.isHidden = true
+        pickerView.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
+        pickerView.layer.cornerRadius = 10
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
+    private lazy var lostItemAddFileView: AddFileView = {
+        let addFileView = AddFileView()
+        addFileView.isHidden = true
+        addFileView.layer.applySketchShadow(
+            color: UIColor(rgb: 0x273041),
+            alpha: 0.1,
+            x: 0,
+            y: 10,
+            blur: 20,
+            spread: 0
+        )
+        addFileView.delegate = self
+        addFileView.layer.cornerRadius = 10
+        return addFileView
+    }()
+    
     private let emptyView = UIView()
     
     
@@ -280,6 +344,7 @@ final class LostItemWriteViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         hideKeyboardWhenTappedArround()
+        addTargets()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -311,7 +376,8 @@ final class LostItemWriteViewController: UIViewController {
             detailLocationLabel, detailLocationView, keepDateLabel, keepDateView, keepTimeLabel,
             keepTimeView, otherLabel, addFileLabel, addFileView, otherTextView,
             addFileDescriptionLabel, titleDotView, categoryDotView, getLocationDotView,
-            keepDateDotView, addFileDotView
+            keepDateDotView, addFileDotView, lostItemCategoryView, calendarView, timePickerView,
+            lostItemAddFileView
         )
         titleView.addSubviews(titleTextField)
         categoryView.addSubviews(
@@ -489,7 +555,7 @@ final class LostItemWriteViewController: UIViewController {
             $0.top.equalTo(addFileView.snp.bottom).offset(10)
             $0.leading.equalTo(addFileView)
             $0.trailing.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview()
+//            $0.bottom.equalToSuperview()
         }
         
         completeButton.snp.makeConstraints {
@@ -534,7 +600,28 @@ final class LostItemWriteViewController: UIViewController {
             $0.leading.equalTo(addFileLabel.snp.trailing).offset(2)
         }
         
+        lostItemCategoryView.snp.makeConstraints {
+            $0.top.equalTo(categoryView.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(categoryView)
+        }
         
+        calendarView.snp.makeConstraints {
+            $0.top.equalTo(keepDateView.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+        }
+        
+        timePickerView.snp.makeConstraints {
+            $0.top.equalTo(keepTimeView.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(keepTimeView)
+            $0.height.equalTo(268)
+        }
+        
+        lostItemAddFileView.snp.makeConstraints {
+            $0.top.equalTo(addFileView.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(addFileView)
+            $0.height.equalTo(122)
+            $0.bottom.equalToSuperview().inset(20)
+        }
     }
     
     private func configureNavigation() {
@@ -542,6 +629,64 @@ final class LostItemWriteViewController: UIViewController {
         configureBackbarButton()
     }
     
+    private func viewBorderInit() {
+        [titleView, categoryView, detailLocationView, keepDateView, keepTimeView, otherTextView,
+            addFileView
+        ].forEach { view in
+            view.layer.borderWidth = 0
+        }
+    }
+    
+    private func addTargets() {
+        categoryButton.addTarget(
+            self,
+            action: #selector(categoryButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        keepDateButton.addTarget(
+            self,
+            action: #selector(keepDateButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        keepTimeButton.addTarget(
+            self,
+            action: #selector(keepTimeButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        addFileButton.addTarget(
+            self,
+            action: #selector(addFileButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    private func categoryButtonTouchUpInside() {
+        lostItemCategoryView.isHidden = false
+        viewBorderInit()
+        categoryView.layer.borderWidth = 1
+    }
+    
+    @objc
+    private func keepDateButtonTouchUpInside() {
+        calendarView.isHidden = false
+        viewBorderInit()
+        keepDateView.layer.borderWidth = 1
+    }
+    
+    @objc
+    private func keepTimeButtonTouchUpInside() {
+        timePickerView.isHidden = false
+        viewBorderInit()
+        keepTimeView.layer.borderWidth = 1
+    }
+    
+    @objc
+    private func addFileButtonTouchUpInside() {
+        lostItemAddFileView.isHidden = false
+        viewBorderInit()
+        addFileView.layer.borderWidth = 1
+    }
 }
 
 // MARK: Keyboard
@@ -605,5 +750,43 @@ extension LostItemWriteViewController: UITextViewDelegate {
         // TODO: count 변경
         guard content.count <= 5 else { return false }
         return true
+    }
+}
+
+extension LostItemWriteViewController: LostItemViewDelegate {
+    func didTappedCategoryButton(categoryType: LostItemCategoryType) {
+        lostItemCategoryView.isHidden = true
+        categoryPlaceHoldeLabel.text = categoryType.name
+        categoryPlaceHoldeLabel.textColor = .body1
+        
+    }
+}
+
+extension LostItemWriteViewController: CalendarViewDelegate {
+    func selectedCalendar(date: Date) {
+        calendarView.isHidden = true
+        keepDatePlaceHoldeLabel.text = date.convertToYearMonthDayString()
+        keepDatePlaceHoldeLabel.textColor = .body1
+    }
+}
+
+extension LostItemWriteViewController: TimePickerViewDelegate {
+    func didTappedCheckButton(time: Date) {
+        timePickerView.isHidden = true
+        keepTimePlaceHoldeLabel.text = time.convertToHourMinString()
+        keepTimePlaceHoldeLabel.textColor = .body1
+    }
+    
+}
+
+extension LostItemWriteViewController: AddFileViewDelegate {
+    func didTapSelectImage() {
+        lostItemAddFileView.isHidden = true
+        print("사진첩으로 이동")
+    }
+    
+    func didTapPhoto() {
+        lostItemAddFileView.isHidden = true
+        print("포토 화면으로 이동")
     }
 }

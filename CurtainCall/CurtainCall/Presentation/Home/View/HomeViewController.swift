@@ -20,6 +20,8 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
+    private let a = AddFileView()
+    
     // MARK: - Properties
     
     var c = Set<AnyCancellable>()
@@ -39,11 +41,11 @@ final class HomeViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.addSubview(homeLabel)
+        view.addSubview(a)
     }
     
     private func configureConstraints() {
-        homeLabel.snp.makeConstraints {
+        a.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
