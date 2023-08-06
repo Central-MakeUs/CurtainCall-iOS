@@ -95,4 +95,5 @@ enum ImageNamespace {
     
     static let lostItemSelectImage = "lostItem_select_image"
     static let lostItemPhoto = "lostItem_photo"
+    static let photoRemoveButton = "photo_remove_button"
 }

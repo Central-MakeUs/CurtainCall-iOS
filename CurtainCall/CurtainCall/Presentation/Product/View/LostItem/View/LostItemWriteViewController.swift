@@ -350,6 +350,13 @@ final class LostItemWriteViewController: UIViewController {
         return imageView
     }()
     
+    private let photoRemoveButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: ImageNamespace.photoRemoveButton), for: .normal)
+        button.isHidden = true
+        return button
+    }()
+    
     // MARK: Property
     
     // MARK: Life Cycle
@@ -386,12 +393,13 @@ final class LostItemWriteViewController: UIViewController {
         scrollView.addSubview(contentView)
         
         contentView.addSubviews(
-            titleLabel, titleView, categoryLabel, categoryView, getLocationLabel, getLocationView,
+            photoImageView, photoRemoveButton, titleLabel, titleView, categoryLabel,
+            categoryView, getLocationLabel, getLocationView,
             detailLocationLabel, detailLocationView, keepDateLabel, keepDateView, keepTimeLabel,
             keepTimeView, otherLabel, addFileLabel, addFileView, otherTextView,
             addFileDescriptionLabel, titleDotView, categoryDotView, getLocationDotView,
             keepDateDotView, addFileDotView, lostItemCategoryView, calendarView, timePickerView,
-            lostItemAddFileView, photoImageView
+            lostItemAddFileView
         )
         titleView.addSubviews(titleTextField)
         categoryView.addSubviews(
@@ -564,6 +572,11 @@ final class LostItemWriteViewController: UIViewController {
             $0.size.equalTo(80)
         }
         
+        photoRemoveButton.snp.makeConstraints {
+            $0.bottom.trailing.equalTo(photoImageView).offset(2)
+            $0.size.equalTo(22)
+        }
+        
         addFilePlaceHoldeLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -679,6 +692,11 @@ final class LostItemWriteViewController: UIViewController {
             action: #selector(addFileButtonTouchUpInside),
             for: .touchUpInside
         )
+        photoRemoveButton.addTarget(
+            self,
+            action: #selector(photoRemoveButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @objc
@@ -707,6 +725,15 @@ final class LostItemWriteViewController: UIViewController {
         lostItemAddFileView.isHidden = false
         viewBorderInit()
         addFileView.layer.borderWidth = 1
+    }
+    
+    @objc
+    private func photoRemoveButtonTouchUpInside() {
+        photoImageView.isHidden = true
+        photoRemoveButton.isHidden = true
+        photoImageView.image = nil
+        addFileView.isHidden = false
+        addFileDescriptionLabel.isHidden = false
     }
 }
 
@@ -829,6 +856,7 @@ extension LostItemWriteViewController: UIImagePickerControllerDelegate & UINavig
     ) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             photoImageView.isHidden = false
+            photoRemoveButton.isHidden = false
             photoImageView.image = image
             addFileView.isHidden = true
             addFileDescriptionLabel.isHidden = true
