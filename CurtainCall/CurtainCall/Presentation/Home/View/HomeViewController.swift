@@ -101,6 +101,33 @@ final class HomeViewController: UIViewController {
         return tableView
     }()
     
+    private let myParticipationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    private let myParticipationHeaderView = UIView()
+    private let myParticipationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "📢  My 참여"
+        label.font = .heading2
+        label.textColor = .title
+        return label
+    }()
+    
+    private lazy var myParticipationTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.register(
+            MyRecruitmentCell.self,
+            forCellReuseIdentifier: MyRecruitmentCell.identifier
+        )
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
     // MARK: - Properties
     
     enum BannerSection {
@@ -133,10 +160,16 @@ final class HomeViewController: UIViewController {
         contentView.addSubviews(navigationView, helloLabel, bannerView, myStackView)
         bannerView.addSubviews(bannerCollectionView, pageControl)
         navigationView.addSubviews(titleImageView, searchButton)
-        myStackView.addArrangedSubviews(myRecruitmentView)
+        myStackView.addArrangedSubviews(myRecruitmentView, myParticipationView)
+        
         myRecruitmentView.addSubviews(myRecruitmentHeaderView, myRecruitmentTableView)
         myRecruitmentHeaderView.addSubview(myRecruitmentLabel)
+        
+        myParticipationView.addSubviews(myParticipationHeaderView, myParticipationTableView)
+        myParticipationHeaderView.addSubview(myParticipationLabel)
+        
     }
+    
     
     private func configureConstraints() {
         scrollView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
@@ -179,6 +212,7 @@ final class HomeViewController: UIViewController {
             $0.top.equalTo(bannerView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
             // TODO: 추가
+            // $0.bottom.equalToSuperview().inset(24)
         }
         myRecruitmentHeaderView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -190,6 +224,21 @@ final class HomeViewController: UIViewController {
         }
         myRecruitmentTableView.snp.makeConstraints {
             $0.top.equalTo(myRecruitmentHeaderView.snp.bottom)
+            $0.height.equalTo(HomeMyProductData.list.count * 111)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(10)
+        }
+        
+        myParticipationHeaderView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(81)
+        }
+        myParticipationLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(3)
+            $0.leading.equalToSuperview().offset(24)
+        }
+        myParticipationTableView.snp.makeConstraints {
+            $0.top.equalTo(myParticipationHeaderView.snp.bottom)
             $0.height.equalTo(HomeMyProductData.list.count * 111)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)

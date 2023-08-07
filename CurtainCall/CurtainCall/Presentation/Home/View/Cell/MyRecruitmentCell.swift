@@ -160,6 +160,10 @@ final class MyRecruitmentCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(6)
             $0.centerY.equalToSuperview()
         }
+        countLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(13)
+            $0.trailing.equalToSuperview().inset(10)
+        }
     }
     
     func draw(item: HomeMyProductData) {
@@ -168,5 +172,6 @@ final class MyRecruitmentCell: UITableViewCell {
         contentLabel.text = item.content
         dateLabel.text = item.date.convertToYearMonthDayWeekString()
         timeLabel.text = item.date.convertToHourMinString()
+        countLabel.text = "\(item.minCount)/\(item.maxCount)"
     }
 }
