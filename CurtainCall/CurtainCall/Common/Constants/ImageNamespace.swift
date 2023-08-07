@@ -101,4 +101,6 @@ enum ImageNamespace {
     static let homeBannerDictIcon = "home_banner_dict_icon"
     static let homeBannerTikerIcon = "home_banner_ticket_icon"
     static let homeBannerSaleIcon = "home_banner_sale_icon"
+    static let homeMyDateIcon = "home_my_date_icon"
+    static let homeMyTimeIcon = "home_my_time_icon"
 }
