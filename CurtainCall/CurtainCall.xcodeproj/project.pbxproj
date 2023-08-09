@@ -64,6 +64,8 @@
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
 		EE8437BA2A81280D00ADD3D8 /* HomeMyProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B92A81280D00ADD3D8 /* HomeMyProductData.swift */; };
+		EE8437BC2A81431B00ADD3D8 /* LiveTalkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */; };
+		EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */; };
 		EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */; };
 		EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */; };
 		EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */; };
@@ -72,6 +74,12 @@
 		EE93AA312A6BB17A00E30C76 /* BottomNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */; };
 		EE93AA332A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */; };
 		EE93AA362A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93AA352A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift */; };
+		EE9A88512A83C0800085F816 /* Top10Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88502A83C0800085F816 /* Top10Cell.swift */; };
+		EE9A88532A83C30A0085F816 /* Top10Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88522A83C30A0085F816 /* Top10Data.swift */; };
+		EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88542A83D3F10085F816 /* ScheduledToOpenProductCell.swift */; };
+		EE9A88572A83D73D0085F816 /* ScheduledToOpenProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88562A83D73D0085F816 /* ScheduledToOpenProductData.swift */; };
+		EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88582A83DCB20085F816 /* GoodCostProductData.swift */; };
+		EE9A885B2A83DCF00085F816 /* GoodCostProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A885A2A83DCF00085F816 /* GoodCostProductCell.swift */; };
 		EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */; };
 		EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */; };
 		EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132232A7F5A690016D01A /* TimePickerView.swift */; };
@@ -191,6 +199,8 @@
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecruitmentCell.swift; sourceTree = "<group>"; };
 		EE8437B92A81280D00ADD3D8 /* HomeMyProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMyProductData.swift; sourceTree = "<group>"; };
+		EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkData.swift; sourceTree = "<group>"; };
+		EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLiveTalkCell.swift; sourceTree = "<group>"; };
 		EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLineView.swift; sourceTree = "<group>"; };
 		EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingOtherDetailViewController.swift; sourceTree = "<group>"; };
 		EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchCell.swift; sourceTree = "<group>"; };
@@ -199,6 +209,12 @@
 		EE93AA302A6BB17A00E30C76 /* BottomNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNextButton.swift; sourceTree = "<group>"; };
 		EE93AA322A6BBDC700E30C76 /* PartyMemberOtherRecruitingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingContentViewController.swift; sourceTree = "<group>"; };
 		EE93AA352A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDetailViewController.swift; sourceTree = "<group>"; };
+		EE9A88502A83C0800085F816 /* Top10Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10Cell.swift; sourceTree = "<group>"; };
+		EE9A88522A83C30A0085F816 /* Top10Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10Data.swift; sourceTree = "<group>"; };
+		EE9A88542A83D3F10085F816 /* ScheduledToOpenProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledToOpenProductCell.swift; sourceTree = "<group>"; };
+		EE9A88562A83D73D0085F816 /* ScheduledToOpenProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledToOpenProductData.swift; sourceTree = "<group>"; };
+		EE9A88582A83DCB20085F816 /* GoodCostProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodCostProductData.swift; sourceTree = "<group>"; };
+		EE9A885A2A83DCF00085F816 /* GoodCostProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodCostProductCell.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemSmallCategoryView.swift; sourceTree = "<group>"; };
 		EEA132232A7F5A690016D01A /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -640,6 +656,10 @@
 			children = (
 				EEA1322E2A7FD6920016D01A /* HomeBannerCell.swift */,
 				EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */,
+				EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */,
+				EE9A88502A83C0800085F816 /* Top10Cell.swift */,
+				EE9A88542A83D3F10085F816 /* ScheduledToOpenProductCell.swift */,
+				EE9A885A2A83DCF00085F816 /* GoodCostProductCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -649,6 +669,10 @@
 			children = (
 				EEA132312A7FE2EE0016D01A /* BannerData.swift */,
 				EE8437B92A81280D00ADD3D8 /* HomeMyProductData.swift */,
+				EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */,
+				EE9A88522A83C30A0085F816 /* Top10Data.swift */,
+				EE9A88562A83D73D0085F816 /* ScheduledToOpenProductData.swift */,
+				EE9A88582A83DCB20085F816 /* GoodCostProductData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1028,6 +1052,7 @@
 				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
+				EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE93AA362A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift in Sources */,
 				EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */,
@@ -1035,8 +1060,11 @@
 				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
 				EEA1322F2A7FD6920016D01A /* HomeBannerCell.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
+				EE9A885B2A83DCF00085F816 /* GoodCostProductCell.swift in Sources */,
+				EE8437BC2A81431B00ADD3D8 /* LiveTalkData.swift in Sources */,
 				EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */,
 				EE9301262A72470200C8FBA5 /* ProductSearchInfo.swift in Sources */,
+				EE9A88572A83D73D0085F816 /* ScheduledToOpenProductData.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */,
@@ -1068,6 +1096,7 @@
 				EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */,
 				EEA1322D2A7FCB530016D01A /* HomeBannerHeaderView.swift in Sources */,
 				EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */,
+				EE9A88532A83C30A0085F816 /* Top10Data.swift in Sources */,
 				EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
@@ -1079,6 +1108,7 @@
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
+				EE9A88512A83C0800085F816 /* Top10Cell.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
 				EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */,
@@ -1105,6 +1135,7 @@
 				EE002C7C2A7A54DF009B65F2 /* Secret.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
 				EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */,
+				EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */,
 				EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */,
@@ -1116,6 +1147,7 @@
 				EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
 				EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */,
+				EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,

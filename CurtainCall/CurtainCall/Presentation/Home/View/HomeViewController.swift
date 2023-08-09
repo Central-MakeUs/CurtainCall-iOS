@@ -110,7 +110,7 @@ final class HomeViewController: UIViewController {
     private let myParticipationHeaderView = UIView()
     private let myParticipationLabel: UILabel = {
         let label = UILabel()
-        label.text = "📢  My 참여"
+        label.text = "🔎  My 참여"
         label.font = .heading2
         label.textColor = .title
         return label
@@ -128,21 +128,150 @@ final class HomeViewController: UIViewController {
         return tableView
     }()
     
+    private let liveTalkView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .hexF5F6F8
+        return view
+    }()
+    
+    private let liveTalkHeaderView = UIView()
+    private let liveTalkLabel: UILabel = {
+        let label = UILabel()
+        label.text = "💬  커밍순 라이브톡"
+        label.font = .heading2
+        label.textColor = .title
+        return label
+    }()
+    
+    private lazy var liveTalkCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLiveTalkLayout())
+        collectionView.register(
+            HomeLiveTalkCell.self,
+            forCellWithReuseIdentifier: HomeLiveTalkCell.identifier
+        )
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        return collectionView
+    }()
+    
+    private let top10View: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    private let top10HeaderView = UIView()
+    private let top10Label: UILabel = {
+        let label = UILabel()
+        label.text = "🔥  TOP10 인기 작품"
+        label.font = .heading2
+        label.textColor = .title
+        return label
+    }()
+    
+    private lazy var top10CollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createTop10Layout())
+        collectionView.register(
+            Top10Cell.self,
+            forCellWithReuseIdentifier: Top10Cell.identifier
+        )
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        return collectionView
+    }()
+    
+    private let scheduledToOpenProductView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    private let scheduledToOpenProductHeaderView = UIView()
+    private let scheduledToOpenProductLabel: UILabel = {
+        let label = UILabel()
+        label.text = "🕕  오픈 예정 공연"
+        label.font = .heading2
+        label.textColor = .title
+        return label
+    }()
+    
+    private lazy var scheduledToOpenProductCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createTop10Layout())
+        collectionView.register(
+            ScheduledToOpenProductCell.self,
+            forCellWithReuseIdentifier: ScheduledToOpenProductCell.identifier
+        )
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        return collectionView
+    }()
+    
+    private let goodCostProductView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    private let goodCostProductHeaderView = UIView()
+    private let goodCostProductLabel: UILabel = {
+        let label = UILabel()
+        label.text = "💸  가성비 좋은 공연"
+        label.font = .heading2
+        label.textColor = .title
+        return label
+    }()
+    
+    private lazy var goodCostProductCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createTop10Layout())
+        collectionView.register(
+            GoodCostProductCell.self,
+            forCellWithReuseIdentifier: GoodCostProductCell.identifier
+        )
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        return collectionView
+    }()
+    
+    
     // MARK: - Properties
     
     enum BannerSection {
         case main
     }
     typealias BannerItem = BannerData
+    
+    enum LiveTalkSection {
+        case main
+    }
+    typealias LiveTalkItem = LiveTalkData
+    
+    enum Top10Section {
+        case main
+    }
+    typealias Top10Item = Top10Data
+    
+    enum ScheduledToOpenProductSection {
+        case main
+    }
+    typealias ScheduledToOpenProductItem = ScheduledToOpenProductData
+    
+    enum GoodCostProductSection {
+        case main
+    }
+    typealias GoodCostProductItem = GoodCostProductData
+    
     private var bannerDatasource: UICollectionViewDiffableDataSource<BannerSection, BannerItem>?
-    
-    
+    private var liveTalkDatasource: UICollectionViewDiffableDataSource<LiveTalkSection, LiveTalkItem>?
+    private var top10Datasource: UICollectionViewDiffableDataSource<Top10Section, Top10Item>?
+    private var scheduledToOpenProductDatasource: UICollectionViewDiffableDataSource<ScheduledToOpenProductSection, ScheduledToOpenProductItem>?
+    private var goodCostProductDatasource: UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>?
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         view.backgroundColor = .pointColor1
+//        myRecruitmentView.isHidden = true
     }
     
     // MARK: - Helpers
@@ -152,12 +281,24 @@ final class HomeViewController: UIViewController {
         configureConstraints()
         configureBannerDatasource()
         confgureBannerSnapshot()
+        configureLiveTalkDatasource()
+        confgureLiveTalkSnapshot()
+        configureTop10Datasource()
+        configureTop10Snapshot()
+        configureScheduledToOpenProductDatasource()
+        configureScheduledToOpenProductSnapshot()
+        configureGoodCostProductDatasource()
+        configureGoodCostProductSnapshot()
+        
     }
     
     private func configureSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(navigationView, helloLabel, bannerView, myStackView)
+        contentView.addSubviews(
+            navigationView, helloLabel, bannerView, myStackView,
+            liveTalkView, top10View, scheduledToOpenProductView, goodCostProductView
+        )
         bannerView.addSubviews(bannerCollectionView, pageControl)
         navigationView.addSubviews(titleImageView, searchButton)
         myStackView.addArrangedSubviews(myRecruitmentView, myParticipationView)
@@ -168,6 +309,20 @@ final class HomeViewController: UIViewController {
         myParticipationView.addSubviews(myParticipationHeaderView, myParticipationTableView)
         myParticipationHeaderView.addSubview(myParticipationLabel)
         
+        liveTalkView.addSubviews(liveTalkHeaderView, liveTalkCollectionView)
+        liveTalkHeaderView.addSubview(liveTalkLabel)
+        
+        top10View.addSubviews(top10HeaderView, top10CollectionView)
+        top10HeaderView.addSubview(top10Label)
+        
+        scheduledToOpenProductView.addSubviews(
+            scheduledToOpenProductHeaderView, scheduledToOpenProductCollectionView)
+        scheduledToOpenProductHeaderView.addSubview(scheduledToOpenProductLabel)
+        
+        goodCostProductView.addSubviews(
+            goodCostProductHeaderView, goodCostProductCollectionView)
+        goodCostProductHeaderView.addSubview(goodCostProductLabel)
+        
     }
     
     
@@ -176,7 +331,7 @@ final class HomeViewController: UIViewController {
         contentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide)
-            $0.height.equalTo(2000)
+//            $0.height.equalTo(2000)
         }
         navigationView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -216,7 +371,7 @@ final class HomeViewController: UIViewController {
         }
         myRecruitmentHeaderView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(81)
+            $0.height.equalTo(71)
         }
         myRecruitmentLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(3)
@@ -224,14 +379,14 @@ final class HomeViewController: UIViewController {
         }
         myRecruitmentTableView.snp.makeConstraints {
             $0.top.equalTo(myRecruitmentHeaderView.snp.bottom)
-            $0.height.equalTo(HomeMyProductData.list.count * 111)
+            $0.height.equalTo(HomeMyProductData.list.count * 111 + 10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
         }
         
         myParticipationHeaderView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(81)
+            $0.height.equalTo(71)
         }
         myParticipationLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(3)
@@ -239,14 +394,146 @@ final class HomeViewController: UIViewController {
         }
         myParticipationTableView.snp.makeConstraints {
             $0.top.equalTo(myParticipationHeaderView.snp.bottom)
-            $0.height.equalTo(HomeMyProductData.list.count * 111)
+            $0.height.equalTo(HomeMyProductData.list.count * 111 + 10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
+        }
+        
+        liveTalkView.snp.makeConstraints {
+            $0.top.equalTo(myStackView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            
+        }
+        
+        liveTalkHeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(58)
+            
+        }
+        liveTalkLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(10)
+        }
+        
+        liveTalkCollectionView.snp.makeConstraints {
+            $0.top.equalTo(liveTalkHeaderView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(139)
+            $0.bottom.equalToSuperview()
+        }
+        
+        top10View.snp.makeConstraints {
+            $0.top.equalTo(liveTalkView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        top10HeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(8)
+            
+        }
+        top10Label.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(10)
+        }
+        
+        top10CollectionView.snp.makeConstraints {
+            $0.top.equalTo(top10HeaderView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(220)
+            $0.bottom.equalToSuperview()
+        }
+        
+        scheduledToOpenProductView.snp.makeConstraints {
+            $0.top.equalTo(top10View.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        scheduledToOpenProductHeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(98)
+
+        }
+        scheduledToOpenProductLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(10)
+        }
+
+        scheduledToOpenProductCollectionView.snp.makeConstraints {
+            $0.top.equalTo(scheduledToOpenProductHeaderView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(220)
+            $0.bottom.equalToSuperview()
+        }
+        
+        goodCostProductView.snp.makeConstraints {
+            $0.top.equalTo(scheduledToOpenProductView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        goodCostProductHeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(98)
+
+        }
+        goodCostProductLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(10)
+        }
+
+        goodCostProductCollectionView.snp.makeConstraints {
+            $0.top.equalTo(goodCostProductHeaderView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(220)
+            $0.bottom.equalToSuperview().inset(100)
         }
         
         
     }
     
+    
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
+        pageControl.currentPage = page
+    }
+}
+
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return HomeMyProductData.list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueCell(
+            type: MyRecruitmentCell.self,
+            indexPath: indexPath
+        ) else { return UITableViewCell() }
+        cell.selectionStyle = .none
+        cell.draw(item: HomeMyProductData.list[indexPath.row])
+        return cell
+    }
+    
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 111
+    }
+}
+
+// MARK: Layout
+
+extension HomeViewController {
     private func createBannerLayout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
@@ -289,34 +576,137 @@ final class HomeViewController: UIViewController {
         bannerDatasource?.apply(snapshot)
     }
     
-}
-
-extension HomeViewController: UICollectionViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
-        pageControl.currentPage = page
-    }
-}
-
-extension HomeViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HomeMyProductData.list.count
+    private func createLiveTalkLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(127),
+            heightDimension: .estimated(150)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(127),
+            heightDimension: .estimated(150)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.scrollDirection = .horizontal
+        return UICollectionViewCompositionalLayout(section: section, configuration: config)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueCell(
-            type: MyRecruitmentCell.self,
-            indexPath: indexPath
-        ) else { return UITableViewCell() }
-        cell.selectionStyle = .none
-        cell.draw(item: HomeMyProductData.list[indexPath.row])
-        return cell
+    private func configureLiveTalkDatasource() {
+        liveTalkDatasource = UICollectionViewDiffableDataSource<LiveTalkSection, LiveTalkItem>(
+            collectionView: liveTalkCollectionView,
+            cellProvider: { collectionView, indexPath, itemIdentifier in
+                guard let cell = collectionView.dequeueCell(
+                    type: HomeLiveTalkCell.self,
+                    indexPath: indexPath
+                ) else { return UICollectionViewCell() }
+                print(itemIdentifier)
+                cell.drawCell(data: itemIdentifier)
+                return cell
+            }
+        )
     }
     
-}
-
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
+    private func confgureLiveTalkSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<LiveTalkSection, LiveTalkItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(LiveTalkData.list, toSection: .main)
+        liveTalkDatasource?.apply(snapshot)
+    }
+    
+    private func createTop10Layout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(120),
+            heightDimension: .absolute(218)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(120),
+            heightDimension: .absolute(218)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.scrollDirection = .horizontal
+        return UICollectionViewCompositionalLayout(section: section, configuration: config)
+    }
+    
+    private func configureTop10Datasource() {
+        top10Datasource = UICollectionViewDiffableDataSource<Top10Section, Top10Item>(
+            collectionView: top10CollectionView,
+            cellProvider: { collectionView, indexPath, itemIdentifier in
+                guard let cell = collectionView.dequeueCell(
+                    type: Top10Cell.self,
+                    indexPath: indexPath
+                ) else { return UICollectionViewCell() }
+                print(itemIdentifier)
+                cell.drawCell(data: itemIdentifier)
+                return cell
+            }
+        )
+    }
+    
+    private func configureTop10Snapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Top10Section, Top10Item>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(Top10Data.list, toSection: .main)
+        top10Datasource?.apply(snapshot)
+    }
+    
+    private func configureScheduledToOpenProductDatasource() {
+        scheduledToOpenProductDatasource = UICollectionViewDiffableDataSource<ScheduledToOpenProductSection, ScheduledToOpenProductItem>(
+            collectionView: scheduledToOpenProductCollectionView,
+            cellProvider: { collectionView, indexPath, itemIdentifier in
+                guard let cell = collectionView.dequeueCell(
+                    type: ScheduledToOpenProductCell.self,
+                    indexPath: indexPath
+                ) else { return UICollectionViewCell() }
+                print(itemIdentifier)
+                cell.drawCell(data: itemIdentifier)
+                return cell
+            }
+        )
+    }
+    
+    private func configureScheduledToOpenProductSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<ScheduledToOpenProductSection, ScheduledToOpenProductItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(ScheduledToOpenProductData.list, toSection: .main)
+        scheduledToOpenProductDatasource?.apply(snapshot)
+    }
+    
+    private func configureGoodCostProductDatasource() {
+        goodCostProductDatasource = UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>(
+            collectionView: goodCostProductCollectionView,
+            cellProvider: { collectionView, indexPath, itemIdentifier in
+                guard let cell = collectionView.dequeueCell(
+                    type: GoodCostProductCell.self,
+                    indexPath: indexPath
+                ) else { return UICollectionViewCell() }
+                print(itemIdentifier)
+                cell.drawCell(data: itemIdentifier)
+                return cell
+            }
+        )
+    }
+    
+    private func configureGoodCostProductSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<GoodCostProductSection, GoodCostProductItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(GoodCostProductData.list, toSection: .main)
+        goodCostProductDatasource?.apply(snapshot)
     }
 }
