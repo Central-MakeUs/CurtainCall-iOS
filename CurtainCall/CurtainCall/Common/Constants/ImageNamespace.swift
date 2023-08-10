@@ -96,4 +96,13 @@ enum ImageNamespace {
     static let lostItemSelectImage = "lostItem_select_image"
     static let lostItemPhoto = "lostItem_photo"
     static let photoRemoveButton = "photo_remove_button"
+    
+    static let homeBannerTitle = "home_banner_title"
+    static let homeBannerDictIcon = "home_banner_dict_icon"
+    static let homeBannerTikerIcon = "home_banner_ticket_icon"
+    static let homeBannerSaleIcon = "home_banner_sale_icon"
+    static let homeMyDateIcon = "home_my_date_icon"
+    static let homeMyTimeIcon = "home_my_time_icon"
+    
+    static let top10StarIcon = "top10_star_icon"
 }
