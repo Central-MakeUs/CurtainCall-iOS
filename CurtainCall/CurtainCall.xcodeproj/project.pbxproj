@@ -60,6 +60,7 @@
 		EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0C2A6563A60027B0D4 /* Constants.swift */; };
 		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
+		EE625B582A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
@@ -195,6 +196,7 @@
 		EE5DED0C2A6563A60027B0D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberWriteCompleteViewController.swift; sourceTree = "<group>"; };
+		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
 		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecruitmentCell.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		EE0BEDF32A49586C008D9D05 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EE625B562A85DB4B00BFF7B6 /* Guide */,
 				EE3F2FEC2A58121900BC539C /* MyPage */,
 				EE3F2FEB2A58121100BC539C /* PartyMember */,
 				EE3F2FEA2A58120A00BC539C /* LiveTalk */,
@@ -595,6 +598,14 @@
 				EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		EE625B562A85DB4B00BFF7B6 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */,
+			);
+			path = Guide;
 			sourceTree = "<group>";
 		};
 		EE7C1AD62A7EA070000B208C /* View */ = {
@@ -1041,6 +1052,7 @@
 			files = (
 				EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */,
 				EE4B34322A66D3E300E6EB01 /* UIFont + Extension.swift in Sources */,
+				EE625B582A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift in Sources */,
 				EEF815452A738325009C1C57 /* StarImageView.swift in Sources */,
 				EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */,
 				EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */,
