@@ -430,7 +430,7 @@ final class HomeViewController: UIViewController {
             $0.top.equalTo(liveTalkHeaderView.snp.bottom)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(139)
+            $0.height.equalTo(159)
             $0.bottom.equalToSuperview()
         }
         
@@ -442,7 +442,7 @@ final class HomeViewController: UIViewController {
         top10HeaderView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(8)
+            $0.height.equalTo(58)
             
         }
         top10Label.snp.makeConstraints {
