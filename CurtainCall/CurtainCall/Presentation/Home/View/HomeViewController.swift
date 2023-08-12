@@ -274,6 +274,16 @@ final class HomeViewController: UIViewController {
 //        myRecruitmentView.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
@@ -505,6 +515,20 @@ extension HomeViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
         pageControl.currentPage = page
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let guideDictViewController = GuideDictViewController()
+            navigationController?.pushViewController(guideDictViewController, animated: true)
+        case 1:
+            return
+        case 2:
+            return
+        default:
+            fatalError("잘못된 컬렉션뷰")
+        }
     }
 }
 

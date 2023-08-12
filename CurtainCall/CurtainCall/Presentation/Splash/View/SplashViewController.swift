@@ -28,13 +28,6 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         startAnimation()
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
     }
     
     // MARK: - Helpers

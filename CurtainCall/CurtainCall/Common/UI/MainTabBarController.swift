@@ -76,7 +76,7 @@ final class MainTabBarController: UIViewController {
     
     
     private var viewControllers = [
-        HomeViewController(),
+        UINavigationController(rootViewController: HomeViewController()),
         UINavigationController(rootViewController: ProductViewController()), LiveTalkViewController(),
         PartyMemberViewController(), MyPageViewController()
     ]

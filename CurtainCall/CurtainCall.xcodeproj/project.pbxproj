@@ -80,6 +80,7 @@
 		EE9A88572A83D73D0085F816 /* ScheduledToOpenProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88562A83D73D0085F816 /* ScheduledToOpenProductData.swift */; };
 		EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88582A83DCB20085F816 /* GoodCostProductData.swift */; };
 		EE9A885B2A83DCF00085F816 /* GoodCostProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A885A2A83DCF00085F816 /* GoodCostProductCell.swift */; };
+		EE9A88622A85307C0085F816 /* GuideDictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88612A85307C0085F816 /* GuideDictViewController.swift */; };
 		EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */; };
 		EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */; };
 		EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132232A7F5A690016D01A /* TimePickerView.swift */; };
@@ -215,6 +216,7 @@
 		EE9A88562A83D73D0085F816 /* ScheduledToOpenProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledToOpenProductData.swift; sourceTree = "<group>"; };
 		EE9A88582A83DCB20085F816 /* GoodCostProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodCostProductData.swift; sourceTree = "<group>"; };
 		EE9A885A2A83DCF00085F816 /* GoodCostProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodCostProductCell.swift; sourceTree = "<group>"; };
+		EE9A88612A85307C0085F816 /* GuideDictViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDictViewController.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemSmallCategoryView.swift; sourceTree = "<group>"; };
 		EEA132232A7F5A690016D01A /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		EE0BEDF32A49586C008D9D05 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EE9A88602A85304E0085F816 /* Guide */,
 				EE3F2FEC2A58121900BC539C /* MyPage */,
 				EE3F2FEB2A58121100BC539C /* PartyMember */,
 				EE3F2FEA2A58120A00BC539C /* LiveTalk */,
@@ -634,6 +637,14 @@
 				EEF815502A73B2D5009C1C57 /* ProductReviewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EE9A88602A85304E0085F816 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				EE9A88612A85307C0085F816 /* GuideDictViewController.swift */,
+			);
+			path = Guide;
 			sourceTree = "<group>";
 		};
 		EEA132292A7FCAED0016D01A /* Header */ = {
@@ -1049,6 +1060,7 @@
 				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
+				EE9A88622A85307C0085F816 /* GuideDictViewController.swift in Sources */,
 				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
