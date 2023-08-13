@@ -527,8 +527,8 @@ extension HomeViewController: UICollectionViewDelegate {
             navigationController?.pushViewController(guideTickettingViewController, animated: true)
             return
         case 2:
-//            let guideTickettingViewController = GuideTicketingViewController()
-//            navigationController?.pushViewController(guideTickettingViewController, animated: true)
+            let saleViewController = GuideSaleViewController()
+            navigationController?.pushViewController(saleViewController, animated: true)
             return
         default:
             fatalError("잘못된 컬렉션뷰")
