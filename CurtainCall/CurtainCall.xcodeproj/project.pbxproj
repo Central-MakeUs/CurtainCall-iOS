@@ -30,6 +30,8 @@
 		EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EE0BEDFC2A495AAB008D9D05 /* SnapKit */; };
 		EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */; };
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
+		EE1825B82A8899540020BADA /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = EE1825B72A8899540020BADA /* CombineMoya */; };
+		EE1825BA2A8899540020BADA /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = EE1825B92A8899540020BADA /* Moya */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -299,10 +301,12 @@
 			files = (
 				EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */,
 				EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */,
+				EE1825BA2A8899540020BADA /* Moya in Frameworks */,
 				EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */,
 				EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */,
 				EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */,
 				EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */,
+				EE1825B82A8899540020BADA /* CombineMoya in Frameworks */,
 				0AE959D30E1325E953B34349 /* Pods_CurtainCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -977,6 +981,8 @@
 				EE0304B32A4E816C0038A09E /* FacebookCore */,
 				EE0304B52A4E816C0038A09E /* FacebookLogin */,
 				EEED57122A4EA321003D2F9C /* GoogleSignIn */,
+				EE1825B72A8899540020BADA /* CombineMoya */,
+				EE1825B92A8899540020BADA /* Moya */,
 			);
 			productName = CurtainCall;
 			productReference = EE0BEDDA2A495539008D9D05 /* CurtainCall.app */;
@@ -1011,6 +1017,7 @@
 				EE4EBAE12A4C013B00939823 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				EE0304B22A4E816C0038A09E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				EEED57112A4EA321003D2F9C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = EE0BEDDB2A495539008D9D05 /* Products */;
 			projectDirPath = "";
@@ -1444,6 +1451,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
 		EE4EBAE12A4C013B00939823 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -1477,6 +1492,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE0BEDFB2A495AAB008D9D05 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		EE1825B72A8899540020BADA /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		EE1825B92A8899540020BADA /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 		EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;
