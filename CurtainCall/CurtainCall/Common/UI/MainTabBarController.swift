@@ -24,7 +24,7 @@ final class MainTabBarController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = .hexF5F6F8
         return stackView
     }()
     
@@ -32,6 +32,7 @@ final class MainTabBarController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.tabbarHomeDeselected), for: .normal)
         button.setImage(UIImage(named: ImageNamespace.tabbarHomeSelected), for: .selected)
+        button.imageView?.contentMode = .scaleAspectFill
         button.tag = 0
         button.adjustsImageWhenHighlighted = false
         return button
@@ -76,7 +77,7 @@ final class MainTabBarController: UIViewController {
     
     
     private var viewControllers = [
-        HomeViewController(),
+        UINavigationController(rootViewController: HomeViewController()),
         UINavigationController(rootViewController: ProductViewController()), LiveTalkViewController(),
         PartyMemberViewController(), MyPageViewController()
     ]

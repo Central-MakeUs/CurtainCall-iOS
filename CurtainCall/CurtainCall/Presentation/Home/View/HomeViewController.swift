@@ -274,6 +274,16 @@ final class HomeViewController: UIViewController {
 //        myRecruitmentView.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
@@ -420,7 +430,7 @@ final class HomeViewController: UIViewController {
             $0.top.equalTo(liveTalkHeaderView.snp.bottom)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(139)
+            $0.height.equalTo(159)
             $0.bottom.equalToSuperview()
         }
         
@@ -432,7 +442,7 @@ final class HomeViewController: UIViewController {
         top10HeaderView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(8)
+            $0.height.equalTo(58)
             
         }
         top10Label.snp.makeConstraints {
@@ -505,6 +515,24 @@ extension HomeViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
         pageControl.currentPage = page
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let guideDictViewController = GuideDictViewController()
+            navigationController?.pushViewController(guideDictViewController, animated: true)
+        case 1:
+            let guideTickettingViewController = GuideTicketingViewController()
+            navigationController?.pushViewController(guideTickettingViewController, animated: true)
+            return
+        case 2:
+            let saleViewController = GuideSaleViewController()
+            navigationController?.pushViewController(saleViewController, animated: true)
+            return
+        default:
+            fatalError("잘못된 컬렉션뷰")
+        }
     }
 }
 
