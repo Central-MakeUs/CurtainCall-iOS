@@ -28,6 +28,7 @@ final class GuideDictCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .title
         label.font = .subTitle4
+        label.numberOfLines = 0
         return label
     }()
     
@@ -38,6 +39,12 @@ final class GuideDictCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+//    private let dotView: UIView = {
+//        let view = UIView()
+//        view.bac
+//        return view
+//    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -73,6 +80,7 @@ final class GuideDictCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(23)
             $0.left.equalTo(numberLabel.snp.right).offset(12)
+            $0.right.equalToSuperview().inset(20)
         }
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
@@ -82,13 +90,18 @@ final class GuideDictCell: UITableViewCell {
         }
     }
     
-    func draw(data: PerformanceExpressionDictionaryData) {
+    func draw(dict data: PerformanceExpressionDictionaryData) {
         titleLabel.text = data.title
         descriptionLabel.text = data.description
     }
     
     func drawNumber(index: Int) {
         numberLabel.text = "\(index)"
+    }
+    
+    func draw(ticketing data: TicketingInfo) {
+        titleLabel.text = data.title
+        descriptionLabel.text = data.description
     }
 }
 

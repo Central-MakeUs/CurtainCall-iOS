@@ -84,6 +84,9 @@
 		EE9A88672A874C9F0085F816 /* PerformanceExpressionDictionaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88662A874C9F0085F816 /* PerformanceExpressionDictionaryData.swift */; };
 		EE9A88692A8757320085F816 /* GuideCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88682A8757320085F816 /* GuideCategoryButton.swift */; };
 		EE9A886C2A875B810085F816 /* GuideDictCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A886B2A875B810085F816 /* GuideDictCell.swift */; };
+		EE9A886E2A8764340085F816 /* GuideSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A886D2A8764340085F816 /* GuideSaleViewController.swift */; };
+		EE9A88702A8764420085F816 /* GuideTicketingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A886F2A8764420085F816 /* GuideTicketingViewController.swift */; };
+		EE9A88722A8765A80085F816 /* TicketingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A88712A8765A80085F816 /* TicketingInfo.swift */; };
 		EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */; };
 		EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */; };
 		EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA132232A7F5A690016D01A /* TimePickerView.swift */; };
@@ -224,6 +227,9 @@
 		EE9A88662A874C9F0085F816 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
 		EE9A88682A8757320085F816 /* GuideCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCategoryButton.swift; sourceTree = "<group>"; };
 		EE9A886B2A875B810085F816 /* GuideDictCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDictCell.swift; sourceTree = "<group>"; };
+		EE9A886D2A8764340085F816 /* GuideSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideSaleViewController.swift; sourceTree = "<group>"; };
+		EE9A886F2A8764420085F816 /* GuideTicketingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTicketingViewController.swift; sourceTree = "<group>"; };
+		EE9A88712A8765A80085F816 /* TicketingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingInfo.swift; sourceTree = "<group>"; };
 		EE9B9A142A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EEA132212A7F46C40016D01A /* LostItemSmallCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemSmallCategoryView.swift; sourceTree = "<group>"; };
 		EEA132232A7F5A690016D01A /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -667,6 +673,7 @@
 			isa = PBXGroup;
 			children = (
 				EE9A88662A874C9F0085F816 /* PerformanceExpressionDictionaryData.swift */,
+				EE9A88712A8765A80085F816 /* TicketingInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -676,6 +683,8 @@
 			children = (
 				EE9A88612A85307C0085F816 /* GuideDictViewController.swift */,
 				EE9A886B2A875B810085F816 /* GuideDictCell.swift */,
+				EE9A886D2A8764340085F816 /* GuideSaleViewController.swift */,
+				EE9A886F2A8764420085F816 /* GuideTicketingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1109,6 +1118,7 @@
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */,
 				EE0669DB2A7E0985000C8296 /* APIService.swift in Sources */,
+				EE9A88702A8764420085F816 /* GuideTicketingViewController.swift in Sources */,
 				EEA9443F2A5D303E0081E784 /* Date + Extension.swift in Sources */,
 				EEA9444C2A5D8A3A0081E784 /* PartyMemberOtherViewModel.swift in Sources */,
 				EEF815472A73867A009C1C57 /* GradeStackView.swift in Sources */,
@@ -1117,6 +1127,7 @@
 				EEF815512A73B2D5009C1C57 /* ProductReviewCell.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
+				EE9A88722A8765A80085F816 /* TicketingInfo.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */,
 				EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */,
@@ -1143,6 +1154,7 @@
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EEF815432A736C4F009C1C57 /* DetailReviewView.swift in Sources */,
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
+				EE9A886E2A8764340085F816 /* GuideSaleViewController.swift in Sources */,
 				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,

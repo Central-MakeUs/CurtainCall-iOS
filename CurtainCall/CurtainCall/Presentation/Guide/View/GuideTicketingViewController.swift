@@ -1,13 +1,13 @@
 //
-//  GuideDictViewController.swift
+//  GuideTicketingViewController.swift
 //  CurtainCall
 //
-//  Created by 김민석 on 2023/08/10.
+//  Created by 김민석 on 2023/08/12.
 //
 
 import UIKit
 
-final class GuideDictViewController: UIViewController {
+final class GuideTicketingViewController: UIViewController {
     
     // MARK: - UI properties
     
@@ -15,7 +15,7 @@ final class GuideDictViewController: UIViewController {
         let label = UILabel()
         label.font = .subTitle1
         label.textColor = .title
-        label.text = "📚 알쏭달쏭 용어 사진"
+        label.text = "🎟️  티켓팅 안내"
         return label
     }()
     
@@ -34,49 +34,21 @@ final class GuideDictViewController: UIViewController {
         return stackView
     }()
     
-    private let totalButton: GuideCategoryButton = {
+    private let ticketingPrevButton: GuideCategoryButton = {
         let button = GuideCategoryButton()
-        button.setTitle("전체", for: .normal)
+        button.setTitle("티켓팅 이전", for: .normal)
         button.isSelected = true
         button.setBackground(true)
         return button
     }()
     
-    private let ticketingButton: GuideCategoryButton = {
+    private let ticketingNextButton: GuideCategoryButton = {
         let button = GuideCategoryButton()
-        button.setTitle("예메 및 좌석", for: .normal)
-        button.guideType = .ticketing
+        button.setTitle("티켓팅 이후", for: .normal)
         return button
     }()
     
-    private let showButton: GuideCategoryButton = {
-        let button = GuideCategoryButton()
-        button.setTitle("공연", for: .normal)
-        button.guideType = .show
-        return button
-    }()
-    
-    private let theaterButton: GuideCategoryButton = {
-        let button = GuideCategoryButton()
-        button.setTitle("극장", for: .normal)
-        button.guideType = .theater
-        return button
-    }()
-    
-    private let audienceButton: GuideCategoryButton = {
-        let button = GuideCategoryButton()
-        button.setTitle("관객", for: .normal)
-        button.guideType = .audience
-        return button
-    }()
-    
-    private let otherButton: GuideCategoryButton = {
-        let button = GuideCategoryButton()
-        button.setTitle("기타", for: .normal)
-        button.guideType = .other
-        return button
-    }()
-    
+   
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -90,7 +62,7 @@ final class GuideDictViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var guideData = PerformanceExpressionDictionaryData.list
+    private var ticketingData = TicketingInfo.prevList
 
     // MARK: - Lifecycles
     
@@ -114,7 +86,7 @@ final class GuideDictViewController: UIViewController {
         categoryScrollView.addSubview(categoryContentView)
         categoryContentView.addSubview(categoryStackView)
         categoryStackView.addArrangedSubviews(
-            totalButton, ticketingButton, showButton, theaterButton, audienceButton, otherButton
+            ticketingPrevButton, ticketingNextButton
         )
     }
     
@@ -136,14 +108,12 @@ final class GuideDictViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        [totalButton, showButton, theaterButton, audienceButton, otherButton].forEach {
+        [ticketingPrevButton, ticketingNextButton].forEach {
             $0.snp.makeConstraints { make in
-                make.width.equalTo(58)
+                make.width.equalTo(106)
             }
         }
-        ticketingButton.snp.makeConstraints {
-            $0.width.equalTo(109)
-        }
+        
         tableView.snp.makeConstraints {
             $0.top.equalTo(categoryScrollView.snp.bottom).offset(26)
             $0.left.right.bottom.equalToSuperview()
@@ -157,41 +127,42 @@ final class GuideDictViewController: UIViewController {
     }
     
     private func addTargets() {
-        [totalButton, ticketingButton, showButton, theaterButton, audienceButton, otherButton].forEach {
+        [ticketingPrevButton, ticketingNextButton].forEach {
             $0.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         }
     }
     
     @objc
     private func categoryButtonTapped(_ sender: GuideCategoryButton) {
-        [totalButton, ticketingButton, showButton, theaterButton, audienceButton, otherButton].forEach {
+        [ticketingPrevButton, ticketingNextButton].forEach {
             $0.isSelected = false
             $0.setBackground(false)
         }
         sender.isSelected = true
         sender.setBackground(true)
-        if let guideType = sender.guideType {
-            guideData = PerformanceExpressionDictionaryData.list.filter { $0.type == guideType }
+        if sender == ticketingPrevButton {
+            ticketingData = TicketingInfo.prevList
         } else {
-            guideData = PerformanceExpressionDictionaryData.list
+            ticketingData = TicketingInfo.nextList
         }
         tableView.reloadData()
     }
     
 }
 
-extension GuideDictViewController: UITableViewDataSource {
+extension GuideTicketingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return guideData.count
+        return ticketingData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueCell(type: GuideDictCell.self, indexPath: indexPath) else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.draw(dict: guideData[indexPath.row])
+        cell.draw(ticketing: ticketingData[indexPath.row])
         cell.drawNumber(index: indexPath.row + 1)
         return cell
     }
     
     
 }
+
