@@ -13,6 +13,8 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import FacebookLogin
 import GoogleSignIn
+import Moya
+import CombineMoya
 
 protocol LoginViewModelInput {
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
@@ -33,6 +35,7 @@ final class LoginViewModel: LoginViewModelIO {
     
     private let useCase: LoginUseCase
     private var cancellables = Set<AnyCancellable>()
+    private let loginProvider = MoyaProvider<LoginAPI>()
     var loginPublisher = PassthroughSubject<LoginType, Error>()
     weak var loginViewController: UIViewController?
     
@@ -41,7 +44,7 @@ final class LoginViewModel: LoginViewModelIO {
     }
     
     // MARK: - Helpers
-
+    
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?) {
         if let error {
             loginPublisher.send(completion: .failure(error))
@@ -69,20 +72,24 @@ final class LoginViewModel: LoginViewModelIO {
             loginPublisher.send(completion: .failure(error))
         }
         if let oauthToken {
-            useCase.loginWithKakao(token: oauthToken.accessToken)
-                .sink { [weak self] completion in
+            self.loginProvider.requestPublisher(.kakao(oauthToken.accessToken))
+                .sink(receiveCompletion: { [weak self] completion in
+                    guard let self else { return }
                     switch completion {
                     case .failure(let error):
-                        self?.loginPublisher.send(completion: .failure(error))
+                        self.loginPublisher.send(completion: .failure(error))
+                        print("###error", error.localizedDescription)
                     case .finished:
                         return
                     }
-                } receiveValue: { [weak self] token in
-                    print(token)
-                    self?.loginPublisher.send(.kakao)
-                }.store(in: &cancellables)
-            
+                }, receiveValue: { response in
+                    if let data = try? response.map(AuthenticationResponse.self) {
+                        print("###", data)
+                        self.loginPublisher.send(.kakao)
+                    }
+                }).store(in: &self.cancellables)
         }
+        
     }
     
     func requestLogin(result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {

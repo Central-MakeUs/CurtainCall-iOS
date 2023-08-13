@@ -32,6 +32,8 @@
 		EE0BEE042A49909F008D9D05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */; };
 		EE1825B82A8899540020BADA /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = EE1825B72A8899540020BADA /* CombineMoya */; };
 		EE1825BA2A8899540020BADA /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = EE1825B92A8899540020BADA /* Moya */; };
+		EE1825BD2A8899CE0020BADA /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BC2A8899CE0020BADA /* LoginService.swift */; };
+		EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -176,6 +178,8 @@
 		EE0BEDF92A4958F2008D9D05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE0BEDFF2A4971FE008D9D05 /* ImageNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamespace.swift; sourceTree = "<group>"; };
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EE1825BC2A8899CE0020BADA /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -456,6 +460,8 @@
 		EE0BEDF62A4958DA008D9D05 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				EE1825BE2A88A16D0020BADA /* Model */,
+				EE1825BB2A8899BD0020BADA /* Service */,
 				EE0BEDF72A4958DF008D9D05 /* View */,
 				EE0BEDF82A4958E3008D9D05 /* ViewModel */,
 			);
@@ -485,6 +491,22 @@
 				EE5DED0C2A6563A60027B0D4 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		EE1825BB2A8899BD0020BADA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE1825BC2A8899CE0020BADA /* LoginService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE1825BE2A88A16D0020BADA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EE3E02912A77EF35007C3D71 /* LostItem */ = {
@@ -1101,11 +1123,13 @@
 				EE9A88692A8757320085F816 /* GuideCategoryButton.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */,
+				EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */,
 				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
 				EE9A88622A85307C0085F816 /* GuideDictViewController.swift in Sources */,
 				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
+				EE1825BD2A8899CE0020BADA /* LoginService.swift in Sources */,
 				EEE8F0D62A5539F800E31597 /* UICollectionView + Extension.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */,
@@ -1362,6 +1386,8 @@
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용 문구";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 허용 문구";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1393,6 +1419,8 @@
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용 문구";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 허용 문구";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
