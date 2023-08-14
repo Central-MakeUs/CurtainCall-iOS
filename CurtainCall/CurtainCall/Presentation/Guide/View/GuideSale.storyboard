@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SpoqaHanSansNeo-Bold.otf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+        <array key="SpoqaHanSansNeo-Medium.otf">
+            <string>SpoqaHanSansNeo-Medium</string>
+        </array>
+        <array key="SpoqaHanSansNeo-Regular.otf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Guide Sale View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="GuideSaleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="GuideSaleViewController" customModule="CurtainCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎁  할인 꿀팁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHh-VJ-b6C">
+                                <rect key="frame" x="23.999999999999993" y="89" width="110.33333333333331" height="25.333333333333329"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqL-Eh-KwK">
+                                <rect key="frame" x="0.0" y="129.33333333333331" width="393" height="688.66666666666674"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJt-gg-pRz">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1730.6666666666667"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anW-aj-ZsF">
+                                                <rect key="frame" x="24" y="21" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="eo6-ZM-9RW"/>
+                                                    <constraint firstAttribute="height" constant="25" id="fWS-fz-xxZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예매 사이트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-IO-7C5">
+                                                <rect key="frame" x="60.999999999999993" y="24" width="77.333333333333314" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[인터파크] " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cx-CM-ijU">
+                                                <rect key="frame" x="61" y="56.333333333333307" width="61.666666666666657" height="17.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  유료 멤버십(토핑) 회원 대상 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tJ-uj-xjl">
+                                                <rect key="frame" x="60.999999999999986" y="82" width="200.66666666666663" height="17.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  제휴 카드 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQO-Z2-KHz">
+                                                <rect key="frame" x="61.000000000000007" y="105.66666666666666" width="94.666666666666686" height="17.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[예스24]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kek-jh-QxA">
+                                                <rect key="frame" x="61" y="147.33333333333334" width="52.666666666666657" height="17.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  소규모 공연 기간 제한 할인(엔젤 티켓)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpO-yO-Tac">
+                                                <rect key="frame" x="60.999999999999986" y="172.99999999999997" width="229.66666666666663" height="17.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  제휴 결제 수단 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffo-zD-zqc">
+                                                <rect key="frame" x="61.000000000000007" y="196.66666666666666" width="123.66666666666669" height="17.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  쿠폰 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNC-kd-NOP">
+                                                <rect key="frame" x="61" y="220.33333333333334" width="66" height="17.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[타임티켓] " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWc-81-rfZ">
+                                                <rect key="frame" x="61" y="262" width="61.666666666666657" height="17.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  마감 임박 가격 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3K1-mm-sgd">
+                                                <rect key="frame" x="61.000000000000007" y="287.66666666666663" width="123.66666666666669" height="17.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  매월 회차당 선착순 2~3매 특별 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJo-tv-hMg">
+                                                <rect key="frame" x="60.999999999999986" y="311.33333333333337" width="218.66666666666663" height="17.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[기타] " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsS-DK-AXH">
+                                                <rect key="frame" x="61" y="353" width="36" height="17.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  위메프, 티몬, 쿠팡 할인 등" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tml-vh-jiL">
+                                                <rect key="frame" x="61" y="378.66666666666663" width="158" height="17.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05D-UZ-982">
+                                                <rect key="frame" x="24" y="416.33333333333326" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="LAw-nZ-qrl"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zz-gy-4ys">
+                                                <rect key="frame" x="24" y="437.33333333333326" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="Wbz-t2-E2N"/>
+                                                    <constraint firstAttribute="width" constant="25" id="dvD-pk-SDW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="통신사 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7Z-YS-nm2">
+                                                <rect key="frame" x="60.999999999999993" y="439.33333333333326" width="77.333333333333314" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[SKT] " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuR-4T-Ap0">
+                                                <rect key="frame" x="61" y="471.66666666666663" width="36" height="17.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  T멤버십 APP - 모든 혜택 - 컬처 - 공연 선택 - 예매" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHe-I9-eAe">
+                                                <rect key="frame" x="61" y="497.33333333333326" width="308" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  연극, 뮤지컬, 콘서트, 공연 최대 50% 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYg-qL-gCE">
+                                                <rect key="frame" x="61" y="521" width="248" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[KT] " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD8-G8-tN0">
+                                                <rect key="frame" x="60.999999999999993" y="562.66666666666663" width="27.666666666666664" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  KT멤버십 APP - 메뉴 - 공연 예매 - 공연 선택 - 예매" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyW-pj-U5R">
+                                                <rect key="frame" x="61" y="588.33333333333326" width="308" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  연극, 뮤지컬, 콘서트, 공연 최대 50% 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7we-7Y-EhN">
+                                                <rect key="frame" x="61" y="612" width="248" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[LG U+]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-Hn-aZf">
+                                                <rect key="frame" x="61" y="653.66666666666663" width="49" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#3B4350"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  T멤버십 APP - 모든 혜택 - 컬처 - 공연 선택 - 예매" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDd-Hz-AgB">
+                                                <rect key="frame" x="61" y="679.33333333333326" width="297.66666666666669" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njE-hP-QBp">
+                                                <rect key="frame" x="24" y="717" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="Hbf-bz-pdh"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdc-bz-aHa">
+                                                <rect key="frame" x="24" y="738" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="oOz-TW-7l3"/>
+                                                    <constraint firstAttribute="height" constant="25" id="oPE-wx-14U"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드사 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhZ-jU-ZCO">
+                                                <rect key="frame" x="60.999999999999993" y="740" width="77.333333333333314" height="20.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  블루스퀘어 신한카드 홀      : 신한카드 소지 회원 대상 최대 50% 할인" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4L-fr-RaL">
+                                                <rect key="frame" x="61" y="772.33333333333326" width="308" height="35.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  그 외, 예매 사이트별 상이함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoV-97-AGO">
+                                                <rect key="frame" x="61" y="813.66666666666663" width="168" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAF-PQ-r7D">
+                                                <rect key="frame" x="24" y="851.33333333333326" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="IkZ-u8-cu8"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="012-eH-qTq">
+                                                <rect key="frame" x="24" y="872.33333333333326" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="Vn6-qY-x9Z"/>
+                                                    <constraint firstAttribute="height" constant="25" id="lS1-Nr-0uZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="청소년 할인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iUs-fl-V3H">
+                                                <rect key="frame" x="60.999999999999993" y="874.33333333333326" width="77.333333333333314" height="20.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  극장별 만 24세 이하의 청소년 할인      (학생증, 신분증, 재학증명서 등 증빙서류 필요)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlf-tU-qCM">
+                                                <rect key="frame" x="61" y="906.66666666666663" width="275" height="35.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7X1-T1-hta">
+                                                <rect key="frame" x="24" y="961.99999999999989" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="exB-HH-1tW"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awB-HX-SS5">
+                                                <rect key="frame" x="24" y="982.99999999999989" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="Goz-MI-V3o"/>
+                                                    <constraint firstAttribute="height" constant="25" id="oVa-9N-ZSh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이겟 APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2P-aX-C84">
+                                                <rect key="frame" x="61.000000000000007" y="984.99999999999989" width="79.666666666666686" height="20.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  뮤지컬 할인 예매 사이트 (공연 공동 구매 및 경매)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mi0-aQ-FBA">
+                                                <rect key="frame" x="61" y="1017.3333333333334" width="308" height="17.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLi-sr-VP3">
+                                                <rect key="frame" x="24" y="1055" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="Lqx-Wf-QvC"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcX-1s-We5">
+                                                <rect key="frame" x="24" y="1076" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="55h-hB-JRU"/>
+                                                    <constraint firstAttribute="width" constant="25" id="PC2-Jq-rbQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유니켓 APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dr3-40-0Io">
+                                                <rect key="frame" x="61" y="1078" width="80" height="21"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  대학생을 위한 공연 티켓 사이트" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdE-fU-eCw">
+                                                <rect key="frame" x="61" y="1111" width="308" height="17.666666666666742"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  대학교 인증코드 통해 유니켓 사이트 접속 시,     할인 가격 제공" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtC-d9-VvZ">
+                                                <rect key="frame" x="61" y="1134.6666666666667" width="308" height="35.333333333333258"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPW-QW-5GR">
+                                                <rect key="frame" x="24" y="1190" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="HUe-pK-AwO"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-tg-Zyu">
+                                                <rect key="frame" x="24" y="1211" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="lfr-z3-C96"/>
+                                                    <constraint firstAttribute="width" constant="25" id="xwy-Yl-W7Y"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제작사 SNS 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBV-8R-i2Z">
+                                                <rect key="frame" x="61" y="1213" width="113" height="21"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  제작사 SNS 할인 정보 제공" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fi-OP-WeK">
+                                                <rect key="frame" x="61.000000000000014" y="1246" width="166.33333333333337" height="17.666666666666742"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joa-qw-rp7">
+                                                <rect key="frame" x="24" y="1283.6666666666667" width="345" height="1"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="W1e-0Y-SVB"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzn-OC-ZtQ">
+                                                <rect key="frame" x="24" y="1304.6666666666667" width="25" height="25"/>
+                                                <color key="backgroundColor" name="point color 2"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="EgK-pQ-6cx"/>
+                                                    <constraint firstAttribute="width" constant="25" id="SPn-wc-O5I"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현장 할인점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRy-ZH-CQH">
+                                                <rect key="frame" x="61" y="1306.6666666666667" width="78" height="21"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•  서울 연극센터 티켓판매소     :당일 티켓 최대 50% 할인" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jec-Q7-uQw">
+                                                <rect key="frame" x="61.000000000000014" y="1339.6666666666667" width="161.33333333333337" height="35.333333333333258"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8t6-yW-AcL">
+                                                <rect key="frame" x="0.0" y="1475" width="393" height="10"/>
+                                                <color key="backgroundColor" name="#F5F6F8"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="10" id="uBr-tR-TME"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*위 정보들은 공연/현장별로 실제 할인 정보와 상이할 수 있습니다. 자세한 정보는 해당 사이트 방문 후 확인하시길 바랍니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YwA-yl-uG7">
+                                                <rect key="frame" x="24" y="1515" width="345" height="52.666666666666742"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                <color key="textColor" name="#5A6271"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Mlf-tU-qCM" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="0DM-C5-6cs"/>
+                                            <constraint firstItem="joa-qw-rp7" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="0x7-Cq-X35"/>
+                                            <constraint firstItem="dtC-d9-VvZ" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="1Bk-gf-Ovg"/>
+                                            <constraint firstItem="LsS-DK-AXH" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="1IF-0f-EUA"/>
+                                            <constraint firstItem="6OA-IO-7C5" firstAttribute="top" secondItem="xJt-gg-pRz" secondAttribute="top" constant="24" id="1WE-bg-b65"/>
+                                            <constraint firstItem="WWc-81-rfZ" firstAttribute="top" secondItem="vNC-kd-NOP" secondAttribute="bottom" constant="24" id="1mt-nd-mB9"/>
+                                            <constraint firstItem="Dr3-40-0Io" firstAttribute="leading" secondItem="bcX-1s-We5" secondAttribute="trailing" constant="12" id="2FZ-XL-cZN"/>
+                                            <constraint firstAttribute="trailing" secondItem="7X1-T1-hta" secondAttribute="trailing" constant="24" id="2yW-BS-9Ul"/>
+                                            <constraint firstItem="njE-hP-QBp" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="3wK-bo-52f"/>
+                                            <constraint firstAttribute="trailing" secondItem="GdE-fU-eCw" secondAttribute="trailing" constant="24" id="4B6-Oe-SAP"/>
+                                            <constraint firstItem="xhR-tg-Zyu" firstAttribute="top" secondItem="SPW-QW-5GR" secondAttribute="bottom" constant="20" id="4d0-Np-xuq"/>
+                                            <constraint firstItem="BoV-97-AGO" firstAttribute="top" secondItem="Y4L-fr-RaL" secondAttribute="bottom" constant="6" id="55U-B0-zgF"/>
+                                            <constraint firstItem="YwA-yl-uG7" firstAttribute="top" secondItem="8t6-yW-AcL" secondAttribute="bottom" constant="30" id="6hn-gm-0VY"/>
+                                            <constraint firstItem="012-eH-qTq" firstAttribute="top" secondItem="IAF-PQ-r7D" secondAttribute="bottom" constant="20" id="74h-8q-0vE"/>
+                                            <constraint firstItem="7X1-T1-hta" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="7As-7A-hdk"/>
+                                            <constraint firstItem="ffo-zD-zqc" firstAttribute="top" secondItem="XpO-yO-Tac" secondAttribute="bottom" constant="6" id="7cG-Xy-L1O"/>
+                                            <constraint firstItem="5tJ-uj-xjl" firstAttribute="top" secondItem="8cx-CM-ijU" secondAttribute="bottom" constant="8" id="7hh-U2-pcb"/>
+                                            <constraint firstItem="3K1-mm-sgd" firstAttribute="leading" secondItem="WWc-81-rfZ" secondAttribute="leading" id="7o1-7N-o6k"/>
+                                            <constraint firstItem="cJo-tv-hMg" firstAttribute="leading" secondItem="3K1-mm-sgd" secondAttribute="leading" id="7sY-lr-Xfa"/>
+                                            <constraint firstItem="KyW-pj-U5R" firstAttribute="top" secondItem="QD8-G8-tN0" secondAttribute="bottom" constant="8" id="97R-Xl-OAW"/>
+                                            <constraint firstItem="S2P-aX-C84" firstAttribute="top" secondItem="7X1-T1-hta" secondAttribute="bottom" constant="22" id="9hu-K9-CVO"/>
+                                            <constraint firstItem="6OA-IO-7C5" firstAttribute="leading" secondItem="anW-aj-ZsF" secondAttribute="trailing" constant="12" id="9oH-oo-Bvm"/>
+                                            <constraint firstItem="7we-7Y-EhN" firstAttribute="top" secondItem="KyW-pj-U5R" secondAttribute="bottom" constant="6" id="9pS-EH-GCn"/>
+                                            <constraint firstItem="YDd-Hz-AgB" firstAttribute="leading" secondItem="Zfi-Hn-aZf" secondAttribute="leading" id="AOA-Ki-dqX"/>
+                                            <constraint firstItem="awB-HX-SS5" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="Bmp-tm-X5K"/>
+                                            <constraint firstItem="MHe-I9-eAe" firstAttribute="top" secondItem="GuR-4T-Ap0" secondAttribute="bottom" constant="8" id="CIx-b8-gzp"/>
+                                            <constraint firstItem="8cx-CM-ijU" firstAttribute="top" secondItem="6OA-IO-7C5" secondAttribute="bottom" constant="12" id="CLW-tX-A3P"/>
+                                            <constraint firstItem="dBV-8R-i2Z" firstAttribute="leading" secondItem="xhR-tg-Zyu" secondAttribute="trailing" constant="12" id="CLj-gb-WuH"/>
+                                            <constraint firstAttribute="trailing" secondItem="YwA-yl-uG7" secondAttribute="trailing" constant="24" id="Cr9-1l-wNy"/>
+                                            <constraint firstAttribute="trailing" secondItem="yLi-sr-VP3" secondAttribute="trailing" constant="24" id="DI5-U9-613"/>
+                                            <constraint firstItem="QD8-G8-tN0" firstAttribute="top" secondItem="rYg-qL-gCE" secondAttribute="bottom" constant="24" id="DMz-ZF-sJQ"/>
+                                            <constraint firstItem="012-eH-qTq" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="DUV-rv-Jao"/>
+                                            <constraint firstItem="H7Z-YS-nm2" firstAttribute="top" secondItem="05D-UZ-982" secondAttribute="bottom" constant="22" id="DtD-vn-30m"/>
+                                            <constraint firstItem="LsS-DK-AXH" firstAttribute="top" secondItem="cJo-tv-hMg" secondAttribute="bottom" constant="24" id="Dyb-iw-ebW"/>
+                                            <constraint firstItem="Mi0-aQ-FBA" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="EY6-vj-fsO"/>
+                                            <constraint firstItem="BoV-97-AGO" firstAttribute="leading" secondItem="Y4L-fr-RaL" secondAttribute="leading" id="Fg1-6E-RzB"/>
+                                            <constraint firstItem="iUs-fl-V3H" firstAttribute="leading" secondItem="012-eH-qTq" secondAttribute="trailing" constant="12" id="G8R-9T-pTE"/>
+                                            <constraint firstItem="MHe-I9-eAe" firstAttribute="leading" secondItem="GuR-4T-Ap0" secondAttribute="leading" id="G9i-1b-fQv"/>
+                                            <constraint firstItem="bcX-1s-We5" firstAttribute="top" secondItem="yLi-sr-VP3" secondAttribute="bottom" constant="20" id="GV4-jj-jZq"/>
+                                            <constraint firstItem="yLi-sr-VP3" firstAttribute="top" secondItem="Mi0-aQ-FBA" secondAttribute="bottom" constant="20" id="Gb5-OS-94d"/>
+                                            <constraint firstItem="yLi-sr-VP3" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="HQn-AW-TbQ"/>
+                                            <constraint firstItem="SPW-QW-5GR" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="HWM-yS-4qa"/>
+                                            <constraint firstAttribute="trailing" secondItem="8t6-yW-AcL" secondAttribute="trailing" id="HzG-NN-3Cq"/>
+                                            <constraint firstItem="0zz-gy-4ys" firstAttribute="top" secondItem="05D-UZ-982" secondAttribute="bottom" constant="20" id="IJ7-Og-yOR"/>
+                                            <constraint firstItem="anW-aj-ZsF" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="Iae-ec-W5Y"/>
+                                            <constraint firstItem="H7Z-YS-nm2" firstAttribute="leading" secondItem="0zz-gy-4ys" secondAttribute="trailing" constant="12" id="Ibz-8n-L6W"/>
+                                            <constraint firstItem="Kek-jh-QxA" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="L1l-Md-Atx"/>
+                                            <constraint firstAttribute="trailing" secondItem="SPW-QW-5GR" secondAttribute="trailing" constant="24" id="ML5-vQ-N7x"/>
+                                            <constraint firstItem="iUs-fl-V3H" firstAttribute="top" secondItem="IAF-PQ-r7D" secondAttribute="bottom" constant="22" id="Mty-d8-D3G"/>
+                                            <constraint firstItem="tml-vh-jiL" firstAttribute="leading" secondItem="LsS-DK-AXH" secondAttribute="leading" id="NbQ-eX-arC"/>
+                                            <constraint firstAttribute="trailing" secondItem="Y4L-fr-RaL" secondAttribute="trailing" constant="24" id="Nnp-gw-dzz"/>
+                                            <constraint firstItem="vNC-kd-NOP" firstAttribute="top" secondItem="ffo-zD-zqc" secondAttribute="bottom" constant="6" id="O8A-vM-9c7"/>
+                                            <constraint firstItem="7Fi-OP-WeK" firstAttribute="top" secondItem="dBV-8R-i2Z" secondAttribute="bottom" constant="12" id="P1i-dj-IKw"/>
+                                            <constraint firstItem="S2P-aX-C84" firstAttribute="leading" secondItem="awB-HX-SS5" secondAttribute="trailing" constant="12" id="QFy-n2-FjD"/>
+                                            <constraint firstItem="Kdc-bz-aHa" firstAttribute="top" secondItem="njE-hP-QBp" secondAttribute="bottom" constant="20" id="QTR-kF-28s"/>
+                                            <constraint firstItem="bcX-1s-We5" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="QUf-rd-hnq"/>
+                                            <constraint firstAttribute="trailing" secondItem="05D-UZ-982" secondAttribute="trailing" constant="24" id="RCT-aL-ldL"/>
+                                            <constraint firstAttribute="bottom" secondItem="YwA-yl-uG7" secondAttribute="bottom" constant="163" id="RNx-Ou-TLk"/>
+                                            <constraint firstItem="7Fi-OP-WeK" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="S8p-tw-rTW"/>
+                                            <constraint firstItem="Zfi-Hn-aZf" firstAttribute="top" secondItem="7we-7Y-EhN" secondAttribute="bottom" constant="24" id="Tkt-7Y-qpB"/>
+                                            <constraint firstItem="8t6-yW-AcL" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" id="URM-um-3kz"/>
+                                            <constraint firstItem="Mlf-tU-qCM" firstAttribute="top" secondItem="iUs-fl-V3H" secondAttribute="bottom" constant="12" id="UZt-yg-XF8"/>
+                                            <constraint firstAttribute="trailing" secondItem="njE-hP-QBp" secondAttribute="trailing" constant="24" id="Uf1-Wq-40n"/>
+                                            <constraint firstItem="rhZ-jU-ZCO" firstAttribute="leading" secondItem="Kdc-bz-aHa" secondAttribute="trailing" constant="12" id="V0f-KE-mym"/>
+                                            <constraint firstItem="qzn-OC-ZtQ" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="Vur-mQ-DnF"/>
+                                            <constraint firstAttribute="trailing" secondItem="MHe-I9-eAe" secondAttribute="trailing" constant="24" id="WAu-aX-5fw"/>
+                                            <constraint firstItem="XpO-yO-Tac" firstAttribute="top" secondItem="Kek-jh-QxA" secondAttribute="bottom" constant="8" id="WRb-yq-fIc"/>
+                                            <constraint firstItem="YRy-ZH-CQH" firstAttribute="leading" secondItem="qzn-OC-ZtQ" secondAttribute="trailing" constant="12" id="Wx0-Zb-2pf"/>
+                                            <constraint firstItem="5tJ-uj-xjl" firstAttribute="leading" secondItem="8cx-CM-ijU" secondAttribute="leading" id="X1k-FV-xQW"/>
+                                            <constraint firstItem="Kdc-bz-aHa" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="XAP-8W-bmm"/>
+                                            <constraint firstItem="YDd-Hz-AgB" firstAttribute="top" secondItem="Zfi-Hn-aZf" secondAttribute="bottom" constant="8" id="Y5j-ez-wLX"/>
+                                            <constraint firstItem="cJo-tv-hMg" firstAttribute="top" secondItem="3K1-mm-sgd" secondAttribute="bottom" constant="6" id="Yi0-EW-1Fm"/>
+                                            <constraint firstItem="OQO-Z2-KHz" firstAttribute="top" secondItem="5tJ-uj-xjl" secondAttribute="bottom" constant="6" id="Yrc-jP-HYB"/>
+                                            <constraint firstItem="anW-aj-ZsF" firstAttribute="top" secondItem="xJt-gg-pRz" secondAttribute="top" constant="21" id="Zp0-p9-9uF"/>
+                                            <constraint firstItem="tml-vh-jiL" firstAttribute="top" secondItem="LsS-DK-AXH" secondAttribute="bottom" constant="8" id="Zzn-tC-JGw"/>
+                                            <constraint firstAttribute="trailing" secondItem="KyW-pj-U5R" secondAttribute="trailing" constant="24" id="aIi-Fe-lcU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mi0-aQ-FBA" secondAttribute="trailing" constant="24" id="aKj-Aw-ded"/>
+                                            <constraint firstItem="3K1-mm-sgd" firstAttribute="top" secondItem="WWc-81-rfZ" secondAttribute="bottom" constant="8" id="auI-LH-8OW"/>
+                                            <constraint firstItem="GuR-4T-Ap0" firstAttribute="top" secondItem="H7Z-YS-nm2" secondAttribute="bottom" constant="12" id="bSF-EV-a4y"/>
+                                            <constraint firstItem="8cx-CM-ijU" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="cTc-Zt-hIq"/>
+                                            <constraint firstItem="dtC-d9-VvZ" firstAttribute="top" secondItem="GdE-fU-eCw" secondAttribute="bottom" constant="6" id="dVN-Qy-WXJ"/>
+                                            <constraint firstItem="OQO-Z2-KHz" firstAttribute="leading" secondItem="5tJ-uj-xjl" secondAttribute="leading" id="eJQ-Rx-GLt"/>
+                                            <constraint firstItem="GuR-4T-Ap0" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="eoN-dg-Cij"/>
+                                            <constraint firstAttribute="trailing" secondItem="joa-qw-rp7" secondAttribute="trailing" constant="24" id="fAv-sn-LC8"/>
+                                            <constraint firstItem="WWc-81-rfZ" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="fU4-hQ-ItD"/>
+                                            <constraint firstItem="njE-hP-QBp" firstAttribute="top" secondItem="YDd-Hz-AgB" secondAttribute="bottom" constant="20" id="fWu-sA-dOP"/>
+                                            <constraint firstItem="Zfi-Hn-aZf" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="hb6-eh-xSo"/>
+                                            <constraint firstItem="ffo-zD-zqc" firstAttribute="leading" secondItem="XpO-yO-Tac" secondAttribute="leading" id="hxd-Ok-UIi"/>
+                                            <constraint firstItem="0zz-gy-4ys" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="iGZ-Zv-s4b"/>
+                                            <constraint firstItem="Dr3-40-0Io" firstAttribute="top" secondItem="yLi-sr-VP3" secondAttribute="bottom" constant="22" id="ikq-t8-3CI"/>
+                                            <constraint firstItem="XpO-yO-Tac" firstAttribute="leading" secondItem="Kek-jh-QxA" secondAttribute="leading" id="isi-Qc-y5Z"/>
+                                            <constraint firstItem="7X1-T1-hta" firstAttribute="top" secondItem="Mlf-tU-qCM" secondAttribute="bottom" constant="20" id="j9E-NE-GgQ"/>
+                                            <constraint firstItem="vNC-kd-NOP" firstAttribute="leading" secondItem="ffo-zD-zqc" secondAttribute="leading" id="kyL-6Q-8dO"/>
+                                            <constraint firstAttribute="trailing" secondItem="dtC-d9-VvZ" secondAttribute="trailing" constant="24" id="mKB-Bg-Ezh"/>
+                                            <constraint firstItem="cJo-tv-hMg" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="mmx-ey-pT7"/>
+                                            <constraint firstItem="xhR-tg-Zyu" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="mrs-Dc-kQ0"/>
+                                            <constraint firstItem="SPW-QW-5GR" firstAttribute="top" secondItem="dtC-d9-VvZ" secondAttribute="bottom" constant="20" id="o1v-CS-xQF"/>
+                                            <constraint firstItem="dBV-8R-i2Z" firstAttribute="top" secondItem="SPW-QW-5GR" secondAttribute="bottom" constant="22" id="oIe-I2-FWE"/>
+                                            <constraint firstItem="IAF-PQ-r7D" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="os5-vn-qME"/>
+                                            <constraint firstAttribute="trailing" secondItem="IAF-PQ-r7D" secondAttribute="trailing" constant="24" id="p71-93-GrY"/>
+                                            <constraint firstItem="rhZ-jU-ZCO" firstAttribute="top" secondItem="njE-hP-QBp" secondAttribute="bottom" constant="22" id="pfK-Pv-ugd"/>
+                                            <constraint firstItem="awB-HX-SS5" firstAttribute="top" secondItem="7X1-T1-hta" secondAttribute="bottom" constant="20" id="qwl-C1-orp"/>
+                                            <constraint firstItem="Kek-jh-QxA" firstAttribute="top" secondItem="OQO-Z2-KHz" secondAttribute="bottom" constant="24" id="r84-eJ-cex"/>
+                                            <constraint firstItem="Y4L-fr-RaL" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="rQ2-Jo-Swc"/>
+                                            <constraint firstItem="7we-7Y-EhN" firstAttribute="leading" secondItem="KyW-pj-U5R" secondAttribute="leading" id="s9e-Jn-tWa"/>
+                                            <constraint firstItem="Jec-Q7-uQw" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="sgC-Fw-ec7"/>
+                                            <constraint firstItem="GdE-fU-eCw" firstAttribute="top" secondItem="Dr3-40-0Io" secondAttribute="bottom" constant="12" id="sw1-9C-mfJ"/>
+                                            <constraint firstItem="GdE-fU-eCw" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="t8J-8Z-ziL"/>
+                                            <constraint firstItem="rYg-qL-gCE" firstAttribute="leading" secondItem="MHe-I9-eAe" secondAttribute="leading" id="tDq-vy-tBL"/>
+                                            <constraint firstItem="YRy-ZH-CQH" firstAttribute="top" secondItem="joa-qw-rp7" secondAttribute="bottom" constant="22" id="tc8-Qi-ZaE"/>
+                                            <constraint firstItem="8t6-yW-AcL" firstAttribute="top" secondItem="Jec-Q7-uQw" secondAttribute="bottom" constant="100" id="tdw-u5-fao"/>
+                                            <constraint firstItem="KyW-pj-U5R" firstAttribute="leading" secondItem="QD8-G8-tN0" secondAttribute="leading" id="ted-ma-usz"/>
+                                            <constraint firstItem="05D-UZ-982" firstAttribute="top" secondItem="tml-vh-jiL" secondAttribute="bottom" constant="20" id="udG-Yv-QfE"/>
+                                            <constraint firstItem="rYg-qL-gCE" firstAttribute="top" secondItem="MHe-I9-eAe" secondAttribute="bottom" constant="6" id="udS-BL-z2v"/>
+                                            <constraint firstItem="qzn-OC-ZtQ" firstAttribute="top" secondItem="joa-qw-rp7" secondAttribute="bottom" constant="20" id="v84-FQ-MeE"/>
+                                            <constraint firstItem="IAF-PQ-r7D" firstAttribute="top" secondItem="BoV-97-AGO" secondAttribute="bottom" constant="20" id="wHM-jJ-xn6"/>
+                                            <constraint firstItem="YwA-yl-uG7" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="wlu-5r-NB3"/>
+                                            <constraint firstItem="Mi0-aQ-FBA" firstAttribute="top" secondItem="S2P-aX-C84" secondAttribute="bottom" constant="12" id="woy-An-pHa"/>
+                                            <constraint firstItem="QD8-G8-tN0" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="xEE-wo-dfP"/>
+                                            <constraint firstItem="joa-qw-rp7" firstAttribute="top" secondItem="7Fi-OP-WeK" secondAttribute="bottom" constant="20" id="xEV-9a-wyZ"/>
+                                            <constraint firstItem="Y4L-fr-RaL" firstAttribute="top" secondItem="rhZ-jU-ZCO" secondAttribute="bottom" constant="12" id="yYV-LY-wao"/>
+                                            <constraint firstItem="05D-UZ-982" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="24" id="zIO-Tz-hW3"/>
+                                            <constraint firstItem="3K1-mm-sgd" firstAttribute="leading" secondItem="xJt-gg-pRz" secondAttribute="leading" constant="61" id="zX2-Ic-8E7"/>
+                                            <constraint firstItem="Jec-Q7-uQw" firstAttribute="top" secondItem="YRy-ZH-CQH" secondAttribute="bottom" constant="12" id="zzA-0a-dPM"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="trailing" secondItem="wHH-My-8yt" secondAttribute="trailing" id="3eQ-eH-Bu9"/>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="leading" secondItem="wHH-My-8yt" secondAttribute="leading" id="40I-eG-5Eu"/>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="bottom" secondItem="wHH-My-8yt" secondAttribute="bottom" id="NfK-FC-NYM"/>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="top" secondItem="wHH-My-8yt" secondAttribute="top" id="Ri9-hZ-Vi9"/>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="trailing" secondItem="N7v-k4-gMW" secondAttribute="trailing" constant="24" id="fmg-iC-Ujy"/>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="width" secondItem="N7v-k4-gMW" secondAttribute="width" id="gn2-wf-Y0B"/>
+                                    <constraint firstItem="xJt-gg-pRz" firstAttribute="leading" secondItem="N7v-k4-gMW" secondAttribute="leading" constant="24" id="mWc-G6-VFb"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="wHH-My-8yt"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="N7v-k4-gMW"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DHh-VJ-b6C" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="6hA-6q-WZ9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eqL-Eh-KwK" secondAttribute="trailing" id="AAK-Xz-W6b"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="eqL-Eh-KwK" secondAttribute="bottom" id="Ytv-7a-wPE"/>
+                            <constraint firstItem="DHh-VJ-b6C" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="bwD-IQ-KAW"/>
+                            <constraint firstItem="eqL-Eh-KwK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="pa9-Jk-69F"/>
+                            <constraint firstItem="eqL-Eh-KwK" firstAttribute="top" secondItem="DHh-VJ-b6C" secondAttribute="bottom" constant="15" id="wz7-2I-6Wp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="eqL-Eh-KwK" id="raQ-ho-dMF"/>
+                        <outletCollection property="numberLabels" destination="anW-aj-ZsF" collectionClass="NSMutableArray" id="QIA-2s-W7e"/>
+                        <outletCollection property="numberLabels" destination="0zz-gy-4ys" collectionClass="NSMutableArray" id="tCL-DL-yYf"/>
+                        <outletCollection property="numberLabels" destination="Kdc-bz-aHa" collectionClass="NSMutableArray" id="MQn-3Z-U7N"/>
+                        <outletCollection property="numberLabels" destination="012-eH-qTq" collectionClass="NSMutableArray" id="Qk8-Rx-ZSA"/>
+                        <outletCollection property="numberLabels" destination="awB-HX-SS5" collectionClass="NSMutableArray" id="VYk-Kr-K7X"/>
+                        <outletCollection property="numberLabels" destination="bcX-1s-We5" collectionClass="NSMutableArray" id="NaE-MC-G1Y"/>
+                        <outletCollection property="numberLabels" destination="xhR-tg-Zyu" collectionClass="NSMutableArray" id="STr-r2-LWd"/>
+                        <outletCollection property="numberLabels" destination="qzn-OC-ZtQ" collectionClass="NSMutableArray" id="LnS-jv-CZd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="-34"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="#3B4350">
+            <color red="0.23137254901960785" green="0.2627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="#5A6271">
+            <color red="0.35294117647058826" green="0.3843137254901961" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="#F5F6F8">
+            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="point color 2">
+            <color red="1" green="0.48627450980392156" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

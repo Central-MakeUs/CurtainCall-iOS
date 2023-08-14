@@ -119,6 +119,7 @@
 		EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
+		EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED302122A8A63C000957566 /* GuideSale.storyboard */; };
 		EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
 		EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */; };
@@ -265,6 +266,7 @@
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
+		EED302122A8A63C000957566 /* GuideSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideSale.storyboard; sourceTree = "<group>"; };
 		EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailMainViewController.swift; sourceTree = "<group>"; };
 		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -710,6 +712,7 @@
 				EE9A88612A85307C0085F816 /* GuideDictViewController.swift */,
 				EE9A886B2A875B810085F816 /* GuideDictCell.swift */,
 				EE9A886D2A8764340085F816 /* GuideSaleViewController.swift */,
+				EED302122A8A63C000957566 /* GuideSale.storyboard */,
 				EE9A886F2A8764420085F816 /* GuideTicketingViewController.swift */,
 			);
 			path = View;
@@ -1060,6 +1063,7 @@
 				EE002C752A7A267D009B65F2 /* Secrets.xcconfig in Resources */,
 				EEE8F0C72A52C37000E31597 /* Assets.xcassets in Resources */,
 				EE4B342C2A66D28900E6EB01 /* SpoqaHanSansNeo-Regular.otf in Resources */,
+				EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */,
 				EE4B34292A66D28900E6EB01 /* SpoqaHanSansNeo-Medium.otf in Resources */,
 				EE4B34282A66D28900E6EB01 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				EE4B342B2A66D28900E6EB01 /* SpoqaHanSansNeo-Thin.otf in Resources */,

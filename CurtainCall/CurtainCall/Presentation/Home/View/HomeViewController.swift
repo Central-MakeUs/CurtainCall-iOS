@@ -527,7 +527,13 @@ extension HomeViewController: UICollectionViewDelegate {
             navigationController?.pushViewController(guideTickettingViewController, animated: true)
             return
         case 2:
-            let saleViewController = GuideSaleViewController()
+//            let saleViewController = GuideSaleViewController()
+            let storyboard = UIStoryboard(name: "GuideSale", bundle: Bundle.main)
+            guard let saleViewController = storyboard.instantiateViewController(
+                withIdentifier: "GuideSaleViewController"
+            ) as? GuideSaleViewController else {
+                return
+            }
             navigationController?.pushViewController(saleViewController, animated: true)
             return
         default:
