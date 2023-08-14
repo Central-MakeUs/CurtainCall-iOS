@@ -105,4 +105,10 @@ enum ImageNamespace {
     static let homeMyTimeIcon = "home_my_time_icon"
     
     static let top10StarIcon = "top10_star_icon"
+    
+    static let myPageNavigationSettingIcon = "myPage_navigation_setting_icon"
+    static let myPageProfileEditIcon = "myPage_profile_edit_icon"
+    static let myPageWriteIcon = "myPage_write_icon"
+    static let myPageBorderIcon = "myPage_border_icon"
+    static let myPageArrowRight = "myPage_arrow_right"
 }

@@ -84,9 +84,10 @@ final class LoginViewModel: LoginViewModelIO {
                     }
                 }, receiveValue: { response in
                     if let data = try? response.map(AuthenticationResponse.self) {
-                        print("###", data)
+                        print("###data", data)
                         self.loginPublisher.send(.kakao)
                     }
+                    print("###response", response)
                 }).store(in: &self.cancellables)
         }
         

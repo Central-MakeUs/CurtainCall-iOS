@@ -79,7 +79,8 @@ final class MainTabBarController: UIViewController {
     private var viewControllers = [
         UINavigationController(rootViewController: HomeViewController()),
         UINavigationController(rootViewController: ProductViewController()), LiveTalkViewController(),
-        PartyMemberViewController(), MyPageViewController()
+        PartyMemberViewController(),
+        UINavigationController(rootViewController: MyPageViewController())
     ]
     
     private var tabbarButtons: [UIButton] = []
