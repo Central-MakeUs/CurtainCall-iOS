@@ -8,7 +8,7 @@
 import Foundation
 
 struct AuthenticationResponse: Decodable {
-    let memberId: Int
+    let memberId: Int?
     let accessToken: String
     let accessTokenExpiresAt: String?
     let refreshToken: String

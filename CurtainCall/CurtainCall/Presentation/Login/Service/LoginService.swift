@@ -33,7 +33,7 @@ extension LoginAPI: TargetType {
         switch self {
         case .kakao(let token):
             param.updateValue(token, forKey: "accessToken")
-            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
     }
     
