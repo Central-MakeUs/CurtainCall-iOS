@@ -15,6 +15,7 @@ import FacebookLogin
 import GoogleSignIn
 import Moya
 import CombineMoya
+import SwiftKeychainWrapper
 
 protocol LoginViewModelInput {
     func requestLogin(crendential: ASAuthorizationAppleIDCredential?, error: Error?)
@@ -84,7 +85,7 @@ final class LoginViewModel: LoginViewModelIO {
                     }
                 }, receiveValue: { response in
                     if let data = try? response.map(AuthenticationResponse.self) {
-                        print("###data", data)
+                        KeychainWrapper.standard[.accessToken] = data.accessToken
                         self.loginPublisher.send(.kakao)
                     }
                     print("###response", response)

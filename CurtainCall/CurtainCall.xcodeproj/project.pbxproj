@@ -65,6 +65,7 @@
 		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
 		EE5FDBF02A8CAF7B00376E26 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */; };
+		EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF12A8CB06600376E26 /* KeychainWrapper + Extension.swift */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
@@ -210,6 +211,7 @@
 		EE5DED0C2A6563A60027B0D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberWriteCompleteViewController.swift; sourceTree = "<group>"; };
+		EE5FDBF12A8CB06600376E26 /* KeychainWrapper + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainWrapper + Extension.swift"; sourceTree = "<group>"; };
 		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
 		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 				EE5DED0A2A654EE20027B0D4 /* UITextField + Extension.swift */,
 				EE4B34312A66D3E300E6EB01 /* UIFont + Extension.swift */,
 				EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */,
+				EE5FDBF12A8CB06600376E26 /* KeychainWrapper + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1142,6 +1145,7 @@
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
+				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,
 				EE93AA362A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift in Sources */,
 				EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
