@@ -64,6 +64,7 @@
 		EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0C2A6563A60027B0D4 /* Constants.swift */; };
 		EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */; };
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
+		EE5FDBF02A8CAF7B00376E26 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
@@ -307,6 +308,7 @@
 			files = (
 				EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */,
 				EE0BEDFD2A495AAB008D9D05 /* SnapKit in Frameworks */,
+				EE5FDBF02A8CAF7B00376E26 /* SwiftKeychainWrapper in Frameworks */,
 				EE1825BA2A8899540020BADA /* Moya in Frameworks */,
 				EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */,
 				EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */,
@@ -1008,6 +1010,7 @@
 				EEED57122A4EA321003D2F9C /* GoogleSignIn */,
 				EE1825B72A8899540020BADA /* CombineMoya */,
 				EE1825B92A8899540020BADA /* Moya */,
+				EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */,
 			);
 			productName = CurtainCall;
 			productReference = EE0BEDDA2A495539008D9D05 /* CurtainCall.app */;
@@ -1043,6 +1046,7 @@
 				EE0304B22A4E816C0038A09E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				EEED57112A4EA321003D2F9C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */,
+				EE5FDBEE2A8CAF7B00376E26 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = EE0BEDDB2A495539008D9D05 /* Products */;
 			projectDirPath = "";
@@ -1499,6 +1503,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		EE5FDBEE2A8CAF7B00376E26 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		EEED57112A4EA321003D2F9C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1544,6 +1556,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE4EBAE12A4C013B00939823 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE5FDBEE2A8CAF7B00376E26 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 		EEED57122A4EA321003D2F9C /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

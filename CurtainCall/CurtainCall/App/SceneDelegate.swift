@@ -26,9 +26,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             viewModel: LoginViewModel(
             useCase: LoginInteractor())
         )
-//        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         
-        window?.rootViewController = MainTabBarController()
+//        window?.rootViewController = MainTabBarController()
         
         window?.makeKeyAndVisible()
     }
