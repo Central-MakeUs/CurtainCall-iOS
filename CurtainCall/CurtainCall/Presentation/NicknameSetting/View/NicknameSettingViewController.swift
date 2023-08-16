@@ -149,19 +149,33 @@ final class NicknameSettingViewController: UIViewController {
     }
     
     private func buttonValidCheck(_ isValid: Bool) {
-        nextButton.backgroundColor = isValid ? .hexE4E7EC : .pointColor2
+        nextButton.backgroundColor = !isValid ? .hexE4E7EC : .pointColor2
         nextButton.setTitleColor(isValid ? .white : .hexBEC2CA, for: .normal)
         nextButton.isEnabled = isValid
-        duplicateCheckButton.backgroundColor = isValid ? .hexE4E7EC : .pointColor2
+        duplicateCheckButton.backgroundColor = !isValid ? .hexE4E7EC : .pointColor2
         duplicateCheckButton.setTitleColor(isValid ? .white : .hexBEC2CA, for: .normal)
     }
     
     private func bind() {
         viewModel.isValidRegexNickname
-            .sink { [weak self] nicknameValidType in
-                self?.presentAlert(title: nicknameValidType.message)
-                self?.buttonValidCheck(nicknameValidType == .success)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { isValid in
+                self.presentAlert(title: isValid.message)
+                self.buttonValidCheck(isValid == .success)
+                print("!!!!", isValid)
             }.store(in: &cancellables)
+
+        
+        
+//        viewModel.isValidRegexNickname
+//            .sink { [weak self] nicknameValidType in
+//                self?.presentAlert(title: nicknameValidType.message)
+//                self?.buttonValidCheck(nicknameValidType == .success)
+//            }.store(in: &cancellables)
     }
     
     private func addTargets() {
@@ -186,7 +200,9 @@ final class NicknameSettingViewController: UIViewController {
     
     @objc
     func nextButtonTouchUpInside() {
-        navigationController?.pushViewController(LoginCompleteViewController(), animated: true)
+        guard let nickname = nicknameTextField.text else { return }
+        let viewModel = LoginCompleteViewModel()
+        navigationController?.pushViewController(LoginCompleteViewController(viewModel: viewModel, nickname: nickname), animated: true)
     }
     
 }

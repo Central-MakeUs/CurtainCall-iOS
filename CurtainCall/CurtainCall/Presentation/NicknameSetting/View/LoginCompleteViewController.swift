@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Combine
+
+import Moya
+import CombineMoya
 
 final class LoginCompleteViewController: UIViewController {
     
@@ -44,12 +48,30 @@ final class LoginCompleteViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Property
+    
+    private let nickname: String
+    private let viewModel: LoginCompleteViewModel
+    private var cancellables: Set<AnyCancellable> = []
+    
+    
     // MARK: - Lifecycles
+    
+    init(viewModel: LoginCompleteViewModel, nickname: String) {
+        self.viewModel = viewModel
+        self.nickname = nickname
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTarget()
+        bind()
     }
     
     // MARK: - Helpers
@@ -85,12 +107,25 @@ final class LoginCompleteViewController: UIViewController {
         )
     }
     
+    private func bind() {
+        viewModel.isSuccessSignUp
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                }
+            } receiveValue: { [weak self] isSignUp in
+                if isSignUp {
+                    self?.changeRootViewController(MainTabBarController())
+                } else {
+                    // TODO: 회원가입 실패 얼럿
+                }
+            }.store(in: &cancellables)
+    }
+    
     // MARK: - Action
     
     @objc
     func startButtonTouchUpInside() {
-        //  TODO: 홈 화면 으로 이동
-        print("홈 이동")
-        changeRootViewController(MainTabBarController())
+        viewModel.signUpButtonTapped(nickname: nickname)
     }
 }

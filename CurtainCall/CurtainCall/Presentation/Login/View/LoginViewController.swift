@@ -88,6 +88,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         bind()
+        print("##ACESSTOKEN: ", KeychainWrapper.standard.string(forKey: .accessToken) ?? "X")
     }
     
     // MARK: - Helpers

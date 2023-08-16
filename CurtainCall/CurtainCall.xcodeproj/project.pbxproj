@@ -66,6 +66,10 @@
 		EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */; };
 		EE5FDBF02A8CAF7B00376E26 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */; };
 		EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF12A8CB06600376E26 /* KeychainWrapper + Extension.swift */; };
+		EE5FDBF52A8CB31500376E26 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF42A8CB31500376E26 /* SignUpService.swift */; };
+		EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */; };
+		EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */; };
+		EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
@@ -212,6 +216,10 @@
 		EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingContentViewModel.swift; sourceTree = "<group>"; };
 		EE5DED102A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberWriteCompleteViewController.swift; sourceTree = "<group>"; };
 		EE5FDBF12A8CB06600376E26 /* KeychainWrapper + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainWrapper + Extension.swift"; sourceTree = "<group>"; };
+		EE5FDBF42A8CB31500376E26 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
+		EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameDuplicateResponse.swift; sourceTree = "<group>"; };
+		EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewModel.swift; sourceTree = "<group>"; };
+		EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
 		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
@@ -645,6 +653,23 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		EE5FDBF32A8CB30000376E26 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE5FDBF42A8CB31500376E26 /* SignUpService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE5FDBF62A8CB59F00376E26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */,
+				EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EE7C1AD62A7EA070000B208C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,6 +978,8 @@
 		EEE8F0F02A56E30800E31597 /* NicknameSetting */ = {
 			isa = PBXGroup;
 			children = (
+				EE5FDBF62A8CB59F00376E26 /* Model */,
+				EE5FDBF32A8CB30000376E26 /* Service */,
 				EEE8F0F42A56FFE700E31597 /* ViewModel */,
 				EEE8F0F12A56E31100E31597 /* View */,
 			);
@@ -972,6 +999,7 @@
 			isa = PBXGroup;
 			children = (
 				EEE8F0F52A56FFF600E31597 /* NicknameSettingViewModel.swift */,
+				EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1171,6 +1199,7 @@
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EE9A88722A8765A80085F816 /* TicketingInfo.swift in Sources */,
+				EE5FDBF52A8CB31500376E26 /* SignUpService.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */,
 				EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */,
@@ -1193,6 +1222,7 @@
 				EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */,
 				EE9A88532A83C30A0085F816 /* Top10Data.swift in Sources */,
 				EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */,
+				EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,
 				EEF815432A736C4F009C1C57 /* DetailReviewView.swift in Sources */,
@@ -1201,6 +1231,7 @@
 				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
+				EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
@@ -1247,6 +1278,7 @@
 				EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
+				EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,
 				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
 				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
