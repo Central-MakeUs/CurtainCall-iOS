@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import SwiftKeychainWrapper
 
 final class MainTabBarController: UIViewController {
     
@@ -95,6 +96,8 @@ final class MainTabBarController: UIViewController {
         configureUI()
         addTarget()
         tabbarButtonTapped(tabbarButtons.first ?? UIButton())
+        print("User AccessToKen: ", KeychainWrapper.standard.string(forKey: .accessToken) ?? "nil")
+        print("User ID: ", KeychainWrapper.standard.integer(forKey: .userID) ?? "nil")
     }
     
     // MARK: - Helpers

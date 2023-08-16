@@ -10,15 +10,28 @@ import Foundation
 import Moya
 import SwiftKeychainWrapper
 
-enum NicknameAPI {
+enum SignUpAPI {
     case duplicate(String)
+    case signUp(String)
 }
 
-extension NicknameAPI: TargetType {
+extension SignUpAPI: TargetType {
     var baseURL: URL { URL(string: Secret.BASE_URL)! }
-    var path: String { "/members/duplicate/nickname" }
+    var path: String {
+        switch self {
+        case .duplicate: return "/members/duplicate/nickname"
+        case .signUp: return "/signup"
+        }
+    }
     
-    var method: Moya.Method { .get }
+    var method: Moya.Method {
+        switch self {
+        case .duplicate:
+            return .get
+        case .signUp:
+            return .post
+        }
+    }
     
     var task: Moya.Task {
         var param: [String: Any] = [:]
@@ -26,6 +39,9 @@ extension NicknameAPI: TargetType {
         case .duplicate(let nickname):
             param.updateValue(nickname, forKey: "nickname")
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .signUp(let nickname):
+            param.updateValue(nickname, forKey: "nickname")
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
         
     }

@@ -9,4 +9,5 @@ import SwiftKeychainWrapper
 
 extension KeychainWrapper.Key {
     static let accessToken: KeychainWrapper.Key = "accessToken"
+    static let userID: KeychainWrapper.Key = "userID"
 }

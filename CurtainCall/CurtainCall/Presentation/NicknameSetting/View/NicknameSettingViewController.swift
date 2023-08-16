@@ -200,7 +200,9 @@ final class NicknameSettingViewController: UIViewController {
     
     @objc
     func nextButtonTouchUpInside() {
-        navigationController?.pushViewController(LoginCompleteViewController(), animated: true)
+        guard let nickname = nicknameTextField.text else { return }
+        let viewModel = LoginCompleteViewModel()
+        navigationController?.pushViewController(LoginCompleteViewController(viewModel: viewModel, nickname: nickname), animated: true)
     }
     
 }

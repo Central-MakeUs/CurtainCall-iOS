@@ -24,7 +24,7 @@ final class NicknameSettingViewModel: NicknameSettingViewModelInput,
     
     // MARK: - Properties
     
-    private let nicknameProvider = MoyaProvider<NicknameAPI>()
+    private let nicknameProvider = MoyaProvider<SignUpAPI>()
     private let usecase: NicknameSettingUsecase
     private var cancellables = Set<AnyCancellable>()
     
