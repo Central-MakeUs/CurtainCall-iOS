@@ -79,7 +79,6 @@ final class LoginViewModel: LoginViewModelIO {
                     switch completion {
                     case .failure(let error):
                         self.loginPublisher.send(completion: .failure(error))
-                        print("###error", error.localizedDescription)
                     case .finished:
                         return
                     }
@@ -88,7 +87,6 @@ final class LoginViewModel: LoginViewModelIO {
                         KeychainWrapper.standard[.accessToken] = data.accessToken
                         self.loginPublisher.send(.kakao)
                     }
-                    print("###response", response)
                 }).store(in: &self.cancellables)
         }
         
