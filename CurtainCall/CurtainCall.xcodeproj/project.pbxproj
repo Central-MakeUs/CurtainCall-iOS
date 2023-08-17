@@ -119,6 +119,8 @@
 		EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */; };
 		EEA944522A5D9CA50081E784 /* PartyFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */; };
 		EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */; };
+		EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA40E92A8E037F000990B0 /* ProductService.swift */; };
+		EEAA40ED2A8E0663000990B0 /* ProductListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */; };
 		EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776352A602B0500BFCAAD /* CalendarView.swift */; };
 		EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776372A6031B300BFCAAD /* CalendarCell.swift */; };
 		EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */; };
@@ -270,6 +272,8 @@
 		EEA9444D2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherUsecase.swift; sourceTree = "<group>"; };
 		EEA944512A5D9CA50081E784 /* PartyFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyFoodCell.swift; sourceTree = "<group>"; };
 		EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPartyInfo.swift; sourceTree = "<group>"; };
+		EEAA40E92A8E037F000990B0 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListResponse.swift; sourceTree = "<group>"; };
 		EEB776352A602B0500BFCAAD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		EEB776372A6031B300BFCAAD /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +592,8 @@
 		EE3F2FED2A58121E00BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EEAA40EB2A8E0654000990B0 /* Model */,
+				EEAA40E82A8E0354000990B0 /* Service */,
 				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
 				EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */,
@@ -806,6 +812,22 @@
 				EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EEAA40E82A8E0354000990B0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EEAA40E92A8E037F000990B0 /* ProductService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EEAA40EB2A8E0654000990B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EEC441D52A76336800CD93BC /* Review */ = {
@@ -1215,6 +1237,7 @@
 				EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
+				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
 				EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */,
@@ -1283,6 +1306,7 @@
 				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
 				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
+				EEAA40ED2A8E0663000990B0 /* ProductListResponse.swift in Sources */,
 				EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */,
 				EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */,
 				EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */,

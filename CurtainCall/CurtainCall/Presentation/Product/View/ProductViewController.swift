@@ -8,6 +8,9 @@
 import UIKit
 
 import SnapKit
+import Moya
+import CombineMoya
+import Combine
 
 final class ProductViewController: UIViewController {
     
@@ -115,6 +118,8 @@ final class ProductViewController: UIViewController {
     // MARK: - Properties
     
     private var datasource: Datasource?
+    private var subscriptions: Set<AnyCancellable> = []
+    private let provider = MoyaProvider<ProductAPI>()
     
     // MARK: - Lifecycles
     
@@ -124,6 +129,7 @@ final class ProductViewController: UIViewController {
         addTarget()
         typeButtonTouchUpInside(theaterButton)
         orderSelectButtonTouchUpInside(reservationOrderButton)
+        requestShowList()
     }
     
     // MARK: - Helpers
@@ -267,6 +273,21 @@ final class ProductViewController: UIViewController {
         }
         reservationDotView.alpha = sender == reservationOrderButton ? 1 : 0
         dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
+    }
+    
+    private func requestShowList() {
+        provider.requestPublisher(.list(page: 1, size: 20, genre: .play))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { response in
+                if let data = try? response.map(ProductListResponse.self) {
+                    print("##", data)
+                }
+            }.store(in: &subscriptions)
+
     }
 }
 
