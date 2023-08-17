@@ -73,6 +73,7 @@
 		EE5251ED2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5251DE2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift */; };
 		EE5251EE2A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5251E02A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift */; };
 		EE5251EF2A8E63B3003DFEE3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5251E12A8E63B3003DFEE3 /* MyPageViewController.swift */; };
+		EE5251F12A8E668D003DFEE3 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5251F02A8E668D003DFEE3 /* credentials.plist */; };
 		EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */; };
 		EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */; };
 		EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */; };
@@ -244,6 +245,7 @@
 		EE5251DE2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyMemberEmptyView.swift; sourceTree = "<group>"; };
 		EE5251E02A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageEditBottomSheet.swift; sourceTree = "<group>"; };
 		EE5251E12A8E63B3003DFEE3 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		EE5251F02A8E668D003DFEE3 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectView.swift; sourceTree = "<group>"; };
 		EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Extension.swift"; sourceTree = "<group>"; };
 		EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				EE5251BC2A8E5BD0003DFEE3 /* Secret */,
 				EE4B341B2A66D14800E6EB01 /* Resources */,
 				EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */,
+				EE5251F02A8E668D003DFEE3 /* credentials.plist */,
 				EE0BEDF12A49574F008D9D05 /* App */,
 				EE0BEDF52A4958B3008D9D05 /* Common */,
 				EE0BEDF32A49586C008D9D05 /* Presentation */,
@@ -1240,6 +1243,7 @@
 				EE4B342C2A66D28900E6EB01 /* SpoqaHanSansNeo-Regular.otf in Resources */,
 				EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */,
 				EE4B34292A66D28900E6EB01 /* SpoqaHanSansNeo-Medium.otf in Resources */,
+				EE5251F12A8E668D003DFEE3 /* credentials.plist in Resources */,
 				EE4B34282A66D28900E6EB01 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				EE4B342B2A66D28900E6EB01 /* SpoqaHanSansNeo-Thin.otf in Resources */,
 			);
