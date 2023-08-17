@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Moya
+import CombineMoya
+import Combine
+
 protocol DetailReviewViewDelegate: AnyObject {
     func didTappedDetailReviewViewInAllViewButton()
 }
@@ -62,6 +66,8 @@ final class DetailReviewView: UIView {
     
     // MARK: Property
     
+    private let provider = MoyaProvider<ReviewAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
     weak var delegate: DetailReviewViewDelegate?
     
     // MARK: Configure
@@ -98,6 +104,8 @@ final class DetailReviewView: UIView {
     private func allViewButtonTouchUpInside() {
         delegate?.didTappedDetailReviewViewInAllViewButton()
     }
+    
+    
 }
 
 extension DetailReviewView: UITableViewDataSource {

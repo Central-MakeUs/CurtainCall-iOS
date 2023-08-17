@@ -121,6 +121,7 @@
 		EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */; };
 		EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA40E92A8E037F000990B0 /* ProductService.swift */; };
 		EEAA40ED2A8E0663000990B0 /* ProductListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */; };
+		EEAA40F02A8E0CF7000990B0 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA40EF2A8E0CF7000990B0 /* ReviewService.swift */; };
 		EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776352A602B0500BFCAAD /* CalendarView.swift */; };
 		EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776372A6031B300BFCAAD /* CalendarCell.swift */; };
 		EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */; };
@@ -274,6 +275,7 @@
 		EEA944532A5D9CE30081E784 /* FoodPartyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPartyInfo.swift; sourceTree = "<group>"; };
 		EEAA40E92A8E037F000990B0 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListResponse.swift; sourceTree = "<group>"; };
+		EEAA40EF2A8E0CF7000990B0 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		EEB776352A602B0500BFCAAD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		EEB776372A6031B300BFCAAD /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
@@ -830,9 +832,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EEAA40EE2A8E0CEB000990B0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EEAA40EF2A8E0CF7000990B0 /* ReviewService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		EEC441D52A76336800CD93BC /* Review */ = {
 			isa = PBXGroup;
 			children = (
+				EEAA40EE2A8E0CEB000990B0 /* Service */,
 				EEF8154E2A73AE69009C1C57 /* ReviewViewController.swift */,
 				EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */,
 			);
@@ -1303,6 +1314,7 @@
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,
+				EEAA40F02A8E0CF7000990B0 /* ReviewService.swift in Sources */,
 				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
 				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,

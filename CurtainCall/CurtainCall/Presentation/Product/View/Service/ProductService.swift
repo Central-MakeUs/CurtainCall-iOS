@@ -35,7 +35,7 @@ extension ProductAPI: TargetType {
     var path: String {
         switch self {
         case .list: return "/shows"
-        case .detail: return "/shows"
+        case .detail(let id): return "/shows/\(id)"
         case .ticketking: return ""
         }
     }
@@ -52,9 +52,8 @@ extension ProductAPI: TargetType {
             param.updateValue(size, forKey: "size")
             param.updateValue(genre.APIName, forKey: "genre")
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
-        case .detail(let id):
-            param.updateValue(id, forKey: "id")
-            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .detail:
+            return .requestPlain
         case .ticketking:
             return .requestPlain
         }

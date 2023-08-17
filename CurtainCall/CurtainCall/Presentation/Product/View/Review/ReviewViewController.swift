@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Moya
+import CombineMoya
+import Combine
+
 final class ReviewViewController: UIViewController {
     
     // MARK: UI Property
@@ -26,6 +30,9 @@ final class ReviewViewController: UIViewController {
     }()
     
     // MARK: Property
+    
+    private let provider = MoyaProvider<ReviewAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: Life Cycle
     

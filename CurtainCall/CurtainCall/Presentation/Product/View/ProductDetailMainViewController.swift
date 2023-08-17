@@ -308,10 +308,12 @@ final class ProductDetailMainViewController: UIViewController {
     private let detailInfoView = DetailInfoView()
     private let detailReviewView = DetailReviewView()
     private let detailLostItemView = DetailLostItemView()
-    private let provider = MoyaProvider<ProductAPI>()
-    private var subscriptions: Set<AnyCancellable> = []
+    
     
     // MARK: - Properties
+    private let provider = MoyaProvider<ProductAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
+    private let reviewProvider = MoyaProvider<ReviewAPI>()
     
     // MARK: - Lifecycles
     
@@ -325,6 +327,7 @@ final class ProductDetailMainViewController: UIViewController {
         subButtonTouchUpInside(detailButton)
         // 삭제예정
         requestShowDetail(id: "123")
+        requestReviewList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -580,7 +583,18 @@ final class ProductDetailMainViewController: UIViewController {
             }.store(in: &subscriptions)
 
     }
-   
+    
+    private func requestReviewList() {
+        reviewProvider.requestPublisher(.list(id: "id", page: 1, size: 20))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { response in
+                print("REVIEW: ", String(data: response.data, encoding: .utf8))
+            }.store(in: &subscriptions)
+    }
 }
 
 extension ProductDetailMainViewController: DetailReviewViewDelegate {
