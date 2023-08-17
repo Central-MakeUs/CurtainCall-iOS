@@ -67,6 +67,8 @@ final class MyPageViewController: UIViewController {
         return label
     }()
     
+    private let myRecruitmentButton = UIButton()
+    
     private let myParticipationView = UIView()
     private let myParticipationLabel: UILabel = {
         let label = UILabel()
@@ -82,7 +84,8 @@ final class MyPageViewController: UIViewController {
         label.text = "0"
         return label
     }()
-    
+    private let myParticipationButton = UIButton()
+
     private let myViewSperator: UIView = {
         let view = UIView()
         view.backgroundColor = .hexBEC2CA
@@ -210,6 +213,7 @@ final class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTargets()
     }
     
     // MARK: - Helpers
@@ -228,8 +232,8 @@ final class MyPageViewController: UIViewController {
             listSeperator, borderView, noticeView, FAQView, footerView
         )
         myView.addSubviews(myRecruitmentView, myParticipationView, myViewSperator)
-        myRecruitmentView.addSubviews(myRecruitmentLabel, myRecruitmentCountLabel)
-        myParticipationView.addSubviews(myParticipationLabel, myParticipationCountLabel)
+        myRecruitmentView.addSubviews(myRecruitmentLabel, myRecruitmentCountLabel, myRecruitmentButton)
+        myParticipationView.addSubviews(myParticipationLabel, myParticipationCountLabel, myParticipationButton)
         myWriteView.addSubviews(myWriteIcon, myWriteLabel)
         saveView.addSubviews(saveIcon, saveLabel)
         noticeView.addSubviews(noticeLabel, noticeArrowImage)
@@ -284,10 +288,12 @@ final class MyPageViewController: UIViewController {
             $0.bottom.equalToSuperview().offset(-18)
             $0.centerX.equalToSuperview()
         }
+        myRecruitmentButton.snp.makeConstraints { $0.edges.equalToSuperview() }
         myParticipationCountLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-18)
             $0.centerX.equalToSuperview()
         }
+        myParticipationButton.snp.makeConstraints { $0.edges.equalToSuperview() }
         myViewSperator.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.height.equalTo(30)
@@ -403,5 +409,52 @@ final class MyPageViewController: UIViewController {
         navigationItem.rightBarButtonItem = settingBarbuttonItem
         navigationItem.rightBarButtonItem?.tintColor = .black
         
+    }
+    
+    private func addTargets() {
+        profileEditButton.addTarget(
+            self,
+            action: #selector(editButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        myRecruitmentButton.addTarget(
+            self,
+            action: #selector(myRecruitmentButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        myParticipationButton.addTarget(
+            self,
+            action: #selector(myParticipationButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    private func editButtonTouchUpInside() {
+        let editViewController = UINavigationController(
+            rootViewController: MyPageEditViewController()
+        )
+        editViewController.modalPresentationStyle = .fullScreen
+        present(editViewController, animated: true)
+    }
+    
+    @objc
+    private func myRecruitmentButtonTouchUpInside() {
+        let viewModel = MyRecruitmentViewModel()
+        let recruitmentViewController = UINavigationController(
+            rootViewController: MyRecruitmentViewController(viewModel: viewModel)
+        )
+        recruitmentViewController.modalPresentationStyle = .fullScreen
+        present(recruitmentViewController, animated: true)
+    }
+    
+    @objc
+    private func myParticipationButtonTouchUpInside() {
+        let viewModel = MyParticipationViewModel()
+        let participationViewController = UINavigationController(
+            rootViewController: MyParticipationViewController(viewModel: viewModel)
+        )
+        participationViewController.modalPresentationStyle = .fullScreen
+        present(participationViewController, animated: true)
     }
 }

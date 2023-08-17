@@ -11,6 +11,8 @@ enum ImageNamespace {
     static let navigationBackButton = "navigation_back_button"
     static let navigationSearchButton = "navigation_search_button"
     static let navigationBackButtonWhite = "navigation_back_button_white"
+    static let navigationMoreButton = "navigation_more_button"
+    static let navigationReportButton = "navigation_report_button"
     
     static let loginButtonApple = "login_button_apple"
     static let loginButtonGoogle = "login_button_google"
@@ -111,4 +113,16 @@ enum ImageNamespace {
     static let myPageWriteIcon = "myPage_write_icon"
     static let myPageBorderIcon = "myPage_border_icon"
     static let myPageArrowRight = "myPage_arrow_right"
+    static let myPageProfileEditingIcon = "myPage_profile_editing_icon"
+    
+    static let myPageDateSymbol = "myPage_date_symbol"
+    static let myPageTimeSymbol = "myPage_time_symbol"
+    static let myPageLocationSymbol = "myPage_location_symbol"
+    
+    static let emptyBangMark = "empty_bang_mark"
+    
+    static let bottomEditIcon = "bottom_edit_icon"
+    static let bottomRemoveIcon = "bottom_remove_icon"
+    
+    static let reportBangIcon = "report_bang_icon"
 }

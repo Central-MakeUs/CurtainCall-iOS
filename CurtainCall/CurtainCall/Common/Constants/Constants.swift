@@ -46,4 +46,9 @@ enum Constants {
     """
     내용을 적어주세요.
     """
+    static let REPORT_DETAIL_TEXTVIEW_PLACEHOLDER =
+    """
+    예시)
+    공연 관람 파티원 구하는 게시물에서 욕설을 하고 있습니다.
+    """
 }

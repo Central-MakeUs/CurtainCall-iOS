@@ -54,7 +54,7 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func configureBackbarButton() {
+    func configureBackbarButton(_ exitType: ExitType = .pop) {
 //        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.hidesBackButton = true
         let backImage = UIImage(named: ImageNamespace.navigationBackButton)
@@ -62,18 +62,24 @@ extension UIViewController {
             image: backImage,
             style: .plain,
             target: self,
-            action: #selector(backButtonTapped)
+            action: exitType == .pop ? #selector(popView) : #selector(dismissView)
         )
         navigationItem.leftBarButtonItem = backBarbuttonItem
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     @objc
-    func backButtonTapped() {
-        guard let navigationController else {
-            dismiss(animated: true)
-            return
-        }
-        navigationController.popViewController(animated: true)
+    func popView() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func dismissView() {
+        dismiss(animated: true)
+    }
+    
+    enum ExitType {
+        case pop
+        case dismiss
     }
 }

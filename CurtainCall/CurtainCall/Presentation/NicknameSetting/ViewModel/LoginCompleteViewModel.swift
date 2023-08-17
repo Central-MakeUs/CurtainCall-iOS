@@ -26,6 +26,7 @@ final class LoginCompleteViewModel {
                     return
                 }
             } receiveValue: { [weak self] response in
+                print("#SignUp", String(data: response.data, encoding: .utf8))
                 if let data = try? response.map(SignUpResponse.self) {
                     self?.isSuccessSignUp.send(true)
                     KeychainWrapper.standard[.userID] = data.id

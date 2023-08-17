@@ -497,8 +497,13 @@ final class ProductDetailMainViewController: UIViewController {
         [detailButton, reviewButton, lostItemButton].forEach {
             $0.addTarget(self, action: #selector(subButtonTouchUpInside), for: .touchUpInside)
         }
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         keepButton.addTarget(self, action: #selector(keepButtonTouchUpInside), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonTouchUpInside), for: .touchUpInside)
+    }
+    
+    @objc
+    private func backButtonTouchUpInside() {
+        dismiss(animated: true)
     }
     
     @objc
@@ -560,12 +565,7 @@ final class ProductDetailMainViewController: UIViewController {
             $0.bottom.equalToSuperview()
         }
     }
-    
-    @objc
-    override func backButtonTapped() {
-        dismiss(animated: true)
-    }
-    
+
     @objc
     func keepButtonTouchUpInside() {
         keepButton.isSelected.toggle()
