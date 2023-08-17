@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Moya
+import CombineMoya
+import Combine
+
 final class ProductDetailMainViewController: UIViewController {
     
     // MARK: - UI properties
@@ -304,6 +308,8 @@ final class ProductDetailMainViewController: UIViewController {
     private let detailInfoView = DetailInfoView()
     private let detailReviewView = DetailReviewView()
     private let detailLostItemView = DetailLostItemView()
+    private let provider = MoyaProvider<ProductAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Properties
     
@@ -317,6 +323,8 @@ final class ProductDetailMainViewController: UIViewController {
         detailReviewView.delegate = self
         detailLostItemView.delegate = self
         subButtonTouchUpInside(detailButton)
+        // 삭제예정
+        requestShowDetail(id: "123")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -559,6 +567,20 @@ final class ProductDetailMainViewController: UIViewController {
     func keepButtonTouchUpInside() {
         keepButton.isSelected.toggle()
     }
+    
+    private func requestShowDetail(id: String) {
+        provider.requestPublisher(.detail(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { response in
+                print("##", String(data: response.data, encoding: .utf8))
+            }.store(in: &subscriptions)
+
+    }
+   
 }
 
 extension ProductDetailMainViewController: DetailReviewViewDelegate {

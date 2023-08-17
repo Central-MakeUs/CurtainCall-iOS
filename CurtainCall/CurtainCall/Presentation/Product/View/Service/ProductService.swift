@@ -26,7 +26,7 @@ enum ProductListAPI {
 
 enum ProductAPI {
     case list(page: Int, size: Int, genre: ProductListAPI)
-    case detail(id: Int)
+    case detail(id: String)
     case ticketking
 }
 

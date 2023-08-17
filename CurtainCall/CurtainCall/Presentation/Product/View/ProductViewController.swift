@@ -284,11 +284,11 @@ final class ProductViewController: UIViewController {
                 }
             } receiveValue: { response in
                 if let data = try? response.map(ProductListResponse.self) {
-                    print("##", data)
+                    
                 }
             }.store(in: &subscriptions)
-
     }
+    
 }
 
 extension ProductViewController: UICollectionViewDelegate {
