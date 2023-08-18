@@ -17,7 +17,7 @@ enum NicknameValidType {
     var message: String {
         switch self {
         case .success:
-            return "유효한 닉네임 입니다."
+            return "사용 가능한 닉네임 입니다."
         case .blank:
             return "공백이 포함되어 있습니다."
         case .length:
@@ -25,7 +25,7 @@ enum NicknameValidType {
         case .invalidForm:
             return "한글, 영문, 숫자만 가능합니다."
         case .isDuplicated:
-            return "중복된 닉네임 입니다."
+            return "이미 동일한 닉네임이 있습니다.\n다른 닉네임을 입력해주세요."
         }
     }
 }

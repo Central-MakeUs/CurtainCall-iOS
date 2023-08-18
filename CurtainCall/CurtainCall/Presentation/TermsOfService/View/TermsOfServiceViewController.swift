@@ -156,14 +156,10 @@ final class TermsOfServiceViewController: UIViewController {
         return stackView
     }()
     
-    private let nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("동의하고 계속하기", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        button.backgroundColor = UIColor(rgb: 0xE1E4E9)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 15
-        button.isEnabled = false
+    private let nextButton: BottomNextButton = {
+        let button = BottomNextButton()
+        button.setTitle("다음", for: .normal)
+        button.setNextButton(isSelected: false)
         return button
     }()
     
@@ -302,18 +298,9 @@ final class TermsOfServiceViewController: UIViewController {
         }.store(in: &cancellables)
         
         viewModel.isCheckedRequire.sink { [weak self] isCheck in
-            self?.nextButtonCheck(isCheck)
+            self?.nextButton.setNextButton(isSelected: isCheck)
         }.store(in: &cancellables)
 
-    }
-    
-    private func nextButtonCheck(_ isCheck: Bool) {
-        nextButton.backgroundColor = UIColor(rgb: isCheck ? 0x273041 : 0xE1E4E9)
-        nextButton.setTitleColor(
-            UIColor(rgb: isCheck ? 0xFFFFFF : 0x91959D),
-            for: .normal
-        )
-        nextButton.isEnabled = isCheck
     }
     
     private func moveToNicknameSettingViewController() {
