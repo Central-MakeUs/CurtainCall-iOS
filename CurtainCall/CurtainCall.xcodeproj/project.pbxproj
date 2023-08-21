@@ -32,6 +32,7 @@
 		EE1825BA2A8899540020BADA /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = EE1825B92A8899540020BADA /* Moya */; };
 		EE1825BD2A8899CE0020BADA /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BC2A8899CE0020BADA /* LoginService.swift */; };
 		EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */; };
+		EE1CF9F42A93384200964DFE /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1CF9F32A93384200964DFE /* ProductViewModel.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -206,6 +207,7 @@
 		EE0BEE032A49909F008D9D05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EE1825BC2A8899CE0020BADA /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
+		EE1CF9F32A93384200964DFE /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -964,6 +966,7 @@
 			isa = PBXGroup;
 			children = (
 				EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */,
+				EE1CF9F32A93384200964DFE /* ProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1366,6 +1369,7 @@
 				EE9A886C2A875B810085F816 /* GuideDictCell.swift in Sources */,
 				EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */,
 				EEA9443A2A5D1BE80081E784 /* PartyProductCell.swift in Sources */,
+				EE1CF9F42A93384200964DFE /* ProductViewModel.swift in Sources */,
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE5251EC2A8E63B3003DFEE3 /* MyRecruitmentEditViewController.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,

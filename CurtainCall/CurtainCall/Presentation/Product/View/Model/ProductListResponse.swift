@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ProductListResponse: Decodable {
+struct ProductListResponse: Decodable, Hashable {
     let content: [ProductListContent]
 }
 
-struct ProductListContent: Decodable {
+struct ProductListContent: Decodable, Hashable {
     let id: String
     let name: String
     let startDate: String // "2023-04-28",
@@ -22,7 +22,7 @@ struct ProductListContent: Decodable {
     let showTimes: [ProductListShowTime]
       
 }
-struct ProductListShowTime: Decodable {
+struct ProductListShowTime: Decodable, Hashable {
     let dayOfWeek: String // "THURSDAY",
     let time: String // "13:30:00"
 }

@@ -241,15 +241,15 @@ final class ProductSearchCell: UICollectionViewCell {
         }
     }
     
-    func draw(item: ProductSearchInfo) {
-        posterImageView.image = item.posterImage
-        productTitleLabel.text = item.title
-        starGradeLabel.text = String(format: "%.1f", item.grade)
-        starCountLabel.text = "(\(item.gradeCount))"
-        productDuringLabel.text = item.during
-        productRunningTimeLabel.text = item.runningTime
-        productScheduleLabel.text = item.schedule
-        productScheduleSubLabel.text = item.subschedule
-        productLocationLabel.text = item.location
+    func draw(item: ProductListContent) {
+//        posterImageView.image = item.poster
+        productTitleLabel.text = item.name
+//        starGradeLabel.text = String(format: "%.1f", item.grade)
+//        starCountLabel.text = "(\(item.gradeCount))"
+//        productDuringLabel.text = item.during
+//        productRunningTimeLabel.text = item.runningTime
+//        productScheduleLabel.text = item.schedule
+//        productScheduleSubLabel.text = item.subschedule
+        productLocationLabel.text = item.facilityName
     }
 }

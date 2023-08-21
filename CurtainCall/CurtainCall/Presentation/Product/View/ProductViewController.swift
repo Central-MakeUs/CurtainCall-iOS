@@ -14,8 +14,11 @@ import Combine
 
 final class ProductViewController: UIViewController {
     
-    enum Section { case main }
-    typealias Item = ProductSearchInfo
+    enum Section {
+        case play
+        case musical
+    }
+    typealias Item = ProductListContent
     typealias Datasource = UICollectionViewDiffableDataSource<Section, Item>
     
     // MARK: - UI properties
@@ -120,16 +123,30 @@ final class ProductViewController: UIViewController {
     private var datasource: Datasource?
     private var subscriptions: Set<AnyCancellable> = []
     private let provider = MoyaProvider<ProductAPI>()
+    private let viewModel: ProductViewModel
     
     // MARK: - Lifecycles
+    
+    init(viewModel: ProductViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTarget()
+        
+        viewModel.requestShow(page: 1, size: 20, genre: .play)
+        viewModel.requestShow(page: 1, size: 20, genre: .musical)
         typeButtonTouchUpInside(theaterButton)
         orderSelectButtonTouchUpInside(reservationOrderButton)
-        requestShowList()
+        bind()
+        
     }
     
     // MARK: - Helpers
@@ -139,7 +156,6 @@ final class ProductViewController: UIViewController {
         configureConstraints()
         configureNavigation()
         configureDatasource()
-        configureSnapshot()
     }
     
     private func configureSubviews() {
@@ -236,13 +252,6 @@ final class ProductViewController: UIViewController {
         navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
-    private func configureSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(ProductSearchInfo.list)
-        datasource?.apply(snapshot)
-    }
-    
     private func addTarget() {
         [theaterButton, musicalButton].forEach {
             $0.addTarget(self, action: #selector(typeButtonTouchUpInside), for: .touchUpInside)
@@ -263,6 +272,19 @@ final class ProductViewController: UIViewController {
             $0.isUserInteractionEnabled = !(sender == $0)
             $0.backgroundColor = sender == $0 ? .pointColor2 : .clear
         }
+        if sender == theaterButton {
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+            snapshot.deleteAllItems()
+            snapshot.appendSections([.play])
+            snapshot.appendItems(viewModel.playList, toSection: .play)
+            datasource?.apply(snapshot)
+        } else {
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+            snapshot.deleteAllItems()
+            snapshot.appendSections([.musical])
+            snapshot.appendItems(viewModel.musicalList, toSection: .musical)
+            datasource?.apply(snapshot)
+        }
     }
     
     @objc
@@ -275,19 +297,37 @@ final class ProductViewController: UIViewController {
         dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
     }
     
-    private func requestShowList() {
-        provider.requestPublisher(.list(page: 1, size: 20, genre: .play))
+    private func bind() {
+        viewModel.$playList
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
                     return
                 }
-            } receiveValue: { response in
-                if let data = try? response.map(ProductListResponse.self) {
-                    
+            } receiveValue: { [weak self] value in
+                guard let self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.play])
+                snapshot.appendItems(value, toSection: .play)
+                datasource?.apply(snapshot)
+            }.store(in: &subscriptions)
+
+        viewModel.$musicalList
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
                 }
+            } receiveValue: { [weak self] value in
+                guard let self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.musical])
+                snapshot.appendItems(value, toSection: .musical)
+                datasource?.apply(snapshot)
             }.store(in: &subscriptions)
     }
+    
+    
     
 }
 
