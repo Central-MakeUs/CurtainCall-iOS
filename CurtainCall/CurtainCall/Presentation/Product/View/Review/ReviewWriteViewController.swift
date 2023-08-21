@@ -89,7 +89,7 @@ final class ReviewWriteViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 0
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -126,18 +126,19 @@ final class ReviewWriteViewController: UIViewController {
     private lazy var reviewTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .hexF5F6F8
-        textView.textColor = .hex828996
+        textView.textColor = .hexBEC2CA
         textView.layer.cornerRadius = 10
-        textView.textContainerInset = .init(top: 12, left: 18, bottom: 12, right: 18)
         textView.delegate = self
         textView.font = .body2
         textView.text = Constants.REVIEW_WRITE_TEXTVIEW_PLACEHOLDER
+        textView.textContainerInset = .init(top: 15, left: 18, bottom: 15, right: 18)
+        textView.textContainer.lineFragmentPadding = 0
         return textView
     }()
     
     private let textCountLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "글자수 제한 (0/30)"
+        label.text = "글자수 제한 (0/20)"
         label.textColor = .hex828996
         label.font = .body5
         return label
@@ -210,7 +211,7 @@ final class ReviewWriteViewController: UIViewController {
             $0.top.leading.trailing.equalToSuperview()
         }
         navigationView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(44)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(40)
         }
@@ -223,9 +224,9 @@ final class ReviewWriteViewController: UIViewController {
         }
         posterImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(navigationView.snp.bottom).offset(40)
-            $0.height.equalTo(106)
-            $0.width.equalTo(80)
+            $0.top.equalTo(navigationView.snp.bottom).offset(20)
+            $0.height.equalTo(150)
+            $0.width.equalTo(120)
         }
         categoryLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(10)
@@ -263,7 +264,7 @@ final class ReviewWriteViewController: UIViewController {
         reviewTextView.snp.makeConstraints {
             $0.top.equalTo(reviewWriteLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(62)
+            $0.height.equalTo(51)
         }
         textCountLimitLabel.snp.makeConstraints {
             $0.top.equalTo(reviewTextView.snp.bottom).offset(10)
@@ -280,6 +281,7 @@ final class ReviewWriteViewController: UIViewController {
     private func addTargets() {
         slider.addTarget(self, action: #selector(onDragStarSlider), for: .valueChanged)
         completeButton.addTarget(self, action: #selector(completeButtonTouchUpInside), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonTouchUpInside), for: .touchUpInside)
     }
     
     private func bind() {
@@ -309,6 +311,11 @@ final class ReviewWriteViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc
+    private func backButtonTouchUpInside() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func updateCountLabel(count: Int) {
         textCountLimitLabel.text = "글자수 제한 (\(count)/30)"
     }
@@ -332,11 +339,17 @@ final class ReviewWriteViewController: UIViewController {
     }
     
     
+    
 }
 
 extension ReviewWriteViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        updateCountLabel(count: textView.text.count)
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == Constants.REVIEW_WRITE_TEXTVIEW_PLACEHOLDER {
+            textView.textColor = .body1
             textView.text = nil
             return
         }
@@ -345,6 +358,7 @@ extension ReviewWriteViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = Constants.REVIEW_WRITE_TEXTVIEW_PLACEHOLDER
+            textView.textColor = .hexBEC2CA
             viewModel.reviewTextViewChanged(text: textView.text)
             return
         }
@@ -364,8 +378,7 @@ extension ReviewWriteViewController: UITextViewDelegate {
                 return true
             }
         }
-        guard content.count <= 30 else { return false }
-        updateCountLabel(count: content.count)
+        guard content.count <= 20 else { return false }
         return true
     }
 }
