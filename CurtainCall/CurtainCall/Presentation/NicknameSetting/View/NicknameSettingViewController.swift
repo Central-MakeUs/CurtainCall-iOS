@@ -36,6 +36,8 @@ final class NicknameSettingViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.clear.cgColor
         return view
     }()
     
@@ -46,6 +48,7 @@ final class NicknameSettingViewController: UIViewController {
         textField.font = .systemFont(ofSize: 18, weight: .medium)
         textField.borderStyle = .none
         textField.delegate = self
+        textField.addTarget(self, action: #selector(nicknameTextFieldChanged), for: .editingChanged)
         return textField
     }()
     
@@ -61,7 +64,7 @@ final class NicknameSettingViewController: UIViewController {
     
     private let nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다음", for: .normal)
+        button.setTitle("닉네임 설정 완료", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         button.backgroundColor = UIColor(rgb: 0xE1E4E9)
         button.setTitleColor(.white, for: .normal)
@@ -70,11 +73,19 @@ final class NicknameSettingViewController: UIViewController {
         return button
     }()
     
+    private let validLabel: UILabel = {
+        let label = UILabel()
+        label.font = .body4
+        label.numberOfLines = 0
+        return label
+    }()
+    
     // MARK: - Properties
     
     private let NICKNAME_MAX_LENGTH: Int = 15
     private let viewModel: NicknameSettingViewModel
     private var cancellables = Set<AnyCancellable>()
+    private var isValidNickname = false
     
     // MARK: - Lifecycles
     
@@ -107,7 +118,7 @@ final class NicknameSettingViewController: UIViewController {
     
     private func configureSubviews() {
         view.addSubviews(
-            titleLabel, subTitleLabel,nicknameView, duplicateCheckButton, nextButton
+            titleLabel, subTitleLabel,nicknameView, duplicateCheckButton, nextButton, validLabel
         )
         nicknameView.addSubview(nicknameTextField)
     }
@@ -146,14 +157,19 @@ final class NicknameSettingViewController: UIViewController {
             $0.height.equalTo(58)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
         }
+        
+        validLabel.snp.makeConstraints {
+            $0.top.equalTo(nicknameView.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalTo(duplicateCheckButton.snp.leading).inset(24)
+        }
     }
     
     private func buttonValidCheck(_ isValid: Bool) {
         nextButton.backgroundColor = !isValid ? .hexE4E7EC : .pointColor2
         nextButton.setTitleColor(isValid ? .white : .hexBEC2CA, for: .normal)
         nextButton.isEnabled = isValid
-        duplicateCheckButton.backgroundColor = !isValid ? .hexE4E7EC : .pointColor2
-        duplicateCheckButton.setTitleColor(isValid ? .white : .hexBEC2CA, for: .normal)
+        
     }
     
     private func bind() {
@@ -164,18 +180,16 @@ final class NicknameSettingViewController: UIViewController {
                     return
                 }
             } receiveValue: { isValid in
-                self.presentAlert(title: isValid.message)
+                self.validLabel.text = isValid.message
+                self.validLabel.textColor = isValid == .success ? UIColor(rgb: 0x00C271) : .myRed
+                self.nicknameView.layer.borderColor = isValid == .success ? UIColor(rgb: 0x00C271).cgColor : UIColor.myRed?.cgColor
                 self.buttonValidCheck(isValid == .success)
-                print("!!!!", isValid)
+                self.isValidNickname = isValid == .success
+                self.duplicateCheckButton.backgroundColor = isValid == .success ? .hexE4E7EC : .pointColor2
+                self.duplicateCheckButton.setTitleColor(isValid != .success ? .white : .hexBEC2CA, for: .normal)
+                self.duplicateCheckButton.isUserInteractionEnabled = isValid != .success
+                self.nicknameTextField.isUserInteractionEnabled = isValid != .success
             }.store(in: &cancellables)
-
-        
-        
-//        viewModel.isValidRegexNickname
-//            .sink { [weak self] nicknameValidType in
-//                self?.presentAlert(title: nicknameValidType.message)
-//                self?.buttonValidCheck(nicknameValidType == .success)
-//            }.store(in: &cancellables)
     }
     
     private func addTargets() {
@@ -191,6 +205,7 @@ final class NicknameSettingViewController: UIViewController {
         )
     }
     
+    
     // MARK: - Actions
     
     @objc
@@ -205,6 +220,16 @@ final class NicknameSettingViewController: UIViewController {
         navigationController?.pushViewController(LoginCompleteViewController(viewModel: viewModel, nickname: nickname), animated: true)
     }
     
+    @objc
+    private func nicknameTextFieldChanged(_ sender: UITextField) {
+        guard let text = sender.text, !isValidNickname else { return }
+        
+        duplicateCheckButton.backgroundColor = text.isEmpty ? .hexE4E7EC : .pointColor2
+        duplicateCheckButton.setTitleColor(!text.isEmpty ? .white : .hexBEC2CA, for: .normal)
+        duplicateCheckButton.isUserInteractionEnabled = !text.isEmpty
+        
+    }
+    
 }
 
 extension NicknameSettingViewController: UITextFieldDelegate {
@@ -214,6 +239,7 @@ extension NicknameSettingViewController: UITextFieldDelegate {
         replacementString string: String
     ) -> Bool {
         guard let text = textField.text else { return false }
+        
         
         if let char = string.cString(using: String.Encoding.utf8) {
             let isBackSpace = strcmp(char, "\\b")

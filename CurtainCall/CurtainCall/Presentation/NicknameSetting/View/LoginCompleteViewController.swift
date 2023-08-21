@@ -33,7 +33,8 @@ final class LoginCompleteViewController: UIViewController {
         let label = UILabel()
         label.text = "이제 커튼콜 이용을\n시작해볼까요?"
         label.numberOfLines = 2
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .subTitle2
+        label.textColor = .pointColor2
         label.textAlignment = .center
         return label
     }()
@@ -72,6 +73,7 @@ final class LoginCompleteViewController: UIViewController {
         configureUI()
         addTarget()
         bind()
+        view.backgroundColor = .pointColor1
     }
     
     // MARK: - Helpers
