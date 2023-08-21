@@ -125,4 +125,6 @@ enum ImageNamespace {
     static let bottomRemoveIcon = "bottom_remove_icon"
     
     static let reportBangIcon = "report_bang_icon"
+    
+    static let emptyMarks = "empty_marks"
 }

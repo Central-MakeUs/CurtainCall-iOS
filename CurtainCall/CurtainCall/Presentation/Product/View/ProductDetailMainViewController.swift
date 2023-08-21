@@ -608,8 +608,12 @@ final class ProductDetailMainViewController: UIViewController {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(ShowReviewResponse.self) {
                     print("####", data)
-                    self?.detailReviewView.reviewInfos = data.content
-                    self?.detailReviewView.tableView.reloadData()
+                    if data.content.isEmpty {
+                        self?.detailReviewView.setEmptyView()
+                    } else {
+                        self?.detailReviewView.reviewInfos = data.content
+                        self?.detailReviewView.tableView.reloadData()
+                    }
                 }
             }.store(in: &subscriptions)
     }

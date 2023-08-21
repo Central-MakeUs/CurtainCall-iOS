@@ -49,8 +49,15 @@ final class DetailReviewView: UIView {
     private let emptyView = UIView()
     private let emptyImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.
+        imageView.image = UIImage(named: ImageNamespace.emptyMarks)
         return imageView
+    }()
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = .body1
+        label.textColor = .hexBEC2CA
+        label.text = "아직 한 줄 리뷰가 없어요!"
+        return label
     }()
     
     var reviewInfos: [ShowReviewContent]?
@@ -113,6 +120,32 @@ final class DetailReviewView: UIView {
         delegate?.didTappedDetailReviewViewInAllViewButton()
     }
     
+    func setEmptyView() {
+        addSubview(emptyView)
+        emptyView.addSubviews(emptyImage, emptyLabel)
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(250)
+        }
+        emptyImage.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-10)
+        }
+        emptyLabel.snp.makeConstraints {
+            $0.top.equalTo(emptyImage.snp.bottom).offset(18)
+            $0.centerX.equalToSuperview()
+            
+        }
+        tableView.snp.remakeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(0)
+        }
+
+        setNeedsLayout()
+    }
     
 }
 
