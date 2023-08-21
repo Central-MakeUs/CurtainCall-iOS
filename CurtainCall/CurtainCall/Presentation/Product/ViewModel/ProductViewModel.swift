@@ -29,13 +29,13 @@ final class ProductViewModel {
                 guard let self else { return }
                 if let data = try? response.map(ProductListResponse.self) {
                     if genre == .play {
-                        if page == 1 {
+                        if page == 0 {
                             playList = data.content
                         } else {
                             playList.append(contentsOf: data.content)
                         }
                     } else {
-                        if page == 1 {
+                        if page == 0 {
                             musicalList = data.content
                         } else {
                             musicalList.append(contentsOf: data.content)

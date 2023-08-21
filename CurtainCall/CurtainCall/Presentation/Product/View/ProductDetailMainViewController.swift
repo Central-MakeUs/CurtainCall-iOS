@@ -599,7 +599,7 @@ final class ProductDetailMainViewController: UIViewController {
     }
     
     private func requestReviewList(id: String) {
-        reviewProvider.requestPublisher(.list(id: id, page: 1, size: 20))
+        reviewProvider.requestPublisher(.list(id: id, page: 0, size: 20))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
@@ -612,6 +612,7 @@ final class ProductDetailMainViewController: UIViewController {
                         self?.detailReviewView.setEmptyView()
                     } else {
                         self?.detailReviewView.reviewInfos = data.content
+                        self?.detailReviewView.setTableView()
                         self?.detailReviewView.tableView.reloadData()
                     }
                 }

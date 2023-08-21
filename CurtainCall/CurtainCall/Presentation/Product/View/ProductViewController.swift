@@ -270,9 +270,9 @@ final class ProductViewController: UIViewController {
             $0.backgroundColor = sender == $0 ? .pointColor2 : .clear
         }
         if sender == theaterButton {
-            viewModel.requestShow(page: 1, size: 20, genre: .play)
+            viewModel.requestShow(page: 0, size: 20, genre: .play)
         } else {
-            viewModel.requestShow(page: 1, size: 20, genre: .musical)
+            viewModel.requestShow(page: 0, size: 20, genre: .musical)
         }
     }
     

@@ -96,7 +96,7 @@ final class ReviewViewController: UIViewController {
     }
     
     private func requestReviewList(id: String) {
-        provider.requestPublisher(.list(id: id, page: 1, size: 20))
+        provider.requestPublisher(.list(id: id, page: 0, size: 20))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)

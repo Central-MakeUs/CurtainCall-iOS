@@ -110,7 +110,7 @@ final class DetailReviewView: UIView {
         tableView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(17)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(min(reviewInfos?.count ?? 0, 3) * 112)
+            $0.height.equalTo(min((reviewInfos?.count ?? 0), 3) * 112)
             $0.bottom.equalToSuperview()
         }
     }
@@ -118,6 +118,15 @@ final class DetailReviewView: UIView {
     @objc
     private func allViewButtonTouchUpInside() {
         delegate?.didTappedDetailReviewViewInAllViewButton()
+    }
+    
+    func setTableView() {
+        tableView.snp.remakeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(17)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(min((reviewInfos?.count ?? 0), 3) * 112)
+            $0.bottom.equalToSuperview()
+        }
     }
     
     func setEmptyView() {

@@ -157,7 +157,7 @@ final class ProductReviewCell: UITableViewCell {
     }
     
     func draw(item: ShowReviewContent) {
-        if let profileURL = URL(string: item.creatorImageUrl) {
+        if let profileURLString = item.creatorImageUrl, let profileURL = URL(string: profileURLString) {
             profileImageView.kf.setImage(with: profileURL)
         } else {
             profileImageView.image = nil

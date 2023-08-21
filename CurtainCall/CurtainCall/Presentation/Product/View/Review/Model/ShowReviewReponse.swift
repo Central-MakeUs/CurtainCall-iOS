@@ -18,5 +18,5 @@ struct ShowReviewContent: Decodable {
     let content: String
     let creatorId: Int
     let creatorNickname: String
-    let creatorImageUrl: String
+    let creatorImageUrl: String?
 }
