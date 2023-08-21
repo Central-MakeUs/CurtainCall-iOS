@@ -253,7 +253,7 @@ final class ProductSearchCell: UICollectionViewCell {
         productTitleLabel.text = item.name
 //        starGradeLabel.text = String(format: "%.1f", item.grade)
 //        starCountLabel.text = "(\(item.gradeCount))"
-//        productDuringLabel.text = item.during
+        productDuringLabel.text = item.startDate + " ~ " + item.endDate
 //        productRunningTimeLabel.text = item.runningTime
 //        productScheduleLabel.text = item.schedule
 //        productScheduleSubLabel.text = item.subschedule
