@@ -33,6 +33,7 @@
 		EE1825BD2A8899CE0020BADA /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BC2A8899CE0020BADA /* LoginService.swift */; };
 		EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */; };
 		EE1CF9F42A93384200964DFE /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1CF9F32A93384200964DFE /* ProductViewModel.swift */; };
+		EE1DF3722A93A44F003AD078 /* ShowReviewReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -210,6 +211,7 @@
 		EE1825BC2A8899CE0020BADA /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		EE1CF9F32A93384200964DFE /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowReviewReponse.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -561,6 +563,14 @@
 			isa = PBXGroup;
 			children = (
 				EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE1DF3702A93A406003AD078 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -960,6 +970,7 @@
 		EEC441D52A76336800CD93BC /* Review */ = {
 			isa = PBXGroup;
 			children = (
+				EE1DF3702A93A406003AD078 /* Model */,
 				EEAA40EE2A8E0CEB000990B0 /* Service */,
 				EEF8154E2A73AE69009C1C57 /* ReviewViewController.swift */,
 				EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */,
@@ -1448,6 +1459,7 @@
 				EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */,
 				EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
+				EE1DF3722A93A44F003AD078 /* ShowReviewReponse.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,

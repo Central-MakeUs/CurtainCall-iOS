@@ -33,14 +33,25 @@ final class ReviewViewController: UIViewController {
     
     private let provider = MoyaProvider<ReviewAPI>()
     private var subscriptions: Set<AnyCancellable> = []
+    private let id: String
+    private var reviewInfos: [ShowReviewContent] = []
     
     // MARK: Life Cycle
+    
+    init(id: String) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTarget()
-        print("##REVIEW LOAD##")
+        requestReviewList(id: id)
     }
     
     // MARK: Configure
@@ -83,11 +94,27 @@ final class ReviewViewController: UIViewController {
         )
         navigationController?.pushViewController(writeViewController, animated: true)
     }
+    
+    private func requestReviewList(id: String) {
+        provider.requestPublisher(.list(id: id, page: 1, size: 20))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(ShowReviewResponse.self) {
+                    self?.reviewInfos = data.content
+                    self?.tableView.reloadData()
+                }
+            }.store(in: &subscriptions)
+    }
+    
 }
 
 extension ReviewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ReviewInfo.list.count
+        return reviewInfos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,7 +122,7 @@ extension ReviewViewController: UITableViewDataSource {
             withIdentifier: ProductReviewCell.identifier
         ) as? ProductReviewCell else { return UITableViewCell() }
         
-        cell.draw(item: ReviewInfo.list[indexPath.row])
+        cell.draw(item: reviewInfos[indexPath.row])
         return cell
     }
 }

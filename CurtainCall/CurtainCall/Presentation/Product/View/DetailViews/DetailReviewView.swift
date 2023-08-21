@@ -19,9 +19,8 @@ final class DetailReviewView: UIView {
     
     // MARK: UI Property
     
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "총 324개의 한 줄 리뷰"
         label.font = .subTitle3
         label.textColor = .title
         return label
@@ -38,7 +37,7 @@ final class DetailReviewView: UIView {
         return button
     }()
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
@@ -46,6 +45,15 @@ final class DetailReviewView: UIView {
         tableView.separatorStyle = .none
         return tableView
     }()
+    
+    private let emptyView = UIView()
+    private let emptyImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.
+        return imageView
+    }()
+    
+    var reviewInfos: [ShowReviewContent]?
     
     // MARK: Life Cycle
     
@@ -95,7 +103,7 @@ final class DetailReviewView: UIView {
         tableView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(17)
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.height.equalTo(min(ReviewInfo.list.count, 3) * 112)
+            $0.height.equalTo(min(reviewInfos?.count ?? 0, 3) * 112)
             $0.bottom.equalToSuperview()
         }
     }
@@ -110,15 +118,16 @@ final class DetailReviewView: UIView {
 
 extension DetailReviewView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(3, ReviewInfo.list.count)
+        guard let reviewInfos else { return 0 }
+        return min(3, reviewInfos.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: ReviewCell.identifier) as? ReviewCell else {
+            withIdentifier: ReviewCell.identifier) as? ReviewCell, let reviewInfos else {
             return UITableViewCell()
         }
-        cell.draw(item: ReviewInfo.list[indexPath.row])
+        cell.draw(item: reviewInfos[indexPath.row])
         return cell
     }
 }
@@ -171,10 +180,11 @@ final class ReviewCell: UITableViewCell {
     }
     
     
-    func draw(item: ReviewInfo) {
-        nickNameDateLabel.text = "\(item.nickName) | \(item.date.convertToYearMonthDayString())"
+    func draw(item: ShowReviewContent) {
+        nickNameDateLabel.text = "\(item.creatorNickname)"
+//        nickNameDateLabel.text = "\(item) | \(item.date.convertToYearMonthDayString())"
         reviewLabel.text = item.content
-        gradeStackView.draw(grade: item.grade)
+        gradeStackView.draw(grade: Int(item.grade))
     }
     
     private func configureUI() {

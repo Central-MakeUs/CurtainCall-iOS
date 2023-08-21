@@ -605,8 +605,12 @@ final class ProductDetailMainViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-            } receiveValue: { response in
-                print("REVIEW: ", String(data: response.data, encoding: .utf8))
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(ShowReviewResponse.self) {
+                    print("####", data)
+                    self?.detailReviewView.reviewInfos = data.content
+                    self?.detailReviewView.tableView.reloadData()
+                }
             }.store(in: &subscriptions)
     }
     
@@ -621,17 +625,18 @@ final class ProductDetailMainViewController: UIViewController {
         productTitleLabel.text = data.name
         gradeLabel.text = String(format: "%.1f", data.reviewCount / data.reviewGradeSum)
         gradeCountLabel.text = "(" + String(Int(data.reviewCount)) + ")"
-        duringProductLabel.text = data.startDate + "~" + data.endDate
+        duringProductLabel.text = data.startDate + " ~ " + data.endDate
         runningTimeProductLabel.text = data.runtime
         ageProductLabel.text = data.age
         priceProductLabel.text = data.ticketPrice
         locationProductLabel.text = data.facilityName
+        detailReviewView.titleLabel.text = "총 \(Int(data.reviewCount))개의 한 줄 리뷰"
     }
 }
 
 extension ProductDetailMainViewController: DetailReviewViewDelegate {
     func didTappedDetailReviewViewInAllViewButton() {
-        show(ReviewViewController(), sender: nil)
+        show(ReviewViewController(id: id), sender: nil)
     }
 }
 

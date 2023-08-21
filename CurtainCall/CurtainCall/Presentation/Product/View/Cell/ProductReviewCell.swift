@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class ProductReviewCell: UITableViewCell {
     
     // MARK: UI Property
@@ -154,10 +156,15 @@ final class ProductReviewCell: UITableViewCell {
         }
     }
     
-    func draw(item: ReviewInfo) {
-        profileImageView.image = UIImage(named: "dummy_profile")
-        gradeStackView.draw(grade: item.grade)
-        nickNameDateLabel.text = "\(item.nickName) | \(item.date.convertToYearMonthDayString())"
+    func draw(item: ShowReviewContent) {
+        if let profileURL = URL(string: item.creatorImageUrl) {
+            profileImageView.kf.setImage(with: profileURL)
+        } else {
+            profileImageView.image = nil
+        }
+        gradeStackView.draw(grade: Int(item.grade))
+        nickNameDateLabel.text = "\(item.creatorNickname)"
+//        nickNameDateLabel.text = "\(item.nickName) | \(item.date.convertToYearMonthDayString())"
         contentLabel.text = item.content
     }
     
