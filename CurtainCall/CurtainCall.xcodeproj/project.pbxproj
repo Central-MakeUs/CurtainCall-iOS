@@ -89,6 +89,7 @@
 		EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */; };
 		EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */; };
 		EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */; };
+		EE7730482A93527E00658D84 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EE7730472A93527E00658D84 /* Kingfisher */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
@@ -368,6 +369,7 @@
 				EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */,
 				EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */,
 				EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */,
+				EE7730482A93527E00658D84 /* Kingfisher in Frameworks */,
 				EE1825B82A8899540020BADA /* CombineMoya in Frameworks */,
 				0AE959D30E1325E953B34349 /* Pods_CurtainCall.framework in Frameworks */,
 			);
@@ -1188,6 +1190,7 @@
 				EE1825B72A8899540020BADA /* CombineMoya */,
 				EE1825B92A8899540020BADA /* Moya */,
 				EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */,
+				EE7730472A93527E00658D84 /* Kingfisher */,
 			);
 			productName = CurtainCall;
 			productReference = EE0BEDDA2A495539008D9D05 /* CurtainCall.app */;
@@ -1224,6 +1227,7 @@
 				EEED57112A4EA321003D2F9C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */,
 				EE5FDBEE2A8CAF7B00376E26 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				EE7730462A93527E00658D84 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = EE0BEDDB2A495539008D9D05 /* Products */;
 			projectDirPath = "";
@@ -1717,6 +1721,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		EE7730462A93527E00658D84 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		EEED57112A4EA321003D2F9C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1767,6 +1779,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE5FDBEE2A8CAF7B00376E26 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		EE7730472A93527E00658D84 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE7730462A93527E00658D84 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		EEED57122A4EA321003D2F9C /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

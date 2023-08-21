@@ -140,12 +140,11 @@ final class ProductViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTarget()
-        
-        viewModel.requestShow(page: 1, size: 20, genre: .play)
-        viewModel.requestShow(page: 1, size: 20, genre: .musical)
-        typeButtonTouchUpInside(theaterButton)
-        orderSelectButtonTouchUpInside(reservationOrderButton)
         bind()
+        viewModel.requestShow(page: 1, size: 20, genre: .musical)
+        viewModel.requestShow(page: 1, size: 20, genre: .play)
+        orderSelectButtonTouchUpInside(reservationOrderButton)
+        typeButtonTouchUpInside(theaterButton)
         
     }
     
@@ -311,7 +310,7 @@ final class ProductViewController: UIViewController {
                 snapshot.appendItems(value, toSection: .play)
                 datasource?.apply(snapshot)
             }.store(in: &subscriptions)
-
+        
         viewModel.$musicalList
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -325,6 +324,14 @@ final class ProductViewController: UIViewController {
                 snapshot.appendItems(value, toSection: .musical)
                 datasource?.apply(snapshot)
             }.store(in: &subscriptions)
+        
+        if theaterButton.isSelected {
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+            snapshot.deleteAllItems()
+            snapshot.appendSections([.play])
+            snapshot.appendItems(viewModel.playList, toSection: .play)
+            datasource?.apply(snapshot)
+        }
     }
     
     

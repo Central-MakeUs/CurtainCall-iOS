@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class ProductSearchCell: UICollectionViewCell {
     
     // MARK: - UI properties
@@ -242,6 +244,11 @@ final class ProductSearchCell: UICollectionViewCell {
     }
     
     func draw(item: ProductListContent) {
+        if let url = URL(string: item.poster) {
+            posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = nil
+        }
 //        posterImageView.image = item.poster
         productTitleLabel.text = item.name
 //        starGradeLabel.text = String(format: "%.1f", item.grade)
