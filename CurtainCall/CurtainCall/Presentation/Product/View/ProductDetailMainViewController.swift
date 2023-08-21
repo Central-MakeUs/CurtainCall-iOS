@@ -59,7 +59,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "dummy_poster")
+//        imageView.image = UIImage(named: "dummy_poster")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
@@ -83,7 +83,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     private let productTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "비스티"
+//        label.text = "비스티"
         label.font = .heading2
         label.textColor = .white
         return label
@@ -93,7 +93,7 @@ final class ProductDetailMainViewController: UIViewController {
         let label = UILabel()
         label.font = .body4
         label.textColor = .white
-        label.text = "예매율 29.0% |"
+//        label.text = "예매율 29.0% |"
         return label
     }()
     
@@ -103,7 +103,7 @@ final class ProductDetailMainViewController: UIViewController {
         let label = UILabel()
         label.font = .body4
         label.textColor = .white
-        label.text = "4.8"
+//        label.text = "4.8"
         return label
     }()
     
@@ -111,7 +111,7 @@ final class ProductDetailMainViewController: UIViewController {
         let label = UILabel()
         label.font = .body4
         label.textColor = .white
-        label.text = "(324)"
+//        label.text = "(324)"
         return label
     }()
     
@@ -146,7 +146,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     private let duringProductLabel: UILabel = {
         let label = UILabel()
-        label.text = "2023.6.1 ~ 2023.6.18"
+//        label.text = "2023.6.1 ~ 2023.6.18"
         label.font = .body3
         label.textColor = .white
         return label
@@ -192,7 +192,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     private let ageProductLabel: UILabel = {
         let label = UILabel()
-        label.text = "14세 이상 관람가능"
+//        label.text = "14세 이상 관람가능"
         label.font = .body3
         label.textColor = .white
         return label
@@ -215,7 +215,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     private let priceProductLabel: UILabel = {
         let label = UILabel()
-        label.text = "R석 99,000원|S석 77,000원|A석 44,000원"
+//        label.text = "R석 99,000원|S석 77,000원|A석 44,000원"
         label.font = .body3
         label.textColor = .white
         return label
@@ -238,7 +238,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     private let locationProductLabel: UILabel = {
         let label = UILabel()
-        label.text = "LG아트센터 서울 LG SIGNATURE 홀"
+//        label.text = "LG아트센터 서울 LG SIGNATURE 홀"
         label.font = .body3
         label.textColor = .white
         return label
@@ -314,8 +314,18 @@ final class ProductDetailMainViewController: UIViewController {
     private let provider = MoyaProvider<ProductAPI>()
     private var subscriptions: Set<AnyCancellable> = []
     private let reviewProvider = MoyaProvider<ReviewAPI>()
+    private let id: String
     
     // MARK: - Lifecycles
+    
+    init(id: String) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -325,9 +335,8 @@ final class ProductDetailMainViewController: UIViewController {
         detailReviewView.delegate = self
         detailLostItemView.delegate = self
         subButtonTouchUpInside(detailButton)
-        // 삭제예정
-        requestShowDetail(id: "123")
-        requestReviewList()
+        requestShowDetail(id: id)
+        requestReviewList(id: id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -578,14 +587,19 @@ final class ProductDetailMainViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-            } receiveValue: { response in
-                print("##", String(data: response.data, encoding: .utf8))
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(ProductDetailResponse.self) {
+                    draw(data: data)
+                } else {
+                    print("@@DECODE ERROR")
+                }
             }.store(in: &subscriptions)
 
     }
     
-    private func requestReviewList() {
-        reviewProvider.requestPublisher(.list(id: "id", page: 1, size: 20))
+    private func requestReviewList(id: String) {
+        reviewProvider.requestPublisher(.list(id: id, page: 1, size: 20))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
@@ -594,6 +608,24 @@ final class ProductDetailMainViewController: UIViewController {
             } receiveValue: { response in
                 print("REVIEW: ", String(data: response.data, encoding: .utf8))
             }.store(in: &subscriptions)
+    }
+    
+    private func draw(data: ProductDetailResponse) {
+        titleLabel.text = data.name
+        if let url = URL(string: data.poster) {
+            posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = nil
+        }
+        categoryLabel.text = data.genre == "PLAY" ? "연극" : "뮤지컬"
+        productTitleLabel.text = data.name
+        gradeLabel.text = String(format: "%.1f", data.reviewCount / data.reviewGradeSum)
+        gradeCountLabel.text = "(" + String(Int(data.reviewCount)) + ")"
+        duringProductLabel.text = data.startDate + "~" + data.endDate
+        runningTimeProductLabel.text = data.runtime
+        ageProductLabel.text = data.age
+        priceProductLabel.text = data.ticketPrice
+        locationProductLabel.text = data.facilityName
     }
 }
 

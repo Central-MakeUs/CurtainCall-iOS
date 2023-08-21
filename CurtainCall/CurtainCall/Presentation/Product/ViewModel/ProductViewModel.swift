@@ -29,9 +29,17 @@ final class ProductViewModel {
                 guard let self else { return }
                 if let data = try? response.map(ProductListResponse.self) {
                     if genre == .play {
-                        playList.append(contentsOf: data.content)
+                        if page == 1 {
+                            playList = data.content
+                        } else {
+                            playList.append(contentsOf: data.content)
+                        }
                     } else {
-                        musicalList.append(contentsOf: data.content)
+                        if page == 1 {
+                            musicalList = data.content
+                        } else {
+                            musicalList.append(contentsOf: data.content)
+                        }
                     }
                 }
             }.store(in: &subscriptions)

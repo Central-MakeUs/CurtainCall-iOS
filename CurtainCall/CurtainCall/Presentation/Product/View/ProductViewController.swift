@@ -141,8 +141,6 @@ final class ProductViewController: UIViewController {
         configureUI()
         addTarget()
         bind()
-        viewModel.requestShow(page: 1, size: 20, genre: .musical)
-        viewModel.requestShow(page: 1, size: 20, genre: .play)
         orderSelectButtonTouchUpInside(reservationOrderButton)
         typeButtonTouchUpInside(theaterButton)
         
@@ -272,17 +270,9 @@ final class ProductViewController: UIViewController {
             $0.backgroundColor = sender == $0 ? .pointColor2 : .clear
         }
         if sender == theaterButton {
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-            snapshot.deleteAllItems()
-            snapshot.appendSections([.play])
-            snapshot.appendItems(viewModel.playList, toSection: .play)
-            datasource?.apply(snapshot)
+            viewModel.requestShow(page: 1, size: 20, genre: .play)
         } else {
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-            snapshot.deleteAllItems()
-            snapshot.appendSections([.musical])
-            snapshot.appendItems(viewModel.musicalList, toSection: .musical)
-            datasource?.apply(snapshot)
+            viewModel.requestShow(page: 1, size: 20, genre: .musical)
         }
     }
     
@@ -320,28 +310,21 @@ final class ProductViewController: UIViewController {
             } receiveValue: { [weak self] value in
                 guard let self else { return }
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.deleteAllItems()
                 snapshot.appendSections([.musical])
                 snapshot.appendItems(value, toSection: .musical)
                 datasource?.apply(snapshot)
             }.store(in: &subscriptions)
-        
-        if theaterButton.isSelected {
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-            snapshot.deleteAllItems()
-            snapshot.appendSections([.play])
-            snapshot.appendItems(viewModel.playList, toSection: .play)
-            datasource?.apply(snapshot)
-        }
     }
-    
-    
-    
 }
 
 extension ProductViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let datasource = datasource, let item = datasource.itemIdentifier(for: indexPath) else {
+            return
+        }
         let detailViewController = UINavigationController(
-            rootViewController: ProductDetailMainViewController()
+            rootViewController: ProductDetailMainViewController(id: item.id)
         )
         detailViewController.modalPresentationStyle = .overFullScreen
         present(detailViewController, animated: true)

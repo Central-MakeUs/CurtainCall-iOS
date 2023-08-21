@@ -40,6 +40,7 @@ final class ReviewViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTarget()
+        print("##REVIEW LOAD##")
     }
     
     // MARK: Configure

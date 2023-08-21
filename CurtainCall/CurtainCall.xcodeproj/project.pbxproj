@@ -90,6 +90,7 @@
 		EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */; };
 		EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */; };
 		EE7730482A93527E00658D84 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EE7730472A93527E00658D84 /* Kingfisher */; };
+		EE77304A2A93587300658D84 /* ProductDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7730492A93587300658D84 /* ProductDetailResponse.swift */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
 		EE7F06032A61449A002F83ED /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F06022A61449A002F83ED /* CalendarProtocol.swift */; };
 		EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */; };
@@ -263,6 +264,7 @@
 		EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewModel.swift; sourceTree = "<group>"; };
 		EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
+		EE7730492A93587300658D84 /* ProductDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailResponse.swift; sourceTree = "<group>"; };
 		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
 		EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecruitmentCell.swift; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 			isa = PBXGroup;
 			children = (
 				EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */,
+				EE7730492A93587300658D84 /* ProductDetailResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1454,6 +1457,7 @@
 				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,
 				EEAA40ED2A8E0663000990B0 /* ProductListResponse.swift in Sources */,
+				EE77304A2A93587300658D84 /* ProductDetailResponse.swift in Sources */,
 				EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */,
 				EE5251E92A8E63B3003DFEE3 /* MyRecruitmentViewController.swift in Sources */,
 				EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */,
