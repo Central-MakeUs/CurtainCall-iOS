@@ -168,6 +168,8 @@ final class ProductReviewCell: UITableViewCell {
         contentLabel.text = item.content
     }
     
+
+    
     @objc
     func thumbupButtonTouchUpInside() {
         isHeart.toggle()

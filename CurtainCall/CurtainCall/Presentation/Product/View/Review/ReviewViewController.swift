@@ -29,6 +29,23 @@ final class ReviewViewController: UIViewController {
         return button
     }()
     
+    private let emptyView = UIView()
+    private let emptyImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.emptyMarks)
+        return imageView
+    }()
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = .body1
+        label.textColor = .hexBEC2CA
+        label.numberOfLines = 0
+        label.text = "아직 한 줄 리뷰가 없어요!\n간단한 리뷰 작성으로 감상 후기를\n공유해보세요 :)"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    
     // MARK: Property
     
     private let provider = MoyaProvider<ReviewAPI>()
@@ -63,7 +80,9 @@ final class ReviewViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.addSubviews(tableView, writeButton)
+        view.addSubviews(tableView, emptyView, writeButton)
+        emptyView.addSubviews(emptyImage, emptyLabel)
+        
     }
     
     private func configureConstarints() {
@@ -71,6 +90,17 @@ final class ReviewViewController: UIViewController {
         writeButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-60)
             $0.trailing.equalToSuperview().offset(-24)
+        }
+        emptyView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        emptyImage.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(emptyLabel.snp.top).offset(-18)
+        }
+        emptyLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
     }
     
@@ -104,10 +134,20 @@ final class ReviewViewController: UIViewController {
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(ShowReviewResponse.self) {
-                    self?.reviewInfos = data.content
-                    self?.tableView.reloadData()
+                    if data.content.isEmpty {
+                        self?.setUpEmptyView()
+                        self?.emptyView.isHidden = false
+                    } else {
+                        self?.reviewInfos = data.content
+                        self?.emptyView.isHidden = true
+                        self?.tableView.reloadData()
+                    }
                 }
             }.store(in: &subscriptions)
+    }
+    
+    private func setUpEmptyView() {
+        emptyView.isHidden = false
     }
     
 }
