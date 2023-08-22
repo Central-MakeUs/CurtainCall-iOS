@@ -154,10 +154,12 @@ final class ReviewWriteViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     private let viewModel: ReviewWriteViewModel
+    private let id: String
     
     // MARK: - Lifecycles
     
-    init(viewModel: ReviewWriteViewModel) {
+    init(id: String, viewModel: ReviewWriteViewModel) {
+        self.id = id
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -290,6 +292,13 @@ final class ReviewWriteViewController: UIViewController {
             .sink { [weak self] isValid in
                 self?.completeButton.setNextButton(isSelected: isValid)
             }.store(in: &cancellables)
+        viewModel.$isWriteReview
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isWrite in
+                if isWrite {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &cancellables)
     }
     
     @objc
@@ -308,7 +317,7 @@ final class ReviewWriteViewController: UIViewController {
     
     @objc
     func completeButtonTouchUpInside() {
-        navigationController?.popViewController(animated: true)
+        viewModel.requestCreateReview(id: id, grade: Int(slider.value), content: reviewTextView.text)
     }
     
     @objc

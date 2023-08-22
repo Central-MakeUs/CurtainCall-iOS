@@ -68,6 +68,10 @@ final class ReviewViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTarget()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestReviewList(id: id)
     }
     
@@ -120,6 +124,7 @@ final class ReviewViewController: UIViewController {
     @objc
     private func writeButtonTouchUpInside() {
         let writeViewController = ReviewWriteViewController(
+            id: id,
             viewModel: ReviewWriteViewModel()
         )
         navigationController?.pushViewController(writeViewController, animated: true)

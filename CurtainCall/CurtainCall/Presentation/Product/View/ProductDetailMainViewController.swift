@@ -335,12 +335,12 @@ final class ProductDetailMainViewController: UIViewController {
         detailReviewView.delegate = self
         detailLostItemView.delegate = self
         subButtonTouchUpInside(detailButton)
-        requestShowDetail(id: id)
-        requestReviewList(id: id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        requestShowDetail(id: id)
+        requestReviewList(id: id)
         navigationController?.navigationBar.isHidden = true
     }
     

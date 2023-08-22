@@ -98,6 +98,7 @@
 		EE8437BA2A81280D00ADD3D8 /* HomeMyProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437B92A81280D00ADD3D8 /* HomeMyProductData.swift */; };
 		EE8437BC2A81431B00ADD3D8 /* LiveTalkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */; };
 		EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */; };
+		EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE84FC812A94A65F001134B5 /* WriteReviewResponse.swift */; };
 		EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */; };
 		EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */; };
 		EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */; };
@@ -273,6 +274,7 @@
 		EE8437B92A81280D00ADD3D8 /* HomeMyProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMyProductData.swift; sourceTree = "<group>"; };
 		EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkData.swift; sourceTree = "<group>"; };
 		EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLiveTalkCell.swift; sourceTree = "<group>"; };
+		EE84FC812A94A65F001134B5 /* WriteReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewResponse.swift; sourceTree = "<group>"; };
 		EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLineView.swift; sourceTree = "<group>"; };
 		EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingOtherDetailViewController.swift; sourceTree = "<group>"; };
 		EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchCell.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */,
+				EE84FC812A94A65F001134B5 /* WriteReviewResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1351,6 +1354,7 @@
 				EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
 				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
+				EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */,
 				EEA1322F2A7FD6920016D01A /* HomeBannerCell.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
 				EE9A885B2A83DCF00085F816 /* GoodCostProductCell.swift in Sources */,
