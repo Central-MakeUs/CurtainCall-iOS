@@ -312,6 +312,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     // MARK: - Properties
     private let provider = MoyaProvider<ProductAPI>()
+    private let favoriteProvider = MoyaProvider<FavoriteShowAPI>()
     private var subscriptions: Set<AnyCancellable> = []
     private let reviewProvider = MoyaProvider<ReviewAPI>()
     private let id: String
@@ -336,6 +337,7 @@ final class ProductDetailMainViewController: UIViewController {
         detailReviewView.delegate = self
         detailLostItemView.delegate = self
         subButtonTouchUpInside(detailButton)
+        requestIsFavorite(id: id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -578,7 +580,25 @@ final class ProductDetailMainViewController: UIViewController {
 
     @objc
     func keepButtonTouchUpInside() {
-        keepButton.isSelected.toggle()
+        if !keepButton.isSelected {
+            favoriteProvider.requestPublisher(.putShow(id: id))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                    }
+                } receiveValue: { [weak self] _ in
+                    self?.keepButton.isSelected = true
+                }.store(in: &subscriptions)
+        } else {
+            favoriteProvider.requestPublisher(.deleteShow(id: id))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                    }
+                } receiveValue: { [weak self] _ in
+                    self?.keepButton.isSelected = false
+                }.store(in: &subscriptions)
+        }
     }
     
     private func requestShowDetail(id: String) {
@@ -619,6 +639,22 @@ final class ProductDetailMainViewController: UIViewController {
                     }
                 }
             }.store(in: &subscriptions)
+    }
+    
+    private func requestIsFavorite(id: String) {
+        favoriteProvider.requestPublisher(.getShowList(id: [id]))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(FavoriteProductListResponse.self),
+                   let currentProcut = data.content.first {
+                    keepButton.isSelected = currentProcut.favorite
+                }
+            }.store(in: &subscriptions)
+
     }
     
     private func draw(data: ProductDetailResponse) {

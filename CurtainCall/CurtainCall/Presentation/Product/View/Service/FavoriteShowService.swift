@@ -13,7 +13,7 @@ import SwiftKeychainWrapper
 enum FavoriteShowAPI {
     case putShow(id: String)
     case deleteShow(id: String)
-    case getShowList(id: String)
+    case getShowList(id: [String])
     case getMyFavoriteShow(memberId: String)
     
 }
@@ -30,7 +30,7 @@ extension FavoriteShowAPI: TargetType {
         case .getShowList:
             return "/member/favorite"
         case .getMyFavoriteShow(let memerId):
-            return "/member/\(memerId)/favorite"
+            return "/members/\(memerId)/favorite"
         }
     }
     var method: Moya.Method {
@@ -51,7 +51,10 @@ extension FavoriteShowAPI: TargetType {
         case .getShowList(let id):
             var param: [String: Any] = [:]
             param.updateValue(id, forKey: "showIds")
-            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+            return .requestParameters(
+                parameters: param,
+                encoding: URLEncoding(arrayEncoding: .noBrackets)
+            )
         case .getMyFavoriteShow:
             return .requestPlain
         }

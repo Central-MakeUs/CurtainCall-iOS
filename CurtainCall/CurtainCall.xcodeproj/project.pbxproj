@@ -34,6 +34,7 @@
 		EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */; };
 		EE1CF9F42A93384200964DFE /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1CF9F32A93384200964DFE /* ProductViewModel.swift */; };
 		EE1DF3722A93A44F003AD078 /* ShowReviewReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */; };
+		EE1DF3742A94E859003AD078 /* FavoriteProductListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3732A94E859003AD078 /* FavoriteProductListResponse.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -214,6 +215,7 @@
 		EE1825BF2A88A1880020BADA /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		EE1CF9F32A93384200964DFE /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowReviewReponse.swift; sourceTree = "<group>"; };
+		EE1DF3732A94E859003AD078 /* FavoriteProductListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductListResponse.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -961,6 +963,7 @@
 			children = (
 				EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */,
 				EE7730492A93587300658D84 /* ProductDetailResponse.swift */,
+				EE1DF3732A94E859003AD078 /* FavoriteProductListResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1461,6 +1464,7 @@
 				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
 				EEF8154B2A73A536009C1C57 /* DetailLostItemView.swift in Sources */,
 				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,
+				EE1DF3742A94E859003AD078 /* FavoriteProductListResponse.swift in Sources */,
 				EEA944412A5D440F0081E784 /* PartyMemberProductViewModel.swift in Sources */,
 				EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
