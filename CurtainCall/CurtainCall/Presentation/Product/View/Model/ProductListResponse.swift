@@ -20,6 +20,9 @@ struct ProductListContent: Decodable, Hashable {
     let poster: String // "http://www.kopis.or.kr/upload/pfmPoster/PF_PF220846_230704_164730.jpg",
     let genre : String
     let showTimes: [ProductListShowTime]
+    let runtime: String
+    let reviewCount: Double
+    let reviewGradeSum: Double
       
 }
 struct ProductListShowTime: Decodable, Hashable {

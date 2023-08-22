@@ -169,6 +169,7 @@ final class ProductSearchCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .body1
         label.font = .body4
+        label.textAlignment = .left
         return label
     }()
     
@@ -241,6 +242,11 @@ final class ProductSearchCell: UICollectionViewCell {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
+        [duringLabel, runningTimeLabel, scheduleLabel, scheduleSubLabel, locationLabel].forEach {
+            $0.snp.makeConstraints { make in
+                make.width.equalTo(25)
+            }
+        }
     }
     
     func draw(item: ProductListContent) {
@@ -251,10 +257,14 @@ final class ProductSearchCell: UICollectionViewCell {
         }
 //        posterImageView.image = item.poster
         productTitleLabel.text = item.name
-//        starGradeLabel.text = String(format: "%.1f", item.grade)
-//        starCountLabel.text = "(\(item.gradeCount))"
+        if item.reviewGradeSum == 0 && item.reviewCount == 0 {
+            starGradeLabel.text = "0"
+        } else {
+            starGradeLabel.text = String(format: "%.1f", item.reviewGradeSum / item.reviewCount)
+        }
+        starCountLabel.text = "(\(Int(item.reviewCount)))"
         productDuringLabel.text = item.startDate + " ~ " + item.endDate
-//        productRunningTimeLabel.text = item.runningTime
+        productRunningTimeLabel.text = item.runtime.isEmpty ? "정보 없음" : item.runtime
 //        productScheduleLabel.text = item.schedule
 //        productScheduleSubLabel.text = item.subschedule
         productLocationLabel.text = item.facilityName
