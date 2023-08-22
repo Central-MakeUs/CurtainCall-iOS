@@ -220,7 +220,12 @@ final class MyPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigation()
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     // MARK: - Helpers
@@ -413,7 +418,7 @@ final class MyPageViewController: UIViewController {
             image: settingImage,
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(settingButtonTouchUpInside)
         )
         navigationItem.rightBarButtonItem = settingBarbuttonItem
         navigationItem.rightBarButtonItem?.tintColor = .black
@@ -446,6 +451,12 @@ final class MyPageViewController: UIViewController {
             action: #selector(FAQButtonTouchUpInside),
             for: .touchUpInside
         )
+    }
+    
+    @objc
+    private func settingButtonTouchUpInside() {
+        let settingViewControlelr = SettingViewController()
+        navigationController?.pushViewController(settingViewControlelr, animated: true)
     }
     
     @objc

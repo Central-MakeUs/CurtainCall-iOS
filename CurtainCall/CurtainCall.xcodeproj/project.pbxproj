@@ -42,6 +42,7 @@
 		EE1DF3832A94F60E003AD078 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3822A94F60E003AD078 /* NoticeDetailViewController.swift */; };
 		EE1DF3852A94F77E003AD078 /* NoticeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */; };
 		EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */; };
+		EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3892A95054B003AD078 /* SettingViewController.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -230,6 +231,7 @@
 		EE1DF3822A94F60E003AD078 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
 		EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewModel.swift; sourceTree = "<group>"; };
 		EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailResponse.swift; sourceTree = "<group>"; };
+		EE1DF3892A95054B003AD078 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -642,6 +644,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		EE1DF3882A95052F003AD078 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				EE1DF3892A95054B003AD078 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		EE3E02912A77EF35007C3D71 /* LostItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,6 +806,7 @@
 		EE5251CE2A8E63B3003DFEE3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE1DF3882A95052F003AD078 /* Setting */,
 				EE1DF3752A94EF0C003AD078 /* Notice */,
 				EE5251CF2A8E63B3003DFEE3 /* ViewModel */,
 				EE5251D32A8E63B3003DFEE3 /* View */,
@@ -1404,6 +1415,7 @@
 				EE5251CA2A8E639A003DFEE3 /* ReportViewModel.swift in Sources */,
 				EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */,
 				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
+				EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EE5251E62A8E63B3003DFEE3 /* MyPageDetailViewController.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
