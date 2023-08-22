@@ -299,6 +299,7 @@ final class ProductViewController: UIViewController {
                 snapshot.appendSections([.play])
                 snapshot.appendItems(value, toSection: .play)
                 datasource?.apply(snapshot)
+                viewModel.isLoding = false
             }.store(in: &subscriptions)
         
         viewModel.$musicalList
@@ -314,6 +315,7 @@ final class ProductViewController: UIViewController {
                 snapshot.appendSections([.musical])
                 snapshot.appendItems(value, toSection: .musical)
                 datasource?.apply(snapshot)
+                viewModel.isLoding = false
             }.store(in: &subscriptions)
     }
 }
@@ -328,5 +330,25 @@ extension ProductViewController: UICollectionViewDelegate {
         )
         detailViewController.modalPresentationStyle = .overFullScreen
         present(detailViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if theaterButton.isSelected {
+            if indexPath.row > (viewModel.theaterPage + 1) * 20 - 3 {
+                if !viewModel.isLoding {
+                    viewModel.isLoding = true
+                    viewModel.requestShow(page: viewModel.theaterPage + 1, size: 20, genre: .play)
+                    viewModel.theaterPage += 1
+                }
+            }
+        } else {
+            if indexPath.row > (viewModel.musicalPage + 1) * 20 - 3 {
+                if !viewModel.isLoding {
+                    viewModel.isLoding = true
+                    viewModel.requestShow(page: viewModel.musicalPage + 1, size: 20, genre: .musical)
+                    viewModel.musicalPage += 1
+                }
+            }
+        }
     }
 }

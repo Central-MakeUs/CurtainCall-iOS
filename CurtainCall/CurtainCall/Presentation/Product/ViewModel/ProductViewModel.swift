@@ -17,6 +17,9 @@ final class ProductViewModel {
     private let provider = MoyaProvider<ProductAPI>()
     @Published var playList: [ProductListContent] = []
     @Published var musicalList: [ProductListContent] = []
+    var isLoding = false
+    var theaterPage: Int = 0
+    var musicalPage: Int = 0
     
     func requestShow(page: Int, size: Int, genre: ProductListAPI) {
         provider.requestPublisher(.list(page: page, size: size, genre: genre))
