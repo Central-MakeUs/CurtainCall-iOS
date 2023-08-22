@@ -315,6 +315,7 @@ final class ProductDetailMainViewController: UIViewController {
     private var subscriptions: Set<AnyCancellable> = []
     private let reviewProvider = MoyaProvider<ReviewAPI>()
     private let id: String
+    private var product: ProductDetailResponse?
     
     // MARK: - Lifecycles
     
@@ -590,6 +591,7 @@ final class ProductDetailMainViewController: UIViewController {
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if let data = try? response.map(ProductDetailResponse.self) {
+                    product = data
                     draw(data: data)
                 } else {
                     print("@@DECODE ERROR")
@@ -641,7 +643,8 @@ final class ProductDetailMainViewController: UIViewController {
 
 extension ProductDetailMainViewController: DetailReviewViewDelegate {
     func didTappedDetailReviewViewInAllViewButton() {
-        show(ReviewViewController(id: id), sender: nil)
+        guard let product else { return }
+        show(ReviewViewController(product: product, id: id), sender: nil)
     }
 }
 

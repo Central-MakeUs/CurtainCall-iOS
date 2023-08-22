@@ -52,10 +52,12 @@ final class ReviewViewController: UIViewController {
     private var subscriptions: Set<AnyCancellable> = []
     private let id: String
     private var reviewInfos: [ShowReviewContent] = []
+    private let product: ProductDetailResponse
     
     // MARK: Life Cycle
     
-    init(id: String) {
+    init(product: ProductDetailResponse, id: String) {
+        self.product = product
         self.id = id
         super.init(nibName: nil, bundle: nil)
     }
@@ -124,6 +126,7 @@ final class ReviewViewController: UIViewController {
     @objc
     private func writeButtonTouchUpInside() {
         let writeViewController = ReviewWriteViewController(
+            product: product,
             id: id,
             viewModel: ReviewWriteViewModel()
         )

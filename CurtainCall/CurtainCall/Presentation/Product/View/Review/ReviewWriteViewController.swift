@@ -40,7 +40,6 @@ final class ReviewWriteViewController: UIViewController {
     
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "dummy_poster")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
@@ -64,7 +63,6 @@ final class ReviewWriteViewController: UIViewController {
     
     private let productLabel: UILabel = {
         let label = UILabel()
-        label.text = "비스티"
         label.textColor = .white
         label.font = .subTitle2
         return label
@@ -154,11 +152,13 @@ final class ReviewWriteViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     private let viewModel: ReviewWriteViewModel
+    private let product: ProductDetailResponse
     private let id: String
     
     // MARK: - Lifecycles
     
-    init(id: String, viewModel: ReviewWriteViewModel) {
+    init(product: ProductDetailResponse, id: String, viewModel: ReviewWriteViewModel) {
+        self.product = product
         self.id = id
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -174,6 +174,7 @@ final class ReviewWriteViewController: UIViewController {
         addTargets()
         bind()
         hideKeyboardWhenTappedArround()
+        draw(product)
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -286,6 +287,16 @@ final class ReviewWriteViewController: UIViewController {
         backButton.addTarget(self, action: #selector(backButtonTouchUpInside), for: .touchUpInside)
     }
     
+    private func draw(_ product: ProductDetailResponse) {
+        if let url = URL(string: product.poster) {
+            posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = nil
+        }
+        categoryLabel.text = product.genre == "PLAY" ? "연극" : "뮤지컬"
+        productLabel.text = product.name
+    }
+    
     private func bind() {
         viewModel.$isValidReview
             .receive(on: DispatchQueue.main)
@@ -326,7 +337,7 @@ final class ReviewWriteViewController: UIViewController {
     }
     
     private func updateCountLabel(count: Int) {
-        textCountLimitLabel.text = "글자수 제한 (\(count)/30)"
+        textCountLimitLabel.text = "글자수 제한 (\(count)/20)"
     }
     
     @objc
