@@ -99,6 +99,7 @@
 		EE8437BC2A81431B00ADD3D8 /* LiveTalkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */; };
 		EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */; };
 		EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE84FC812A94A65F001134B5 /* WriteReviewResponse.swift */; };
+		EE84FC842A94B450001134B5 /* FavoriteShowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE84FC832A94B450001134B5 /* FavoriteShowService.swift */; };
 		EE93011D2A6EB98800C8FBA5 /* DotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */; };
 		EE9301202A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */; };
 		EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */; };
@@ -275,6 +276,7 @@
 		EE8437BB2A81431B00ADD3D8 /* LiveTalkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkData.swift; sourceTree = "<group>"; };
 		EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLiveTalkCell.swift; sourceTree = "<group>"; };
 		EE84FC812A94A65F001134B5 /* WriteReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewResponse.swift; sourceTree = "<group>"; };
+		EE84FC832A94B450001134B5 /* FavoriteShowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteShowService.swift; sourceTree = "<group>"; };
 		EE93011C2A6EB98800C8FBA5 /* DotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLineView.swift; sourceTree = "<group>"; };
 		EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingOtherDetailViewController.swift; sourceTree = "<group>"; };
 		EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchCell.swift; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 			isa = PBXGroup;
 			children = (
 				EEAA40E92A8E037F000990B0 /* ProductService.swift */,
+				EE84FC832A94B450001134B5 /* FavoriteShowService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1395,6 +1398,7 @@
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE5251EC2A8E63B3003DFEE3 /* MyRecruitmentEditViewController.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
+				EE84FC842A94B450001134B5 /* FavoriteShowService.swift in Sources */,
 				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
