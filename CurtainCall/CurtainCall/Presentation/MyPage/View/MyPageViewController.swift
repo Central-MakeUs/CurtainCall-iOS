@@ -145,6 +145,7 @@ final class MyPageViewController: UIViewController {
         imageView.image = UIImage(named: ImageNamespace.myPageArrowRight)
         return imageView
     }()
+    private let noticeButton = UIButton()
     
     private let FAQView = UIView()
     private let FAQLabel: UILabel = {
@@ -159,6 +160,7 @@ final class MyPageViewController: UIViewController {
         imageView.image = UIImage(named: ImageNamespace.myPageArrowRight)
         return imageView
     }()
+    private let FAQButton = UIButton()
     
     private let footerView: UIView = {
         let view = UIView()
@@ -216,6 +218,11 @@ final class MyPageViewController: UIViewController {
         addTargets()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigation()
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
@@ -236,8 +243,8 @@ final class MyPageViewController: UIViewController {
         myParticipationView.addSubviews(myParticipationLabel, myParticipationCountLabel, myParticipationButton)
         myWriteView.addSubviews(myWriteIcon, myWriteLabel)
         saveView.addSubviews(saveIcon, saveLabel)
-        noticeView.addSubviews(noticeLabel, noticeArrowImage)
-        FAQView.addSubviews(FAQLabel, FAQArrowImage)
+        noticeView.addSubviews(noticeLabel, noticeArrowImage, noticeButton)
+        FAQView.addSubviews(FAQLabel, FAQArrowImage, FAQButton)
         footerView.addSubviews(footerHeadTitle, emailLabel, dayLabel, footerSeperator, sourceLabel)
     }
     
@@ -394,6 +401,8 @@ final class MyPageViewController: UIViewController {
             $0.top.equalTo(footerSeperator.snp.bottom).offset(18)
             $0.bottom.equalToSuperview().inset(50)
         }
+        noticeButton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        FAQButton.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
     private func configureNavigation() {
@@ -427,6 +436,16 @@ final class MyPageViewController: UIViewController {
             action: #selector(myParticipationButtonTouchUpInside),
             for: .touchUpInside
         )
+        noticeButton.addTarget(
+            self,
+            action: #selector(noticeButtonTouchUpInside),
+            for: .touchUpInside
+        )
+        FAQButton.addTarget(
+            self,
+            action: #selector(FAQButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     @objc
@@ -456,5 +475,17 @@ final class MyPageViewController: UIViewController {
         )
         participationViewController.modalPresentationStyle = .fullScreen
         present(participationViewController, animated: true)
+    }
+    
+    @objc
+    private func noticeButtonTouchUpInside() {
+        let noticeViewController = NoticeViewController(viewModel: NoticeViewModel())
+        navigationController?.pushViewController(noticeViewController, animated: true)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    @objc
+    private func FAQButtonTouchUpInside() {
+        // tapped
     }
 }

@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct NoticeResponse: Decodable {
+    let content: [NoticeContent]
+}
+
+struct NoticeContent: Decodable {
+    let id: Int
+    let title: String
+    let createAt: String
+}
