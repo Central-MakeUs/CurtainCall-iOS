@@ -19,4 +19,5 @@ struct ShowReviewContent: Decodable {
     let creatorId: Int
     let creatorNickname: String
     let creatorImageUrl: String?
+    let createdAt: String
 }

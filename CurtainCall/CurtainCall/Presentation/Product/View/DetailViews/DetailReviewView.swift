@@ -223,8 +223,11 @@ final class ReviewCell: UITableViewCell {
     
     
     func draw(item: ShowReviewContent) {
-        nickNameDateLabel.text = "\(item.creatorNickname)"
-//        nickNameDateLabel.text = "\(item) | \(item.date.convertToYearMonthDayString())"
+        if let date = item.createdAt.convertAPIDateToDate() {
+            nickNameDateLabel.text = "\(item.creatorNickname) | \(date.convertToYearMonthDayString())"
+        } else {
+            nickNameDateLabel.text = "\(item.creatorNickname)"
+        }
         reviewLabel.text = item.content
         gradeStackView.draw(grade: Int(item.grade))
     }

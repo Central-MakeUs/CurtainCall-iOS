@@ -163,8 +163,11 @@ final class ProductReviewCell: UITableViewCell {
             profileImageView.image = nil
         }
         gradeStackView.draw(grade: Int(item.grade))
-        nickNameDateLabel.text = "\(item.creatorNickname)"
-//        nickNameDateLabel.text = "\(item.nickName) | \(item.date.convertToYearMonthDayString())"
+        if let date = item.createdAt.convertAPIDateToDate() {
+            nickNameDateLabel.text = "\(item.creatorNickname) | \(date.convertToYearMonthDayString())"
+        } else {
+            nickNameDateLabel.text = "\(item.creatorNickname)"
+        }
         contentLabel.text = item.content
     }
     

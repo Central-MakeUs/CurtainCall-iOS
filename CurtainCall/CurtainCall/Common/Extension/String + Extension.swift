@@ -18,4 +18,11 @@ extension String {
         formatter.dateFormat = "yyyy년 M월 dd일 HH:mm"
         return formatter.date(from: self)
     }
+    
+    func convertAPIDateToDate() -> Date? {
+        let d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }.first ?? ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.date(from: d)
+    }
 }
