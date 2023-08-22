@@ -630,7 +630,7 @@ final class ProductDetailMainViewController: UIViewController {
         }
         categoryLabel.text = data.genre == "PLAY" ? "연극" : "뮤지컬"
         productTitleLabel.text = data.name
-        gradeLabel.text = String(format: "%.1f", data.reviewCount / data.reviewGradeSum)
+        gradeLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
         gradeCountLabel.text = "(" + String(Int(data.reviewCount)) + ")"
         duringProductLabel.text = data.startDate + " ~ " + data.endDate
         runningTimeProductLabel.text = data.runtime
