@@ -39,6 +39,9 @@
 		EE1DF37B2A94F119003AD078 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF37A2A94F119003AD078 /* NoticeViewModel.swift */; };
 		EE1DF37E2A94F13E003AD078 /* NoticeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF37D2A94F13E003AD078 /* NoticeResponse.swift */; };
 		EE1DF3812A94F1A2003AD078 /* NoticeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3802A94F1A1003AD078 /* NoticeService.swift */; };
+		EE1DF3832A94F60E003AD078 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3822A94F60E003AD078 /* NoticeDetailViewController.swift */; };
+		EE1DF3852A94F77E003AD078 /* NoticeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */; };
+		EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -224,6 +227,9 @@
 		EE1DF37A2A94F119003AD078 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
 		EE1DF37D2A94F13E003AD078 /* NoticeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeResponse.swift; sourceTree = "<group>"; };
 		EE1DF3802A94F1A1003AD078 /* NoticeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeService.swift; sourceTree = "<group>"; };
+		EE1DF3822A94F60E003AD078 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
+		EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewModel.swift; sourceTree = "<group>"; };
+		EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailResponse.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -605,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				EE1DF3772A94EF3C003AD078 /* NoticeViewController.swift */,
+				EE1DF3822A94F60E003AD078 /* NoticeDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -613,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				EE1DF37A2A94F119003AD078 /* NoticeViewModel.swift */,
+				EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -621,6 +629,7 @@
 			isa = PBXGroup;
 			children = (
 				EE1DF37D2A94F13E003AD078 /* NoticeResponse.swift */,
+				EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1418,7 +1427,9 @@
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
 				EE9A885B2A83DCF00085F816 /* GoodCostProductCell.swift in Sources */,
 				EE8437BC2A81431B00ADD3D8 /* LiveTalkData.swift in Sources */,
+				EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */,
 				EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */,
+				EE1DF3852A94F77E003AD078 /* NoticeDetailViewModel.swift in Sources */,
 				EE9301262A72470200C8FBA5 /* ProductSearchInfo.swift in Sources */,
 				EE9A88572A83D73D0085F816 /* ScheduledToOpenProductData.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
@@ -1541,6 +1552,7 @@
 				EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */,
 				EE5251E92A8E63B3003DFEE3 /* MyRecruitmentViewController.swift in Sources */,
 				EEA9443D2A5D2F140081E784 /* ProductPartyInfo.swift in Sources */,
+				EE1DF3832A94F60E003AD078 /* NoticeDetailViewController.swift in Sources */,
 				EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

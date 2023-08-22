@@ -479,9 +479,9 @@ final class MyPageViewController: UIViewController {
     
     @objc
     private func noticeButtonTouchUpInside() {
+        navigationController?.navigationBar.prefersLargeTitles = false
         let noticeViewController = NoticeViewController(viewModel: NoticeViewModel())
         navigationController?.pushViewController(noticeViewController, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     @objc

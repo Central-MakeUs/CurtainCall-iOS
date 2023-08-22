@@ -83,7 +83,9 @@ extension NoticeViewController: UITableViewDataSource {
 
 extension NoticeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        let id = viewModel.noticeItem[indexPath.row].id
+        let detailViewController = NoticeDetailViewController(viewModel: NoticeDetailViewModel(id: id))
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -128,6 +130,11 @@ final class NoticeCell: UITableViewCell {
     }
     
     func draw(title: String, date: String) {
-        
+        titleLabel.text = title
+        if let date = date.convertAPIDateToDate() {
+            dateLabel.text = date.convertToYearMonthDayString()
+        } else {
+            dateLabel.text = ""
+        }
     }
 }
