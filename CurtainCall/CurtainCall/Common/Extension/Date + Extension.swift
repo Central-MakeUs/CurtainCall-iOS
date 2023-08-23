@@ -50,6 +50,27 @@ extension Date {
         formatter.dateFormat = "yyyy년 M월 dd일"
         return formatter.string(from: self)
     }
+    
+    static func getDuringDate(start: String, end: String) -> [Date] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard var startDate = formatter.date(from: start),
+              let endData = formatter.date(from: end) else {
+            return []
+        }
+        let calendar = Calendar.current
+        var result: [Date] = [startDate]
+        
+        while startDate < endData {
+            guard let nextDay = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+                break
+            }
+            result.append(nextDay)
+            startDate = nextDay
+        }
+        return result
+        
+    }
 }
 
 extension [Date] {

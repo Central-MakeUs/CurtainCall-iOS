@@ -220,7 +220,9 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private lazy var calendarView: CalendarView = {
 //        let calendarView = CalendarView(isSectableDates: product.date)
-        let calendarView = CalendarView(isSectableDates: [])
+        let calendarView = CalendarView(
+            isSectableDates: Date.getDuringDate(start: product.startDate, end: product.endDate)
+        )
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
@@ -270,7 +272,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
-        print("상영 날짜", product.showTimes)
+        print("상영 날짜", product)
     }
     
     // MARK: - Helpers
