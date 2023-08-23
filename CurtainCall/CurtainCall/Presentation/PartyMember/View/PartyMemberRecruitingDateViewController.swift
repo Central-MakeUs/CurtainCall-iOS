@@ -464,10 +464,17 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     @objc
     private func timeSelectButtonTouchUpInside() {
-        guard let selectDate,
-              let times = dateDict[selectDate.convertToYearMonthDayString()] else {
+        guard let selectDate else {
             return
         }
+        let weekDay = selectDate.convertToWeekend()
+        var times: [String] = []
+        product.showTimes.forEach {
+            if $0.dayOfWeek == weekDay {
+                times.append($0.time)
+            }
+        }
+        times = times.sorted(by: <)
         calendarView.isHidden = true
         configureTimeSelectView(times: times)
         viewModel.isValidDate(

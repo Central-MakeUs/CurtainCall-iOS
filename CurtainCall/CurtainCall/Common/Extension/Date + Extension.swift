@@ -51,6 +51,12 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func convertToWeekend() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: self).uppercased()
+    }
+    
     static func getDuringDate(start: String, end: String) -> [Date] {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
