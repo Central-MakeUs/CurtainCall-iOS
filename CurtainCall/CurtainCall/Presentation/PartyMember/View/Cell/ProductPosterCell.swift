@@ -17,7 +17,7 @@ final class ProductPosterCell: UICollectionViewCell {
     
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.pointColor2?.cgColor
@@ -46,6 +46,11 @@ final class ProductPosterCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterImageView.image = nil
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
@@ -64,6 +69,7 @@ final class ProductPosterCell: UICollectionViewCell {
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalToSuperview().inset(5)
             $0.bottom.equalToSuperview()
             $0.centerX.equalToSuperview()
         }
