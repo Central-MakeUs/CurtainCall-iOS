@@ -17,7 +17,7 @@ final class ProductPosterCell: UICollectionViewCell {
     
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.pointColor2?.cgColor

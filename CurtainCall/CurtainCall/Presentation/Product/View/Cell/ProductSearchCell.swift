@@ -15,7 +15,7 @@ final class ProductSearchCell: UICollectionViewCell {
     
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
         return imageView

@@ -18,7 +18,7 @@ final class MyRecruitmentCell: UITableViewCell {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 4
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         return imageView
     }()

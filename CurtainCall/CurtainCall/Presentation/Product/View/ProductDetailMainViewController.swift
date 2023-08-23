@@ -60,7 +60,7 @@ final class ProductDetailMainViewController: UIViewController {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
 //        imageView.image = UIImage(named: "dummy_poster")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
         return imageView
@@ -658,6 +658,7 @@ final class ProductDetailMainViewController: UIViewController {
     }
     
     private func draw(data: ProductDetailResponse) {
+        print("### Detail DATA: ", data)
         titleLabel.text = data.name
         if let url = URL(string: data.poster) {
             posterImageView.kf.setImage(with: url)

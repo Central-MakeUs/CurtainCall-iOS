@@ -30,7 +30,7 @@ final class Top10Cell: UICollectionViewCell {
     
     private let posterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         return imageView

@@ -13,7 +13,7 @@ final class HomeLiveTalkCell: UICollectionViewCell {
     
     private let posterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 7
         return imageView
