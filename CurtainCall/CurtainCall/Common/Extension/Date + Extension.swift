@@ -77,6 +77,20 @@ extension Date {
         return result
         
     }
+    
+    static func currentTo90Days() -> [Date] {
+        let calendar = Calendar.current
+        var startDate = Date()
+        var result: [Date] = [startDate]
+        for _ in 0..<90 {
+            guard let nextDay = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+                break
+            }
+            result.append(nextDay)
+            startDate = nextDay
+        }
+        return result
+    }
 }
 
 extension [Date] {

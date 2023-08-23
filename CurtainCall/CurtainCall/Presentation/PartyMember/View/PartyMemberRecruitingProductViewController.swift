@@ -367,7 +367,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         item.contentInsets = .init(top: 0, leading: 7, bottom: 0, trailing: 7)
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(0.37)
+            heightDimension: .absolute(167)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.edgeSpacing = .init(leading: nil, top: nil, trailing: nil, bottom: .fixed(26))

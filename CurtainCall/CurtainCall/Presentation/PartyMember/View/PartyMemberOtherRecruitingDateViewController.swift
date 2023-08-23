@@ -174,7 +174,7 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: [Date()])
+        let calendarView = CalendarView(isSectableDates: Date.currentTo90Days())
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(

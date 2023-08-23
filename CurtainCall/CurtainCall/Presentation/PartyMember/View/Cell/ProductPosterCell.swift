@@ -67,7 +67,7 @@ final class ProductPosterCell: UICollectionViewCell {
     private func configureConstraints() {
         posterImageView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
-
+            $0.height.equalTo(140)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.bottom).offset(8)
