@@ -250,7 +250,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         bind()
         typeButtonTouchUpInside(theaterButton)
         orderSelectButtonTouchUpInside(reservationOrderButton)
-        viewModel.requestProductSelectInfo(page: 0, size: 0, genre: .play)
+        viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play)
     }
     
     // MARK: - Helpers
@@ -485,9 +485,11 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
             : UIColor.hexBEC2CA?.cgColor
         }
         if sender == theaterButton {
-            viewModel.requestProductSelectInfo(page: 0, size: 20, genre: .play)
+            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play)
+            viewModel.theaterPage = 0
         } else {
-            viewModel.requestProductSelectInfo(page: 0, size: 20, genre: .musical)
+            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .musical)
+            viewModel.musicalPage = 0
         }
     }
     
@@ -514,5 +516,24 @@ extension PartyMemberRecruitingProductViewController: UICollectionViewDelegate {
         }
         selectedItem = item
         viewModel.didSelectProduct(item, genre: theaterButton.isSelected ? .play : .musical)
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if theaterButton.isSelected {
+            if indexPath.row > (viewModel.theaterPage + 1) * 21 - 3 {
+                if !viewModel.isLoding {
+                    viewModel.isLoding = true
+                    viewModel.requestProductSelectInfo(page: viewModel.theaterPage + 1, size: 21, genre: .play)
+                    viewModel.theaterPage += 1
+                }
+            }
+        } else {
+            if indexPath.row > (viewModel.musicalPage + 1) * 21 - 3 {
+                if !viewModel.isLoding {
+                    viewModel.isLoding = true
+                    viewModel.requestProductSelectInfo(page: viewModel.musicalPage + 1, size: 21, genre: .musical)
+                    viewModel.musicalPage += 1
+                }
+            }
+        }
     }
 }
