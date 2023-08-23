@@ -99,6 +99,10 @@
 		EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */; };
 		EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */; };
 		EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */; };
+		EE747B8A2A95D90A006A8AB3 /* PartyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B892A95D90A006A8AB3 /* PartyService.swift */; };
+		EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */; };
+		EE747B902A95DA3F006A8AB3 /* CreatePartyBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */; };
+		EE747B922A95E208006A8AB3 /* PartyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B912A95E208006A8AB3 /* PartyListResponse.swift */; };
 		EE7730482A93527E00658D84 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EE7730472A93527E00658D84 /* Kingfisher */; };
 		EE77304A2A93587300658D84 /* ProductDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7730492A93587300658D84 /* ProductDetailResponse.swift */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
@@ -286,6 +290,10 @@
 		EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewModel.swift; sourceTree = "<group>"; };
 		EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
+		EE747B892A95D90A006A8AB3 /* PartyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyService.swift; sourceTree = "<group>"; };
+		EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCategoryType.swift; sourceTree = "<group>"; };
+		EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePartyBody.swift; sourceTree = "<group>"; };
+		EE747B912A95E208006A8AB3 /* PartyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListResponse.swift; sourceTree = "<group>"; };
 		EE7730492A93587300658D84 /* ProductDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailResponse.swift; sourceTree = "<group>"; };
 		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
@@ -700,6 +708,9 @@
 		EE3F2FEB2A58121100BC539C /* PartyMember */ = {
 			isa = PBXGroup;
 			children = (
+				EE747B8E2A95DA34006A8AB3 /* Model */,
+				EE747B8B2A95D9A5006A8AB3 /* Enum */,
+				EE747B882A95D8EC006A8AB3 /* Service */,
 				EE3F2FEF2A58122700BC539C /* View */,
 				EEA944422A5D44130081E784 /* ViewModel */,
 			);
@@ -879,6 +890,31 @@
 			children = (
 				EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */,
 				EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE747B882A95D8EC006A8AB3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE747B892A95D90A006A8AB3 /* PartyService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE747B8B2A95D9A5006A8AB3 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		EE747B8E2A95DA34006A8AB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */,
+				EE747B912A95E208006A8AB3 /* PartyListResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1420,6 +1456,7 @@
 				EE5251E62A8E63B3003DFEE3 /* MyPageDetailViewController.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
 				EE9A88622A85307C0085F816 /* GuideDictViewController.swift in Sources */,
+				EE747B8A2A95D90A006A8AB3 /* PartyService.swift in Sources */,
 				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
 				EE1825BD2A8899CE0020BADA /* LoginService.swift in Sources */,
 				EE5251E32A8E63B3003DFEE3 /* MyRecruitmentEditViewModel.swift in Sources */,
@@ -1481,6 +1518,7 @@
 				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
+				EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */,
 				EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */,
 				EE5251E42A8E63B3003DFEE3 /* MyParticipationViewModel.swift in Sources */,
 				EEA1322D2A7FCB530016D01A /* HomeBannerHeaderView.swift in Sources */,
@@ -1503,9 +1541,11 @@
 				EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
 				EE5251EF2A8E63B3003DFEE3 /* MyPageViewController.swift in Sources */,
+				EE747B902A95DA3F006A8AB3 /* CreatePartyBody.swift in Sources */,
 				EE9A88512A83C0800085F816 /* Top10Cell.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EE5251E52A8E63B3003DFEE3 /* MyPageDeletePopup.swift in Sources */,
+				EE747B922A95E208006A8AB3 /* PartyListResponse.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,
 				EE5DED112A6586010027B0D4 /* PartyMemberWriteCompleteViewController.swift in Sources */,
 				EEA132262A7F6D490016D01A /* AddFileView.swift in Sources */,

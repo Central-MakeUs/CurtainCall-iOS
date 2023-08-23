@@ -14,5 +14,5 @@ struct NoticeResponse: Decodable {
 struct NoticeContent: Decodable {
     let id: Int
     let title: String
-    let createAt: String
+    let createdAt: String
 }

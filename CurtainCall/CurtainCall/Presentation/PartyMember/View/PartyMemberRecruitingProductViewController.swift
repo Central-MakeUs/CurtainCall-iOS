@@ -215,7 +215,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let partyType: PartyType
+    private let partyType: PartyCategoryType
     private let viewModel: PartyMemberRecruitingProductViewModel
     
     enum Section { case main }
@@ -228,7 +228,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyType, viewModel: PartyMemberRecruitingProductViewModel) {
+    init(partyType: PartyCategoryType, viewModel: PartyMemberRecruitingProductViewModel) {
         self.partyType = partyType
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

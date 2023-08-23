@@ -236,7 +236,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let partyType: PartyType
+    private let partyType: PartyCategoryType
     private let viewModel: PartyMemberRecruitingDateViewModel
     private let product: ProductSelectInfo
     private var cancellabels: Set<AnyCancellable> = []
@@ -248,7 +248,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     // MARK: - Lifecycles
     
     init(
-        partyType: PartyType,
+        partyType: PartyCategoryType,
         viewModel: PartyMemberRecruitingDateViewModel,
         product: ProductSelectInfo
     ) {

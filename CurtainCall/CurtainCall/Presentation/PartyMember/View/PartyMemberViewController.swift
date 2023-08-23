@@ -214,13 +214,13 @@ final class PartyMemberViewController: UIViewController {
     
     @objc
     private func cardViewTapped(_ sender: UIButton) {
-        guard let partyType = PartyType(tag: sender.tag) else { return }
+        guard let partyType = PartyCategoryType(tag: sender.tag) else { return }
         moveToDetailViewController(type: partyType)
     }
     
-    private func setDetailViewController(_ type: PartyType) -> UIViewController {
+    private func setDetailViewController(_ type: PartyCategoryType) -> UIViewController {
         switch type {
-        case .other:
+        case .etc:
             return PartyMemberOtherViewController(
                 viewModel: PartyMemberOtherViewModel(
                     usecase: PartyMemberOtherInteractor()
@@ -228,13 +228,12 @@ final class PartyMemberViewController: UIViewController {
         default:
             return PartyMemberProductViewController(
                 partyType: type,
-                viewModel: PartyMemberProductViewModel(
-                    usecase: PartyMemberProductInteractor()
-                ))
+                viewModel: PartyMemberProductViewModel()
+            )
         }
     }
     
-    private func moveToDetailViewController(type: PartyType) {
+    private func moveToDetailViewController(type: PartyCategoryType) {
         let detailViewController = UINavigationController(
             rootViewController: setDetailViewController(type)
         )

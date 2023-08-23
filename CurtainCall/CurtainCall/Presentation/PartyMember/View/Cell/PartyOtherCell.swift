@@ -198,24 +198,42 @@ final class PartyOtherCell: UICollectionViewCell {
         }
     }
     
-    func setUI(_ item: OtherPartyInfo) {
-        profileImageView.image = item.profileImage
-        nicknameLabel.text = item.nickname
-        writeDateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
-        countLabel.text = "\(item.minCount)/\(item.maxCount)"
-        titleLabel.text = item.title
-        if let meetinDate = item.meetingDate {
-            dateBadgeLabel.text = meetinDate.convertToYearMonthDayWeekString()
+    func setUI(_ item: PartyListContent) {
+        if let url = URL(string: item.creatorImageUrl) {
+            profileImageView.kf.setImage(with: url)
         } else {
-            dateBadgeLabel.text = "날짜 미정"
+            profileImageView.image = nil
         }
-        let partymemberImageViews = [
-            partyMemberImageView5, partyMemberImageView4, partyMemberImageView3,
-            partyMemberImageView2, partyMemberImageView1
-        ]
-        item.partyMemberImages.enumerated().forEach { index, image in
-            partymemberImageViews[index].image = image
-        }
+        nicknameLabel.text = item.creatorNickname
+//        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
+        countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
+        titleLabel.text = item.title
+        
+        dateBadgeLabel.text = "ShowAt Date"
+        
+//        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
+//        timeBadgeLabel.text = item.productDate.convertToHourMinString()
+    
     }
+    
+//    func setUI(_ item: PartyListContent) {
+//        profileImageView.image = item.profileImage
+//        nicknameLabel.text = item.nickname
+//        writeDateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
+//        countLabel.text = "\(item.minCount)/\(item.maxCount)"
+//        titleLabel.text = item.title
+//        if let meetinDate = item.meetingDate {
+//            dateBadgeLabel.text = meetinDate.convertToYearMonthDayWeekString()
+//        } else {
+//            dateBadgeLabel.text = "날짜 미정"
+//        }
+//        let partymemberImageViews = [
+//            partyMemberImageView5, partyMemberImageView4, partyMemberImageView3,
+//            partyMemberImageView2, partyMemberImageView1
+//        ]
+//        item.partyMemberImages.enumerated().forEach { index, image in
+//            partymemberImageViews[index].image = image
+//        }
+//    }
     
 }

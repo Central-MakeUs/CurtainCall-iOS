@@ -39,7 +39,7 @@ final class PartyMemberOtherViewController: UIViewController {
     // MARK: - Properties
     
     private enum Section { case main }
-    typealias Item = OtherPartyInfo
+    typealias Item = PartyListContent
     
     private let viewModel: PartyMemberOtherViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -64,7 +64,7 @@ final class PartyMemberOtherViewController: UIViewController {
         registerCell()
         addTarget()
         bind()
-        viewModel.requestPartyProductInfo()
+        viewModel.requestPartyProductInfo(page: 0, size: 20)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -215,7 +215,7 @@ extension PartyMemberOtherViewController: UICollectionViewDelegate {
         guard let dataSource, let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
-        let detailViewController = PartyMemberRecruitingOtherDetailViewController(partyInfo: item)
+        let detailViewController = PartyMemberRecruitingOtherDetailViewController(id: item.id)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

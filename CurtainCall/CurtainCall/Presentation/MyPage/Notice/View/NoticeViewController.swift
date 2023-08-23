@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class NoticeViewController: UIViewController {
     
@@ -13,17 +14,19 @@ final class NoticeViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.separatorInset.left = 24
         tableView.separatorInset.right = 24
         tableView.register(NoticeCell.self, forCellReuseIdentifier: NoticeCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
     
     // MARK: - Properties
     
     private let viewModel: NoticeViewModel
+    private var subscriptions: Set<AnyCancellable> = []
+    private var noticeItem: [NoticeContent] = []
     
     // MARK: - Lifecycles
     
@@ -39,6 +42,7 @@ final class NoticeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
         viewModel.requestNotice(page: 0, size: 100)
     }
     
@@ -64,26 +68,34 @@ final class NoticeViewController: UIViewController {
         title = "공지사항"
     }
     
+    private func bind() {
+        viewModel.$noticeItem
+            .sink { [weak self] value in
+                self?.noticeItem = value
+                self?.tableView.reloadData()
+            }.store(in: &subscriptions)
+    }
+    
 }
 
 extension NoticeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.noticeItem.count
+        return noticeItem.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueCell(type: NoticeCell.self, indexPath: indexPath) else {
             return UITableViewCell()
         }
-        let item = viewModel.noticeItem[indexPath.row]
-        cell.draw(title: item.title, date: item.createAt)
+        let item = noticeItem[indexPath.row]
+        cell.draw(title: item.title, date: item.createdAt)
         return cell
     }
 }
 
 extension NoticeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = viewModel.noticeItem[indexPath.row].id
+        let id = noticeItem[indexPath.row].id
         let detailViewController = NoticeDetailViewController(viewModel: NoticeDetailViewModel(id: id))
         navigationController?.pushViewController(detailViewController, animated: true)
     }

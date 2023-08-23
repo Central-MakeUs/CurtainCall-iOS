@@ -81,7 +81,7 @@ final class NoticeDetailViewController: UIViewController {
     
     private func configureConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).offset(32)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().offset(24)
         }
         dateLabel.snp.makeConstraints {
@@ -105,7 +105,7 @@ final class NoticeDetailViewController: UIViewController {
         contentLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(24)
+            $0.bottom.greaterThanOrEqualToSuperview().inset(24)
         }
     }
     

@@ -8,30 +8,38 @@
 import Foundation
 import Combine
 
+import CombineMoya
+import Moya
+
 final class PartyMemberProductViewModel {
     
     // MARK: - Properties
     
-    private let usecase: PartyMemberProductUsecase
     private var cancellables = Set<AnyCancellable>()
-    var productInfoData = PassthroughSubject<[ProductPartyInfo], Error>()
+    var productInfoData = PassthroughSubject<[PartyListContent], Error>()
+    private let provider = MoyaProvider<PartyAPI>()
     
     // MARK: - Lifecycles
-    
-    init(usecase: PartyMemberProductUsecase) {
-        self.usecase = usecase
-    }
 
     // MARK: - Helpers
     
-    func requestPartyProductInfo() {
-        usecase.execute().sink { [weak self] completion in
-            if case let .failure(error) = completion {
-                self?.productInfoData.send(completion: .failure(error))
-            }
-        } receiveValue: { [weak self] data in
-            self?.productInfoData.send(data)
-        }.store(in: &cancellables)
+    func requestPartyProductInfo(page: Int, size: Int, category: PartyCategoryType) {
+        provider.requestPublisher(.list(page: page, size: size, category: category))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(PartyListResponse.self) {
+                    productInfoData.send(data.content)
+                    return
+                } else {
+                    productInfoData.send(completion: .failure(NSError(domain: "DecodeError", code: 999)))
+                }
+                
+            }.store(in: &cancellables)
     }
     
 }

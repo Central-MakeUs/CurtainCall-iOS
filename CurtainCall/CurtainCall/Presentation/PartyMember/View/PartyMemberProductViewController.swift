@@ -39,10 +39,10 @@ final class PartyMemberProductViewController: UIViewController {
     // MARK: - Properties
     
     private enum Section { case main }
-    typealias Item = ProductPartyInfo
+    typealias Item = PartyListContent
     
     private let viewModel: PartyMemberProductViewModel
-    private let partyType: PartyType
+    private let partyType: PartyCategoryType
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
@@ -50,7 +50,7 @@ final class PartyMemberProductViewController: UIViewController {
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyType, viewModel: PartyMemberProductViewModel) {
+    init(partyType: PartyCategoryType, viewModel: PartyMemberProductViewModel) {
         self.partyType = partyType
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -67,7 +67,7 @@ final class PartyMemberProductViewController: UIViewController {
         registerCell()
         addTarget()
         bind()
-        viewModel.requestPartyProductInfo()
+        viewModel.requestPartyProductInfo(page: 0, size: 20, category: partyType)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,6 +181,7 @@ final class PartyMemberProductViewController: UIViewController {
             } receiveValue: { [weak self] item in
                 guard var snapshot = self?.snapshot else { return }
                 snapshot.appendItems(item, toSection: .main)
+                print("###", item)
                 self?.dataSource?.apply(snapshot)
             }.store(in: &cancellables)
 
@@ -223,9 +224,7 @@ extension PartyMemberProductViewController: UICollectionViewDelegate {
             return
         }
         let detailViewController = PartyMemberRecruitingDetailViewController(
-            partyType: partyType,
-            partyInfo: item
-        )
+            partyType: partyType)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

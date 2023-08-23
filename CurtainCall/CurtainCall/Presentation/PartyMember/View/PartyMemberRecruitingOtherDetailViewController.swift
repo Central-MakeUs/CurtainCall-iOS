@@ -146,13 +146,12 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    
-    private let partyInfo: OtherPartyInfo
+    private let id: Int
     
     // MARK: - Lifecycles
     
-    init(partyInfo: OtherPartyInfo) {
-        self.partyInfo = partyInfo
+    init(id: Int) {
+        self.id = id
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -163,7 +162,7 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        draw()
+        
     }
     
     // MARK: - Helpers
@@ -288,21 +287,21 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
         title = "기타"
     }
     
-    private func draw() {
-        profileImageView.image = partyInfo.profileImage
-        nickNameLabel.text = partyInfo.nickname
-        titleLabel.text = partyInfo.title
-        
-        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
-        contentLabel.text = partyInfo.content
-        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
-        if let date = partyInfo.meetingDate {
-            detailProductDateLabel.text = date.convertToYearMonthDayWeekString()
-        } else {
-            detailProductDateLabel.text = "날짜 미정"
-        }
-
-    }
+//    private func draw() {
+//        profileImageView.image = partyInfo.profileImage
+//        nickNameLabel.text = partyInfo.nickname
+//        titleLabel.text = partyInfo.title
+//
+//        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
+//        contentLabel.text = partyInfo.content
+//        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
+//        if let date = partyInfo.meetingDate {
+//            detailProductDateLabel.text = date.convertToYearMonthDayWeekString()
+//        } else {
+//            detailProductDateLabel.text = "날짜 미정"
+//        }
+//
+//    }
     
 }
 

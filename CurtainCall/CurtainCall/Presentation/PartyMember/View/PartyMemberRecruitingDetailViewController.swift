@@ -208,14 +208,12 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let partyType: PartyType
-    private let partyInfo: ProductPartyInfo
+    private let partyType: PartyCategoryType
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyType, partyInfo: ProductPartyInfo) {
+    init(partyType: PartyCategoryType) {
         self.partyType = partyType
-        self.partyInfo = partyInfo
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -416,16 +414,16 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     }
     
     private func draw() {
-        profileImageView.image = partyInfo.profileImage
-        nickNameLabel.text = partyInfo.nickname
-        titleLabel.text = partyInfo.title
-        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
-        contentLabel.text = partyInfo.content
-        detailProductLabel.text = partyInfo.productName
-        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
-        detailProductDateLabel.text = partyInfo.productDate.convertToYearMonthDayWeekString()
-        detailProductTimeLabel.text = partyInfo.productDate.convertToHourMinString()
-        detailProductLocationLabel.text = partyInfo.location
+//        profileImageView.image = partyInfo.profileImage
+//        nickNameLabel.text = partyInfo.nickname
+//        titleLabel.text = partyInfo.title
+//        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
+//        contentLabel.text = partyInfo.content
+//        detailProductLabel.text = partyInfo.productName
+//        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
+//        detailProductDateLabel.text = partyInfo.productDate.convertToYearMonthDayWeekString()
+//        detailProductTimeLabel.text = partyInfo.productDate.convertToHourMinString()
+//        detailProductLocationLabel.text = partyInfo.location
     }
     
 }

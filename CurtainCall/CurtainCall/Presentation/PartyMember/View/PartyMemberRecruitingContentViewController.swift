@@ -177,13 +177,13 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let partyType: PartyType
+    private let partyType: PartyCategoryType
     private let viewModel: PartyMemberRecruitingContentViewModel
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyType, viewModel: PartyMemberRecruitingContentViewModel) {
+    init(partyType: PartyCategoryType, viewModel: PartyMemberRecruitingContentViewModel) {
         self.partyType = partyType
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
