@@ -44,6 +44,8 @@ final class ProductViewModel {
                             musicalList.append(contentsOf: data.content)
                         }
                     }
+                } else {
+                    print("## RequestShow Decoding Error##")
                 }
             }.store(in: &subscriptions)
 

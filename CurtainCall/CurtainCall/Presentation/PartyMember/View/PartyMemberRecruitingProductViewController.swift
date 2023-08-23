@@ -218,13 +218,16 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private let partyType: PartyCategoryType
     private let viewModel: PartyMemberRecruitingProductViewModel
     
-    enum Section { case main }
-    typealias Item = ProductSelectInfo
+    enum Section {
+        case play
+        case musical
+    }
+    typealias Item = ProductListContentHaveSelected
     
     private var cancellables: Set<AnyCancellable> = []
     private var datasource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
-    private var selectedItem: ProductSelectInfo?
+    private var selectedItem: ProductListContentHaveSelected?
     
     // MARK: - Lifecycles
     
@@ -247,7 +250,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         bind()
         typeButtonTouchUpInside(theaterButton)
         orderSelectButtonTouchUpInside(reservationOrderButton)
-        viewModel.requestProductSelectInfo()
+        viewModel.requestProductSelectInfo(page: 0, size: 0, genre: .play)
     }
     
     // MARK: - Helpers
@@ -257,7 +260,6 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         configureConstraints()
         configureNavigation()
         configureDatasource()
-        configureSnapshot()
     }
     
     private func configureSubviews() {
@@ -389,11 +391,6 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
             })
     }
     
-    private func configureSnapshot() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot?.appendSections([.main])
-    }
-    
     private func registerCell() {
         collectionView.register(
             ProductPosterCell.self,
@@ -416,17 +413,37 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.productSelectInfo
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
+        viewModel.$playList
+            .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
+                    return
                 }
-            } receiveValue: { [weak self] item in
-                guard var snapshot = self?.snapshot else { return }
-                snapshot.appendItems(item, toSection: .main)
-                self?.datasource?.apply(snapshot, animatingDifferences: false)
+            } receiveValue: { [weak self] value in
+                guard let self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.play])
+                snapshot.appendItems(value, toSection: .play)
+                datasource?.apply(snapshot)
+                viewModel.isLoding = false
             }.store(in: &cancellables)
+        
+        viewModel.$musicalList
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { [weak self] value in
+                guard let self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.deleteAllItems()
+                snapshot.appendSections([.musical])
+                snapshot.appendItems(value, toSection: .musical)
+                datasource?.apply(snapshot)
+                viewModel.isLoding = false
+            }.store(in: &cancellables)
+
         
         viewModel.isSelectProduct
             .receive(on: DispatchQueue.main)
@@ -458,12 +475,19 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     
     @objc
     private func typeButtonTouchUpInside(_ sender: UIButton) {
+        selectedItem = nil
+        viewModel.isSelectProduct.send(false)
         [theaterButton, musicalButton].forEach {
             $0.isSelected = sender == $0
             $0.isUserInteractionEnabled = !(sender == $0)
             $0.backgroundColor = sender == $0 ? .pointColor2 : .white
             $0.layer.borderColor = sender == $0 ? UIColor.pointColor2?.cgColor
             : UIColor.hexBEC2CA?.cgColor
+        }
+        if sender == theaterButton {
+            viewModel.requestProductSelectInfo(page: 0, size: 20, genre: .play)
+        } else {
+            viewModel.requestProductSelectInfo(page: 0, size: 20, genre: .musical)
         }
     }
     
@@ -489,6 +513,6 @@ extension PartyMemberRecruitingProductViewController: UICollectionViewDelegate {
             return
         }
         selectedItem = item
-        viewModel.didSelectProduct(item)
+        viewModel.didSelectProduct(item, genre: theaterButton.isSelected ? .play : .musical)
     }
 }

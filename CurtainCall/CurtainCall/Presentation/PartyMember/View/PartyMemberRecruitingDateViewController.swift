@@ -219,7 +219,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: product.date)
+//        let calendarView = CalendarView(isSectableDates: product.date)
+        let calendarView = CalendarView(isSectableDates: [])
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
@@ -238,9 +239,9 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     private let partyType: PartyCategoryType
     private let viewModel: PartyMemberRecruitingDateViewModel
-    private let product: ProductSelectInfo
+    private let product: ProductListContentHaveSelected
     private var cancellabels: Set<AnyCancellable> = []
-    private var dateDict: [String: [String]]
+    private var dateDict: [String: [String]] = [:]
     private var selectDate: Date?
     private var selectTime: String?
     
@@ -250,12 +251,12 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     init(
         partyType: PartyCategoryType,
         viewModel: PartyMemberRecruitingDateViewModel,
-        product: ProductSelectInfo
+        product: ProductListContentHaveSelected
     ) {
         self.partyType = partyType
         self.viewModel = viewModel
         self.product = product
-        self.dateDict = product.date.convertToYearMonthDayKeyHourValue()
+//        self.dateDict = product.date.convertToYearMonthDayKeyHourValue()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -269,7 +270,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
-        print("상영 날짜", product.date)
+        print("상영 날짜", product.showTimes)
     }
     
     // MARK: - Helpers

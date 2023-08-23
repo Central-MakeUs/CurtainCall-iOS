@@ -211,8 +211,7 @@ final class PartyMemberProductViewController: UIViewController {
         configureBackbarButton()
         let writeViewController = PartyMemberRecruitingProductViewController(
             partyType: partyType,
-            viewModel: PartyMemberRecruitingProductViewModel(
-                usecase: PartyMemberRecruitingProductInteractor())
+            viewModel: PartyMemberRecruitingProductViewModel()
         )
         navigationController?.pushViewController(writeViewController, animated: true)
     }

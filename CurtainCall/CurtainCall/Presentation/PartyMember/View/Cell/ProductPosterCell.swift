@@ -69,9 +69,13 @@ final class ProductPosterCell: UICollectionViewCell {
         }
     }
     
-    func setUI(item: ProductSelectInfo) {
-        posterImageView.image = item.posterImage
-        titleLabel.text = item.title
+    func setUI(item: ProductListContentHaveSelected) {
+        if let url = URL(string: item.poster) {
+            posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = nil
+        }
+        titleLabel.text = item.name
         posterImageView.layer.borderWidth = item.isSelected ? 4 : 0
     }
     
