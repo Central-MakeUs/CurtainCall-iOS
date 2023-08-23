@@ -8,12 +8,19 @@
 import Foundation
 import Combine
 
+import CombineMoya
+import Moya
+
 final class PartyMemberRecruitingContentViewModel {
     
     // MARK: - Properties
     
     @Published var isValidTitle: Bool = false
     @Published var isValidContent: Bool = false
+    @Published var isSuccessCreateParty: Bool = false
+    
+    private let provider = MoyaProvider<PartyAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
     
     var isValid: AnyPublisher<Bool, Never> {
         return $isValidTitle.combineLatest($isValidContent) {
@@ -39,6 +46,20 @@ final class PartyMemberRecruitingContentViewModel {
             return
         }
         isValidContent = true
+    }
+    
+    func requestCreateParty(body: CreatePartyBody) {
+        provider.requestPublisher(.create(body: body))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print("#### CREATE PARTY ERROR: ", error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                print("#### CREATE PARTY response: ", String(data: response.data, encoding: .utf8))
+                print("#### BODY: ",body)
+                self?.isSuccessCreateParty = true
+            }.store(in: &subscriptions)
     }
     
     

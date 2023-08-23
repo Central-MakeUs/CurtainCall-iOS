@@ -21,7 +21,7 @@ struct PartyListContent: Decodable, Hashable {
     let category: String
     let creatorId: Int
     let creatorNickname: String
-    let creatorImageUrl: String
+    let creatorImageUrl: String?
     let showId: String
     let showName: String
     let showPoster: String

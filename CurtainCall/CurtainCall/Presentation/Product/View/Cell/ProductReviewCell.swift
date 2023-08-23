@@ -160,7 +160,7 @@ final class ProductReviewCell: UITableViewCell {
         if let profileURLString = item.creatorImageUrl, let profileURL = URL(string: profileURLString) {
             profileImageView.kf.setImage(with: profileURL)
         } else {
-            profileImageView.image = nil
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
         gradeStackView.draw(grade: Int(item.grade))
         if let date = item.createdAt.convertAPIDateToDate() {

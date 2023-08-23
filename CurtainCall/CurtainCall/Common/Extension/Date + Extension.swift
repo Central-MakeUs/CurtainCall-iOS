@@ -13,7 +13,11 @@ extension Date {
         formatter.dateFormat = "yyyy.M.dd"
         return formatter.string(from: self)
     }
-    
+    func convertToAPIDateYearMonthDayString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
     func convertToYearMonthDayHourMinString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.M.dd HH:mm"

@@ -178,13 +178,25 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     // MARK: - Properties
     
     private let partyType: PartyCategoryType
+    private let showAt: String
+    private let maxMemberNumber: Int
     private let viewModel: PartyMemberRecruitingContentViewModel
+    private let product: ProductListContentHaveSelected
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyCategoryType, viewModel: PartyMemberRecruitingContentViewModel) {
+    init(
+        partyType: PartyCategoryType,
+        product: ProductListContentHaveSelected,
+        showAt: String,
+        maxMemberNumber: Int,
+        viewModel: PartyMemberRecruitingContentViewModel
+    ) {
         self.partyType = partyType
+        self.product = product
+        self.showAt = showAt
+        self.maxMemberNumber = maxMemberNumber
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -325,6 +337,16 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
+        guard let titleText = titleWriteTextField.text, let content = contentTextView.text else { return }
+        let body = CreatePartyBody(
+            showId: product.id,
+            showAt: showAt,
+            title: titleText,
+            content: content,
+            maxMemberNum: maxMemberNumber,
+            category: partyType.rawValue
+        )
+        viewModel.requestCreateParty(body: body)
         let completeViewController = PartyMemberWriteCompleteViewController()
         navigationController?.isNavigationBarHidden = true
         navigationController?.pushViewController(completeViewController, animated: true)

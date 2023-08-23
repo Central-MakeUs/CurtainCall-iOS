@@ -288,10 +288,10 @@ final class PartyProductCell: UICollectionViewCell {
     
     func setUI(_ item: PartyListContent) {
         productTitleLabel.text = item.showName
-        if let url = URL(string: item.creatorImageUrl) {
+        if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
         } else {
-            profileImageView.image = nil
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
         nicknameLabel.text = item.creatorNickname
 //        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()

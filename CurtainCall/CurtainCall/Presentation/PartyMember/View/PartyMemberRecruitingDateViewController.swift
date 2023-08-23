@@ -258,7 +258,6 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         self.partyType = partyType
         self.viewModel = viewModel
         self.product = product
-//        self.dateDict = product.date.convertToYearMonthDayKeyHourValue()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -489,8 +488,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
+        guard let selectDate, let selectTime, let count = countLabel.text else { return }
+        let showAt = selectDate.convertToAPIDateYearMonthDayString() + "T" + selectTime + ":00"
         let step3ViewController = PartyMemberRecruitingContentViewController(
             partyType: partyType,
+            product: product,
+            showAt: showAt,
+            maxMemberNumber: Int(count) ?? 1,
             viewModel: PartyMemberRecruitingContentViewModel()
         )
         navigationController?.pushViewController(step3ViewController, animated: true)

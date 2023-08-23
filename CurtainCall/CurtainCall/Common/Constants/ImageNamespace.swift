@@ -127,4 +127,6 @@ enum ImageNamespace {
     static let reportBangIcon = "report_bang_icon"
     
     static let emptyMarks = "empty_marks"
+    
+    static let defaultProfile = "default_profile"
 }
