@@ -455,8 +455,9 @@ final class MyPageViewController: UIViewController {
     
     @objc
     private func settingButtonTouchUpInside() {
-        let settingViewControlelr = SettingViewController()
-        navigationController?.pushViewController(settingViewControlelr, animated: true)
+        let settingViewControlelr = UINavigationController(rootViewController: SettingViewController())
+        settingViewControlelr.modalPresentationStyle = .fullScreen
+        present(settingViewControlelr, animated: true)
     }
     
     @objc

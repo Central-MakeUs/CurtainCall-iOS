@@ -13,6 +13,7 @@
 		EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01323E2A5F012500873107 /* ProductSelectInfo.swift */; };
 		EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */; };
 		EE0132432A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */; };
+		EE0282FF2A96458E008F8100 /* RemoveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -209,6 +210,7 @@
 		EE01323E2A5F012500873107 /* ProductSelectInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectInfo.swift; sourceTree = "<group>"; };
 		EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductViewModel.swift; sourceTree = "<group>"; };
 		EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductUsecase.swift; sourceTree = "<group>"; };
+		EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountViewController.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -438,6 +440,14 @@
 				EE01323C2A5EFBE600873107 /* ProductPosterCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EE0282FD2A964555008F8100 /* RemoveAccount */ = {
+			isa = PBXGroup;
+			children = (
+				EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */,
+			);
+			path = RemoveAccount;
 			sourceTree = "<group>";
 		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
@@ -817,6 +827,7 @@
 		EE5251CE2A8E63B3003DFEE3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE0282FD2A964555008F8100 /* RemoveAccount */,
 				EE1DF3882A95052F003AD078 /* Setting */,
 				EE1DF3752A94EF0C003AD078 /* Notice */,
 				EE5251CF2A8E63B3003DFEE3 /* ViewModel */,
@@ -1534,6 +1545,7 @@
 				EE9A886E2A8764340085F816 /* GuideSaleViewController.swift in Sources */,
 				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
 				EE5251ED2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift in Sources */,
+				EE0282FF2A96458E008F8100 /* RemoveAccountViewController.swift in Sources */,
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */,
@@ -1748,7 +1760,7 @@
 				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
@@ -1781,7 +1793,7 @@
 				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;

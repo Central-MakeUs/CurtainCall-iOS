@@ -168,7 +168,7 @@ final class SettingViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        configureBackbarButton(.pop)
+        configureBackbarButton(.dismiss)
         title = "설정"
     }
     
@@ -202,7 +202,8 @@ final class SettingViewController: UIViewController {
     
     @objc
     private func removeAccountButtonTapped() {
-        
+        let removeAccountViewController = RemoveAccountViewController()
+        navigationController?.pushViewController(removeAccountViewController, animated: true)
     }
     
     @objc
