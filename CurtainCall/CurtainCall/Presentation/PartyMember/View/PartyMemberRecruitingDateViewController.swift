@@ -433,10 +433,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
     private func configureTimeSelectView(times: [String]) {
         let timeSelectView: TimeSelectView = {
             let view = TimeSelectView(times: times)
-            view.layer.cornerRadius = 10
-            view.layer.borderColor = UIColor.black.cgColor
-            view.layer.borderWidth = 1
             view.tag = 100
+            view.layer.applySketchShadow(color: .black, alpha: 0.25, x: 0, y: 4, blur: 4, spread: 0)
             view.delegate = self
             return view
         }()
@@ -471,7 +469,8 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         var times: [String] = []
         product.showTimes.forEach {
             if $0.dayOfWeek == weekDay {
-                times.append($0.time)
+                let time = $0.time.split(separator: ":").map { String($0) }
+                times.append("\(time[0]):\(time[1])")
             }
         }
         times = times.sorted(by: <)

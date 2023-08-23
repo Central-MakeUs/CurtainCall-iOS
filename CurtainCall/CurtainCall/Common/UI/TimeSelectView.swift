@@ -19,6 +19,7 @@ final class TimeSelectView: UIView, TimeSelectDelegate {
         tableView.dataSource = self
         tableView.separatorInset.left = 20
         tableView.separatorInset.right = 20
+        tableView.layer.cornerRadius = 10
         return tableView
     }()
     
@@ -79,6 +80,7 @@ extension TimeSelectView: UITableViewDataSource {
             indexPath: indexPath
         ) else { return UITableViewCell() }
         cell.selectionStyle = .none
+        cell.layer.cornerRadius = 10
         cell.setUI(time: times[indexPath.row])
         return cell
     }
