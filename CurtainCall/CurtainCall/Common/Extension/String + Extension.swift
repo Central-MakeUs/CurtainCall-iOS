@@ -25,4 +25,16 @@ extension String {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.date(from: d)
     }
+    
+    func convertAPIDateToDateString() -> String {
+        var d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }.first ?? ""
+        d = d.replacingOccurrences(of: ":", with: "-")
+        return d
+    }
+    
+    func convertAPIDateToDateTime() -> String {
+        let d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }[1]
+        let times = d.split(separator: ":").map { String($0) }
+        return times[0] + ":" + times[1]
+    }
 }

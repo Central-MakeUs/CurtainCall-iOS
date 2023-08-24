@@ -13,6 +13,7 @@ enum ImageNamespace {
     static let navigationBackButtonWhite = "navigation_back_button_white"
     static let navigationMoreButton = "navigation_more_button"
     static let navigationReportButton = "navigation_report_button"
+    static let navigationDeleteButton = "navigation_delete_button"
     
     static let loginButtonApple = "login_button_apple"
     static let loginButtonGoogle = "login_button_google"

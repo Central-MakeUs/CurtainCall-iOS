@@ -89,6 +89,10 @@ final class MyParticipationViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         categoryButtonTapped(productButton)
     }
     
@@ -226,15 +230,14 @@ final class MyParticipationViewController: UIViewController {
 extension MyParticipationViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dataSource,
-              let item = dataSource.itemIdentifier(for: indexPath),
-              let tag = [productButton, foodButton, otherButton].first(where: { $0.isSelected })?.tag,
-              let partyType = PartyType(tag: tag) else {
+              let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
         let detailViewController = MyPageDetailViewController(
-            id: 1,
+            id: item.id,
             editType: .participate
         )
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
+

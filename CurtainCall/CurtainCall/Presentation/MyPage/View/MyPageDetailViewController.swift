@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import Combine
+
+import Moya
+import CombineMoya
+import Kingfisher
 
 enum MyPageDetailType {
     case recruitment
@@ -215,6 +220,8 @@ final class MyPageDetailViewController: UIViewController {
     
     private let id: Int
     private let editType: MyPageDetailType
+    private let provider = MoyaProvider<PartyAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
@@ -231,7 +238,7 @@ final class MyPageDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        draw()
+        requestDetail()
     }
     
     // MARK: - Helpers
@@ -342,6 +349,7 @@ final class MyPageDetailViewController: UIViewController {
         }
         detailProductLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
+            $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
         detailStateView.snp.makeConstraints {
@@ -358,6 +366,7 @@ final class MyPageDetailViewController: UIViewController {
         }
         detailCountLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
+            $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
         detailDateView.snp.makeConstraints {
@@ -373,6 +382,7 @@ final class MyPageDetailViewController: UIViewController {
         }
         detailProductDateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
+            $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
         detailTimeView.snp.makeConstraints {
@@ -388,6 +398,7 @@ final class MyPageDetailViewController: UIViewController {
         }
         detailProductTimeLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
+            $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
         detailLocationView.snp.makeConstraints {
@@ -404,6 +415,7 @@ final class MyPageDetailViewController: UIViewController {
         }
         detailProductLocationLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
+            $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
 //        dotLineViews.forEach {
@@ -417,13 +429,23 @@ final class MyPageDetailViewController: UIViewController {
     
     private func configureNavigation() {
         configureBackbarButton()
-//        title = partyType.title
+        title = "MY 모집"
+        
+        
         let moreBarButton = UIBarButtonItem(
             title: nil,
             image: UIImage(named: ImageNamespace.navigationMoreButton),
             target: self,
             action: #selector(moreButtonTouchUpInside)
         )
+        
+        let deleteButton = UIBarButtonItem(
+            title: "삭제",
+            image: nil,
+            target: self,
+            action: #selector(deleteButtonTouchUpInside)
+        )
+        
         
         let reportButton = UIBarButtonItem(
             title: nil,
@@ -432,21 +454,40 @@ final class MyPageDetailViewController: UIViewController {
             action: #selector(reportButtonTouchUpInside)
         )
         
-        navigationItem.rightBarButtonItem = editType == .recruitment ? moreBarButton : reportButton
+        navigationItem.rightBarButtonItem = editType == .recruitment ? deleteButton : reportButton
         navigationItem.rightBarButtonItem?.tintColor = .hex828996
     }
     
-    private func draw() {
-//        profileImageView.image = partyInfo.profileImage
-//        nickNameLabel.text = partyInfo.nickname
-//        titleLabel.text = partyInfo.title
-//        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
-//        contentLabel.text = partyInfo.content
-//        detailProductLabel.text = partyInfo.productName
-//        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
-//        detailProductDateLabel.text = partyInfo.productDate.convertToYearMonthDayWeekString()
-//        detailProductTimeLabel.text = partyInfo.productDate.convertToHourMinString()
-//        detailProductLocationLabel.text = partyInfo.location
+    private func requestDetail() {
+        provider.requestPublisher(.detail(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(PartyDetailResponse.self) {
+                    self?.draw(info: data)
+                }
+            }.store(in: &subscriptions)
+
+    }
+    
+    private func draw(info: PartyDetailResponse) {
+        if let imageURL = info.creatorImageUrl, let url = URL(string: imageURL) {
+            profileImageView.kf.setImage(with: url)
+        } else {
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
+        }
+        nickNameLabel.text = info.creatorNickname
+        titleLabel.text = info.title
+        writeDateLabel.text = info.createdAt.convertAPIDateToDateString() + " " + info.createdAt.convertAPIDateToDateTime()
+        contentLabel.text = info.content
+        detailProductLabel.text = info.showName
+        detailCountLabel.text = "\(info.curMemberNum)/\(info.maxMemberNum)"
+        detailProductDateLabel.text = info.showAt.convertAPIDateToDateString()
+        detailProductTimeLabel.text = info.showAt.convertAPIDateToDateTime()
+        detailProductLocationLabel.text = info.facilityName
     }
     
     @objc
@@ -471,6 +512,11 @@ final class MyPageDetailViewController: UIViewController {
         let reportViewController = ReportViewController(viewModel: ReportViewModel())
         navigationController?.pushViewController(reportViewController, animated: true)
     }
+    
+    @objc
+    private func deleteButtonTouchUpInside() {
+        moveToDelete()
+    }
 }
 
 extension MyPageDetailViewController: EditBottomSheetDelegate {
@@ -491,6 +537,17 @@ extension MyPageDetailViewController: EditBottomSheetDelegate {
 
 extension MyPageDetailViewController: DeletePopDelegate {
     func deleteButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        provider.requestPublisher(.delete(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if response.statusCode == 200 {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &subscriptions)
+
     }
 }

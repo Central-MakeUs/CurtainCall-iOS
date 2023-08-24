@@ -89,6 +89,11 @@ final class MyRecruitmentViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         categoryButtonTapped(productButton)
     }
     
@@ -224,13 +229,12 @@ final class MyRecruitmentViewController: UIViewController {
 extension MyRecruitmentViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dataSource,
-              let item = dataSource.itemIdentifier(for: indexPath),
-              let tag = [productButton, foodButton, otherButton].first(where: { $0.isSelected })?.tag,
-              let partyType = PartyType(tag: tag) else {
+              let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
+        print("MY모집 ID", item.id)
         let detailViewController = MyPageDetailViewController(
-            id: 1,
+            id: item.id,
             editType: .recruitment
         )
         navigationController?.pushViewController(detailViewController, animated: true)

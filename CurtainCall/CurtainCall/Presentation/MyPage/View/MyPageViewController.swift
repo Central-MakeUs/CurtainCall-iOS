@@ -226,12 +226,12 @@ final class MyPageViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
-        viewModel.requestUserInfo()
         bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.requestUserInfo()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
