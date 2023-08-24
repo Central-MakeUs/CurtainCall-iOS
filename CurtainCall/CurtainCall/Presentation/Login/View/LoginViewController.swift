@@ -39,12 +39,16 @@ final class LoginViewController: UIViewController {
     private let googleLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonGoogle), for: .normal)
+        // TODO: 개발 완료된 후
+        button.isHidden = true
         return button
     }()
     
     private let facebookLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.loginButtonFacebook), for: .normal)
+        // TODO: 개발 완료된 후
+        button.isHidden = true
         return button
     }()
     
@@ -64,6 +68,16 @@ final class LoginViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ImageNamespace.loginStart)
         return imageView
+    }()
+    
+    private let contactLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .body5
+        label.textAlignment = .center
+        label.text = "[문의하기]\ncurtaincall@gmail.com"
+        label.numberOfLines = 0
+        return label
     }()
     
     // MARK: - Properties
@@ -102,7 +116,7 @@ final class LoginViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .pointColor1
-        [loginButtonStackView, logoImageView, loginStart].forEach { view.addSubview($0) }
+        [loginButtonStackView, logoImageView, loginStart, contactLabel].forEach { view.addSubview($0) }
         [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)
         }
@@ -120,6 +134,10 @@ final class LoginViewController: UIViewController {
         loginButtonStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(loginStart.snp.bottom).offset(14)
+        }
+        contactLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(loginButtonStackView.snp.bottom).offset(62)
         }
     }
     
