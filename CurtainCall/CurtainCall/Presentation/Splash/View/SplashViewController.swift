@@ -49,7 +49,7 @@ final class SplashViewController: UIViewController {
     }
     
     private func startAnimation() {
-        UIView.animate(withDuration: 2.0, delay: 1.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.5, options: .curveEaseOut, animations: {
             self.logoImageView.alpha = 1
         }, completion: { [weak self] _ in
             if KeychainWrapper.standard.bool(forKey: .isFirstUser) == nil {
