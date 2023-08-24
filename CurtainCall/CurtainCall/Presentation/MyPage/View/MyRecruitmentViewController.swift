@@ -30,9 +30,7 @@ final class MyRecruitmentViewController: UIViewController {
     private let productButton: GuideCategoryButton = {
         let button = GuideCategoryButton()
         button.setTitle("공연 관람", for: .normal)
-        button.isSelected = true
         button.tag = 0
-        button.setBackground(true)
         return button
     }()
     
@@ -70,10 +68,9 @@ final class MyRecruitmentViewController: UIViewController {
     // MARK: - Properties
     
     private enum Section { case main }
-    typealias Item = ProductPartyInfo
+    typealias Item = MyRecruitmentContent
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-    private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     private let viewModel: MyRecruitmentViewModel
     
     // MARK: - Lifecycles
@@ -92,7 +89,7 @@ final class MyRecruitmentViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
-        viewModel.requestMyRecruitment()
+        categoryButtonTapped(productButton)
     }
     
     // MARK: - Helpers
@@ -102,7 +99,6 @@ final class MyRecruitmentViewController: UIViewController {
         configureConstraints()
         configureNavigtaion()
         configureDatasource()
-        configureSnapshot()
     }
     
     private func configureSubviews() {
@@ -182,11 +178,6 @@ final class MyRecruitmentViewController: UIViewController {
         )
     }
     
-    private func configureSnapshot() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot?.appendSections([.main])
-    }
-    
     private func addTargets() {
         [productButton, foodButton, otherButton].forEach {
             $0.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
@@ -201,7 +192,8 @@ final class MyRecruitmentViewController: UIViewController {
                     print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] item in
-                guard var snapshot = self?.snapshot else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.main])
                 snapshot.appendItems(item, toSection: .main)
                 self?.collectionView.isHidden = item.isEmpty
                 self?.emptyView.isHidden = !item.isEmpty
@@ -218,6 +210,13 @@ final class MyRecruitmentViewController: UIViewController {
         }
         sender.isSelected = true
         sender.setBackground(true)
+        if sender == productButton {
+            viewModel.requestRecruitment(category: .watching)
+        } else if sender == foodButton {
+            viewModel.requestRecruitment(category: .food)
+        } else {
+            viewModel.requestRecruitment(category: .etc)
+        }
     }
     
 }
@@ -231,8 +230,7 @@ extension MyRecruitmentViewController: UICollectionViewDelegate {
             return
         }
         let detailViewController = MyPageDetailViewController(
-            partyType: partyType,
-            partyInfo: item,
+            id: 1,
             editType: .recruitment
         )
         navigationController?.pushViewController(detailViewController, animated: true)

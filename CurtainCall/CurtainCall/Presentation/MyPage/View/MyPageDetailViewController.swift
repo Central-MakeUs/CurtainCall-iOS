@@ -213,15 +213,13 @@ final class MyPageDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let partyType: PartyType
-    private let partyInfo: ProductPartyInfo
+    private let id: Int
     private let editType: MyPageDetailType
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyType, partyInfo: ProductPartyInfo, editType: MyPageDetailType) {
-        self.partyType = partyType
-        self.partyInfo = partyInfo
+    init(id: Int, editType: MyPageDetailType) {
+        self.id = id
         self.editType = editType
         super.init(nibName: nil, bundle: nil)
     }
@@ -419,7 +417,7 @@ final class MyPageDetailViewController: UIViewController {
     
     private func configureNavigation() {
         configureBackbarButton()
-        title = partyType.title
+//        title = partyType.title
         let moreBarButton = UIBarButtonItem(
             title: nil,
             image: UIImage(named: ImageNamespace.navigationMoreButton),
@@ -439,16 +437,16 @@ final class MyPageDetailViewController: UIViewController {
     }
     
     private func draw() {
-        profileImageView.image = partyInfo.profileImage
-        nickNameLabel.text = partyInfo.nickname
-        titleLabel.text = partyInfo.title
-        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
-        contentLabel.text = partyInfo.content
-        detailProductLabel.text = partyInfo.productName
-        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
-        detailProductDateLabel.text = partyInfo.productDate.convertToYearMonthDayWeekString()
-        detailProductTimeLabel.text = partyInfo.productDate.convertToHourMinString()
-        detailProductLocationLabel.text = partyInfo.location
+//        profileImageView.image = partyInfo.profileImage
+//        nickNameLabel.text = partyInfo.nickname
+//        titleLabel.text = partyInfo.title
+//        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
+//        contentLabel.text = partyInfo.content
+//        detailProductLabel.text = partyInfo.productName
+//        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
+//        detailProductDateLabel.text = partyInfo.productDate.convertToYearMonthDayWeekString()
+//        detailProductTimeLabel.text = partyInfo.productDate.convertToHourMinString()
+//        detailProductLocationLabel.text = partyInfo.location
     }
     
     @objc
@@ -477,10 +475,10 @@ final class MyPageDetailViewController: UIViewController {
 
 extension MyPageDetailViewController: EditBottomSheetDelegate {
     func moveToEdit() {
-        let viewModel = MyRecruitmentEditViewModel()
-        let editViewController = MyRecruitmentEditViewController(viewModel: viewModel, partyInfo: partyInfo)
+//        let viewModel = MyRecruitmentEditViewModel()
+//        let editViewController = MyRecruitmentEditViewController(viewModel: viewModel, partyInfo: partyInfo)
         
-        navigationController?.pushViewController(editViewController, animated: true)
+//        navigationController?.pushViewController(editViewController, animated: true)
     }
     
     func moveToDelete() {

@@ -8,15 +8,33 @@
 import Foundation
 import Combine
 
+import Moya
+import CombineMoya
+import SwiftKeychainWrapper
+
 final class MyRecruitmentViewModel {
     
-    var myRecruitmentSubject = PassthroughSubject<[ProductPartyInfo], Error>()
+    private let provider = MoyaProvider<MyPageAPI>()
+    private var subscriptions: Set<AnyCancellable> = []
+    var myRecruitmentSubject = PassthroughSubject<[MyRecruitmentContent], Never>()
+    var page = 0
     
-    init() {
-        requestMyRecruitment()
+    func requestRecruitment(category: PartyCategoryType) {
+        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else { return }
+        provider.requestPublisher(.recruitments(id: userId, page: page, size: 20, category: category))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(MyRecruitmentResponse.self) {
+                    self?.myRecruitmentSubject.send(data.content)
+                } else {
+                    print("ERROR: MyRecruitmentError")
+                }
+            }.store(in: &subscriptions)
+
     }
     
-    func requestMyRecruitment() {
-        myRecruitmentSubject.send(ProductPartyInfo.list)
-    }
 }

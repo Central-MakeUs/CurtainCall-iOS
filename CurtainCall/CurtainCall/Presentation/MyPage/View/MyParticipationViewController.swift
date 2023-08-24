@@ -174,7 +174,7 @@ final class MyParticipationViewController: UIViewController {
                     type: MyPageRecruitmentCell.self,
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
-                cell.setUI(item)
+//                cell.setUI(item)
                 return cell
             }
         )
@@ -229,8 +229,7 @@ extension MyParticipationViewController: UICollectionViewDelegate {
             return
         }
         let detailViewController = MyPageDetailViewController(
-            partyType: partyType,
-            partyInfo: item,
+            id: 1,
             editType: .participate
         )
         navigationController?.pushViewController(detailViewController, animated: true)

@@ -17,6 +17,7 @@
 		EE0283012A979140008F8100 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283002A979140008F8100 /* MyPageViewModel.swift */; };
 		EE0283042A9791B4008F8100 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283032A9791B4008F8100 /* UserInfoManager.swift */; };
 		EE0283072A979267008F8100 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283062A979267008F8100 /* HomeViewModel.swift */; };
+		EE0283092A979A86008F8100 /* MyRecruitmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283082A979A86008F8100 /* MyRecruitmentResponse.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -223,6 +224,7 @@
 		EE0283002A979140008F8100 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		EE0283032A9791B4008F8100 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		EE0283062A979267008F8100 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		EE0283082A979A86008F8100 /* MyRecruitmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecruitmentResponse.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 			children = (
 				EE6127032A974EFD00961109 /* MyPageDetailResponse.swift */,
 				EE6127052A974F5300961109 /* UpdateMyPageBody.swift */,
+				EE0283082A979A86008F8100 /* MyRecruitmentResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1569,6 +1572,7 @@
 				EE5251CB2A8E639A003DFEE3 /* ReportDetailViewController.swift in Sources */,
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */,
+				EE0283092A979A86008F8100 /* MyRecruitmentResponse.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,
 				EE93AA362A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift in Sources */,

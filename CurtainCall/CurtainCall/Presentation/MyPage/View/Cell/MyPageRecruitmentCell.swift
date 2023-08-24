@@ -287,17 +287,28 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         }
         
     }
-    
-    func setUI(_ item: ProductPartyInfo) {
-        productTitleLabel.text = item.productName
-        profileImageView.image = item.profileImage
-        nicknameLabel.text = item.nickname
-        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
-        countLabel.text = "\(item.minCount)/\(item.maxCount)"
+
+    func setUI(_ item: MyRecruitmentContent) {
+        productTitleLabel.text = item.showName
+        if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
+            profileImageView.kf.setImage(with: url)
+        } else {
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
+        }
+        nicknameLabel.text = item.creatorNickname
+//        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
+        dateLabel.text = "createAt"
+        countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
-        posterImageView.image = item.posterImage
-        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
-        timeBadgeLabel.text = item.productDate.convertToHourMinString()
-        locationBadgeLabel.text = item.location
+        if let url = URL(string: item.showPoster) {
+            posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = nil
+        }
+        dateBadgeLabel.text = "ShowAt Date"
+        timeBadgeLabel.text = "ShowAt Time"
+//        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
+//        timeBadgeLabel.text = item.productDate.convertToHourMinString()
+        locationBadgeLabel.text = item.facilityName
     }
 }
