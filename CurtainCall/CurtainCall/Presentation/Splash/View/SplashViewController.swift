@@ -34,7 +34,6 @@ final class SplashViewController: UIViewController {
     // MARK: - Helpers
     
     private func configureUI() {
-        // TODO: 디자인 컬러 나오면 자주사용하는 색상 따로 빼서 작성
         view.backgroundColor = .pointColor1
         configureSubviews()
         configureConstraint()

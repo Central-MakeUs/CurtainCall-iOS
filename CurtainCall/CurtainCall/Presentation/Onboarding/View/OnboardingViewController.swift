@@ -37,6 +37,7 @@ final class OnboardingViewController: UIViewController {
         button.backgroundColor = .pointColor2
         button.layer.cornerRadius = 15
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        button.setTitleColor(.pointColor1, for: .normal)
         return button
     }()
     

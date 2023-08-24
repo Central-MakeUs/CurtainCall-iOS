@@ -15,7 +15,7 @@ final class OnboardingCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 26, weight: .bold)
+        label.font = .heading1
         label.textColor = .white
         label.text = "작품 탐색"
         return label
@@ -23,12 +23,14 @@ final class OnboardingCell: UICollectionViewCell {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .body1
         label.textColor = .white
         label.numberOfLines = 3
         label.text = "현재 상연 중인 연극 및\n뮤지컬에 관한 모든 정보를\n확인할 수 있어요."
         return label
     }()
+    
+    private let imageView = UIImageView()
     
     // MARK: - Properties
     
@@ -52,7 +54,7 @@ final class OnboardingCell: UICollectionViewCell {
     }
     
     private func configureSubviews() {
-        [titleLabel, descriptionLabel].forEach { addSubview($0) }
+        [titleLabel, descriptionLabel, imageView].forEach { addSubview($0) }
     }
     
     private func configureConstraints() {
@@ -64,10 +66,14 @@ final class OnboardingCell: UICollectionViewCell {
             $0.top.equalTo(titleLabel.snp.top).offset(50)
             $0.leading.equalToSuperview().offset(24)
         }
+        imageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     func setupUI(data: OnboardingData) {
         titleLabel.text = data.title
         descriptionLabel.text = data.description
+        imageView.image = UIImage(named: data.image)
     }
 }
