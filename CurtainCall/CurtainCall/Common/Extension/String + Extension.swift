@@ -20,10 +20,13 @@ extension String {
     }
     
     func convertAPIDateToDate() -> Date? {
-        let d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }.first ?? ""
+        let d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }
+        let times = d[1].split(separator: ":").map { String($0) }
+        let time = times[0] + ":" + times[1]
+        let date = d[0] + time
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.date(from: d)
+        formatter.dateFormat = "yyyy-MM-ddHH:mm"
+        return formatter.date(from: date)
     }
     
     func convertAPIDateToDateString() -> String {

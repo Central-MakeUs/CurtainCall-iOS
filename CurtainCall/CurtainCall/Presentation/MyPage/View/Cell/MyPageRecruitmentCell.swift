@@ -296,8 +296,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
         nicknameLabel.text = item.creatorNickname
-//        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
-        dateLabel.text = "createAt"
+        dateLabel.text = item.createdAt.convertAPIDateToDateString() + " " + item.createdAt.convertAPIDateToDateTime()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
         if let url = URL(string: item.showPoster) {
@@ -305,8 +304,13 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         } else {
             posterImageView.image = nil
         }
-        dateBadgeLabel.text = "ShowAt Date"
-        timeBadgeLabel.text = "ShowAt Time"
+        if let showDate = item.showAt.convertAPIDateToDate() {
+            dateBadgeLabel.text = showDate.convertToYearMonthDayWeekString()
+            timeBadgeLabel.text = showDate.convertToHourMinString()
+        } else {
+            dateBadgeLabel.text = "정보 없음"
+            timeBadgeLabel.text = "정보 없음"
+        }
 //        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
 //        timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.facilityName
