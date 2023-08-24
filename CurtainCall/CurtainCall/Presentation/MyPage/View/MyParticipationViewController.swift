@@ -67,7 +67,7 @@ final class MyParticipationViewController: UIViewController {
     // MARK: - Properties
     
     private enum Section { case main }
-    typealias Item = ProductPartyInfo
+    typealias Item = MyRecruitmentContent
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
@@ -89,7 +89,7 @@ final class MyParticipationViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
-        viewModel.requestMyRecruitment()
+        categoryButtonTapped(productButton)
     }
     
     // MARK: - Helpers
@@ -99,7 +99,6 @@ final class MyParticipationViewController: UIViewController {
         configureConstraints()
         configureNavigtaion()
         configureDatasource()
-        configureSnapshot()
     }
     
     private func configureSubviews() {
@@ -174,16 +173,12 @@ final class MyParticipationViewController: UIViewController {
                     type: MyPageRecruitmentCell.self,
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
-//                cell.setUI(item)
+                cell.setUI(item)
                 return cell
             }
         )
     }
     
-    private func configureSnapshot() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot?.appendSections([.main])
-    }
     
     private func addTargets() {
         [productButton, foodButton, otherButton].forEach {
@@ -199,7 +194,8 @@ final class MyParticipationViewController: UIViewController {
                     print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] item in
-                guard var snapshot = self?.snapshot else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.main])
                 snapshot.appendItems(item, toSection: .main)
                 self?.collectionView.isHidden = item.isEmpty
                 self?.emptyView.isHidden = !item.isEmpty
@@ -216,6 +212,13 @@ final class MyParticipationViewController: UIViewController {
         }
         sender.isSelected = true
         sender.setBackground(true)
+        if sender == productButton {
+            viewModel.requestRecruitment(category: .watching)
+        } else if sender == foodButton {
+            viewModel.requestRecruitment(category: .food)
+        } else {
+            viewModel.requestRecruitment(category: .etc)
+        }
     }
     
 }

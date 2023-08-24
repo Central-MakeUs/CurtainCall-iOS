@@ -30,6 +30,7 @@ final class MyRecruitmentViewModel {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     self?.myRecruitmentSubject.send(data.content)
+                    
                 } else {
                     print("ERROR: MyRecruitmentError")
                 }
