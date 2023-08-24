@@ -138,14 +138,18 @@ final class LoginViewController: UIViewController {
                 case .finished:
                     print("끝남 처리")
                 }
-            } receiveValue: { [weak self] loginType in
-                _ = loginType
+            } receiveValue: { [weak self] loginInfo in
                 // TODO: 홈으로 넘길지, 약관동의 화면으로 넘길지 확인
                 
                 // 홈
-                
+                if let id = loginInfo.1 {
+                    KeychainWrapper.standard[.userID] = id
+                    self?.changeRootViewController(MainTabBarController())
+                } else {
+                    self?.pushToTermOfServiceViewController()
+                }
                 // 회원가입
-                self?.pushToTermOfServiceViewController()
+                
                 
 //                switch loginType {
 //                case .apple:

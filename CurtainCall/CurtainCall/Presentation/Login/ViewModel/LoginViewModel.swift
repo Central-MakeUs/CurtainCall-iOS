@@ -25,7 +25,7 @@ protocol LoginViewModelInput {
 }
 
 protocol LoginViewModelOutput {
-    var loginPublisher: PassthroughSubject<LoginType, Error> { get set }
+    var loginPublisher: PassthroughSubject<(LoginType, Int?), Error> { get set }
 }
 
 protocol LoginViewModelIO: LoginViewModelInput & LoginViewModelOutput { }
@@ -37,7 +37,7 @@ final class LoginViewModel: LoginViewModelIO {
     private let useCase: LoginUseCase
     private var cancellables = Set<AnyCancellable>()
     private let loginProvider = MoyaProvider<LoginAPI>()
-    var loginPublisher = PassthroughSubject<LoginType, Error>()
+    var loginPublisher = PassthroughSubject<(LoginType, Int?), Error>()
     weak var loginViewController: UIViewController?
     
     init(useCase: LoginUseCase) {
@@ -63,7 +63,7 @@ final class LoginViewModel: LoginViewModelIO {
                     }
                 } receiveValue: { [weak self] token in
                     print(token)
-                    self?.loginPublisher.send(.apple)
+                    self?.loginPublisher.send((.apple, nil))
                 }.store(in: &cancellables)
         }
     }
@@ -82,10 +82,14 @@ final class LoginViewModel: LoginViewModelIO {
                     case .finished:
                         return
                     }
-                }, receiveValue: { response in
+                }, receiveValue: { [weak self] response in
                     if let data = try? response.map(AuthenticationResponse.self) {
                         KeychainWrapper.standard[.accessToken] = data.accessToken
-                        self.loginPublisher.send(.kakao)
+                        KeychainWrapper.standard[.refreshToken] = data.refreshToken
+                        
+                        print("##AUTH: ", data)
+                        self?.loginPublisher.send((.kakao, data.memberId))
+                        
                     }
                 }).store(in: &self.cancellables)
         }
@@ -108,7 +112,7 @@ final class LoginViewModel: LoginViewModelIO {
                     }
                 } receiveValue: { [weak self] token in
                     print(token)
-                    self?.loginPublisher.send(.facebook)
+                    self?.loginPublisher.send((.facebook, nil))
                 }.store(in: &cancellables)
         }
     }
@@ -129,7 +133,7 @@ final class LoginViewModel: LoginViewModelIO {
                     }
                 } receiveValue: { [weak self] token in
                     print(token)
-                    self?.loginPublisher.send(.google)
+                    self?.loginPublisher.send((.google, nil))
                 }.store(in: &cancellables)
         }
     }
