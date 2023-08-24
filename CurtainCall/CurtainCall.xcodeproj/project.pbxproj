@@ -104,6 +104,9 @@
 		EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */; };
 		EE747B902A95DA3F006A8AB3 /* CreatePartyBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */; };
 		EE747B922A95E208006A8AB3 /* PartyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B912A95E208006A8AB3 /* PartyListResponse.swift */; };
+		EE747B962A96E8F8006A8AB3 /* RemoveAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B952A96E8F8006A8AB3 /* RemoveAccountViewModel.swift */; };
+		EE747B992A96E960006A8AB3 /* RemoveAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B982A96E960006A8AB3 /* RemoveAccountService.swift */; };
+		EE747B9C2A96E9A3006A8AB3 /* RemoveAccountBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B9B2A96E9A3006A8AB3 /* RemoveAccountBody.swift */; };
 		EE7730482A93527E00658D84 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EE7730472A93527E00658D84 /* Kingfisher */; };
 		EE77304A2A93587300658D84 /* ProductDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7730492A93587300658D84 /* ProductDetailResponse.swift */; };
 		EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */; };
@@ -296,6 +299,9 @@
 		EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCategoryType.swift; sourceTree = "<group>"; };
 		EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePartyBody.swift; sourceTree = "<group>"; };
 		EE747B912A95E208006A8AB3 /* PartyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListResponse.swift; sourceTree = "<group>"; };
+		EE747B952A96E8F8006A8AB3 /* RemoveAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountViewModel.swift; sourceTree = "<group>"; };
+		EE747B982A96E960006A8AB3 /* RemoveAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountService.swift; sourceTree = "<group>"; };
+		EE747B9B2A96E9A3006A8AB3 /* RemoveAccountBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountBody.swift; sourceTree = "<group>"; };
 		EE7730492A93587300658D84 /* ProductDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailResponse.swift; sourceTree = "<group>"; };
 		EE7C1AD82A7EA081000B208C /* LostItemWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemWriteViewModel.swift; sourceTree = "<group>"; };
 		EE7F06022A61449A002F83ED /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
@@ -445,7 +451,10 @@
 		EE0282FD2A964555008F8100 /* RemoveAccount */ = {
 			isa = PBXGroup;
 			children = (
-				EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */,
+				EE747B9A2A96E995006A8AB3 /* Model */,
+				EE747B972A96E949006A8AB3 /* Service */,
+				EE747B942A96E8E5006A8AB3 /* ViewModel */,
+				EE747B932A96E8DA006A8AB3 /* View */,
 			);
 			path = RemoveAccount;
 			sourceTree = "<group>";
@@ -926,6 +935,38 @@
 			children = (
 				EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */,
 				EE747B912A95E208006A8AB3 /* PartyListResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE747B932A96E8DA006A8AB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE747B942A96E8E5006A8AB3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE747B952A96E8F8006A8AB3 /* RemoveAccountViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EE747B972A96E949006A8AB3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE747B982A96E960006A8AB3 /* RemoveAccountService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE747B9A2A96E995006A8AB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE747B9B2A96E9A3006A8AB3 /* RemoveAccountBody.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1457,10 +1498,12 @@
 				EE9A88692A8757320085F816 /* GuideCategoryButton.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */,
+				EE747B962A96E8F8006A8AB3 /* RemoveAccountViewModel.swift in Sources */,
 				EE5251E22A8E63B3003DFEE3 /* MyRecruitmentViewModel.swift in Sources */,
 				EE5251E72A8E63B3003DFEE3 /* MyParticipationViewController.swift in Sources */,
 				EE5251CA2A8E639A003DFEE3 /* ReportViewModel.swift in Sources */,
 				EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */,
+				EE747B9C2A96E9A3006A8AB3 /* RemoveAccountBody.swift in Sources */,
 				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
 				EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
@@ -1483,6 +1526,7 @@
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
 				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
 				EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */,
+				EE747B992A96E960006A8AB3 /* RemoveAccountService.swift in Sources */,
 				EEA1322F2A7FD6920016D01A /* HomeBannerCell.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
 				EE9A885B2A83DCF00085F816 /* GoodCostProductCell.swift in Sources */,

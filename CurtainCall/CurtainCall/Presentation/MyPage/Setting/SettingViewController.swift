@@ -202,7 +202,9 @@ final class SettingViewController: UIViewController {
     
     @objc
     private func removeAccountButtonTapped() {
-        let removeAccountViewController = RemoveAccountViewController()
+        let removeAccountViewController = RemoveAccountViewController(
+            viewModel: RemoveAccountViewModel()
+        )
         navigationController?.pushViewController(removeAccountViewController, animated: true)
     }
     

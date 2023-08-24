@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Combine
+
 final class RemoveAccountViewController: UIViewController {
     
     // MARK: - UI properties
@@ -179,11 +181,24 @@ final class RemoveAccountViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let viewModel: RemoveAccountViewModel
+    private var subscriptions: Set<AnyCancellable> = []
+    
     // MARK: - Lifecycles
+    
+    init(viewModel: RemoveAccountViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
         addTargets()
         hideKeyboardWhenTappedArround()
     }
@@ -288,21 +303,44 @@ final class RemoveAccountViewController: UIViewController {
         title = "계정 삭제"
     }
     
+    private func bind() {
+        viewModel.isSuccessRemoveAccount
+            .sink { [weak self] isSuccess in
+                if isSuccess {
+                    print(isSuccess)
+                } else {
+                    self?.presentAlert(title: "네트워크 오류로 실패하였습니다.")
+                }
+            }.store(in: &subscriptions)
+    }
+    
     private func addTargets() {
         [deleteButton, bugButton, betterOtherServiceButton,
          lowFrequencyButton, notUtilityButton, etcButton
         ].forEach {
             $0.addTarget(self, action: #selector(itemButtonTapped), for: .touchUpInside)
         }
+        nextButton.addTarget(
+            self,
+            action: #selector(nextButtonTouchUpInisde),
+            for: .touchUpInside
+        )
     }
     
     @objc
     private func itemButtonTapped(sender: UIButton) {
-        sender.isSelected.toggle()
+        [deleteButton, bugButton, betterOtherServiceButton,
+                         lowFrequencyButton, notUtilityButton, etcButton
+        ].forEach { $0.isSelected = false }
+        [deleteCheckMarkButton, bugCheckMarkButton, betterOtherServiceCheckMarkButton,
+                         lowFrequencyCheckMarkButton, notUtilityCheckMarkButton, etcCheckMarkButton
+        ].forEach { $0.isSelected = false }
+        
+        sender.isSelected = true
         guard let checkmark = [deleteCheckMarkButton, bugCheckMarkButton, betterOtherServiceCheckMarkButton,
                          lowFrequencyCheckMarkButton, notUtilityCheckMarkButton, etcCheckMarkButton
         ].first(where: { $0.tag == sender.tag }) else { return }
-        checkmark.isSelected.toggle()
+        checkmark.isSelected = true
         let isValid = ![deleteButton, bugButton, betterOtherServiceButton,
                        lowFrequencyButton, notUtilityButton, etcButton
                       ].filter { $0.isSelected }.isEmpty
@@ -318,10 +356,24 @@ final class RemoveAccountViewController: UIViewController {
         if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             scrollView.contentInset = .init(top: 0, left: 0, bottom: keyboardRectangle.height, right: 0)
-//                    self?.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-                
-            
         }
+    }
+    
+    @objc
+    private func nextButtonTouchUpInisde() {
+        guard let selected = [deleteCheckMarkButton, bugCheckMarkButton, betterOtherServiceCheckMarkButton,
+                              lowFrequencyCheckMarkButton, notUtilityCheckMarkButton, etcCheckMarkButton
+        ].first(where: { $0.isSelected }) else {
+            return
+        }
+        
+        let reason = viewModel.reasonDict[selected.tag, default: "ETC"]
+        var content = ""
+        if selected == etcCheckMarkButton {
+            content = etcTextView.text ?? ""
+        }
+        let body = RemoveAccountBody(reason: reason, content: content)
+        viewModel.requestRemoveAccount(body: body)
     }
     
     @objc
