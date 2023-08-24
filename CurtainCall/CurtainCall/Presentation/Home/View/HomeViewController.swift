@@ -38,7 +38,6 @@ final class HomeViewController: UIViewController {
     
     private let helloLabel: UILabel = {
         let label = UILabel()
-        label.text = "안녕하세요. 만도스님:)"
         label.textColor = .white
         label.font = .subTitle2
         return label
@@ -266,13 +265,27 @@ final class HomeViewController: UIViewController {
     private var top10Datasource: UICollectionViewDiffableDataSource<Top10Section, Top10Item>?
     private var scheduledToOpenProductDatasource: UICollectionViewDiffableDataSource<ScheduledToOpenProductSection, ScheduledToOpenProductItem>?
     private var goodCostProductDatasource: UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>?
+    
+    private var subcriptions: Set<AnyCancellable> = []
+    private let viewModel: HomeViewModel
+    
     // MARK: - Lifecycles
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         view.backgroundColor = .pointColor1
-//        myRecruitmentView.isHidden = true
+        configureUI()
+        bind()
+        viewModel.requestUserInfo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -505,8 +518,13 @@ final class HomeViewController: UIViewController {
             $0.height.equalTo(220)
             $0.bottom.equalToSuperview().inset(100)
         }
-        
-        
+    }
+    
+    private func bind() {
+        viewModel.userInfoSubject
+            .sink { [weak self] response in
+                self?.helloLabel.text = "안녕하세요. \(response.nickname)님:)"
+            }.store(in: &subcriptions)
     }
     
     

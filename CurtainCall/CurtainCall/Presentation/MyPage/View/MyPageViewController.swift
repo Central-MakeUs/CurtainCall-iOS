@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
+import Kingfisher
 
 final class MyPageViewController: UIViewController {
     
@@ -26,7 +28,6 @@ final class MyPageViewController: UIViewController {
         imageView.layer.cornerRadius = 30
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "dummy_profile1")
         return imageView
     }()
     
@@ -38,7 +39,6 @@ final class MyPageViewController: UIViewController {
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.text = "고라파덕님"
         label.font = .subTitle3
         label.textColor = .title
         return label
@@ -63,7 +63,6 @@ final class MyPageViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 24)
         label.textColor = .pointColor2
-        label.text = "0"
         return label
     }()
     
@@ -81,7 +80,6 @@ final class MyPageViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 24)
         label.textColor = .pointColor2
-        label.text = "0"
         return label
     }()
     private let myParticipationButton = UIButton()
@@ -210,12 +208,26 @@ final class MyPageViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let viewModel: MyPageViewModel
+    private var subscriptions: Set<AnyCancellable> = []
+    
     // MARK: - Lifecycles
+    
+    init(viewModel: MyPageViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTargets()
+        viewModel.requestUserInfo()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -451,6 +463,26 @@ final class MyPageViewController: UIViewController {
             action: #selector(FAQButtonTouchUpInside),
             for: .touchUpInside
         )
+    }
+    
+    private func bind() {
+        viewModel.userInfoSubject
+            .sink { [weak self] response in
+                guard let self else { return }
+                draw(userInfo: response)
+            }.store(in: &subscriptions)
+    }
+    
+    private func draw(userInfo: MyPageDetailResponse) {
+        if let imageURL = userInfo.imageUrl,
+            let url = URL(string: imageURL) {
+            profileImageView.kf.setImage(with: url)
+        } else {
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
+        }
+        nicknameLabel.text = userInfo.nickname
+        myParticipationCountLabel.text = "\(userInfo.participationNum)"
+        myRecruitmentCountLabel.text = "\(userInfo.recruitingNum)"
     }
     
     @objc

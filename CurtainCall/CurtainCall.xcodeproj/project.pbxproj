@@ -14,6 +14,9 @@
 		EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */; };
 		EE0132432A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */; };
 		EE0282FF2A96458E008F8100 /* RemoveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */; };
+		EE0283012A979140008F8100 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283002A979140008F8100 /* MyPageViewModel.swift */; };
+		EE0283042A9791B4008F8100 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283032A9791B4008F8100 /* UserInfoManager.swift */; };
+		EE0283072A979267008F8100 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283062A979267008F8100 /* HomeViewModel.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -217,6 +220,9 @@
 		EE0132402A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductViewModel.swift; sourceTree = "<group>"; };
 		EE0132422A5F03AD00873107 /* PartyMemberRecruitingProductUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingProductUsecase.swift; sourceTree = "<group>"; };
 		EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountViewController.swift; sourceTree = "<group>"; };
+		EE0283002A979140008F8100 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		EE0283032A9791B4008F8100 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
+		EE0283062A979267008F8100 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -465,6 +471,22 @@
 			path = RemoveAccount;
 			sourceTree = "<group>";
 		};
+		EE0283022A97919E008F8100 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				EE0283032A9791B4008F8100 /* UserInfoManager.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		EE0283052A979255008F8100 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE0283062A979267008F8100 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +582,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EE0283022A97919E008F8100 /* UserInfo */,
 				EE0669D92A7E0943000C8296 /* Network */,
 				EEE8F0E42A5690CB00E31597 /* UI */,
 				EEE8F0C92A53D05B00E31597 /* Extension */,
@@ -697,6 +720,7 @@
 		EE3F2FE52A5811A500BC539C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE0283052A979255008F8100 /* ViewModel */,
 				EE3F2FE62A5811AC00BC539C /* View */,
 			);
 			path = Home;
@@ -859,6 +883,7 @@
 				EE5251D02A8E63B3003DFEE3 /* MyRecruitmentViewModel.swift */,
 				EE5251D12A8E63B3003DFEE3 /* MyRecruitmentEditViewModel.swift */,
 				EE5251D22A8E63B3003DFEE3 /* MyParticipationViewModel.swift */,
+				EE0283002A979140008F8100 /* MyPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1534,6 +1559,7 @@
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
 				EE5251E62A8E63B3003DFEE3 /* MyPageDetailViewController.swift in Sources */,
 				EEE8F0EC2A56ACF000E31597 /* UIView + Extension.swift in Sources */,
+				EE0283012A979140008F8100 /* MyPageViewModel.swift in Sources */,
 				EE9A88622A85307C0085F816 /* GuideDictViewController.swift in Sources */,
 				EE747B8A2A95D90A006A8AB3 /* PartyService.swift in Sources */,
 				EE7C1AD92A7EA081000B208C /* LostItemWriteViewModel.swift in Sources */,
@@ -1550,6 +1576,7 @@
 				EE1DF37B2A94F119003AD078 /* NoticeViewModel.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
 				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
+				EE0283042A9791B4008F8100 /* UserInfoManager.swift in Sources */,
 				EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */,
 				EE747B992A96E960006A8AB3 /* RemoveAccountService.swift in Sources */,
 				EEA1322F2A7FD6920016D01A /* HomeBannerCell.swift in Sources */,
@@ -1674,6 +1701,7 @@
 				EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
 				EE1DF3722A93A44F003AD078 /* ShowReviewReponse.swift in Sources */,
+				EE0283072A979267008F8100 /* HomeViewModel.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
 				EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */,
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,
