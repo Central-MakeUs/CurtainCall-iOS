@@ -100,6 +100,9 @@
 		EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */; };
 		EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */; };
 		EE5FDBFC2A8CBFCB00376E26 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */; };
+		EE6127012A974EA300961109 /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6127002A974EA300961109 /* MyPageService.swift */; };
+		EE6127042A974EFD00961109 /* MyPageDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6127032A974EFD00961109 /* MyPageDetailResponse.swift */; };
+		EE6127062A974F5300961109 /* UpdateMyPageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6127052A974F5300961109 /* UpdateMyPageBody.swift */; };
 		EE747B8A2A95D90A006A8AB3 /* PartyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B892A95D90A006A8AB3 /* PartyService.swift */; };
 		EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */; };
 		EE747B902A95DA3F006A8AB3 /* CreatePartyBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */; };
@@ -294,6 +297,9 @@
 		EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameDuplicateResponse.swift; sourceTree = "<group>"; };
 		EE5FDBF92A8CBEFC00376E26 /* LoginCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompleteViewModel.swift; sourceTree = "<group>"; };
 		EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		EE6127002A974EA300961109 /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
+		EE6127032A974EFD00961109 /* MyPageDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailResponse.swift; sourceTree = "<group>"; };
+		EE6127052A974F5300961109 /* UpdateMyPageBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyPageBody.swift; sourceTree = "<group>"; };
 		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
 		EE747B892A95D90A006A8AB3 /* PartyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyService.swift; sourceTree = "<group>"; };
 		EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCategoryType.swift; sourceTree = "<group>"; };
@@ -836,6 +842,8 @@
 		EE5251CE2A8E63B3003DFEE3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE6127022A974EEE00961109 /* Model */,
+				EE6126FF2A974E8000961109 /* Service */,
 				EE0282FD2A964555008F8100 /* RemoveAccount */,
 				EE1DF3882A95052F003AD078 /* Setting */,
 				EE1DF3752A94EF0C003AD078 /* Notice */,
@@ -910,6 +918,23 @@
 			children = (
 				EE5FDBF72A8CB5B500376E26 /* NicknameDuplicateResponse.swift */,
 				EE5FDBFB2A8CBFCB00376E26 /* SignUpResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE6126FF2A974E8000961109 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE6127002A974EA300961109 /* MyPageService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE6127022A974EEE00961109 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE6127032A974EFD00961109 /* MyPageDetailResponse.swift */,
+				EE6127052A974F5300961109 /* UpdateMyPageBody.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1546,8 +1571,10 @@
 				EEF815472A73867A009C1C57 /* GradeStackView.swift in Sources */,
 				EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */,
 				EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */,
+				EE6127042A974EFD00961109 /* MyPageDetailResponse.swift in Sources */,
 				EEF815512A73B2D5009C1C57 /* ProductReviewCell.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
+				EE6127062A974F5300961109 /* UpdateMyPageBody.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EE9A88722A8765A80085F816 /* TicketingInfo.swift in Sources */,
 				EE5FDBF52A8CB31500376E26 /* SignUpService.swift in Sources */,
@@ -1588,6 +1615,7 @@
 				EE3F2FF42A58127200BC539C /* PartyMemberViewController.swift in Sources */,
 				EE9A886E2A8764340085F816 /* GuideSaleViewController.swift in Sources */,
 				EE9301242A723AAC00C8FBA5 /* ProductSearchCell.swift in Sources */,
+				EE6127012A974EA300961109 /* MyPageService.swift in Sources */,
 				EE5251ED2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift in Sources */,
 				EE0282FF2A96458E008F8100 /* RemoveAccountViewController.swift in Sources */,
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
