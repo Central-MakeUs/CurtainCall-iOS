@@ -161,7 +161,7 @@ final class NicknameSettingViewController: UIViewController {
         validLabel.snp.makeConstraints {
             $0.top.equalTo(nicknameView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalTo(duplicateCheckButton.snp.leading).inset(24)
+            $0.trailing.equalToSuperview().inset(125)
         }
     }
     

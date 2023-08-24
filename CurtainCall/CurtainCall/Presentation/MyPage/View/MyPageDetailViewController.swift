@@ -209,6 +209,8 @@ final class MyPageDetailViewController: UIViewController {
     private let partyInButton: BottomNextButton = {
         let button = BottomNextButton()
         button.setTitle("TALK 만들기", for: .normal)
+        // TODO: 라이브톡 개발 이후
+        button.isHidden = true
         return button
     }()
     

@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
+import Moya
+import CombineMoya
 
 final class MyPageEditViewController: UIViewController {
     
     // MARK: - UI properties
     
-    private let profileImageView: UIImageView = {
+    private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 30
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "dummy_profile1")
+        imageView.image = profileImage
         return imageView
     }()
     
@@ -28,13 +31,16 @@ final class MyPageEditViewController: UIViewController {
         return button
     }()
     
-    private let nicknameTextField: UITextField = {
+    private lazy var nicknameTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .hexF5F6F8
         textField.font = .body1
         textField.textColor = .hex828996
         textField.addLeftPadding(width: 20)
         textField.layer.cornerRadius = 10
+        textField.text = nickname
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.white.cgColor
         return textField
     }()
     
@@ -51,17 +57,49 @@ final class MyPageEditViewController: UIViewController {
     private let completeButton: BottomNextButton = {
         let button = BottomNextButton()
         button.setTitle("변경 완료", for: .normal)
+        button.setNextButton(isSelected: false)
         return button
     }()
     
+    private lazy var picker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        return picker
+    }()
+    
+    private let validLabel: UILabel = {
+        let label = UILabel()
+        label.font = .body4
+        label.numberOfLines = 0
+        return label
+    }()
    
     // MARK: - Properties
     
+    private var subscriptions: Set<AnyCancellable> = []
+    private var profileImage: UIImage?
+    private var nickname: String
+    private let viewModel: MyPageEditViewModel
+    
     // MARK: - Lifecycles
+    
+    init(viewModel: MyPageEditViewModel, profileImage: UIImage?, nickname: String) {
+        self.viewModel = viewModel
+        self.profileImage = profileImage
+        self.nickname = nickname
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addTargets()
+        bind()
+        hideKeyboardWhenTappedArround()
     }
     
     // MARK: - Helpers
@@ -75,9 +113,8 @@ final class MyPageEditViewController: UIViewController {
     private func configureSubviews() {
         view.backgroundColor = .white
         view.addSubviews(
-            profileImageView, profileEditButton, nicknameTextField, setCheckButton, completeButton
+            profileImageView, profileEditButton, nicknameTextField, setCheckButton, completeButton, validLabel
         )
-        
     }
     
     private func configureConstraints() {
@@ -106,6 +143,12 @@ final class MyPageEditViewController: UIViewController {
             $0.height.equalTo(55)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
+        validLabel.snp.makeConstraints {
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview().inset(125)
+            
+        }
     }
     
     private func configureNavigation() {
@@ -113,5 +156,95 @@ final class MyPageEditViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         configureBackbarButton(.dismiss)
     }
+    
+    private func addTargets() {
+        profileEditButton.addTarget(
+            self,
+            action: #selector(profileEditButtonTapped),
+            for: .touchUpInside
+        )
+        setCheckButton.addTarget(
+            self,
+            action: #selector(nicknameCheckButtonTapped),
+            for: .touchUpInside
+        )
+        completeButton.addTarget(
+            self,
+            action: #selector(completeButtonTapped),
+            for: .touchUpInside
+        )
+    }
+    
+    private func bind() {
+        viewModel.isValidRegexNickname
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { isValid in
+                self.validLabel.text = isValid.message
+                self.validLabel.textColor = isValid == .success ? UIColor(rgb: 0x00C271) : .myRed
+                self.nicknameTextField.layer.borderColor = isValid == .success ? UIColor(rgb: 0x00C271).cgColor : UIColor.myRed?.cgColor
+                self.completeButton.setNextButton(isSelected: isValid == .success)
+                self.setCheckButton.backgroundColor = isValid == .success ? .hexE4E7EC : .pointColor2
+                self.setCheckButton.setTitleColor(isValid != .success ? .white : .hexBEC2CA, for: .normal)
+                self.setCheckButton.isUserInteractionEnabled = isValid != .success
+                self.nicknameTextField.isUserInteractionEnabled = isValid != .success
+            }.store(in: &subscriptions)
+        
+        viewModel.$isSuccessUpdate
+            .sink { [weak self] isSuccess in
+                if isSuccess {
+                    self?.dismiss(animated: true)
+                }
+            }.store(in: &subscriptions)
+
+    }
+    
+    @objc
+    private func profileEditButtonTapped() {
+        openLibrary()
+    }
+    
+    @objc
+    private func nicknameCheckButtonTapped() {
+        viewModel.isValidNickname(nickname: nicknameTextField.text)
+    }
+    
+    @objc
+    private func completeButtonTapped() {
+        guard let nickname = nicknameTextField.text else { return }
+        viewModel.updateUser(nickname: nickname)
+    }
 }
 
+extension MyPageEditViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    private func openLibrary() {
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
+    
+    private func openCamera() {
+        picker.sourceType = .camera
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            viewModel.uploadProfileImage(image: image)
+            viewModel.$uploadImageLoading
+                .sink { isLoading in
+                    if !isLoading {
+                        self.profileImageView.image = image
+
+                    }
+                }.store(in: &subscriptions)
+            dismiss(animated: true)
+        }
+    }
+}

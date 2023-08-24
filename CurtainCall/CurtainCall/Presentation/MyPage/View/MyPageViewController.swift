@@ -26,7 +26,7 @@ final class MyPageViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 30
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -495,7 +495,11 @@ final class MyPageViewController: UIViewController {
     @objc
     private func editButtonTouchUpInside() {
         let editViewController = UINavigationController(
-            rootViewController: MyPageEditViewController()
+            rootViewController: MyPageEditViewController(
+                viewModel: MyPageEditViewModel(),
+                profileImage: profileImageView.image,
+                nickname: nicknameLabel.text ?? ""
+            )
         )
         editViewController.modalPresentationStyle = .fullScreen
         present(editViewController, animated: true)

@@ -9,5 +9,5 @@ import Foundation
 
 struct UpdateMyPageBody: Encodable {
     let nickname: String
-    let imageId: String?
+    let imageId: Int?
 }

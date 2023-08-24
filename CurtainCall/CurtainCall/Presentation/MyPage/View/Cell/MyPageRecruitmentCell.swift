@@ -38,6 +38,9 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
         return imageView
     }()
     

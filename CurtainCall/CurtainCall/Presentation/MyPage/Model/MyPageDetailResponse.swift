@@ -10,7 +10,7 @@ import Foundation
 struct MyPageDetailResponse: Decodable {
     let id: Int
     let nickname: String
-    let imageId: String?
+    let imageId: Int?
     let imageUrl: String?
     let recruitingNum: Int
     let participationNum: Int
