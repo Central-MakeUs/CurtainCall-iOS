@@ -19,6 +19,7 @@ final class HomeViewModel {
     var userInfoSubject = PassthroughSubject<MyPageDetailResponse, Never>()
     @Published var openShowList: [OpenShowContent] = []
     @Published var top10ShowList: [Top10ShowContent] = []
+    @Published var recruitmentList: [MyRecruitmentContent] = []
     
     func requestUserInfo() {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
@@ -42,7 +43,7 @@ final class HomeViewModel {
                     return
                 }
             }.store(in: &subscriptions)
-
+        
     }
     
     func requestTop10() {
@@ -65,7 +66,7 @@ final class HomeViewModel {
                     top10ShowList = []
                 }
             }.store(in: &subscriptions)
-
+        
     }
     func requestOpen() {
         let provider = MoyaProvider<HomeAPI>()
@@ -88,6 +89,51 @@ final class HomeViewModel {
                     openShowList = []
                 }
             }.store(in: &subscriptions)
-
+        
     }
+    
+    func requestMyRecuritment() {
+        let provider = MoyaProvider<MyPageAPI>()
+        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else { return }
+        provider.requestPublisher(.recruitments(id: userId, page: 0, size: 20, category: .watching))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(MyRecruitmentResponse.self) {
+                    self?.recruitmentList.append(contentsOf: data.content)
+                } else {
+                    print("ERROR: MyRecruitmentError")
+                }
+            }.store(in: &subscriptions)
+        provider.requestPublisher(.recruitments(id: userId, page: 0, size: 20, category: .food))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(MyRecruitmentResponse.self) {
+                    self?.recruitmentList.append(contentsOf: data.content)
+                } else {
+                    print("ERROR: MyRecruitmentError")
+                }
+            }.store(in: &subscriptions)
+        provider.requestPublisher(.recruitments(id: userId, page: 0, size: 20, category: .etc))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(MyRecruitmentResponse.self) {
+                    self?.recruitmentList.append(contentsOf: data.content)
+                } else {
+                    print("ERROR: MyRecruitmentError")
+                }
+            }.store(in: &subscriptions)
+    }
+    
 }

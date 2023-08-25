@@ -584,7 +584,7 @@ extension HomeViewController: UITableViewDataSource {
             indexPath: indexPath
         ) else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.draw(item: HomeMyProductData.list[indexPath.row])
+//        cell.draw(item: HomeMyProductData.list[indexPath.row])
         return cell
     }
     

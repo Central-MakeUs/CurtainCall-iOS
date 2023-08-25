@@ -288,7 +288,8 @@ final class TempHomeViewController: UIViewController {
         viewModel.requestUserInfo()
         viewModel.requestOpen()
         viewModel.requestTop10()
-        liveTalkView.isHidden = true
+        viewModel.requestMyRecuritment()
+        myParticipationView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -308,13 +309,8 @@ final class TempHomeViewController: UIViewController {
         configureConstraints()
         configureBannerDatasource()
         confgureBannerSnapshot()
-//        configureLiveTalkDatasource()
-//        confgureLiveTalkSnapshot()
         configureTop10Datasource()
-        
         configureScheduledToOpenProductDatasource()
-//        configureGoodCostProductDatasource()
-//        configureGoodCostProductSnapshot()
         
     }
     
@@ -405,7 +401,7 @@ final class TempHomeViewController: UIViewController {
         }
         myRecruitmentTableView.snp.makeConstraints {
             $0.top.equalTo(myRecruitmentHeaderView.snp.bottom)
-            $0.height.equalTo(HomeMyProductData.list.count * 111 + 10)
+            $0.height.equalTo(0)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
         }
@@ -555,10 +551,32 @@ final class TempHomeViewController: UIViewController {
                 snapshot.appendItems(response, toSection: .main)
                 top10Datasource?.apply(snapshot)
             }.store(in: &subcriptions)
+        viewModel.$recruitmentList
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if response.isEmpty {
+                    myRecruitmentView.isHidden = true
+                } else {
+                    myRecruitmentView.isHidden = false
+                    myRecruitmentTableView.snp.updateConstraints({ make in
+                        make.height.equalTo(response.count * 111 + 10)
+                    })
+                    myRecruitmentTableView.reloadData()
+                }
+            }.store(in: &subcriptions)
 
     }
     
-    
+    func setMyRecruitmentTableView(count: Int) {
+       
+        view.layoutIfNeeded()
+        
+    }
 }
 
 extension TempHomeViewController: UICollectionViewDelegate {
@@ -594,7 +612,7 @@ extension TempHomeViewController: UICollectionViewDelegate {
 
 extension TempHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HomeMyProductData.list.count
+        return viewModel.recruitmentList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -603,7 +621,7 @@ extension TempHomeViewController: UITableViewDataSource {
             indexPath: indexPath
         ) else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.draw(item: HomeMyProductData.list[indexPath.row])
+        cell.draw(item: viewModel.recruitmentList[indexPath.row])
         return cell
     }
     
