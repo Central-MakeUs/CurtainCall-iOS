@@ -60,7 +60,9 @@ final class NoticeViewController: UIViewController {
     }
     
     private func configureConstraints() {
-        tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        tableView.snp.makeConstraints { $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(90)
+        }
     }
     
     private func configureNavigation() {
