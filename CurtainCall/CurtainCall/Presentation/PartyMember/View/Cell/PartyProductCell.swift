@@ -218,6 +218,7 @@ final class PartyProductCell: UICollectionViewCell {
         }
         productLabelView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading)
+            $0.trailing.equalTo(cardView.snp.trailing)
             $0.top.equalToSuperview()
         }
         profileImageView.snp.makeConstraints {
@@ -273,6 +274,7 @@ final class PartyProductCell: UICollectionViewCell {
         locationBadgeView.snp.makeConstraints {
             $0.top.equalTo(dateBadgeView.snp.bottom).offset(8)
             $0.leading.equalTo(dateBadgeView)
+            
         }
         partyMemberStackView.snp.makeConstraints {
             $0.top.equalTo(locationBadgeView.snp.bottom).offset(12)
@@ -295,7 +297,7 @@ final class PartyProductCell: UICollectionViewCell {
         }
         nicknameLabel.text = item.creatorNickname
 //        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
-        dateLabel.text = "createAt"
+        dateLabel.text = item.createdAt.convertAPIDateToDateString()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
         if let url = URL(string: item.showPoster) {
@@ -303,8 +305,8 @@ final class PartyProductCell: UICollectionViewCell {
         } else {
             posterImageView.image = nil
         }
-        dateBadgeLabel.text = "ShowAt Date"
-        timeBadgeLabel.text = "ShowAt Time"
+        dateBadgeLabel.text = item.showAt.convertAPIDateToDateString()
+        timeBadgeLabel.text = item.showAt.convertAPIDateToDateTime()
 //        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
 //        timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.facilityName

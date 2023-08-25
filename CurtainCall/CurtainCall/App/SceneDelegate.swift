@@ -21,13 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-//        window?.rootViewController = SplashViewController()
+        window?.rootViewController = SplashViewController()
         
-        let rootViewController = LoginViewController(
-            viewModel: LoginViewModel(
-            useCase: LoginInteractor())
-        )
-        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+//        let rootViewController = LoginViewController(
+//            viewModel: LoginViewModel(
+//            useCase: LoginInteractor())
+//        )
+//        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         
 //        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()

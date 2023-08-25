@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Combine
+
+import Moya
+import CombineMoya
 
 final class PartyMemberRecruitingDetailViewController: UIViewController {
     
@@ -31,6 +35,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 26
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -209,10 +214,14 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let partyType: PartyCategoryType
+    private let id: Int
+    private var subscriptions: Set<AnyCancellable> = []
+    private let provider = MoyaProvider<PartyAPI>()
     
     // MARK: - Lifecycles
     
-    init(partyType: PartyCategoryType) {
+    init(id: Int, partyType: PartyCategoryType) {
+        self.id = id
         self.partyType = partyType
         super.init(nibName: nil, bundle: nil)
     }
@@ -224,7 +233,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        draw()
+        requestDetail()
     }
     
     // MARK: - Helpers
@@ -336,6 +345,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         detailProductLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
             $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(12)
         }
         detailStateView.snp.makeConstraints {
             $0.height.equalTo(48)
@@ -398,6 +408,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         detailProductLocationLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(121)
             $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(12)
         }
 //        dotLineViews.forEach {
 //            $0.snp.makeConstraints { make in
@@ -413,17 +424,37 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         title = partyType.title
     }
     
-    private func draw() {
-//        profileImageView.image = partyInfo.profileImage
-//        nickNameLabel.text = partyInfo.nickname
-//        titleLabel.text = partyInfo.title
-//        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
-//        contentLabel.text = partyInfo.content
-//        detailProductLabel.text = partyInfo.productName
-//        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
-//        detailProductDateLabel.text = partyInfo.productDate.convertToYearMonthDayWeekString()
-//        detailProductTimeLabel.text = partyInfo.productDate.convertToHourMinString()
-//        detailProductLocationLabel.text = partyInfo.location
+    private func draw(partyInfo: PartyDetailResponse) {
+        if let urlString = partyInfo.creatorImageUrl, let url = URL(string: urlString) {
+            profileImageView.kf.setImage(with: url)
+        } else {
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
+        }
+        nickNameLabel.text = partyInfo.creatorNickname
+        titleLabel.text = partyInfo.title
+        writeDateLabel.text = partyInfo.createdAt.convertAPIDateToDateString()
+        contentLabel.text = partyInfo.content
+        detailProductLabel.text = partyInfo.showName
+        detailCountLabel.text = "\(partyInfo.curMemberNum)/\(partyInfo.maxMemberNum)"
+        detailProductDateLabel.text = partyInfo.showAt.convertAPIDateToDateString()
+        detailProductTimeLabel.text = partyInfo.showAt.convertAPIDateToDateTime()
+        detailProductLocationLabel.text = partyInfo.facilityName
+    }
+    
+    private func requestDetail() {
+        provider.requestPublisher(.detail(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(PartyDetailResponse.self) {
+                    draw(partyInfo: data)
+                }
+            }.store(in: &subscriptions)
+
     }
     
 }

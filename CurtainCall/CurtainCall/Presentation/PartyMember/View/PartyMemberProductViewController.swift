@@ -222,7 +222,7 @@ extension PartyMemberProductViewController: UICollectionViewDelegate {
         guard let dataSource, let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
-        let detailViewController = PartyMemberRecruitingDetailViewController(
+        let detailViewController = PartyMemberRecruitingDetailViewController(id: item.id,
             partyType: partyType)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
