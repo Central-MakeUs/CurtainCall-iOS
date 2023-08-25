@@ -209,6 +209,7 @@ final class MyPageParticipationCell: UICollectionViewCell {
         }
         productLabelView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading)
+            $0.trailing.equalTo(cardView.snp.trailing)
             $0.top.equalToSuperview()
         }
         profileImageView.snp.makeConstraints {

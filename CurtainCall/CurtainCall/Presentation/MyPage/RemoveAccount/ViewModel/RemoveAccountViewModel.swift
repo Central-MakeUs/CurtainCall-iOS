@@ -31,6 +31,7 @@ final class RemoveAccountViewModel {
                 }
             } receiveValue: { [weak self] response in
                 guard let self else { return }
+                print("REMOVE ACCOUNT", String(data:response.data, encoding: .utf8))
                 if response.statusCode == 200 {
                     self.isSuccessRemoveAccount.send(true)
                 } else {

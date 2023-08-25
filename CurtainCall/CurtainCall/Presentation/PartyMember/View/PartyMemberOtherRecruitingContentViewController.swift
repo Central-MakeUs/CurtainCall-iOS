@@ -166,10 +166,14 @@ final class PartyMemberOtherRecruitingContentViewController: UIViewController {
 
     private let viewModel: PartyMemberRecruitingContentViewModel
     private var cancellables: Set<AnyCancellable> = []
+    private let date: Date?
+    private let count: Int
     
     // MARK: - Lifecycles
     
-    init(viewModel: PartyMemberRecruitingContentViewModel) {
+    init(date: Date?, count: Int, viewModel: PartyMemberRecruitingContentViewModel) {
+        self.date = date
+        self.count = count
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

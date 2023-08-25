@@ -124,7 +124,8 @@ final class PartyMemberProductViewController: UIViewController {
         leftBarbuttonItem.tintColor = .black
         searchBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarbuttonItem
-        navigationItem.rightBarButtonItem = searchBarButtonItem
+        // TODO: 1차 배포 이후 구현
+//        navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
     private func createCollectionViewLayout() -> UICollectionViewCompositionalLayout {

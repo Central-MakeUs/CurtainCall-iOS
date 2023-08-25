@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SwiftKeychainWrapper
+
 final class SettingViewController: UIViewController {
     
     // MARK: - UI properties
@@ -175,7 +177,7 @@ final class SettingViewController: UIViewController {
     private func addTargets() {
         logoutButton.addTarget(
             self,
-            action: #selector(logoutButtonTapped),
+            action: #selector(logoutButtonTap),
             for: .touchUpInside
         )
         removeAccoutButton.addTarget(
@@ -195,9 +197,17 @@ final class SettingViewController: UIViewController {
         )
     }
     
-    @objc
-    private func logoutButtonTapped() {
+    func logoutPopupPresent() {
+        let popup = LogoutPopup()
+        popup.delegate = self
+        popup.modalPresentationStyle = .overFullScreen
+        present(popup, animated: false)
         
+    }
+    
+    @objc
+    private func logoutButtonTap() {
+        logoutPopupPresent()
     }
     
     @objc
@@ -216,5 +226,15 @@ final class SettingViewController: UIViewController {
     @objc
     private func serviceButtonTapped() {
         
+    }
+}
+
+extension SettingViewController: LogoutPopupDelegate {
+    func logoutButtonTapped() {
+        changeRootViewController(LoginViewController(
+            viewModel:
+                LoginViewModel(useCase: LoginInteractor())))
+        KeychainWrapper.standard.removeAllKeys()
+        print("logout")
     }
 }

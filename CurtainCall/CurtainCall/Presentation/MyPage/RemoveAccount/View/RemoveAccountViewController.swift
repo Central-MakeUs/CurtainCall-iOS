@@ -8,6 +8,7 @@
 import UIKit
 
 import Combine
+import SwiftKeychainWrapper
 
 final class RemoveAccountViewController: UIViewController {
     
@@ -225,9 +226,9 @@ final class RemoveAccountViewController: UIViewController {
     private func configureSubviews() {
         view.backgroundColor = .white
         contentView.backgroundColor = .white
-        view.addSubviews(scrollView)
+        view.addSubviews(scrollView, nextButton)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(stackView, titleLabel, subtitleLabel, etcTextView, textLimitLabel, nextButton)
+        contentView.addSubviews(stackView, titleLabel, subtitleLabel, etcTextView, textLimitLabel)
         stackView.addArrangedSubviews(deleteView, bugView, betterOtherServiceView, lowFrequencyView, notUtilityView, etcView)
         deleteView.addSubviews(deleteLabel, deleteCheckMarkButton, deleteButton)
         bugView.addSubviews(bugLabel, bugCheckMarkButton, bugButton)
@@ -307,7 +308,8 @@ final class RemoveAccountViewController: UIViewController {
         viewModel.isSuccessRemoveAccount
             .sink { [weak self] isSuccess in
                 if isSuccess {
-                    print(isSuccess)
+                    KeychainWrapper.standard.removeAllKeys()
+                    self?.changeRootViewController(RemoveAccountCompleteViewController())
                 } else {
                     self?.presentAlert(title: "네트워크 오류로 실패하였습니다.")
                 }
@@ -347,6 +349,7 @@ final class RemoveAccountViewController: UIViewController {
         nextButton.setNextButton(isSelected: isValid)
         etcTextView.isHidden = !etcButton.isSelected
         textLimitLabel.isHidden = !etcButton.isSelected
+        
     }
     
     // MARK: Keyboard

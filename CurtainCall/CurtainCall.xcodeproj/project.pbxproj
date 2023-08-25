@@ -35,6 +35,8 @@
 		EE02832C2A98FCDF008F8100 /* OpenShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */; };
 		EE02832E2A98FF83008F8100 /* TempHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */; };
 		EE0283302A9903EF008F8100 /* Top10ShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */; };
+		EE0283322A99123F008F8100 /* RemoveAccountCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */; };
+		EE0283352A9915CC008F8100 /* LogoutPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283342A9915CC008F8100 /* LogoutPopup.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -259,6 +261,8 @@
 		EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenShowResponse.swift; sourceTree = "<group>"; };
 		EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHomeViewController.swift; sourceTree = "<group>"; };
 		EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10ShowResponse.swift; sourceTree = "<group>"; };
+		EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountCompleteViewController.swift; sourceTree = "<group>"; };
+		EE0283342A9915CC008F8100 /* LogoutPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopup.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -554,6 +558,14 @@
 				EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EE0283332A9915BE008F8100 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				EE0283342A9915CC008F8100 /* LogoutPopup.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
@@ -941,6 +953,7 @@
 		EE5251CE2A8E63B3003DFEE3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE0283332A9915BE008F8100 /* Popup */,
 				EE6127022A974EEE00961109 /* Model */,
 				EE6126FF2A974E8000961109 /* Service */,
 				EE0282FD2A964555008F8100 /* RemoveAccount */,
@@ -1071,6 +1084,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0282FE2A96458E008F8100 /* RemoveAccountViewController.swift */,
+				EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1625,6 +1639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0B44872A789DA200312E24 /* LostItemCategoryType.swift in Sources */,
+				EE0283322A99123F008F8100 /* RemoveAccountCompleteViewController.swift in Sources */,
 				EE5251EA2A8E63B3003DFEE3 /* MyPageParticipationCell.swift in Sources */,
 				EE4B34322A66D3E300E6EB01 /* UIFont + Extension.swift in Sources */,
 				EEF815452A738325009C1C57 /* StarImageView.swift in Sources */,
@@ -1785,6 +1800,7 @@
 				EEA944372A5C03130081E784 /* PartyType.swift in Sources */,
 				EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
+				EE0283352A9915CC008F8100 /* LogoutPopup.swift in Sources */,
 				EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */,
 				EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */,
 				EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */,

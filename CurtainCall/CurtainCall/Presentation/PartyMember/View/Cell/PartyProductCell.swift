@@ -40,6 +40,7 @@ final class PartyProductCell: UICollectionViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -274,7 +275,7 @@ final class PartyProductCell: UICollectionViewCell {
         locationBadgeView.snp.makeConstraints {
             $0.top.equalTo(dateBadgeView.snp.bottom).offset(8)
             $0.leading.equalTo(dateBadgeView)
-            
+            $0.trailing.lessThanOrEqualToSuperview().inset(12)
         }
         partyMemberStackView.snp.makeConstraints {
             $0.top.equalTo(locationBadgeView.snp.bottom).offset(12)

@@ -200,7 +200,7 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
     
     private let viewModel: PartyMemberOtherRecruitingDateViewModel
     private var cancellables: Set<AnyCancellable> = []
-    
+    var selectedDate: Date?
     // MARK: - Lifecycles
     
     init(viewModel: PartyMemberOtherRecruitingDateViewModel) {
@@ -373,6 +373,7 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
         noDateButton.setTitleColor(.white, for: .normal)
         dateSelectButton.setTitle("날짜를 선택해주세요.", for: .normal)
         viewModel.selectedDate.send(nil)
+        selectedDate = nil
     }
     
     
@@ -383,7 +384,7 @@ final class PartyMemberOtherRecruitingDateViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
-        let step2ViewController = PartyMemberOtherRecruitingContentViewController(
+        let step2ViewController = PartyMemberOtherRecruitingContentViewController(date: selectedDate, count: Int(countLabel.text ?? "") ?? 1,
             viewModel: PartyMemberRecruitingContentViewModel()
         )
         navigationController?.pushViewController(step2ViewController, animated: true)
@@ -395,5 +396,6 @@ extension PartyMemberOtherRecruitingDateViewController: CalendarViewDelegate {
         calendarView.isHidden = true
         viewModel.selectedDate.send(date)
         dateSelectButton.setTitle(date.convertToYearMonthDayKoreanString(), for: .normal)
+        selectedDate = date
     }
 }
