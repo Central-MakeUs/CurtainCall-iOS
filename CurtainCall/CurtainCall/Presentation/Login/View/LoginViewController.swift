@@ -162,7 +162,7 @@ final class LoginViewController: UIViewController {
                 // 홈
                 if let id = loginInfo.1 {
                     KeychainWrapper.standard[.userID] = id
-                    self?.changeRootViewController(MainTabBarController())
+                    self?.changeRootViewController(TempMainTabBarController())
                 } else {
                     self?.pushToTermOfServiceViewController()
                 }

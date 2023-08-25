@@ -120,7 +120,7 @@ final class PartyMemberOtherViewController: UIViewController {
         leftBarbuttonItem.tintColor = .black
         searchBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarbuttonItem
-        navigationItem.rightBarButtonItem = searchBarButtonItem
+//        navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
     private func createCollectionViewLayout() -> UICollectionViewCompositionalLayout {

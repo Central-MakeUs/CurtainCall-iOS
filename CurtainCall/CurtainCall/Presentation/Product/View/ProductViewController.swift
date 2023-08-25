@@ -241,7 +241,7 @@ final class ProductViewController: UIViewController {
             action: nil
         )
         searchBarButtonItem.tintColor = .black
-        navigationItem.rightBarButtonItem = searchBarButtonItem
+//        navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
     private func addTarget() {
