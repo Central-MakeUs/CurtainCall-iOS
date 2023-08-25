@@ -225,7 +225,7 @@ final class SettingViewController: UIViewController {
     
     @objc
     private func serviceButtonTapped() {
-        
+        navigationController?.pushViewController(TermsOfUseViewController(), animated: true)
     }
 }
 

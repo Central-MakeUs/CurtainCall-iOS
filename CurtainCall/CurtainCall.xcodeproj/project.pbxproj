@@ -38,6 +38,7 @@
 		EE0283322A99123F008F8100 /* RemoveAccountCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */; };
 		EE0283352A9915CC008F8100 /* LogoutPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283342A9915CC008F8100 /* LogoutPopup.swift */; };
 		EE0283382A991D2B008F8100 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */; };
+		EE02833B2A992089008F8100 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02833A2A992089008F8100 /* TermsOfUseViewController.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -265,6 +266,7 @@
 		EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountCompleteViewController.swift; sourceTree = "<group>"; };
 		EE0283342A9915CC008F8100 /* LogoutPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopup.swift; sourceTree = "<group>"; };
 		EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		EE02833A2A992089008F8100 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -576,6 +578,14 @@
 				EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */,
 			);
 			path = PrivacyPolicy;
+			sourceTree = "<group>";
+		};
+		EE0283392A992066008F8100 /* TermsOfUse */ = {
+			isa = PBXGroup;
+			children = (
+				EE02833A2A992089008F8100 /* TermsOfUseViewController.swift */,
+			);
+			path = TermsOfUse;
 			sourceTree = "<group>";
 		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
@@ -963,6 +973,7 @@
 		EE5251CE2A8E63B3003DFEE3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE0283392A992066008F8100 /* TermsOfUse */,
 				EE0283362A991D12008F8100 /* PrivacyPolicy */,
 				EE0283332A9915BE008F8100 /* Popup */,
 				EE6127022A974EEE00961109 /* Model */,
@@ -1688,6 +1699,7 @@
 				EE0283122A986F4C008F8100 /* IsFavoriteResponse.swift in Sources */,
 				EE02832C2A98FCDF008F8100 /* OpenShowResponse.swift in Sources */,
 				EE0283102A97C652008F8100 /* MyPageEditViewModel.swift in Sources */,
+				EE02833B2A992089008F8100 /* TermsOfUseViewController.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,
 				EE93AA362A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift in Sources */,
