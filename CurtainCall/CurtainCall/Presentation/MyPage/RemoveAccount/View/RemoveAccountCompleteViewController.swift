@@ -64,6 +64,7 @@ final class RemoveAccountCompleteViewController: UIViewController {
     
     @objc
     private func completeButtonTouchUpInside() {
-        changeRootViewController(LoginViewController(viewModel: LoginViewModel(useCase: LoginInteractor())))
+        let loginViewController = LoginViewController(viewModel: LoginViewModel(useCase: LoginInteractor()))
+        changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
 }

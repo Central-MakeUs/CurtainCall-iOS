@@ -10,6 +10,7 @@ import Moya
 
 enum LoginAPI {
     case kakao(String)
+    case apple(String)
 }
 
 extension LoginAPI: TargetType {
@@ -18,20 +19,22 @@ extension LoginAPI: TargetType {
         switch self {
         case .kakao:
             return "/login/oauth2/token/kakao"
+        case .apple:
+            return "/login/oauth2/token/apple"
         }
     }
     
     var method: Moya.Method {
-        switch self {
-        case .kakao:
-            return .post
-        }
+        return .post
     }
     
     var task: Moya.Task {
         var param: [String: Any] = [:]
         switch self {
         case .kakao(let token):
+            param.updateValue(token, forKey: "accessToken")
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .apple(let token):
             param.updateValue(token, forKey: "accessToken")
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }

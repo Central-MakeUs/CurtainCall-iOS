@@ -308,7 +308,9 @@ final class RemoveAccountViewController: UIViewController {
         viewModel.isSuccessRemoveAccount
             .sink { [weak self] isSuccess in
                 if isSuccess {
-                    KeychainWrapper.standard.removeAllKeys()
+                    KeychainWrapper.standard.remove(forKey: .accessToken)
+                    KeychainWrapper.standard.remove(forKey: .refreshToken)
+                    KeychainWrapper.standard.remove(forKey: .userID)
                     self?.changeRootViewController(RemoveAccountCompleteViewController())
                 } else {
                     self?.presentAlert(title: "네트워크 오류로 실패하였습니다.")

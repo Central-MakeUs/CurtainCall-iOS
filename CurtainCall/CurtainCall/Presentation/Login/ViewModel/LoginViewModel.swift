@@ -51,23 +51,32 @@ final class LoginViewModel: LoginViewModelIO {
             loginPublisher.send(completion: .failure(error))
         }
         
-        if let crendential, let token = crendential.identityToken {
-            print("Apple IdentityToken", String(data: token, encoding: .utf8))
-            useCase.loginWithApple(token: token)
-            
-                .sink { [weak self] completion in
-                    switch completion {
-                    case .finished:
-                        return
-                    case .failure(let error):
-                        self?.loginPublisher.send(completion: .failure(error))
-                        return
-                    }
-                } receiveValue: { [weak self] token in
-                    print(token)
-                    self?.loginPublisher.send((.apple, nil))
-                }.store(in: &cancellables)
+        guard let crendential, let token = crendential.identityToken,
+        let idToken = String(data: token, encoding: .utf8) else
+        {
+            return
         }
+        print("Apple IdentityToken", String(data: token, encoding: .utf8))
+        loginProvider.requestPublisher(.apple(idToken))
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self else { return }
+                switch completion {
+                case .failure(let error):
+                    self.loginPublisher.send(completion: .failure(error))
+                case .finished:
+                    return
+                }
+            }, receiveValue: { [weak self] response in
+                print("APPLE LOGIN", String(data: response.data, encoding: .utf8))
+                if let data = try? response.map(AuthenticationResponse.self) {
+                    KeychainWrapper.standard[.accessToken] = data.accessToken
+                    KeychainWrapper.standard[.refreshToken] = data.refreshToken
+                    
+                    print("##AUTH: ", data)
+                    self?.loginPublisher.send((.apple, data.memberId))
+                    
+                }
+            }).store(in: &self.cancellables)
     }
     
     func requestLogin(oauthToken: OAuthToken?, error: Error?) {

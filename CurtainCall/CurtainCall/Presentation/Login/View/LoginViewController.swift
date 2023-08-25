@@ -187,6 +187,7 @@ final class LoginViewController: UIViewController {
         let termOfserviceViewController = TermsOfServiceViewController(
             viewModel: TermsOfServiceViewModel()
         )
+        
         self.navigationController?.pushViewController(
             termOfserviceViewController,
             animated: true
