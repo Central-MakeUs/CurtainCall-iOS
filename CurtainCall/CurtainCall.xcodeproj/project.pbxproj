@@ -37,6 +37,7 @@
 		EE0283302A9903EF008F8100 /* Top10ShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */; };
 		EE0283322A99123F008F8100 /* RemoveAccountCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */; };
 		EE0283352A9915CC008F8100 /* LogoutPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283342A9915CC008F8100 /* LogoutPopup.swift */; };
+		EE0283382A991D2B008F8100 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -263,6 +264,7 @@
 		EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10ShowResponse.swift; sourceTree = "<group>"; };
 		EE0283312A99123F008F8100 /* RemoveAccountCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountCompleteViewController.swift; sourceTree = "<group>"; };
 		EE0283342A9915CC008F8100 /* LogoutPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopup.swift; sourceTree = "<group>"; };
+		EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -566,6 +568,14 @@
 				EE0283342A9915CC008F8100 /* LogoutPopup.swift */,
 			);
 			path = Popup;
+			sourceTree = "<group>";
+		};
+		EE0283362A991D12008F8100 /* PrivacyPolicy */ = {
+			isa = PBXGroup;
+			children = (
+				EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */,
+			);
+			path = PrivacyPolicy;
 			sourceTree = "<group>";
 		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
@@ -953,6 +963,7 @@
 		EE5251CE2A8E63B3003DFEE3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE0283362A991D12008F8100 /* PrivacyPolicy */,
 				EE0283332A9915BE008F8100 /* Popup */,
 				EE6127022A974EEE00961109 /* Model */,
 				EE6126FF2A974E8000961109 /* Service */,
@@ -1656,6 +1667,7 @@
 				EE5251E72A8E63B3003DFEE3 /* MyParticipationViewController.swift in Sources */,
 				EE5251CA2A8E639A003DFEE3 /* ReportViewModel.swift in Sources */,
 				EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */,
+				EE0283382A991D2B008F8100 /* PrivacyPolicyViewController.swift in Sources */,
 				EE747B9C2A96E9A3006A8AB3 /* RemoveAccountBody.swift in Sources */,
 				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
 				EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */,

@@ -220,7 +220,7 @@ final class SettingViewController: UIViewController {
     
     @objc
     private func privacyPolicyButtonTapped() {
-        
+        navigationController?.pushViewController(PrivacyPolicyViewController(), animated: true)
     }
     
     @objc
