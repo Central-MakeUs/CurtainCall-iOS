@@ -792,7 +792,12 @@ final class LostItemWriteViewController: UIViewController {
         guard let title = titleTextField.text,
               let particulars = otherTextView.text else { return }
         
-        viewModel.uploadLostItem(title: title, id: id, detail: detailLocationTextField.text, particulars: particulars)
+        viewModel.uploadLostItem(
+            title: title,
+            id: id,
+            detail: detailLocationTextField.text,
+            particulars: otherTextView.text ?? ""
+        )
         navigationController?.navigationBar.isHidden = true
         navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
     }

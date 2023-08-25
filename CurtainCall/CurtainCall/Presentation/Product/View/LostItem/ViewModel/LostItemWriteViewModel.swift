@@ -75,7 +75,7 @@ final class LostItemWriteViewModel {
         guard let type = selectCategory,
               let foundDate = selectedDate,
               let imageId = imageID else { return }
-        let foundTime = selectedTime == nil ? "" : selectedTime!.convertToHourMinString()
+        let foundTime = selectedTime == nil ? nil : selectedTime!.convertToHourMinString()
         let body = CreateLostItemBody(
             title: title,
             type: type.apiName,
@@ -83,7 +83,7 @@ final class LostItemWriteViewModel {
             foundPlaceDetail: detail,
             foundDate: foundDate.convertToAPIDateYearMonthDayString(),
             foundTime: foundTime,
-            particulars: particulars,
+            particulars: particulars == Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER ? "없음" : particulars,
             imageId: imageId
         )
         print("##분실물 body", body)

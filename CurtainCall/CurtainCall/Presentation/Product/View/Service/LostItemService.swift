@@ -90,14 +90,16 @@ extension LostItemService: TargetType {
             param.updateValue(body.title, forKey: "title")
             param.updateValue(body.type, forKey: "type")
             param.updateValue(body.facilityId, forKey: "facilityId")
-            if let foundPlaceDetail = body.foundPlaceDetail {
-                param.updateValue(foundPlaceDetail, forKey: "foundPlaceDetail")
-            }
+            param.updateValue(body.foundPlaceDetail ?? "", forKey: "foundPlaceDetail")
+//            if let foundPlaceDetail = body.foundPlaceDetail {
+//                param.updateValue(foundPlaceDetail, forKey: "foundPlaceDetail")
+//            }
             param.updateValue(body.foundDate, forKey: "foundDate")
-            if let foundTime = body.foundTime {
-                param.updateValue(foundTime, forKey: "foundTime")
-            }
-            param.updateValue(body.particulars, forKey: "particulars")
+            param.updateValue(body.foundTime ?? "", forKey: "foundTime")
+//            if let foundTime = body.foundTime {
+//                param.updateValue(foundTime, forKey: "foundTime")
+//            }
+            param.updateValue(body.particulars ?? "", forKey: "particulars")
             param.updateValue(body.imageId, forKey: "imageId")
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }

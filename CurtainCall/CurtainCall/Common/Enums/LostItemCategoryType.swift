@@ -53,4 +53,19 @@ enum LostItemCategoryType: Int {
             return "ETC"
         }
     }
+    
+    init(apiName: String) {
+        switch apiName {
+        case "BAG": self = .bag
+        case "WALLET": self = .wallet
+        case "CASH": self = .cash
+        case "CARD": self = .card
+        case "JEWELRY": self = .jewel
+        case "ELECTRONIC_EQUIPMENT": self = .phone
+        case "BOOK": self = .book
+        case "CLOTHING": self = .clothes
+        case "ETC": self = .other
+        default: self = .other
+        }
+    }
 }

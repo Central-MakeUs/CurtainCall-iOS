@@ -394,7 +394,7 @@ extension LostItemViewController: UICollectionViewDelegate {
         guard let item = datasource?.itemIdentifier(for: indexPath) else {
             return
         }
-        let detailViewController = LostItemDetailViewController(id: 1)
+        let detailViewController = LostItemDetailViewController(id: item.id)
         navigationController?.pushViewController(detailViewController, animated: true)
         
     }

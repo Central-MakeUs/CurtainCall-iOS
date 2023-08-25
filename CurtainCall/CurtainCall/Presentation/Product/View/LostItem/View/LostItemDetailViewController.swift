@@ -7,7 +7,9 @@
 
 import UIKit
 
-import UIKit
+import Combine
+import Moya
+import CombineMoya
 
 final class LostItemDetailViewController: UIViewController {
     
@@ -83,7 +85,6 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = "기타"
         return label
     }()
     
@@ -202,7 +203,6 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = "없음"
         return label
     }()
     
@@ -244,6 +244,7 @@ final class LostItemDetailViewController: UIViewController {
     // MARK: Property
     
     private let id: Int
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: Life Cycle
     
@@ -260,7 +261,7 @@ final class LostItemDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .hexF5F6F8
         configureUI()
-
+        requestDetail()
     }
     
     // MARK: Configure
@@ -446,5 +447,43 @@ final class LostItemDetailViewController: UIViewController {
     private func configureNavigation() {
         configureBackbarButton()
         title = "분실물 찾기"
+    }
+    
+    private func requestDetail() {
+        let provider = MoyaProvider<LostItemService>()
+        provider.requestPublisher(.detail(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                print(String(data: response.data, encoding: .utf8))
+                if let data = try? response.map(LostItemDetailResponse.self) {
+                    draw(info: data)
+                    print("## 분실물 상세", data)
+                }
+            }.store(in: &subscriptions)
+    }
+    
+    private func draw(info: LostItemDetailResponse) {
+        if let url = URL(string: info.imageUrl) {
+            itemImageView.kf.setImage(with: url)
+            itemImageView.kf.indicatorType = .activity
+        } else {
+            itemImageView.image = nil
+        }
+        itemNameLabel.text = info.title
+        let type = LostItemCategoryType(apiName: info.type)
+        categoryLabel.text = type.name
+        locationLabel.text = info.facilityName
+        locationDetailLabel.text = info.foundPlaceDetail
+        dateLabel.text = info.foundDate
+        timeLabel.text = info.foundTime
+        otherLabel.text = info.particulars
+        
+        keepLocationLabel.text = "보관장소   \(info.facilityName)"
+        phoneNumberLabel.text = "전화번호   \(info.facilityPhone)"
     }
 }

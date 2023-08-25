@@ -30,6 +30,7 @@
 		EE02831F2A98A7B7008F8100 /* LostItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02831E2A98A7B7008F8100 /* LostItemService.swift */; };
 		EE0283212A98A7E3008F8100 /* CreateLostItemBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */; };
 		EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283232A98C90F008F8100 /* LostItemResponse.swift */; };
+		EE0283262A98DFCB008F8100 /* LostItemDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283252A98DFCB008F8100 /* LostItemDetailResponse.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -249,6 +250,7 @@
 		EE02831E2A98A7B7008F8100 /* LostItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemService.swift; sourceTree = "<group>"; };
 		EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLostItemBody.swift; sourceTree = "<group>"; };
 		EE0283232A98C90F008F8100 /* LostItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemResponse.swift; sourceTree = "<group>"; };
+		EE0283252A98DFCB008F8100 /* LostItemDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailResponse.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -1228,6 +1230,7 @@
 				EE02831C2A989AEA008F8100 /* FacilityResponse.swift */,
 				EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */,
 				EE0283232A98C90F008F8100 /* LostItemResponse.swift */,
+				EE0283252A98DFCB008F8100 /* LostItemDetailResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1697,6 +1700,7 @@
 				EE9A88532A83C30A0085F816 /* Top10Data.swift in Sources */,
 				EE5DED0D2A6563A60027B0D4 /* Constants.swift in Sources */,
 				EE5FDBFA2A8CBEFC00376E26 /* LoginCompleteViewModel.swift in Sources */,
+				EE0283262A98DFCB008F8100 /* LostItemDetailResponse.swift in Sources */,
 				EE5251EE2A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift in Sources */,
 				EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */,
 				EEE8F0E62A5690E200E31597 /* CheckMarkButton.swift in Sources */,

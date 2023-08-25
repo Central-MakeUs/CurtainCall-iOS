@@ -117,7 +117,7 @@ final class LostItemCollectionViewCell: UICollectionViewCell {
         getItemLocationLabel.text = """
                              습득 장소ㅣ\(item.facilityName)
                              """
-        getItemDateLabel.text = "습득일자 | \(item.foundDate)"
+        getItemDateLabel.text = "습득 일자 | \(item.foundDate)"
     }
     
 }
