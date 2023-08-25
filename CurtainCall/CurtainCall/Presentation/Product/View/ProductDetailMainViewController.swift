@@ -41,6 +41,7 @@ final class ProductDetailMainViewController: UIViewController {
         label.font = .subTitle4
         label.textColor = .white
         label.text = "비스티"
+        label.textAlignment = .center
         return label
     }()
     
@@ -398,6 +399,8 @@ final class ProductDetailMainViewController: UIViewController {
         }
         titleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
+            $0.leading.equalToSuperview().offset(40)
+            $0.trailing.equalToSuperview().inset(24)
         }
         
         scrollView.snp.makeConstraints {
@@ -436,8 +439,9 @@ final class ProductDetailMainViewController: UIViewController {
         }
         
         productTitleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
+            $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(categoryView.snp.bottom).offset(10)
+            
         }
         
         keepButton.snp.makeConstraints {
@@ -618,6 +622,8 @@ final class ProductDetailMainViewController: UIViewController {
                 guard let self else { return }
                 if let data = try? response.map(ProductDetailResponse.self) {
                     product = data
+                    detailInfoView.showTime = data.showTimes
+                    requestFacility(id: data.facilityId)
                     draw(data: data)
                 } else {
                     print("@@DECODE ERROR")
@@ -663,6 +669,24 @@ final class ProductDetailMainViewController: UIViewController {
 
     }
     
+    private func requestFacility(id: String) {
+        let provider = MoyaProvider<FacilityService>()
+        provider.requestPublisher(.detail(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(FacilityResponse.self) {
+                    detailInfoView.content = data
+                    detailInfoView.draw()
+                }
+            }.store(in: &subscriptions)
+
+    }
+    
     private func draw(data: ProductDetailResponse) {
         print("### Detail DATA: ", data)
         titleLabel.text = data.name
@@ -673,12 +697,16 @@ final class ProductDetailMainViewController: UIViewController {
         }
         categoryLabel.text = data.genre == "PLAY" ? "연극" : "뮤지컬"
         productTitleLabel.text = data.name
-        gradeLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
+        if data.reviewGradeSum == 0 && data.reviewCount == 0 {
+            gradeLabel.text = "0"
+        } else {
+            gradeLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
+        }
         gradeCountLabel.text = "(" + String(Int(data.reviewCount)) + ")"
         duringProductLabel.text = data.startDate + " ~ " + data.endDate
-        runningTimeProductLabel.text = data.runtime
+        runningTimeProductLabel.text = data.runtime.isEmpty ? "정보 없음" : data.runtime
         ageProductLabel.text = data.age
-        priceProductLabel.text = data.ticketPrice
+        priceProductLabel.text = data.ticketPrice.isEmpty ? "정보 없음" : data.ticketPrice
         locationProductLabel.text = data.facilityName
         detailReviewView.titleLabel.text = "총 \(Int(data.reviewCount))개의 한 줄 리뷰"
     }

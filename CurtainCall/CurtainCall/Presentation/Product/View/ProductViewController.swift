@@ -76,6 +76,8 @@ final class ProductViewController: UIViewController {
     private let reservationImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ImageNamespace.productSearchSortIcon)
+        // TODO: API 개발 후
+        imageView.isHidden = true
         return imageView
     }()
     
@@ -84,7 +86,8 @@ final class ProductViewController: UIViewController {
         button.setTitle("별점순", for: .normal)
         button.titleLabel?.font = .body1
         button.setTitleColor(.body1, for: .normal)
-        
+        // TODO: API 개발 후
+        button.isHidden = true
         return button
     }()
     
@@ -182,12 +185,6 @@ final class ProductViewController: UIViewController {
             $0.edges.equalToSuperview().inset(4)
         }
         
-//        reservationDotView.snp.makeConstraints {
-//            $0.height.width.equalTo(4)
-//            $0.top.equalTo(categoryView.snp.bottom).offset(24)
-//            $0.leading.equalToSuperview().offset(24)
-//        }
-//
         reservationOrderButton.snp.makeConstraints {
             $0.top.equalTo(categoryView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(24)
@@ -196,18 +193,11 @@ final class ProductViewController: UIViewController {
             $0.centerY.equalTo(reservationOrderButton)
             $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(6)
         }
-//        dictionaryOrderDotView.snp.makeConstraints {
-//            $0.height.width.equalTo(4)
-//            $0.centerY.equalTo(reservationDotView)
-//            $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(10)
-//        }
-//
-//        dictionaryOrderButton.snp.makeConstraints {
-//            $0.centerY.equalTo(dictionaryOrderDotView)
-//            $0.leading.equalTo(dictionaryOrderDotView.snp.trailing).offset(4)
-//        }
+
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
+            $0.top.equalTo(categoryView.snp.bottom).offset(8)
+            // TODO: API 개발 후, 순서 변경에 맞춰서 변경
+//            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-90)
         }
