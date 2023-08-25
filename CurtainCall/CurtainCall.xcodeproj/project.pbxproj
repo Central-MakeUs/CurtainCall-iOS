@@ -34,6 +34,7 @@
 		EE0283292A98F801008F8100 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283282A98F801008F8100 /* HomeService.swift */; };
 		EE02832C2A98FCDF008F8100 /* OpenShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */; };
 		EE02832E2A98FF83008F8100 /* TempHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */; };
+		EE0283302A9903EF008F8100 /* Top10ShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -257,6 +258,7 @@
 		EE0283282A98F801008F8100 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenShowResponse.swift; sourceTree = "<group>"; };
 		EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHomeViewController.swift; sourceTree = "<group>"; };
+		EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10ShowResponse.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */,
+				EE02832F2A9903EF008F8100 /* Top10ShowResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -799,11 +802,11 @@
 		EE3F2FE62A5811AC00BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */,
 				EE3F2FE72A5811BA00BC539C /* HomeViewController.swift */,
 				EEA132302A7FE2E50016D01A /* Model */,
 				EEA1322B2A7FCAFC0016D01A /* Cell */,
 				EEA132292A7FCAED0016D01A /* Header */,
-				EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1785,6 +1788,7 @@
 				EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */,
 				EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */,
 				EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */,
+				EE0283302A9903EF008F8100 /* Top10ShowResponse.swift in Sources */,
 				EEE8F0EA2A56AC5D00E31597 /* UIStackView + Extension.swift in Sources */,
 				EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */,
 				EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */,

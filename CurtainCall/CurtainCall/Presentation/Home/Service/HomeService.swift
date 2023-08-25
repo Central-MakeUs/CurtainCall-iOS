@@ -14,7 +14,7 @@ import SwiftKeychainWrapper
 
 enum HomeAPI {
     case open(page: Int, size: Int, startDate: String)
-    case top10(type: String, genre: ProductListAPI, baseDate: String)
+    case top10(type: String, genre: String, baseDate: String)
 }
 
 extension HomeAPI: TargetType {
@@ -42,7 +42,7 @@ extension HomeAPI: TargetType {
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         case .top10(let type, let genre, let baseDate):
             param.updateValue(type, forKey: "type")
-            param.updateValue(genre.APIName, forKey: "genre")
+            param.updateValue(genre, forKey: "genre")
             param.updateValue(baseDate, forKey: "baseDate")
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }

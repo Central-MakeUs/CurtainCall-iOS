@@ -120,7 +120,7 @@ final class Top10Cell: UICollectionViewCell {
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImage.snp.bottom).offset(10)
-            $0.left.equalToSuperview().offset(12)
+            $0.horizontalEdges.equalToSuperview().inset(12)
         }
         bottomStackView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(12)
@@ -130,12 +130,21 @@ final class Top10Cell: UICollectionViewCell {
         
     }
     
-    func drawCell(data: Top10Data) {
-        posterImage.image = data.posterImage
-        titleLabel.text = data.title
-        averageLabel.text = String(format: "%.1f", data.average)
-        rankLabel.text = "\(data.rank)"
-        countLabel.text = "(\(data.count))"
+    func drawCell(data: Top10ShowContent, index: Int) {
+        if let url = URL(string: data.poster) {
+            posterImage.kf.setImage(with: url)
+            posterImage.kf.indicatorType = .activity
+        } else {
+            posterImage.image = nil
+        }
+        titleLabel.text = data.name
+        if data.reviewCount == 0 && data.reviewGradeSum == 0 {
+            averageLabel.text = "0"
+        } else {
+            averageLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
+        }
+        rankLabel.text = "\(index)"
+        countLabel.text = "(\(Int(data.reviewCount)))"
         
     }
     

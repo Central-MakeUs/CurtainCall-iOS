@@ -18,6 +18,7 @@ final class HomeViewModel {
     private var subscriptions: Set<AnyCancellable> = []
     var userInfoSubject = PassthroughSubject<MyPageDetailResponse, Never>()
     @Published var openShowList: [OpenShowContent] = []
+    @Published var top10ShowList: [Top10ShowContent] = []
     
     func requestUserInfo() {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
@@ -44,10 +45,28 @@ final class HomeViewModel {
 
     }
     
-//    func requestTop10() {
-//        let provider = MoyaProvider<HomeAPI>()
-//        provider.requestPublisher(.top10(type: <#T##String#>, genre: <#T##ProductListAPI#>, baseDate: <#T##String#>))
-//    }
+    func requestTop10() {
+        let provider = MoyaProvider<HomeAPI>()
+        provider.requestPublisher(.top10(type: "DAY", genre: "ALL", baseDate: "2023-08-19"))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(Top10ShowResponse.self) {
+                    if data.content.count < 10 {
+                        top10ShowList = data.content
+                    } else {
+                        top10ShowList = data.content.prefix(10).map { $0 }
+                    }
+                } else {
+                    top10ShowList = []
+                }
+            }.store(in: &subscriptions)
+
+    }
     func requestOpen() {
         let provider = MoyaProvider<HomeAPI>()
         provider.requestPublisher(.open(page: 0, size: 100, startDate: Date().convertToAPIDateYearMonthDayString()))

@@ -248,7 +248,7 @@ final class TempHomeViewController: UIViewController {
     enum Top10Section {
         case main
     }
-    typealias Top10Item = Top10Data
+    typealias Top10Item = Top10ShowContent
     
     enum ScheduledToOpenProductSection {
         case main
@@ -287,6 +287,7 @@ final class TempHomeViewController: UIViewController {
         bind()
         viewModel.requestUserInfo()
         viewModel.requestOpen()
+        viewModel.requestTop10()
         liveTalkView.isHidden = true
     }
     
@@ -310,7 +311,7 @@ final class TempHomeViewController: UIViewController {
 //        configureLiveTalkDatasource()
 //        confgureLiveTalkSnapshot()
         configureTop10Datasource()
-        configureTop10Snapshot()
+        
         configureScheduledToOpenProductDatasource()
 //        configureGoodCostProductDatasource()
 //        configureGoodCostProductSnapshot()
@@ -541,6 +542,20 @@ final class TempHomeViewController: UIViewController {
                 snapshot.appendItems(response, toSection: .main)
                 self?.scheduledToOpenProductDatasource?.apply(snapshot)
             }.store(in: &subcriptions)
+        viewModel.$top10ShowList
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Top10Section, Top10Item>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(response, toSection: .main)
+                top10Datasource?.apply(snapshot)
+            }.store(in: &subcriptions)
+
     }
     
     
@@ -722,17 +737,10 @@ extension TempHomeViewController {
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
                 print(itemIdentifier)
-                cell.drawCell(data: itemIdentifier)
+                cell.drawCell(data: itemIdentifier, index: indexPath.row + 1)
                 return cell
             }
         )
-    }
-    
-    private func configureTop10Snapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Top10Section, Top10Item>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(Top10Data.list, toSection: .main)
-        top10Datasource?.apply(snapshot)
     }
     
     private func configureScheduledToOpenProductDatasource() {

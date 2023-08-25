@@ -718,7 +718,7 @@ extension HomeViewController {
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
                 print(itemIdentifier)
-                cell.drawCell(data: itemIdentifier)
+//                cell.drawCell(data: itemIdentifier)
                 return cell
             }
         )
