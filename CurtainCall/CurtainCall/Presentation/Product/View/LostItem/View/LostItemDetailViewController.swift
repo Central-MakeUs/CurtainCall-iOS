@@ -478,9 +478,14 @@ final class LostItemDetailViewController: UIViewController {
         let type = LostItemCategoryType(apiName: info.type)
         categoryLabel.text = type.name
         locationLabel.text = info.facilityName
-        locationDetailLabel.text = info.foundPlaceDetail
+        locationDetailLabel.text = info.foundPlaceDetail.isEmpty ? "정보 없음" : info.foundPlaceDetail
         dateLabel.text = info.foundDate
-        timeLabel.text = info.foundTime
+        if let foundTimte = info.foundTime {
+            timeLabel.text = foundTimte
+            timeView.isHidden = false
+        } else {
+            timeView.isHidden = true
+        }
         otherLabel.text = info.particulars
         
         keepLocationLabel.text = "보관장소   \(info.facilityName)"

@@ -287,7 +287,7 @@ final class LostItemWriteViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: [Date()])
+        let calendarView = CalendarView(isSectableDates: [])
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
@@ -614,7 +614,7 @@ final class LostItemWriteViewController: UIViewController {
         
         completeButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.bottom.equalTo(emptyView.snp.top).offset(-16)
+            $0.bottom.equalTo(emptyView.snp.top).offset(-50)
             $0.height.equalTo(55)
         }
         

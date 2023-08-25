@@ -213,8 +213,10 @@ final class LostItemViewController: UIViewController {
     private func configureSubviews() {
         view.backgroundColor = .white
         view.addSubviews(
-            topView, collectionView, emptyView, calendarView, lostItemCategoryView, writeButton, emptyView
+            topView, emptyView, collectionView, emptyView, calendarView,
+            lostItemCategoryView, writeButton
         )
+        
         topView.addSubviews(filterStackView, facilityView)
         facilityView.addSubview(facilityLabel)
         filterStackView.addArrangedSubviews(lostedDateView, categoryView)
@@ -287,18 +289,25 @@ final class LostItemViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+        
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom).offset(5)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
     }
     
     private func configureNavigation() {
         title = "분실물 찾기"
-        let searchBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "magnifyingglass"),
-            style: .plain,
-            target: self,
-            action: nil
-        )
-        searchBarButtonItem.tintColor = .black
-        navigationItem.rightBarButtonItem = searchBarButtonItem
+        // TODO: 1차 배포 이후
+//        let searchBarButtonItem = UIBarButtonItem(
+//            image: UIImage(systemName: "magnifyingglass"),
+//            style: .plain,
+//            target: self,
+//            action: nil
+//        )
+//        searchBarButtonItem.tintColor = .black
+//        navigationItem.rightBarButtonItem = searchBarButtonItem
         configureBackbarButton()
     }
     
@@ -349,10 +358,15 @@ final class LostItemViewController: UIViewController {
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if let data = try? response.map(LostItemResponse.self) {
-                    var snapshot = Snapshot()
-                    snapshot.appendSections([.main])
-                    snapshot.appendItems(data.content, toSection: .main)
-                    datasource?.apply(snapshot)
+                    if data.content.isEmpty {
+                        emptyView.isHidden = false
+                    } else {
+                        var snapshot = Snapshot()
+                        snapshot.appendSections([.main])
+                        snapshot.appendItems(data.content, toSection: .main)
+                        datasource?.apply(snapshot)
+                        emptyView.isHidden = true
+                    }
                 }
                 
             }.store(in: &subscriptions)

@@ -16,7 +16,7 @@ struct LostItemDetailResponse: Decodable {
     let type: String
     let foundPlaceDetail: String
     let foundDate: String
-    let foundTime: String
+    let foundTime: String?
     let particulars: String
     let imageId: Int
     let imageUrl: String
