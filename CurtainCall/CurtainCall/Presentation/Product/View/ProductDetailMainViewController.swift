@@ -98,7 +98,11 @@ final class ProductDetailMainViewController: UIViewController {
         return label
     }()
     
-    private let startImageView = StarImageView(isEmpty: false)
+    private let startImageView: StarImageView = {
+        let imageView = StarImageView()
+        imageView.setImage(isEmpty: false)
+        return imageView
+    }()
     
     private let gradeLabel: UILabel = {
         let label = UILabel()
