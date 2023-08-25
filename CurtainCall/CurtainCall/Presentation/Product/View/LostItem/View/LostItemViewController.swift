@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Moya
+import CombineMoya
+import Combine
+
 final class LostItemViewController: UIViewController {
     
     // MARK: - UI properties
@@ -156,6 +160,7 @@ final class LostItemViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     
     private var datasource: Datasource?
+    private var subscriptions = Set<AnyCancellable>()
     private let id: String
     private let name: String
 
@@ -175,6 +180,7 @@ final class LostItemViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
+        requestLostItem()
 //        requestItem()
     }
     
@@ -304,6 +310,27 @@ final class LostItemViewController: UIViewController {
 //        snapshot.appendItems(LostItemInfo.list, toSection: .main)
 //        datasource?.apply(snapshot)
 //    }
+    
+    private func requestLostItem() {
+        let provider = MoyaProvider<LostItemService>()
+        provider.requestPublisher(.list(page: 0, size: 0, id: id, type: nil, date: nil, title: nil))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(LostItemResponse.self) {
+                    var snapshot = Snapshot()
+                    snapshot.appendSections([.main])
+                    snapshot.appendItems(data.content, toSection: .main)
+                    datasource?.apply(snapshot)
+                }
+                
+            }.store(in: &subscriptions)
+
+    }
     
     private func addTargets() {
         lostedButton.addTarget(
