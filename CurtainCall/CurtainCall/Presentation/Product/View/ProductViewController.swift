@@ -145,6 +145,7 @@ final class ProductViewController: UIViewController {
         typeButtonTouchUpInside(theaterButton)
         
     }
+
     
     // MARK: - Helpers
     
@@ -233,6 +234,7 @@ final class ProductViewController: UIViewController {
                 type: ProductSearchCell.self,
                 indexPath: indexPath
             ) else { return UICollectionViewCell() }
+            cell.id = item.id
             cell.draw(item: item)
             return cell
         })

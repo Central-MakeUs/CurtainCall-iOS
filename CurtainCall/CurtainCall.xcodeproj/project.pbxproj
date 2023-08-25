@@ -21,6 +21,8 @@
 		EE02830B2A97ACDC008F8100 /* PartyDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02830A2A97ACDC008F8100 /* PartyDetailResponse.swift */; };
 		EE02830E2A97B89C008F8100 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02830D2A97B89C008F8100 /* ImageService.swift */; };
 		EE0283102A97C652008F8100 /* MyPageEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02830F2A97C652008F8100 /* MyPageEditViewModel.swift */; };
+		EE0283122A986F4C008F8100 /* IsFavoriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283112A986F4C008F8100 /* IsFavoriteResponse.swift */; };
+		EE0283152A986FAB008F8100 /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283142A986FAB008F8100 /* FavoriteService.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -231,6 +233,8 @@
 		EE02830A2A97ACDC008F8100 /* PartyDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailResponse.swift; sourceTree = "<group>"; };
 		EE02830D2A97B89C008F8100 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		EE02830F2A97C652008F8100 /* MyPageEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditViewModel.swift; sourceTree = "<group>"; };
+		EE0283112A986F4C008F8100 /* IsFavoriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsFavoriteResponse.swift; sourceTree = "<group>"; };
+		EE0283142A986FAB008F8100 /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -503,6 +507,14 @@
 			path = ImageService;
 			sourceTree = "<group>";
 		};
+		EE0283132A986F9C008F8100 /* FavoriteService */ = {
+			isa = PBXGroup;
+			children = (
+				EE0283142A986FAB008F8100 /* FavoriteService.swift */,
+			);
+			path = FavoriteService;
+			sourceTree = "<group>";
+		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +610,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EE0283132A986F9C008F8100 /* FavoriteService */,
 				EE02830C2A97B88E008F8100 /* ImageService */,
 				EE0283022A97919E008F8100 /* UserInfo */,
 				EE0669D92A7E0943000C8296 /* Network */,
@@ -757,6 +770,7 @@
 		EE3F2FE92A58120300BC539C /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				EEAA40EB2A8E0654000990B0 /* Model */,
 				EEC441D62A77E26400CD93BC /* ViewModel */,
 				EE3F2FED2A58121E00BC539C /* View */,
 			);
@@ -786,7 +800,6 @@
 		EE3F2FED2A58121E00BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EEAA40EB2A8E0654000990B0 /* Model */,
 				EEAA40E82A8E0354000990B0 /* Service */,
 				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
@@ -1194,6 +1207,7 @@
 				EEAA40EC2A8E0663000990B0 /* ProductListResponse.swift */,
 				EE7730492A93587300658D84 /* ProductDetailResponse.swift */,
 				EE1DF3732A94E859003AD078 /* FavoriteProductListResponse.swift */,
+				EE0283112A986F4C008F8100 /* IsFavoriteResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1591,6 +1605,7 @@
 				EEA9444A2A5D883D0081E784 /* OtherPartyInfo.swift in Sources */,
 				EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */,
 				EE0283092A979A86008F8100 /* MyRecruitmentResponse.swift in Sources */,
+				EE0283122A986F4C008F8100 /* IsFavoriteResponse.swift in Sources */,
 				EE0283102A97C652008F8100 /* MyPageEditViewModel.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,
@@ -1678,6 +1693,7 @@
 				EE5251EF2A8E63B3003DFEE3 /* MyPageViewController.swift in Sources */,
 				EE747B902A95DA3F006A8AB3 /* CreatePartyBody.swift in Sources */,
 				EE9A88512A83C0800085F816 /* Top10Cell.swift in Sources */,
+				EE0283152A986FAB008F8100 /* FavoriteService.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
 				EE5251E52A8E63B3003DFEE3 /* MyPageDeletePopup.swift in Sources */,
 				EE747B922A95E208006A8AB3 /* PartyListResponse.swift in Sources */,

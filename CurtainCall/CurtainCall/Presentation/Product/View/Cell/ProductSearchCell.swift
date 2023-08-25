@@ -179,15 +179,28 @@ final class ProductSearchCell: UICollectionViewCell {
         return view
     }()
     
-    private let keepButton = UIButton()
+    private let keepButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: ImageNamespace.productKeepDeselect), for: .normal)
+        button.setBackgroundImage(UIImage(named: ImageNamespace.productKeepSelect), for: .selected)
+        return button
+    }()
     
     // MARK: - Properties
+    
+    var id: String?
     
     // MARK: - Lifecycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setKeepButton),
+            name: Notification.Name("setKeepButton"),
+            object: nil
+        )
     }
     
     @available (*, unavailable)
@@ -205,7 +218,7 @@ final class ProductSearchCell: UICollectionViewCell {
     private func configureSubviews() {
         addSubviews(
             posterImageView, productTitleLabel, keepButton, starStackView, infoStackView,
-            borderView
+            borderView, keepButton
         )
         starStackView.addArrangedSubviews(starImageView, starGradeLabel, starCountLabel)
         infoStackView.addArrangedSubviews(
@@ -225,8 +238,12 @@ final class ProductSearchCell: UICollectionViewCell {
             $0.height.equalTo(160)
             $0.width.equalTo(120)
         }
+        keepButton.snp.makeConstraints {
+            $0.top.trailing.equalToSuperview()
+        }
         productTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().inset(40)
             $0.top.equalTo(posterImageView.snp.top)
         }
         starStackView.snp.makeConstraints {
@@ -251,11 +268,11 @@ final class ProductSearchCell: UICollectionViewCell {
     
     func draw(item: ProductListContent) {
         if let url = URL(string: item.poster) {
+            posterImageView.kf.indicatorType = .activity
             posterImageView.kf.setImage(with: url)
         } else {
             posterImageView.image = nil
         }
-//        posterImageView.image = item.poster
         productTitleLabel.text = item.name
         if item.reviewGradeSum == 0 && item.reviewCount == 0 {
             starGradeLabel.text = "0"
@@ -265,8 +282,16 @@ final class ProductSearchCell: UICollectionViewCell {
         starCountLabel.text = "(\(Int(item.reviewCount)))"
         productDuringLabel.text = item.startDate + " ~ " + item.endDate
         productRunningTimeLabel.text = item.runtime.isEmpty ? "정보 없음" : item.runtime
+        keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(item.id)
 //        productScheduleLabel.text = item.schedule
 //        productScheduleSubLabel.text = item.subschedule
         productLocationLabel.text = item.facilityName
+    }
+    
+    @objc
+    func setKeepButton(_ notification: Notification) {
+        guard let id else { return }
+        keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(id)
+
     }
 }

@@ -17,6 +17,8 @@ final class ProductViewModel {
     private let provider = MoyaProvider<ProductAPI>()
     @Published var playList: [ProductListContent] = []
     @Published var musicalList: [ProductListContent] = []
+    var tempPlayList: [ProductListContent] = []
+    var tempMusicalList: [ProductListContent] = []
     var isLoding = false
     var theaterPage: Int = 0
     var musicalPage: Int = 0
@@ -31,22 +33,47 @@ final class ProductViewModel {
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if let data = try? response.map(ProductListResponse.self) {
+                    requestFavorites(id: data.content.map { $0.id }, genre: genre)
                     if genre == .play {
                         if page == 0 {
-                            playList = data.content
+                            tempPlayList = data.content
                         } else {
-                            playList.append(contentsOf: data.content)
+                            tempPlayList.append(contentsOf: data.content)
                         }
                     } else {
                         if page == 0 {
-                            musicalList = data.content
+                            tempMusicalList = data.content
                         } else {
-                            musicalList.append(contentsOf: data.content)
+                            tempMusicalList.append(contentsOf: data.content)
                         }
                     }
                 } else {
                     print("## RequestShow Decoding Error##")
                 }
+            }.store(in: &subscriptions)
+
+    }
+    
+    
+    func requestFavorites(id: [String], genre: ProductListAPI) {
+        let provider = MoyaProvider<FavoriteShowAPI>()
+        provider.requestPublisher(.getShowList(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(IsFavoriteResponse.self) {
+                    data.content.filter { $0.favorite }.forEach {
+                        FavoriteService.shared.isFavoriteIds.insert($0.showId)
+                    }
+                }
+                if genre == .play {
+                    playList = tempPlayList} else {
+                        musicalList = tempMusicalList
+                    }
             }.store(in: &subscriptions)
 
     }

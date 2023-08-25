@@ -587,7 +587,10 @@ final class ProductDetailMainViewController: UIViewController {
                         print(error)
                     }
                 } receiveValue: { [weak self] _ in
-                    self?.keepButton.isSelected = true
+                    guard let self else { return }
+                    keepButton.isSelected = true
+                    FavoriteService.shared.isFavoriteIds.insert(id)
+                    NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
                 }.store(in: &subscriptions)
         } else {
             favoriteProvider.requestPublisher(.deleteShow(id: id))
@@ -596,7 +599,10 @@ final class ProductDetailMainViewController: UIViewController {
                         print(error)
                     }
                 } receiveValue: { [weak self] _ in
-                    self?.keepButton.isSelected = false
+                    guard let self else { return }
+                    keepButton.isSelected = false
+                    FavoriteService.shared.isFavoriteIds.remove(id)
+                    NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
                 }.store(in: &subscriptions)
         }
     }
