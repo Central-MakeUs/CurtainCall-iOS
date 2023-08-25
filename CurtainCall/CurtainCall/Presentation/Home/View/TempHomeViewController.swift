@@ -11,7 +11,7 @@ import Combine
 import SnapKit
 import SwiftKeychainWrapper
 
-final class HomeViewController: UIViewController {
+final class TempHomeViewController: UIViewController {
     
     // MARK: - UI properties
     
@@ -253,7 +253,7 @@ final class HomeViewController: UIViewController {
     enum ScheduledToOpenProductSection {
         case main
     }
-    typealias ScheduledToOpenProductItem = ScheduledToOpenProductData
+    typealias ScheduledToOpenProductItem = OpenShowContent
     
     enum GoodCostProductSection {
         case main
@@ -307,14 +307,13 @@ final class HomeViewController: UIViewController {
         configureConstraints()
         configureBannerDatasource()
         confgureBannerSnapshot()
-        configureLiveTalkDatasource()
-        confgureLiveTalkSnapshot()
+//        configureLiveTalkDatasource()
+//        confgureLiveTalkSnapshot()
         configureTop10Datasource()
         configureTop10Snapshot()
         configureScheduledToOpenProductDatasource()
-        configureScheduledToOpenProductSnapshot()
-        configureGoodCostProductDatasource()
-        configureGoodCostProductSnapshot()
+//        configureGoodCostProductDatasource()
+//        configureGoodCostProductSnapshot()
         
     }
     
@@ -425,33 +424,33 @@ final class HomeViewController: UIViewController {
             $0.bottom.equalToSuperview().inset(10)
         }
         
-        liveTalkView.snp.makeConstraints {
-            $0.top.equalTo(myStackView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            
-        }
-        
-        liveTalkHeaderView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(58)
-            
-        }
-        liveTalkLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().inset(10)
-        }
-        
-        liveTalkCollectionView.snp.makeConstraints {
-            $0.top.equalTo(liveTalkHeaderView.snp.bottom)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            $0.height.equalTo(159)
-            $0.bottom.equalToSuperview()
-        }
+//        liveTalkView.snp.makeConstraints {
+//            $0.top.equalTo(myStackView.snp.bottom)
+//            $0.horizontalEdges.equalToSuperview()
+//
+//        }
+//
+//        liveTalkHeaderView.snp.makeConstraints {
+//            $0.top.equalToSuperview()
+//            $0.horizontalEdges.equalToSuperview()
+//            $0.height.equalTo(58)
+//
+//        }
+//        liveTalkLabel.snp.makeConstraints {
+//            $0.leading.equalToSuperview().offset(24)
+//            $0.bottom.equalToSuperview().inset(10)
+//        }
+//
+//        liveTalkCollectionView.snp.makeConstraints {
+//            $0.top.equalTo(liveTalkHeaderView.snp.bottom)
+//            $0.leading.equalToSuperview()
+//            $0.trailing.equalToSuperview()
+//            $0.height.equalTo(159)
+//            $0.bottom.equalToSuperview()
+//        }
         
         top10View.snp.makeConstraints {
-            $0.top.equalTo(liveTalkView.snp.bottom)
+            $0.top.equalTo(myStackView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -477,6 +476,8 @@ final class HomeViewController: UIViewController {
         scheduledToOpenProductView.snp.makeConstraints {
             $0.top.equalTo(top10View.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
+            // TODO: 추가
+            $0.bottom.equalToSuperview()
         }
         scheduledToOpenProductHeaderView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -494,32 +495,32 @@ final class HomeViewController: UIViewController {
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.height.equalTo(220)
-            $0.bottom.equalToSuperview()
-        }
-        
-        goodCostProductView.snp.makeConstraints {
-            $0.top.equalTo(scheduledToOpenProductView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        goodCostProductHeaderView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(98)
-
-        }
-        goodCostProductLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
-            $0.bottom.equalToSuperview().inset(10)
-        }
-
-        goodCostProductCollectionView.snp.makeConstraints {
-            $0.top.equalTo(goodCostProductHeaderView.snp.bottom)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            $0.height.equalTo(220)
             $0.bottom.equalToSuperview().inset(100)
         }
+        
+//        goodCostProductView.snp.makeConstraints {
+//            $0.top.equalTo(scheduledToOpenProductView.snp.bottom)
+//            $0.horizontalEdges.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+//        }
+//        goodCostProductHeaderView.snp.makeConstraints {
+//            $0.top.equalToSuperview()
+//            $0.horizontalEdges.equalToSuperview()
+//            $0.height.equalTo(98)
+//
+//        }
+//        goodCostProductLabel.snp.makeConstraints {
+//            $0.leading.equalToSuperview().offset(24)
+//            $0.bottom.equalToSuperview().inset(10)
+//        }
+//
+//        goodCostProductCollectionView.snp.makeConstraints {
+//            $0.top.equalTo(goodCostProductHeaderView.snp.bottom)
+//            $0.leading.equalToSuperview()
+//            $0.trailing.equalToSuperview()
+//            $0.height.equalTo(220)
+//            $0.bottom.equalToSuperview().inset(100)
+//        }
     }
     
     private func bind() {
@@ -529,20 +530,23 @@ final class HomeViewController: UIViewController {
             }.store(in: &subcriptions)
         
         viewModel.$openShowList
-            .sink { [weak self] response in
-                if response.isEmpty {
-                    
-                } else {
-                    
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
                 }
-                
+            } receiveValue: { [weak self] response in
+                var snapshot = NSDiffableDataSourceSnapshot<ScheduledToOpenProductSection, ScheduledToOpenProductItem>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(response, toSection: .main)
+                self?.scheduledToOpenProductDatasource?.apply(snapshot)
             }.store(in: &subcriptions)
     }
     
     
 }
 
-extension HomeViewController: UICollectionViewDelegate {
+extension TempHomeViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
         pageControl.currentPage = page
@@ -573,7 +577,7 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension TempHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return HomeMyProductData.list.count
     }
@@ -590,7 +594,7 @@ extension HomeViewController: UITableViewDataSource {
     
 }
 
-extension HomeViewController: UITableViewDelegate {
+extension TempHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
     }
@@ -598,7 +602,7 @@ extension HomeViewController: UITableViewDelegate {
 
 // MARK: Layout
 
-extension HomeViewController {
+extension TempHomeViewController {
     private func createBannerLayout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
@@ -740,18 +744,10 @@ extension HomeViewController {
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
                 print(itemIdentifier)
-
-//                cell.drawCell(data: itemIdentifier)
+                cell.drawCell(data: itemIdentifier)
                 return cell
             }
         )
-    }
-    
-    private func configureScheduledToOpenProductSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<ScheduledToOpenProductSection, ScheduledToOpenProductItem>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(ScheduledToOpenProductData.list, toSection: .main)
-        scheduledToOpenProductDatasource?.apply(snapshot)
     }
     
     private func configureGoodCostProductDatasource() {

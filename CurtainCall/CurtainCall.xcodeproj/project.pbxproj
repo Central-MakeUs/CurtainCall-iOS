@@ -31,6 +31,9 @@
 		EE0283212A98A7E3008F8100 /* CreateLostItemBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */; };
 		EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283232A98C90F008F8100 /* LostItemResponse.swift */; };
 		EE0283262A98DFCB008F8100 /* LostItemDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283252A98DFCB008F8100 /* LostItemDetailResponse.swift */; };
+		EE0283292A98F801008F8100 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283282A98F801008F8100 /* HomeService.swift */; };
+		EE02832C2A98FCDF008F8100 /* OpenShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */; };
+		EE02832E2A98FF83008F8100 /* TempHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -251,6 +254,9 @@
 		EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLostItemBody.swift; sourceTree = "<group>"; };
 		EE0283232A98C90F008F8100 /* LostItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemResponse.swift; sourceTree = "<group>"; };
 		EE0283252A98DFCB008F8100 /* LostItemDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailResponse.swift; sourceTree = "<group>"; };
+		EE0283282A98F801008F8100 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenShowResponse.swift; sourceTree = "<group>"; };
+		EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHomeViewController.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -531,6 +537,22 @@
 			path = FavoriteService;
 			sourceTree = "<group>";
 		};
+		EE0283272A98F7F3008F8100 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE0283282A98F801008F8100 /* HomeService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE02832A2A98FCCB008F8100 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE02832B2A98FCDF008F8100 /* OpenShowResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EE0669D92A7E0943000C8296 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +788,8 @@
 		EE3F2FE52A5811A500BC539C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE02832A2A98FCCB008F8100 /* Model */,
+				EE0283272A98F7F3008F8100 /* Service */,
 				EE0283052A979255008F8100 /* ViewModel */,
 				EE3F2FE62A5811AC00BC539C /* View */,
 			);
@@ -775,10 +799,11 @@
 		EE3F2FE62A5811AC00BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE3F2FE72A5811BA00BC539C /* HomeViewController.swift */,
 				EEA132302A7FE2E50016D01A /* Model */,
 				EEA1322B2A7FCAFC0016D01A /* Cell */,
 				EEA132292A7FCAED0016D01A /* Header */,
-				EE3F2FE72A5811BA00BC539C /* HomeViewController.swift */,
+				EE02832D2A98FF83008F8100 /* TempHomeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1631,6 +1656,7 @@
 				EE9A88552A83D3F10085F816 /* ScheduledToOpenProductCell.swift in Sources */,
 				EE0283092A979A86008F8100 /* MyRecruitmentResponse.swift in Sources */,
 				EE0283122A986F4C008F8100 /* IsFavoriteResponse.swift in Sources */,
+				EE02832C2A98FCDF008F8100 /* OpenShowResponse.swift in Sources */,
 				EE0283102A97C652008F8100 /* MyPageEditViewModel.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,
@@ -1695,6 +1721,7 @@
 				EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */,
 				EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */,
 				EE5251E42A8E63B3003DFEE3 /* MyParticipationViewModel.swift in Sources */,
+				EE0283292A98F801008F8100 /* HomeService.swift in Sources */,
 				EEA1322D2A7FCB530016D01A /* HomeBannerHeaderView.swift in Sources */,
 				EE93AA2F2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift in Sources */,
 				EE9A88532A83C30A0085F816 /* Top10Data.swift in Sources */,
@@ -1734,6 +1761,7 @@
 				EE0283172A987BFF008F8100 /* WeekDayAPI.swift in Sources */,
 				EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */,
 				EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */,
+				EE02832E2A98FF83008F8100 /* TempHomeViewController.swift in Sources */,
 				EEA944462A5D5FA20081E784 /* PartyMemberOtherViewController.swift in Sources */,
 				EEE8F0F62A56FFF600E31597 /* NicknameSettingViewModel.swift in Sources */,
 				EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */,

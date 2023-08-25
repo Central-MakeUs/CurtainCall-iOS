@@ -120,7 +120,7 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImage.snp.bottom).offset(10)
-            $0.left.equalToSuperview().offset(12)
+            $0.horizontalEdges.equalToSuperview().inset(12)
         }
         bottomStackView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(12)
@@ -130,13 +130,31 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
         
     }
     
-    func drawCell(data: ScheduledToOpenProductData) {
-        posterImage.image = data.posterImage
-        titleLabel.text = data.title
-        averageLabel.text = String(format: "%.1f", data.average)
-        dayLabel.text = "D-\(data.day)"
-        countLabel.text = "(\(data.count))"
+    func drawCell(data: OpenShowContent) {
+        if let url = URL(string: data.poster) {
+            posterImage.kf.setImage(with: url)
+            posterImage.kf.indicatorType = .activity
+        } else {
+            posterImage.image = nil
+        }
+        titleLabel.text = data.name
+        if data.reviewCount == 0 && data.reviewGradeSum == 0 {
+            averageLabel.text = "0"
+        } else {
+            averageLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
+        }
         
+        dayLabel.text = "D-\(dateDiff(startDateString: data.startDate) ?? 0)"
+        countLabel.text = "(\(Int(data.reviewCount)))"
+        
+    }
+    
+    private func dateDiff(startDateString: String) -> Int? {
+        guard let startDate = startDateString.convertYearMonthDayDashStringToDate() else {
+            return nil
+        }
+        let diff = Calendar.current.dateComponents([.day], from: Date(), to: startDate)
+        return diff.day
     }
     
 }
