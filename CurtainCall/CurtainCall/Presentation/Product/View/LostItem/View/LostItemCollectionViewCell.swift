@@ -101,11 +101,23 @@ final class LostItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func drawUI(item: LostItemInfo) {
-        itemImageView.image = item.image
-        itemTitleLabel.text = item.name
-        getItemLocationLabel.text = "습득장소 | \(item.getLocation)"
-        getItemDateLabel.text = "습득일자 | \(item.date.convertToYearMonthDayString())"
+    func drawUI(item: LostItemContent) {
+        if let urlString = item.imageUrl, let url = URL(string: urlString) {
+            itemImageView.kf.setImage(with: url)
+            itemImageView.kf.indicatorType = .activity
+        } else {
+            itemImageView.image = nil
+        }
+        itemTitleLabel.text = item.title
+//        dateLabel.text = item.date.convertToYearMonthDayString()
+//        locationLabel.text = """
+//                             습득 장소ㅣ\(item.getLocation)
+//                             보관 장소ㅣ\(item.keepLocation)
+//                             """
+        getItemLocationLabel.text = """
+                             습득 장소ㅣ\(item.facilityName)
+                             """
+        getItemDateLabel.text = "습득일자 | \(item.foundDate)"
     }
     
 }

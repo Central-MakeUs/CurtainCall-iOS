@@ -53,6 +53,7 @@ final class LoginViewModel: LoginViewModelIO {
         
         if let crendential, let token = crendential.identityToken {
             useCase.loginWithApple(token: token)
+            
                 .sink { [weak self] completion in
                     switch completion {
                     case .finished:

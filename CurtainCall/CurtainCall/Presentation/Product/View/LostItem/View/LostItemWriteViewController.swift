@@ -102,11 +102,11 @@ final class LostItemWriteViewController: UIViewController {
         return view
     }()
     
-    private let getLocationPlaceHoldeLabel: UILabel = {
+    private lazy var getLocationPlaceHoldeLabel: UILabel = {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = "습득장소가 나오는 곳~"
+        label.text = name
         return label
     }()
     
@@ -362,10 +362,16 @@ final class LostItemWriteViewController: UIViewController {
     
     private let viewModel: LostItemWriteViewModel
     private var cancellables = Set<AnyCancellable>()
+    private let id: String
+    private let name: String
+
+    // MARK: - Lifecycles
     
     // MARK: Life Cycle
     
-    init(viewModel: LostItemWriteViewModel) {
+    init(id: String, name: String, viewModel: LostItemWriteViewModel) {
+        self.id = id
+        self.name = name
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -773,6 +779,7 @@ final class LostItemWriteViewController: UIViewController {
         addFileView.isHidden = false
         addFileDescriptionLabel.isHidden = false
         viewModel.isAddFile = false
+        viewModel.imageID = nil
     }
     
     @objc
@@ -782,6 +789,10 @@ final class LostItemWriteViewController: UIViewController {
     
     @objc
     private func completeButtonTouchUpInside() {
+        guard let title = titleTextField.text,
+              let particulars = otherTextView.text else { return }
+        
+        viewModel.uploadLostItem(title: title, id: id, detail: detailLocationTextField.text, particulars: particulars)
         navigationController?.navigationBar.isHidden = true
         navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
     }
@@ -858,7 +869,7 @@ extension LostItemWriteViewController: LostItemViewDelegate {
         categoryPlaceHoldeLabel.text = categoryType.name
         categoryPlaceHoldeLabel.textColor = .body1
         viewModel.isCategoryWrite = true
-        
+        viewModel.selectCategory = categoryType
     }
 }
 
@@ -914,8 +925,10 @@ extension LostItemWriteViewController: UIImagePickerControllerDelegate & UINavig
             photoImageView.image = image
             addFileView.isHidden = true
             addFileDescriptionLabel.isHidden = true
-            viewModel.addFile()
-            dismiss(animated: true)
+            if let data = image.jpegData(compressionQuality: 0.7) {
+                viewModel.addFile(data: data)
+                dismiss(animated: true)
+            }
         }
     }
 }

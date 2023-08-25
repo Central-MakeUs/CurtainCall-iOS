@@ -29,6 +29,7 @@
 		EE02831D2A989AEA008F8100 /* FacilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02831C2A989AEA008F8100 /* FacilityResponse.swift */; };
 		EE02831F2A98A7B7008F8100 /* LostItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02831E2A98A7B7008F8100 /* LostItemService.swift */; };
 		EE0283212A98A7E3008F8100 /* CreateLostItemBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */; };
+		EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283232A98C90F008F8100 /* LostItemResponse.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -247,6 +248,7 @@
 		EE02831C2A989AEA008F8100 /* FacilityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityResponse.swift; sourceTree = "<group>"; };
 		EE02831E2A98A7B7008F8100 /* LostItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemService.swift; sourceTree = "<group>"; };
 		EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLostItemBody.swift; sourceTree = "<group>"; };
+		EE0283232A98C90F008F8100 /* LostItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemResponse.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -1225,6 +1227,7 @@
 				EE0283112A986F4C008F8100 /* IsFavoriteResponse.swift */,
 				EE02831C2A989AEA008F8100 /* FacilityResponse.swift */,
 				EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */,
+				EE0283232A98C90F008F8100 /* LostItemResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1745,6 +1748,7 @@
 				EE8437BA2A81280D00ADD3D8 /* HomeMyProductData.swift in Sources */,
 				EE5251BE2A8E5BDC003DFEE3 /* Secret.swift in Sources */,
 				EEA944372A5C03130081E784 /* PartyType.swift in Sources */,
+				EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
 				EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */,
 				EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */,

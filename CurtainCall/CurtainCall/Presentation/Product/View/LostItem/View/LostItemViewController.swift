@@ -150,21 +150,32 @@ final class LostItemViewController: UIViewController {
     }()
     
     // MARK: - Properties
-//    typealias Datasource = UICollectionViewDiffableDataSource<
     enum Section { case main }
-    typealias Item = LostItemInfo
+    typealias Item = LostItemContent
     typealias Datasource = UICollectionViewDiffableDataSource<Section, Item>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     
     private var datasource: Datasource?
-    
+    private let id: String
+    private let name: String
+
     // MARK: - Lifecycles
+    
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         addTargets()
-        requestItem()
+//        requestItem()
     }
     
     // MARK: - Helpers
@@ -287,12 +298,12 @@ final class LostItemViewController: UIViewController {
         )
     }
     
-    private func requestItem() {
-        var snapshot = Snapshot()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(LostItemInfo.list, toSection: .main)
-        datasource?.apply(snapshot)
-    }
+//    private func requestItem() {
+//        var snapshot = Snapshot()
+//        snapshot.appendSections([.main])
+//        snapshot.appendItems(LostItemInfo.list, toSection: .main)
+//        datasource?.apply(snapshot)
+//    }
     
     private func addTargets() {
         lostedButton.addTarget(
@@ -340,7 +351,14 @@ final class LostItemViewController: UIViewController {
 //        present(writeViewController, animated: true)
 //        
         // MARK: Case2
-        navigationController?.pushViewController(LostItemWriteViewController(viewModel: LostItemWriteViewModel()), animated: true)
+        navigationController?.pushViewController(
+            LostItemWriteViewController(
+                id: id,
+                name: name,
+                viewModel: LostItemWriteViewModel()
+            ),
+            animated: true
+        )
     }
 }
 
@@ -349,7 +367,7 @@ extension LostItemViewController: UICollectionViewDelegate {
         guard let item = datasource?.itemIdentifier(for: indexPath) else {
             return
         }
-        let detailViewController = LostItemDetailViewController(item: item)
+        let detailViewController = LostItemDetailViewController(id: 1)
         navigationController?.pushViewController(detailViewController, animated: true)
         
     }

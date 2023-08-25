@@ -34,7 +34,7 @@ final class DetailLostItemView: UIView {
         return button
     }()
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,9 +43,24 @@ final class DetailLostItemView: UIView {
         return tableView
     }()
     
+    private let emptyView = UIView()
+    private let emptyImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.emptyMarks)
+        return imageView
+    }()
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = .body1
+        label.textColor = .hexBEC2CA
+        label.text = "아직 분실물이 없어요!"
+        return label
+    }()
+    
     // MARK: Property
     
     weak var delegate: DetailLostItemViewDelegate?
+    var lostItems: [LostItemContent] = []
     
     // MARK: Life Cycle
     
@@ -98,11 +113,47 @@ final class DetailLostItemView: UIView {
     private func allViewButtonTouchUpInside() {
         delegate?.didTappedLostViewInAllViewButton()
     }
+    
+    func setTableView() {
+        tableView.snp.remakeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(17)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(min(lostItems.count, 3) * 95)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    func setEmptyView() {
+        addSubview(emptyView)
+        emptyView.addSubviews(emptyImage, emptyLabel)
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(250)
+        }
+        emptyImage.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-10)
+        }
+        emptyLabel.snp.makeConstraints {
+            $0.top.equalTo(emptyImage.snp.bottom).offset(18)
+            $0.centerX.equalToSuperview()
+            
+        }
+        tableView.snp.remakeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(0)
+        }
+
+        setNeedsLayout()
+    }
 }
 
 extension DetailLostItemView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(3, LostItemInfo.list.count)
+        return min(3, lostItems.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,7 +161,7 @@ extension DetailLostItemView: UITableViewDataSource {
             withIdentifier: LostItemCell.identifier) as? LostItemCell else {
             return UITableViewCell()
         }
-        cell.draw(item: LostItemInfo.list[indexPath.row])
+        cell.draw(item: lostItems[indexPath.row])
         return cell
     }
 }
@@ -177,13 +228,21 @@ final class LostItemCell: UITableViewCell {
     }
     
     
-    func draw(item: LostItemInfo) {
-        itemImageView.image = item.image
-        itemLabel.text = item.name
-        dateLabel.text = item.date.convertToYearMonthDayString()
+    func draw(item: LostItemContent) {
+        if let urlString = item.imageUrl, let url = URL(string: urlString) {
+            itemImageView.kf.setImage(with: url)
+            itemImageView.kf.indicatorType = .activity
+        } else {
+            itemImageView.image = nil
+        }
+        itemLabel.text = item.title
+//        dateLabel.text = item.date.convertToYearMonthDayString()
+//        locationLabel.text = """
+//                             습득 장소ㅣ\(item.getLocation)
+//                             보관 장소ㅣ\(item.keepLocation)
+//                             """
         locationLabel.text = """
-                             습득 장소ㅣ\(item.getLocation)
-                             보관 장소ㅣ\(item.keepLocation)
+                             습득 장소ㅣ\(item.facilityName)
                              """
     }
     

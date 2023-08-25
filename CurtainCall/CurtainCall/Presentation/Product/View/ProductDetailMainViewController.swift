@@ -628,6 +628,7 @@ final class ProductDetailMainViewController: UIViewController {
                     product = data
                     detailInfoView.showTime = data.showTimes
                     requestFacility(id: data.facilityId)
+                    requestLostItem(id: data.facilityId)
                     draw(data: data)
                 } else {
                     print("@@DECODE ERROR")
@@ -691,6 +692,31 @@ final class ProductDetailMainViewController: UIViewController {
 
     }
     
+    private func requestLostItem(id: String) {
+        let provider = MoyaProvider<LostItemService>()
+        
+        provider.requestPublisher(.list(page: 0, size: 20, id: id, type: nil, date: nil, title: nil))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(LostItemResponse.self) {
+                    if data.content.isEmpty {
+                        self?.detailLostItemView.setEmptyView()
+                    } else {
+                        self?.detailLostItemView.lostItems = data.content
+                        self?.detailLostItemView.setTableView()
+                        self?.detailLostItemView.tableView.reloadData()
+                    }
+                } else {
+                    
+                }
+            }.store(in: &subscriptions)
+
+    }
+    
     private func draw(data: ProductDetailResponse) {
         print("### Detail DATA: ", data)
         titleLabel.text = data.name
@@ -725,6 +751,8 @@ extension ProductDetailMainViewController: DetailReviewViewDelegate {
 
 extension ProductDetailMainViewController: DetailLostItemViewDelegate {
     func didTappedLostViewInAllViewButton() {
-        show(LostItemViewController(), sender: nil)
+        guard let id = product?.facilityId, let name = product?.facilityName else { return }
+        
+        show(LostItemViewController(id: id, name: name), sender: nil)
     }
 }

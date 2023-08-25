@@ -18,7 +18,7 @@ enum LostType: String {
 
 enum LostItemService {
     case create(body: CreateLostItemBody)
-    case list(page: Int, size: Int, id: Int, type: LostType, date: String, title: String)
+    case list(page: Int, size: Int, id: String, type: LostType?, date: String?, title: String?)
     case detail(id: Int)
     case delete(id: Int)
     case update(id: Int, body: CreateLostItemBody)
@@ -78,9 +78,9 @@ extension LostItemService: TargetType {
             param.updateValue(page, forKey: "page")
             param.updateValue(size, forKey: "size")
             param.updateValue(id, forKey: "id")
-            param.updateValue(type, forKey: "type")
-            param.updateValue(date, forKey: "date")
-            param.updateValue(title, forKey: "title")
+            if let type { param.updateValue(type, forKey: "type") }
+            if let date { param.updateValue(date, forKey: "date") }
+            if let title { param.updateValue(title, forKey: "title") }
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         case .detail:
             return .requestPlain

@@ -31,7 +31,6 @@ final class LostItemDetailViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
-        imageView.image = item.image
         return imageView
     }()
     
@@ -51,7 +50,7 @@ final class LostItemDetailViewController: UIViewController {
     
     private lazy var itemNameLabel: UILabel = {
         let label = UILabel()
-        label.text = item.name
+        
         label.textColor = .white
         label.font = .subTitle4
         return label
@@ -108,7 +107,7 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = item.getLocation
+        
         return label
     }()
     
@@ -132,7 +131,7 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = item.getLocation
+        
         return label
     }()
     
@@ -156,7 +155,7 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = item.date.convertToYearMonthDayString()
+        
         return label
     }()
     
@@ -180,7 +179,6 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body1
         label.textColor = .body1
-        label.text = item.date.convertToYearMonthDayHourMinString()
         return label
     }()
     
@@ -231,7 +229,7 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "SpoqaHanSansNeo-Regular", size: 14)
         label.textColor = UIColor(rgb: 0x636363)
-        label.text = "보관장소   \(item.keepLocation)"
+//        label.text = "보관장소   \(item.keepLocation)"
         return label
     }()
     
@@ -239,18 +237,18 @@ final class LostItemDetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "SpoqaHanSansNeo-Regular", size: 14)
         label.textColor = UIColor(rgb: 0x636363)
-        label.text = "전화번호   02-1234-5678"
+//        label.text = "전화번호   02-1234-5678"
         return label
     }()
     
     // MARK: Property
     
-    private let item: LostItemInfo
+    private let id: Int
     
     // MARK: Life Cycle
     
-    init(item: LostItemInfo) {
-        self.item = item
+    init(id: Int) {
+        self.id = id
         super.init(nibName: nil, bundle: nil)
     }
     

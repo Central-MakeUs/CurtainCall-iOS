@@ -31,4 +31,26 @@ enum LostItemCategoryType: Int {
         case .other: return "기타"
         }
     }
+    
+    var apiName: String {
+        switch self {
+        case .bag: return "BAG"
+        case .wallet:
+            return "WALLET"
+        case .cash:
+            return "CASH"
+        case .card:
+            return "CARD"
+        case .jewel:
+            return "JEWELRY"
+        case .phone:
+            return "ELECTRONIC_EQUIPMENT"
+        case .book:
+            return "BOOK"
+        case .clothes:
+            return "CLOTHING"
+        case .other:
+            return "ETC"
+        }
+    }
 }
