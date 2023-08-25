@@ -234,16 +234,18 @@ final class ProductSearchCell: UICollectionViewCell {
     
     private func configureConstraints() {
         posterImageView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.equalToSuperview().offset(24)
+            $0.leading.equalToSuperview()
             $0.height.equalTo(160)
             $0.width.equalTo(120)
         }
         keepButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview()
+            $0.top.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview()
         }
         productTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().inset(40)
+            $0.trailing.equalToSuperview().inset(25)
             $0.top.equalTo(posterImageView.snp.top)
         }
         starStackView.snp.makeConstraints {
@@ -252,16 +254,22 @@ final class ProductSearchCell: UICollectionViewCell {
         }
         infoStackView.snp.makeConstraints {
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview()
             $0.top.equalTo(starStackView.snp.bottom).offset(8)
         }
         borderView.snp.makeConstraints {
-            $0.top.equalTo(infoStackView.snp.bottom).offset(28)
+            $0.top.equalTo(posterImageView.snp.bottom).offset(24)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
         [duringLabel, runningTimeLabel, scheduleLabel, scheduleSubLabel, locationLabel].forEach {
             $0.snp.makeConstraints { make in
                 make.width.equalTo(25)
+            }
+        }
+        [productDuringLabel, productRunningTimeLabel, productScheduleLabel, productScheduleSubLabel, productLocationLabel].forEach {
+            $0.snp.makeConstraints {
+                $0.trailing.equalToSuperview().inset(5)
             }
         }
     }
@@ -283,9 +291,21 @@ final class ProductSearchCell: UICollectionViewCell {
         productDuringLabel.text = item.startDate + " ~ " + item.endDate
         productRunningTimeLabel.text = item.runtime.isEmpty ? "정보 없음" : item.runtime
         keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(item.id)
-//        productScheduleLabel.text = item.schedule
-//        productScheduleSubLabel.text = item.subschedule
+        let timeInfo = showTimeToDict(showTiems: item.showTimes)
+        print("### timeINfo", timeInfo)
+        if timeInfo.count >= 2 {
+            productScheduleLabel.text = timeInfo[0]
+            productScheduleSubLabel.text = timeInfo[1]
+            scheduleSubStackView.isHidden = false
+        } else if timeInfo.count == 1 {
+            productScheduleLabel.text = timeInfo[0]
+            scheduleSubStackView.isHidden = true
+        } else {
+            productScheduleLabel.text = "정보 없음"
+            scheduleSubStackView.isHidden = true
+        }
         productLocationLabel.text = item.facilityName
+        
     }
     
     @objc
@@ -293,5 +313,22 @@ final class ProductSearchCell: UICollectionViewCell {
         guard let id else { return }
         keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(id)
 
+    }
+    
+    func showTimeToDict(showTiems: [ProductListShowTime]) -> [String] {
+        var timeDict: [String: [(String, Int)]] = [:]
+        showTiems.forEach {
+            let time = $0.time.split(separator: ":").prefix(2).joined(separator: ":")
+            guard let week = WeekDayAPI(rawValue: $0.dayOfWeek) else {
+                return
+            }
+            timeDict[time, default: []].append(week.KRname)
+        }
+        var result: [String] = []
+        timeDict.forEach {
+            let sortedWeek = $0.value.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ",")
+            result.append(sortedWeek + " " +  $0.key)
+        }
+        return result
     }
 }

@@ -73,37 +73,36 @@ final class ProductViewController: UIViewController {
         return button
     }()
     
-    private let reservationDotView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pointColor2
-        view.layer.cornerRadius = 2
-        return view
+    private let reservationImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.productSearchSortIcon)
+        return imageView
     }()
     
     private let reservationOrderButton: UIButton = {
         let button = UIButton()
-        button.setTitle("예매율순", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.setTitleColor(.body1, for: .selected)
-        button.setTitleColor(.hexBEC2CA, for: .normal)
+        button.setTitle("별점순", for: .normal)
+        button.titleLabel?.font = .body1
+        button.setTitleColor(.body1, for: .normal)
+        
         return button
     }()
     
-    private let dictionaryOrderDotView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pointColor2
-        view.layer.cornerRadius = 2
-        return view
-    }()
-    
-    private let dictionaryOrderButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("가나다순", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.setTitleColor(.body1, for: .selected)
-        button.setTitleColor(.hexBEC2CA, for: .normal)
-        return button
-    }()
+//    private let dictionaryOrderDotView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .pointColor2
+//        view.layer.cornerRadius = 2
+//        return view
+//    }()
+//
+//    private let dictionaryOrderButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("가나다순", for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
+//        button.setTitleColor(.body1, for: .selected)
+//        button.setTitleColor(.hexBEC2CA, for: .normal)
+//        return button
+//    }()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
@@ -158,8 +157,8 @@ final class ProductViewController: UIViewController {
     
     private func configureSubviews() {
         view.addSubviews(
-            titleLabel, descriptionLabel, categoryView, collectionView, reservationDotView,
-            reservationOrderButton, dictionaryOrderDotView, dictionaryOrderButton
+            titleLabel, descriptionLabel, categoryView, collectionView, reservationOrderButton,
+            reservationImageView
         )
         categoryView.addSubview(categoryStackView)
         categoryStackView.addArrangedSubviews(theaterButton, musicalButton)
@@ -183,28 +182,32 @@ final class ProductViewController: UIViewController {
             $0.edges.equalToSuperview().inset(4)
         }
         
-        reservationDotView.snp.makeConstraints {
-            $0.height.width.equalTo(4)
+//        reservationDotView.snp.makeConstraints {
+//            $0.height.width.equalTo(4)
+//            $0.top.equalTo(categoryView.snp.bottom).offset(24)
+//            $0.leading.equalToSuperview().offset(24)
+//        }
+//
+        reservationOrderButton.snp.makeConstraints {
             $0.top.equalTo(categoryView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(24)
         }
-        
-        reservationOrderButton.snp.makeConstraints {
-            $0.centerY.equalTo(reservationDotView)
-            $0.leading.equalTo(reservationDotView.snp.trailing).offset(4)
+        reservationImageView.snp.makeConstraints {
+            $0.centerY.equalTo(reservationOrderButton)
+            $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(6)
         }
-        dictionaryOrderDotView.snp.makeConstraints {
-            $0.height.width.equalTo(4)
-            $0.centerY.equalTo(reservationDotView)
-            $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(10)
-        }
-        
-        dictionaryOrderButton.snp.makeConstraints {
-            $0.centerY.equalTo(dictionaryOrderDotView)
-            $0.leading.equalTo(dictionaryOrderDotView.snp.trailing).offset(4)
-        }
+//        dictionaryOrderDotView.snp.makeConstraints {
+//            $0.height.width.equalTo(4)
+//            $0.centerY.equalTo(reservationDotView)
+//            $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(10)
+//        }
+//
+//        dictionaryOrderButton.snp.makeConstraints {
+//            $0.centerY.equalTo(dictionaryOrderDotView)
+//            $0.leading.equalTo(dictionaryOrderDotView.snp.trailing).offset(4)
+//        }
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(12)
+            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-90)
         }
@@ -216,14 +219,14 @@ final class ProductViewController: UIViewController {
             heightDimension: .estimated(200)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.edgeSpacing = .init(leading: nil, top: .fixed(28), trailing: nil, bottom: nil)
+        item.edgeSpacing = .init(leading: nil, top: nil, trailing: nil, bottom: nil)
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .estimated(200)
         )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: -28, leading: 24, bottom: 0, trailing: 24)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -255,7 +258,7 @@ final class ProductViewController: UIViewController {
         [theaterButton, musicalButton].forEach {
             $0.addTarget(self, action: #selector(typeButtonTouchUpInside), for: .touchUpInside)
         }
-        [reservationOrderButton, dictionaryOrderButton].forEach {
+        [reservationOrderButton].forEach {
             $0.addTarget(
                 self,
                 action: #selector(orderSelectButtonTouchUpInside),
@@ -280,12 +283,7 @@ final class ProductViewController: UIViewController {
     
     @objc
     private func orderSelectButtonTouchUpInside(_ sender: UIButton) {
-        [reservationOrderButton, dictionaryOrderButton].forEach {
-            $0.isSelected = sender == $0
-            $0.isUserInteractionEnabled = !(sender == $0)
-        }
-        reservationDotView.alpha = sender == reservationOrderButton ? 1 : 0
-        dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
+        
     }
     
     private func bind() {

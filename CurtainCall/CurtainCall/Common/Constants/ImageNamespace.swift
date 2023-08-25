@@ -136,4 +136,6 @@ enum ImageNamespace {
     static let emptyMarks = "empty_marks"
     
     static let defaultProfile = "default_profile"
+    
+    static let productSearchSortIcon = "product_search_sort_icon"
 }
