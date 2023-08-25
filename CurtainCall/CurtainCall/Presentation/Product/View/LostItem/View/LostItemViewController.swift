@@ -93,7 +93,7 @@ final class LostItemViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: [Date()])
+        let calendarView = CalendarView(isSectableDates: [])
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
             color: UIColor(rgb: 0x273041),
@@ -153,6 +153,21 @@ final class LostItemViewController: UIViewController {
         return collectionView
     }()
     
+    private let facilityView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pointColor2?.withAlphaComponent(0.2)
+        view.layer.cornerRadius = 6
+        return view
+    }()
+    private lazy var facilityLabel: UILabel = {
+        let label = UILabel()
+        label.font = .subTitle4
+        label.textColor = .pointColor2
+        label.text = name
+        label.textAlignment = .center
+        return label
+    }()
+    
     // MARK: - Properties
     enum Section { case main }
     typealias Item = LostItemContent
@@ -163,6 +178,8 @@ final class LostItemViewController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     private let id: String
     private let name: String
+    var selectedCategory: LostItemCategoryType?
+    var selectedDate: Date?
 
     // MARK: - Lifecycles
     
@@ -180,7 +197,7 @@ final class LostItemViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
-        requestLostItem()
+        requestLostItem(page: 0, type: nil, date: nil, title: nil)
 //        requestItem()
     }
     
@@ -198,7 +215,8 @@ final class LostItemViewController: UIViewController {
         view.addSubviews(
             topView, collectionView, emptyView, calendarView, lostItemCategoryView, writeButton, emptyView
         )
-        topView.addSubviews(filterStackView)
+        topView.addSubviews(filterStackView, facilityView)
+        facilityView.addSubview(facilityLabel)
         filterStackView.addArrangedSubviews(lostedDateView, categoryView)
         lostedDateView.addSubviews(lostedButton, lostedLabel, lostedExpandImageView)
         categoryView.addSubviews(categoryButton, categoryLabel, categoryExpandImageView)
@@ -208,11 +226,20 @@ final class LostItemViewController: UIViewController {
         topView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(74)
+        }
+        facilityView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(5)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(38)
+        }
+        facilityLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(12)
         }
         filterStackView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalTo(facilityView.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(12)
         }
         lostedDateView.snp.makeConstraints {
             $0.height.equalTo(42)
@@ -311,9 +338,9 @@ final class LostItemViewController: UIViewController {
 //        datasource?.apply(snapshot)
 //    }
     
-    private func requestLostItem() {
+    private func requestLostItem(page: Int, type: LostItemCategoryType?, date: String?, title: String?) {
         let provider = MoyaProvider<LostItemService>()
-        provider.requestPublisher(.list(page: 0, size: 0, id: id, type: nil, date: nil, title: nil))
+        provider.requestPublisher(.list(page: page, size: 999, id: id, type: type, date: date, title: title))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
@@ -372,12 +399,6 @@ final class LostItemViewController: UIViewController {
     }
     
     private func moveToWriteView() {
-        // MARK: Case 1
-//        let writeViewController = UINavigationController(rootViewController: LostItemWriteViewController())
-//        writeViewController.modalPresentationStyle = .overFullScreen
-//        present(writeViewController, animated: true)
-//        
-        // MARK: Case2
         navigationController?.pushViewController(
             LostItemWriteViewController(
                 id: id,
@@ -404,9 +425,11 @@ extension LostItemViewController: CalendarViewDelegate {
     func selectedCalendar(date: Date) {
         calendarView.isHidden = true
         lostedDateView.layer.borderWidth = 0
+        selectedDate = date
         lostedLabel.text = date.convertToYearMonthDayString()
         lostedLabel.textColor = .body1
-        
+        let apiDateString = date.convertToAPIDateYearMonthDayString()
+        requestLostItem(page: 0, type: selectedCategory ?? nil , date: apiDateString, title: nil)
     }
 }
 
@@ -416,5 +439,8 @@ extension LostItemViewController: LostItemViewDelegate {
         categoryLabel.text = categoryType.name
         categoryView.layer.borderWidth = 0
         categoryLabel.textColor = .body1
+        selectedCategory = categoryType
+        let date = selectedDate == nil ? nil : selectedDate!.convertToAPIDateYearMonthDayString()
+        requestLostItem(page: 0, type: categoryType , date: date, title: nil)
     }
 }

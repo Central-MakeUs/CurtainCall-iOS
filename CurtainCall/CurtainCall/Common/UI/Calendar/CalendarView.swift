@@ -269,7 +269,7 @@ final class CalendarView: UIView, CalendarDelegate {
                     isSunday: day % 7 == 0,
                     isSaturday: day % 7 == 6,
                     isSelected: selectedDate == date,
-                    isSelectable: dateDict[date.convertToYearMonthDayString()] != nil
+                    isSelectable: dateDict[date.convertToYearMonthDayString()] != nil || isSectableDates.isEmpty
                 )
                 )
             }
@@ -307,7 +307,7 @@ extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dataSource,
             let item = dataSource.itemIdentifier(for: indexPath),
-              let date = item.date, dateDict[date.convertToYearMonthDayString()] != nil
+              let date = item.date
         else { return }
         selectedDate = date
         days = days.map { Item(

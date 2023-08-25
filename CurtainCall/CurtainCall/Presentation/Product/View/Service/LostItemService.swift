@@ -18,7 +18,7 @@ enum LostType: String {
 
 enum LostItemService {
     case create(body: CreateLostItemBody)
-    case list(page: Int, size: Int, id: String, type: LostType?, date: String?, title: String?)
+    case list(page: Int, size: Int, id: String, type: LostItemCategoryType?, date: String?, title: String?)
     case detail(id: Int)
     case delete(id: Int)
     case update(id: Int, body: CreateLostItemBody)
@@ -64,9 +64,7 @@ extension LostItemService: TargetType {
             param.updateValue(body.title, forKey: "title")
             param.updateValue(body.type, forKey: "type")
             param.updateValue(body.facilityId, forKey: "facilityId")
-            if let foundPlaceDetail = body.foundPlaceDetail {
-                param.updateValue(foundPlaceDetail, forKey: "foundPlaceDetail")
-            }
+            param.updateValue(body.foundPlaceDetail, forKey: "foundPlaceDetail")
             param.updateValue(body.foundDate, forKey: "foundDate")
             if let foundTime = body.foundTime {
                 param.updateValue(foundTime, forKey: "foundTime")
@@ -77,9 +75,9 @@ extension LostItemService: TargetType {
         case .list(let page, let size, let id, let type, let date, let title):
             param.updateValue(page, forKey: "page")
             param.updateValue(size, forKey: "size")
-            param.updateValue(id, forKey: "id")
-            if let type { param.updateValue(type, forKey: "type") }
-            if let date { param.updateValue(date, forKey: "date") }
+            param.updateValue(id, forKey: "facilityId")
+            if let type { param.updateValue(type.apiName, forKey: "type") }
+            if let date { param.updateValue(date, forKey: "foundDate") }
             if let title { param.updateValue(title, forKey: "title") }
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         case .detail:

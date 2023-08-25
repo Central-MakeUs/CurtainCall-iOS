@@ -11,7 +11,7 @@ struct CreateLostItemBody: Encodable {
     let title: String
     let type: String
     let facilityId: String
-    let foundPlaceDetail: String?
+    let foundPlaceDetail: String
     let foundDate: String
     let foundTime: String?
     let particulars: String

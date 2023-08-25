@@ -80,7 +80,7 @@ final class LostItemWriteViewModel {
             title: title,
             type: type.apiName,
             facilityId: id,
-            foundPlaceDetail: detail,
+            foundPlaceDetail: detail ?? "",
             foundDate: foundDate.convertToAPIDateYearMonthDayString(),
             foundTime: foundTime,
             particulars: particulars == Constants.LOSTITEM_OTHER_CONTENT_PLACEHOLDER ? "없음" : particulars,
