@@ -196,6 +196,8 @@
 		EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB776372A6031B300BFCAAD /* CalendarCell.swift */; };
 		EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */; };
 		EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */; };
+		EEC5573C2A9B7794005CD281 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5573B2A9B7794005CD281 /* UILabel + Extension.swift */; };
+		EEC5573E2A9B7CCC005CD281 /* NotLoginPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5573D2A9B7CCC005CD281 /* NotLoginPopup.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED24A612A9B6B01000C3BA4 /* ReportService.swift */; };
@@ -420,6 +422,8 @@
 		EEB776372A6031B300BFCAAD /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		EEC441D32A76336300CD93BC /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
 		EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewModel.swift; sourceTree = "<group>"; };
+		EEC5573B2A9B7794005CD281 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		EEC5573D2A9B7CCC005CD281 /* NotLoginPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoginPopup.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -1332,6 +1336,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		EEC5573F2A9B7CD3005CD281 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				EEC5573D2A9B7CCC005CD281 /* NotLoginPopup.swift */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
 		EEC60A462A4AB262001DDC2A /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,6 +1417,7 @@
 				EE4B34312A66D3E300E6EB01 /* UIFont + Extension.swift */,
 				EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */,
 				EE5FDBF12A8CB06600376E26 /* KeychainWrapper + Extension.swift */,
+				EEC5573B2A9B7794005CD281 /* UILabel + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1480,6 +1493,7 @@
 				EEA132252A7F6D490016D01A /* AddFileView.swift */,
 				EE9A88682A8757320085F816 /* GuideCategoryButton.swift */,
 				EE02833C2A9929FE008F8100 /* TempMainTabBarController.swift */,
+				EEC5573F2A9B7CD3005CD281 /* Popup */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1745,6 +1759,7 @@
 				EE5DED0F2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift in Sources */,
 				EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */,
 				EE6127042A974EFD00961109 /* MyPageDetailResponse.swift in Sources */,
+				EEC5573C2A9B7794005CD281 /* UILabel + Extension.swift in Sources */,
 				EEF815512A73B2D5009C1C57 /* ProductReviewCell.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EE6127062A974F5300961109 /* UpdateMyPageBody.swift in Sources */,
@@ -1771,6 +1786,7 @@
 				EE0BEDDE2A495539008D9D05 /* AppDelegate.swift in Sources */,
 				EE02830B2A97ACDC008F8100 /* PartyDetailResponse.swift in Sources */,
 				EE5251EC2A8E63B3003DFEE3 /* MyRecruitmentEditViewController.swift in Sources */,
+				EEC5573E2A9B7CCC005CD281 /* NotLoginPopup.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
 				EE84FC842A94B450001134B5 /* FavoriteShowService.swift in Sources */,
 				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,

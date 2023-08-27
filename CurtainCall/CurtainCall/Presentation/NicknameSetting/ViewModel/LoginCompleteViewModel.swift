@@ -30,6 +30,7 @@ final class LoginCompleteViewModel {
                 if let data = try? response.map(SignUpResponse.self) {
                     self?.isSuccessSignUp.send(true)
                     KeychainWrapper.standard[.userID] = data.id
+                    KeychainWrapper.standard[.isGuestUser] = false
                 } else {
                     self?.isSuccessSignUp.send(false)
                 }

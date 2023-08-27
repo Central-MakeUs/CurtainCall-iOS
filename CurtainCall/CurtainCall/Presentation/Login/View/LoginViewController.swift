@@ -80,6 +80,15 @@ final class LoginViewController: UIViewController {
         return label
     }()
     
+    private let noLoginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("로그인 없이 시작하기", for: .normal)
+        button.setTitleColor(.pointColor2, for: .normal)
+        button.titleLabel?.setUnderline(range: NSRange(location: 0, length: button.titleLabel?.text?.count ?? 0))
+        button.titleLabel?.font = .body2
+        return button
+    }()
+    
     // MARK: - Properties
     
     private let viewModel: LoginViewModel
@@ -116,7 +125,7 @@ final class LoginViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .pointColor1
-        [loginButtonStackView, logoImageView, loginStart, contactLabel].forEach { view.addSubview($0) }
+        [loginButtonStackView, logoImageView, loginStart, contactLabel, noLoginButton].forEach { view.addSubview($0) }
         [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)
         }
@@ -125,26 +134,29 @@ final class LoginViewController: UIViewController {
     private func configureConstraints() {
         logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-100)
+            $0.centerY.equalToSuperview().offset(-120)
         }
         loginStart.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(100)
+            $0.centerY.equalToSuperview()
         }
         loginButtonStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(loginStart.snp.bottom).offset(14)
         }
-        contactLabel.snp.makeConstraints {
+        
+        noLoginButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(loginButtonStackView.snp.bottom).offset(62)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(100)
         }
+
     }
     
     private func addTargets() {
         [kakaoLoginButton, googleLoginButton, facebookLoginButton, appleLoginButton].forEach {
             $0.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
         }
+        noLoginButton.addTarget(self, action: #selector(noLoginButtonTouchUpInside), for: .touchUpInside)
     }
     
     private func bind() {
@@ -162,6 +174,7 @@ final class LoginViewController: UIViewController {
                 // 홈
                 if let id = loginInfo.1 {
                     KeychainWrapper.standard[.userID] = id
+                    KeychainWrapper.standard[.isGuestUser] = false
                     self?.changeRootViewController(TempMainTabBarController())
                 } else {
                     self?.pushToTermOfServiceViewController()
@@ -211,6 +224,15 @@ final class LoginViewController: UIViewController {
             fatalError("Invalid Button")
         }
         
+    }
+    
+    @objc
+    private func noLoginButtonTouchUpInside() {
+        KeychainWrapper.standard.remove(forKey: .accessToken)
+        KeychainWrapper.standard.remove(forKey: .refreshToken)
+        KeychainWrapper.standard.remove(forKey: .userID)
+        KeychainWrapper.standard[.isGuestUser] = true
+        changeRootViewController(TempMainTabBarController())
     }
 }
 
