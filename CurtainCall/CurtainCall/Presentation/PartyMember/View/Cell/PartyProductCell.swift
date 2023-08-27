@@ -301,13 +301,13 @@ final class PartyProductCell: UICollectionViewCell {
         dateLabel.text = item.createdAt.convertAPIDateToDateString()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
-        if let url = URL(string: item.showPoster) {
+        if let url = URL(string: item.showPoster ?? "") {
             posterImageView.kf.setImage(with: url)
         } else {
             posterImageView.image = nil
         }
-        dateBadgeLabel.text = item.showAt.convertAPIDateToDateString()
-        timeBadgeLabel.text = item.showAt.convertAPIDateToDateTime()
+        dateBadgeLabel.text = item.showAt?.convertAPIDateToDateString() ?? ""
+        timeBadgeLabel.text = item.showAt?.convertAPIDateToDateTime() ?? ""
 //        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
 //        timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.facilityName

@@ -311,6 +311,18 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
             .sink { [weak self] isValid in
                 self?.setNextButton(isSelected: isValid)
             }.store(in: &cancellables)
+    
+        viewModel.$isSuccessCreateParty
+            .sink { [weak self] isSuccess in
+                guard let self else { return }
+                if isSuccess {
+                    let completeViewController = PartyMemberWriteCompleteViewController()
+                    navigationController?.isNavigationBarHidden = true
+                    navigationController?.pushViewController(completeViewController, animated: true)
+                } else {
+                    // TODO: 실패
+                }
+            }.store(in: &cancellables)
     }
     
     private func setNextButton(isSelected: Bool) {
@@ -347,9 +359,7 @@ final class PartyMemberRecruitingContentViewController: UIViewController {
             category: partyType.rawValue
         )
         viewModel.requestCreateParty(body: body)
-        let completeViewController = PartyMemberWriteCompleteViewController()
-        navigationController?.isNavigationBarHidden = true
-        navigationController?.pushViewController(completeViewController, animated: true)
+        
     }
     
     @objc

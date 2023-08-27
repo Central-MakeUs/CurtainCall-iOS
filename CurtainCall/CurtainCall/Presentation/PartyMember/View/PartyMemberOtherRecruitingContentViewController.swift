@@ -287,6 +287,18 @@ final class PartyMemberOtherRecruitingContentViewController: UIViewController {
             .sink { [weak self] isValid in
                 self?.setNextButton(isSelected: isValid)
             }.store(in: &cancellables)
+        
+        viewModel.$isSuccessCreateParty
+            .sink { [weak self] isSuccess in
+                guard let self else { return }
+                if isSuccess {
+                    let completeViewController = PartyMemberWriteCompleteViewController()
+                    navigationController?.isNavigationBarHidden = true
+                    navigationController?.pushViewController(completeViewController, animated: true)
+                } else {
+                    // TODO: 실패
+                }
+            }.store(in: &cancellables)
     }
     
     private func setNextButton(isSelected: Bool) {
@@ -313,9 +325,32 @@ final class PartyMemberOtherRecruitingContentViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
-        let completeViewController = PartyMemberWriteCompleteViewController()
-        navigationController?.isNavigationBarHidden = true
-        navigationController?.pushViewController(completeViewController, animated: true)
+        guard let titleText = titleWriteTextField.text,
+              let content = contentTextView.text else { return }
+        if let date {
+            let showAt = date.convertToAPIDateYearMonthDayString() + "T00:00:00"
+            let body = CreatePartyBody(
+                showId: nil,
+                showAt: showAt,
+                title: titleText,
+                content: content,
+                maxMemberNum: count,
+                category: "ETC"
+            )
+            viewModel.requestCreateParty(body: body)
+        } else {
+            let body = CreatePartyBody(
+                showId: nil,
+                showAt: nil,
+                title: titleText,
+                content: content,
+                maxMemberNum: count,
+                category: "ETC"
+            )
+            viewModel.requestCreateParty(body: body)
+        }
+        
+    
     }
     
     @objc

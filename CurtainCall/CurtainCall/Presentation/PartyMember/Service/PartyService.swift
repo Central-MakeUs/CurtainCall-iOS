@@ -78,8 +78,15 @@ extension PartyAPI: TargetType {
         case .detail:
             return .requestPlain
         case .create(let body):
-            param.updateValue(body.showId, forKey: "showId")
-            param.updateValue(body.showAt, forKey: "showAt")
+            if body.category == "ETC" {
+                if let showAt = body.showAt {
+                    param.updateValue(showAt, forKey: "showAt")
+                }
+                
+            } else {
+                param.updateValue(body.showId ?? "", forKey: "showId")
+                param.updateValue(body.showAt ?? "", forKey: "showAt")
+            }
             param.updateValue(body.title, forKey: "title")
             param.updateValue(body.content, forKey: "content")
             param.updateValue(body.maxMemberNum, forKey: "maxMemberNum")

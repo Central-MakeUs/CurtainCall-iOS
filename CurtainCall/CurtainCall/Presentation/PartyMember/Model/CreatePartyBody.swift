@@ -8,8 +8,8 @@
 import Foundation
 
 struct CreatePartyBody: Encodable {
-    let showId: String
-    let showAt: String
+    let showId: String?
+    let showAt: String?
     let title: String
     let content: String
     let maxMemberNum: Int

@@ -209,7 +209,7 @@ final class PartyOtherCell: UICollectionViewCell {
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
         
-        dateBadgeLabel.text = "ShowAt Date"
+        dateBadgeLabel.text = item.showAt?.convertAPIDateToDateString() ?? "날짜 미정"
         
 //        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
 //        timeBadgeLabel.text = item.productDate.convertToHourMinString()
