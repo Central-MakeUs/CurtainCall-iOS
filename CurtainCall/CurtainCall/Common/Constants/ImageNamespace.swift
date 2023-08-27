@@ -45,6 +45,7 @@ enum ImageNamespace {
     
     static let partymemberProductCardSymbol = "partymember_product_card_symbol"
     static let partymemberProductFoodSymbol = "partymember_product_food_symbol"
+    static let partymemberProductOtherSymbol = "partymember_product_other_symbol"
     static let partymemberWriteButton = "partymember_write_button"
     static let partymemberCompleteSymbol = "partymember_complete_symbol"
     

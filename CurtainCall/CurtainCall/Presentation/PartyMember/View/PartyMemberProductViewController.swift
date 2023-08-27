@@ -36,6 +36,31 @@ final class PartyMemberProductViewController: UIViewController {
         return button
     }()
     
+    private let emptyView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .hexF5F6F8
+        
+        let emptyLabel: UILabel = {
+            let label = UILabel()
+            label.text = "모집 중인 파티원이 없어요!"
+            label.textColor = .hexBEC2CA
+            label.font = .body1
+            return label
+        }()
+        
+        let emptyImageView = UIImageView(image: UIImage(named: ImageNamespace.lostItemEmptyImage))
+        view.addSubviews(emptyImageView, emptyLabel)
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        emptyImageView.snp.makeConstraints {
+            $0.bottom.equalTo(emptyLabel.snp.top).offset(-18)
+            $0.centerX.equalToSuperview()
+        }
+        view.isHidden = true
+        return view
+    }()
+    
     // MARK: - Properties
     
     private enum Section { case main }
@@ -87,7 +112,7 @@ final class PartyMemberProductViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .hexF5F6F8
-        view.addSubviews(guideLabel, collectionView, writeButton)
+        view.addSubviews(emptyView, guideLabel, collectionView, writeButton)
     }
     
     private func configureConstraints() {
@@ -103,6 +128,9 @@ final class PartyMemberProductViewController: UIViewController {
         writeButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-60)
             $0.trailing.equalToSuperview().offset(-24)
+        }
+        emptyView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -175,15 +203,24 @@ final class PartyMemberProductViewController: UIViewController {
     private func bind() {
         viewModel.productInfoData
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self] completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
+                    self?.emptyView.isHidden = false
+                    self?.guideLabel.isHidden = true
                 }
             } receiveValue: { [weak self] item in
-                guard var snapshot = self?.snapshot else { return }
-                snapshot.appendItems(item, toSection: .main)
-                print("###", item)
-                self?.dataSource?.apply(snapshot)
+                guard let self else { return }
+                if item.isEmpty {
+                    emptyView.isHidden = false
+                    guideLabel.isHidden = true
+                } else {
+                    guard var snapshot = self.snapshot else { return }
+                    snapshot.appendItems(item, toSection: .main)
+                    dataSource?.apply(snapshot)
+                    emptyView.isHidden = true
+                    guideLabel.isHidden = false
+                }
             }.store(in: &cancellables)
 
     }
