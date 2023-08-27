@@ -177,6 +177,7 @@ final class TempHomeViewController: UIViewController {
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -203,6 +204,7 @@ final class TempHomeViewController: UIViewController {
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -586,26 +588,49 @@ extension TempHomeViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            let guideDictViewController = GuideDictViewController()
-            navigationController?.pushViewController(guideDictViewController, animated: true)
-        case 1:
-            let guideTickettingViewController = GuideTicketingViewController()
-            navigationController?.pushViewController(guideTickettingViewController, animated: true)
-            return
-        case 2:
-//            let saleViewController = GuideSaleViewController()
-            let storyboard = UIStoryboard(name: "GuideSale", bundle: Bundle.main)
-            guard let saleViewController = storyboard.instantiateViewController(
-                withIdentifier: "GuideSaleViewController"
-            ) as? GuideSaleViewController else {
+        if collectionView == bannerCollectionView {
+            switch indexPath.row {
+            case 0:
+                let guideDictViewController = GuideDictViewController()
+                navigationController?.pushViewController(guideDictViewController, animated: true)
+            case 1:
+                let guideTickettingViewController = GuideTicketingViewController()
+                navigationController?.pushViewController(guideTickettingViewController, animated: true)
                 return
+            case 2:
+                //            let saleViewController = GuideSaleViewController()
+                let storyboard = UIStoryboard(name: "GuideSale", bundle: Bundle.main)
+                guard let saleViewController = storyboard.instantiateViewController(
+                    withIdentifier: "GuideSaleViewController"
+                ) as? GuideSaleViewController else {
+                    return
+                }
+                navigationController?.pushViewController(saleViewController, animated: true)
+                return
+            default:
+                fatalError("잘못된 컬렉션뷰")
             }
-            navigationController?.pushViewController(saleViewController, animated: true)
             return
-        default:
-            fatalError("잘못된 컬렉션뷰")
+        }
+        
+        if collectionView == scheduledToOpenProductCollectionView {
+            guard let item = scheduledToOpenProductDatasource?.itemIdentifier(for: indexPath) else { return }
+            let detailViewController = UINavigationController(
+                rootViewController: ProductDetailMainViewController(id: item.id)
+            )
+            detailViewController.modalPresentationStyle = .overFullScreen
+            present(detailViewController, animated: true)
+            return
+        }
+        
+        if collectionView == top10CollectionView {
+            guard let item = top10Datasource?.itemIdentifier(for: indexPath) else { return }
+            let detailViewController = UINavigationController(
+                rootViewController: ProductDetailMainViewController(id: item.id)
+            )
+            detailViewController.modalPresentationStyle = .overFullScreen
+            present(detailViewController, animated: true)
+            return
         }
     }
 }
