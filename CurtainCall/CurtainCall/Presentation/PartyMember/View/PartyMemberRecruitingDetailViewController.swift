@@ -436,6 +436,21 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = .hex828996
     }
     
+    private func configureDeleteButton() {
+        let deleteButton = UIBarButtonItem(
+            title: "삭제",
+            image: nil,
+            target: self,
+            action: #selector(deleteButtonTouchUpInside)
+        )
+        navigationItem.rightBarButtonItem = deleteButton
+        navigationItem.rightBarButtonItem?.tintColor = .hex828996
+    }
+    
+    @objc
+    private func deleteButtonTouchUpInside() {
+        moveToDelete()
+    }
     
     private func draw(partyInfo: PartyDetailResponse) {
         if let urlString = partyInfo.creatorImageUrl, let url = URL(string: urlString) {
@@ -449,8 +464,8 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         contentLabel.text = partyInfo.content
         detailProductLabel.text = partyInfo.showName
         detailCountLabel.text = "\(partyInfo.curMemberNum)/\(partyInfo.maxMemberNum)"
-        detailProductDateLabel.text = partyInfo.showAt.convertAPIDateToDateString()
-        detailProductTimeLabel.text = partyInfo.showAt.convertAPIDateToDateTime()
+        detailProductDateLabel.text = partyInfo.showAt?.convertAPIDateToDateString()
+        detailProductTimeLabel.text = partyInfo.showAt?.convertAPIDateToDateTime()
         detailProductLocationLabel.text = partyInfo.facilityName
     }
     
@@ -468,6 +483,8 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
                     if data.creatorId != currentUserId {
                         configureReportButton()
+                    } else {
+                        configureDeleteButton()
                     }
                 }
                         
@@ -482,4 +499,30 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     }
     
     
+}
+
+extension PartyMemberRecruitingDetailViewController {
+    func moveToDelete() {
+        let popupViewController = MyPageDeletePopup()
+        popupViewController.delegate = self
+        popupViewController.modalPresentationStyle = .overFullScreen
+        present(popupViewController, animated: false)
+    }
+}
+
+extension PartyMemberRecruitingDetailViewController: DeletePopDelegate {
+    func deleteButtonTapped() {
+        provider.requestPublisher(.delete(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if response.statusCode == 200 {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &subscriptions)
+
+    }
 }

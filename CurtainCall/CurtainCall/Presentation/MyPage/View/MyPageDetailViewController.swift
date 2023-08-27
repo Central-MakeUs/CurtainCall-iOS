@@ -487,8 +487,8 @@ final class MyPageDetailViewController: UIViewController {
         contentLabel.text = info.content
         detailProductLabel.text = info.showName
         detailCountLabel.text = "\(info.curMemberNum)/\(info.maxMemberNum)"
-        detailProductDateLabel.text = info.showAt.convertAPIDateToDateString()
-        detailProductTimeLabel.text = info.showAt.convertAPIDateToDateTime()
+        detailProductDateLabel.text = info.showAt?.convertAPIDateToDateString()
+        detailProductTimeLabel.text = info.showAt?.convertAPIDateToDateTime()
         detailProductLocationLabel.text = info.facilityName
     }
     

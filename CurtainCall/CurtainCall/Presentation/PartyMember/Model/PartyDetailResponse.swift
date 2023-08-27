@@ -14,13 +14,13 @@ struct PartyDetailResponse: Decodable {
     let category: String?
     let curMemberNum: Int
     let maxMemberNum: Int
-    let showAt: String
+    let showAt: String?
     let creatorId: Int
     let createdAt: String
     let creatorNickname: String
     let creatorImageUrl: String?
-    let showId: String
-    let showName: String
-    let facilityId: String
-    let facilityName: String
+    let showId: String?
+    let showName: String?
+    let facilityId: String?
+    let facilityName: String?
 }

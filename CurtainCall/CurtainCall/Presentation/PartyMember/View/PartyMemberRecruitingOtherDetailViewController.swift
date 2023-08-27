@@ -7,6 +7,12 @@
 
 import UIKit
 
+import Combine
+
+import Moya
+import CombineMoya
+import SwiftKeychainWrapper
+
 final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     
     // MARK: - UI properties
@@ -147,6 +153,8 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let id: Int
+    private var subscriptions: Set<AnyCancellable> = []
+    private let provider = MoyaProvider<PartyAPI>()
     
     // MARK: - Lifecycles
     
@@ -162,6 +170,7 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        requestDetail()
         
     }
     
@@ -287,21 +296,101 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
         title = "기타"
     }
     
-//    private func draw() {
-//        profileImageView.image = partyInfo.profileImage
-//        nickNameLabel.text = partyInfo.nickname
-//        titleLabel.text = partyInfo.title
-//
-//        writeDateLabel.text = partyInfo.writeDate.convertToYearMonthDayHourMinString()
-//        contentLabel.text = partyInfo.content
-//        detailCountLabel.text = "\(partyInfo.minCount)/\(partyInfo.maxCount)"
-//        if let date = partyInfo.meetingDate {
-//            detailProductDateLabel.text = date.convertToYearMonthDayWeekString()
-//        } else {
-//            detailProductDateLabel.text = "날짜 미정"
-//        }
-//
-//    }
+    private func draw(partyInfo: PartyDetailResponse) {
+        if let urlString = partyInfo.creatorImageUrl, let url = URL(string: urlString) {
+            profileImageView.kf.setImage(with: url)
+        } else {
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
+        }
+        nickNameLabel.text = partyInfo.creatorNickname
+        titleLabel.text = partyInfo.title
+        writeDateLabel.text = partyInfo.createdAt.convertAPIDateToDateString()
+        contentLabel.text = partyInfo.content
+
+        detailCountLabel.text = "\(partyInfo.curMemberNum)/\(partyInfo.maxMemberNum)"
+        detailProductDateLabel.text = partyInfo.showAt?.convertAPIDateToDateString() ?? "날짜 미정"
+    }
     
+    private func requestDetail() {
+        provider.requestPublisher(.detail(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                print("###", String(data: response.data, encoding: .utf8))
+                if let data = try? response.map(PartyDetailResponse.self) {
+                    draw(partyInfo: data)
+                    let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+                    if data.creatorId != currentUserId {
+                        configureReportButton()
+                    } else {
+                        configureDeleteButton()
+                    }
+                }
+                        
+            }.store(in: &subscriptions)
+
+    }
+    
+    @objc
+    private func reportButtonTouchUpInside() {
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id))
+        navigationController?.pushViewController(reportViewController, animated: true)
+    }
+    
+    private func configureReportButton() {
+        let reportButton = UIBarButtonItem(
+            title: nil,
+            image: UIImage(named: ImageNamespace.navigationReportButton),
+            target: self,
+            action: #selector(reportButtonTouchUpInside)
+        )
+        navigationItem.rightBarButtonItem = reportButton
+        navigationItem.rightBarButtonItem?.tintColor = .hex828996
+    }
+    
+    private func configureDeleteButton() {
+        let deleteButton = UIBarButtonItem(
+            title: "삭제",
+            image: nil,
+            target: self,
+            action: #selector(deleteButtonTouchUpInside)
+        )
+        navigationItem.rightBarButtonItem = deleteButton
+        navigationItem.rightBarButtonItem?.tintColor = .hex828996
+    }
+    
+    @objc
+    private func deleteButtonTouchUpInside() {
+        moveToDelete()
+    }
 }
 
+extension PartyMemberRecruitingOtherDetailViewController {
+    func moveToDelete() {
+        let popupViewController = MyPageDeletePopup()
+        popupViewController.delegate = self
+        popupViewController.modalPresentationStyle = .overFullScreen
+        present(popupViewController, animated: false)
+    }
+}
+
+extension PartyMemberRecruitingOtherDetailViewController: DeletePopDelegate {
+    func deleteButtonTapped() {
+        provider.requestPublisher(.delete(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if response.statusCode == 200 {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &subscriptions)
+
+    }
+}
