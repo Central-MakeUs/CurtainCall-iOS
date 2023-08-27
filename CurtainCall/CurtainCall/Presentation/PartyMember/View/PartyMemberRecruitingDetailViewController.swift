@@ -10,6 +10,7 @@ import Combine
 
 import Moya
 import CombineMoya
+import SwiftKeychainWrapper
 
 final class PartyMemberRecruitingDetailViewController: UIViewController {
     
@@ -424,6 +425,18 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         title = partyType.title
     }
     
+    private func configureReportButton() {
+        let reportButton = UIBarButtonItem(
+            title: nil,
+            image: UIImage(named: ImageNamespace.navigationReportButton),
+            target: self,
+            action: #selector(reportButtonTouchUpInside)
+        )
+        navigationItem.rightBarButtonItem = reportButton
+        navigationItem.rightBarButtonItem?.tintColor = .hex828996
+    }
+    
+    
     private func draw(partyInfo: PartyDetailResponse) {
         if let urlString = partyInfo.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
@@ -452,9 +465,21 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                 guard let self else { return }
                 if let data = try? response.map(PartyDetailResponse.self) {
                     draw(partyInfo: data)
+                    let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+                    if data.creatorId != currentUserId {
+                        configureReportButton()
+                    }
                 }
+                        
             }.store(in: &subscriptions)
 
     }
+    
+    @objc
+    private func reportButtonTouchUpInside() {
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id))
+        navigationController?.pushViewController(reportViewController, animated: true)
+    }
+    
     
 }

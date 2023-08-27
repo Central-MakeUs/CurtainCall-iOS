@@ -176,7 +176,7 @@ final class ReportViewController: UIViewController {
     }()
     private let otherLabel: UILabel = {
         let label = UILabel()
-        label.text = "청소년에게 유해한 내용입니다."
+        label.text = "다른 문제가 있습니다."
         label.font = .body1
         label.textColor = .hex5A6271
         return label
@@ -199,6 +199,7 @@ final class ReportViewController: UIViewController {
     
     private let viewModel: ReportViewModel
     private var subscriptions: Set<AnyCancellable> = []
+    private var checkIndex: Int?
     
     // MARK: - Lifecycles
     
@@ -292,14 +293,15 @@ final class ReportViewController: UIViewController {
                     
                 }
             }
-        [spamExpendImageView, abuseExpendImageView, illegalExpendImageView, badMannersExpendImageView,
-         harmfulnessExpendImageView, privacyExpendImageView, otherExpendImageView]
-            .forEach {
-                $0.snp.makeConstraints { make in
-                    make.trailing.equalToSuperview()
-                    make.centerY.equalToSuperview()
-                }
-            }
+        // TODO: 열리는 버튼들 구현
+//        [spamExpendImageView, abuseExpendImageView, illegalExpendImageView, badMannersExpendImageView,
+//         harmfulnessExpendImageView, privacyExpendImageView, otherExpendImageView]
+//            .forEach {
+//                $0.snp.makeConstraints { make in
+//                    make.trailing.equalToSuperview()
+//                    make.centerY.equalToSuperview()
+//                }
+//            }
         [spamButton, abuseButton, illegalButton, badMannersButton, harmfulnessButton, privacyButton, otherButton]
             .forEach {
                 $0.snp.makeConstraints { make in make.edges.equalToSuperview() }
@@ -331,14 +333,17 @@ final class ReportViewController: UIViewController {
             spamCheckMarkImage, abuseCheckMarkImage, illegalCheckMarkImage, badMannersCheckMarkImage,
             harmfulnessCheckMarkImage, privacyCheckMarkImage, otherCheckMarkImage
         ]
+        itemCheckMark.forEach { $0.isSelected = false }
         let selectedImage = itemCheckMark[tag]
         selectedImage.isSelected.toggle()
         viewModel.isCheckReport(tag: itemCheckMark.filter { $0.isSelected }.map { $0.tag })
+        checkIndex = sender.tag
     }
     
     @objc
     private func nextButtonTouchUpInside() {
-        let detailViewController = ReportDetailViewController()
+        guard let checkIndex else { return }
+        let detailViewController = ReportDetailViewController(checkIndex: checkIndex, viewModel: viewModel)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     

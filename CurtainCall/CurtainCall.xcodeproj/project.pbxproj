@@ -198,6 +198,7 @@
 		EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
+		EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED24A612A9B6B01000C3BA4 /* ReportService.swift */; };
 		EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED302122A8A63C000957566 /* GuideSale.storyboard */; };
 		EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
@@ -422,6 +423,7 @@
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
+		EED24A612A9B6B01000C3BA4 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
 		EED302122A8A63C000957566 /* GuideSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideSale.storyboard; sourceTree = "<group>"; };
 		EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailMainViewController.swift; sourceTree = "<group>"; };
 		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
@@ -948,6 +950,7 @@
 		EE5251C32A8E639A003DFEE3 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				EED24A602A9B6AD3000C3BA4 /* Service */,
 				EE5251C42A8E639A003DFEE3 /* ViewModel */,
 				EE5251C62A8E639A003DFEE3 /* View */,
 			);
@@ -1353,6 +1356,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		EED24A602A9B6AD3000C3BA4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EED24A612A9B6B01000C3BA4 /* ReportService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		EEE8F0B72A5195E500E31597 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1702,6 +1713,7 @@
 				EE0283122A986F4C008F8100 /* IsFavoriteResponse.swift in Sources */,
 				EE02832C2A98FCDF008F8100 /* OpenShowResponse.swift in Sources */,
 				EE0283102A97C652008F8100 /* MyPageEditViewModel.swift in Sources */,
+				EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */,
 				EE02833B2A992089008F8100 /* TermsOfUseViewController.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,

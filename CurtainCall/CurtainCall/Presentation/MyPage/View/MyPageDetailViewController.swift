@@ -511,7 +511,7 @@ final class MyPageDetailViewController: UIViewController {
     
     @objc
     private func reportButtonTouchUpInside() {
-        let reportViewController = ReportViewController(viewModel: ReportViewModel())
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id))
         navigationController?.pushViewController(reportViewController, animated: true)
     }
     

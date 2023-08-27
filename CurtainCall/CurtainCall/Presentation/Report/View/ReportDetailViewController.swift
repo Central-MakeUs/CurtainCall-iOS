@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Combine
+
+import CombineMoya
+import Moya
 
 final class ReportDetailViewController: UIViewController {
     
@@ -103,7 +107,21 @@ final class ReportDetailViewController: UIViewController {
     
     // MARK: - Properties
     
+    private var subscriptions: Set<AnyCancellable> = []
+    private let viewModel: ReportViewModel
+    private let checkIndex: Int
+    
     // MARK: - Lifecycles
+    
+    init(checkIndex: Int, viewModel: ReportViewModel) {
+        self.checkIndex = checkIndex
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +130,7 @@ final class ReportDetailViewController: UIViewController {
         reportButton.addTarget(
             self, action: #selector(reportButtonTouchUpInside), for: .touchUpInside
         )
+        bind()
     }
     
     // MARK: - Helpers
@@ -207,11 +226,25 @@ final class ReportDetailViewController: UIViewController {
         limitTextLabel.text = "글자 수 제한(\(count)/200)"
     }
     
+    private func bind() {
+        viewModel.isSuccessReport
+            .sink { [weak self] isSuccess in
+                if isSuccess {
+                    let completeViewController = ReportCompleteViewController()
+                    self?.navigationController?.pushViewController(completeViewController, animated: true)
+                    self?.navigationController?.navigationBar.isHidden = true
+                } else {
+                    self?.presentAlert(title: "네트워크 요청에 실패하였습니다.")
+                }
+            }.store(in: &subscriptions)
+    }
+    
     @objc
     private func reportButtonTouchUpInside() {
-        let completeViewController = ReportCompleteViewController()
-        navigationController?.pushViewController(completeViewController, animated: true)
-        navigationController?.navigationBar.isHidden = true
+        viewModel.requestReport(
+            index: checkIndex,
+            content: (reportTextView.text ?? "") == Constants.REPORT_DETAIL_TEXTVIEW_PLACEHOLDER ? "" : reportTextView.text ?? ""
+        )
     }
     
 }
