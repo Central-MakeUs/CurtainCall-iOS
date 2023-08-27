@@ -62,7 +62,7 @@ final class SplashViewController: UIViewController {
                 )
                 self?.changeRootViewController(UINavigationController(rootViewController: loginViewController))
             } else {
-                self?.changeRootViewController(MainTabBarController())
+                self?.changeRootViewController(TempMainTabBarController())
             }
         })
     }

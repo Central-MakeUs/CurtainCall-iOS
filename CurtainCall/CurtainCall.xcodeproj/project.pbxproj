@@ -39,6 +39,7 @@
 		EE0283352A9915CC008F8100 /* LogoutPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283342A9915CC008F8100 /* LogoutPopup.swift */; };
 		EE0283382A991D2B008F8100 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */; };
 		EE02833B2A992089008F8100 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02833A2A992089008F8100 /* TermsOfUseViewController.swift */; };
+		EE02833D2A9929FE008F8100 /* TempMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02833C2A9929FE008F8100 /* TempMainTabBarController.swift */; };
 		EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B32A4E816C0038A09E /* FacebookCore */; };
 		EE0304B62A4E816C0038A09E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EE0304B52A4E816C0038A09E /* FacebookLogin */; };
 		EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */; };
@@ -267,6 +268,7 @@
 		EE0283342A9915CC008F8100 /* LogoutPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopup.swift; sourceTree = "<group>"; };
 		EE0283372A991D2B008F8100 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		EE02833A2A992089008F8100 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		EE02833C2A9929FE008F8100 /* TempMainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempMainTabBarController.swift; sourceTree = "<group>"; };
 		EE0669D52A7DDE95000C8296 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0669D72A7DEB9B000C8296 /* LostItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemDetailViewController.swift; sourceTree = "<group>"; };
 		EE0669DA2A7E0985000C8296 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -1466,6 +1468,7 @@
 				EEA132232A7F5A690016D01A /* TimePickerView.swift */,
 				EEA132252A7F6D490016D01A /* AddFileView.swift */,
 				EE9A88682A8757320085F816 /* GuideCategoryButton.swift */,
+				EE02833C2A9929FE008F8100 /* TempMainTabBarController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1739,6 +1742,7 @@
 				EE5FDBF52A8CB31500376E26 /* SignUpService.swift in Sources */,
 				EEA944482A5D82260081E784 /* PartyOtherCell.swift in Sources */,
 				EE5251E82A8E63B3003DFEE3 /* MyPageEditViewController.swift in Sources */,
+				EE02833D2A9929FE008F8100 /* TempMainTabBarController.swift in Sources */,
 				EEA132282A7F88310016D01A /* LostItemWriteCompleteViewController.swift in Sources */,
 				EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */,
 				EE0BEDFA2A4958F2008D9D05 /* LoginViewController.swift in Sources */,

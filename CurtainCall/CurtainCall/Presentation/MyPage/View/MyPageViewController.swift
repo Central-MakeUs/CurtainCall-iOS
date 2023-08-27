@@ -321,18 +321,26 @@ final class MyPageViewController: UIViewController {
         myViewSperator.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.height.equalTo(30)
-            $0.width.equalTo(1)
+            // TODO: 개발이후
+            $0.height.equalTo(0)
+//            $0.width.equalTo(1)
         }
         myWriteView.snp.makeConstraints {
-            $0.height.equalTo(85)
+            // TODO: 개발이후
+            $0.height.equalTo(0)
+//            $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(myView.snp.bottom).offset(20)
         }
         myWriteIcon.snp.makeConstraints {
+            // TODO: 개발이후
+            $0.height.equalTo(0)
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         myWriteLabel.snp.makeConstraints {
+            // TODO: 개발이후
+            $0.height.equalTo(0)
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
         }
@@ -344,15 +352,23 @@ final class MyPageViewController: UIViewController {
         }
         
         saveView.snp.makeConstraints {
-            $0.height.equalTo(85)
+            // TODO: 개발이후
+            $0.height.equalTo(0)
+//            $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(listSeperator.snp.bottom)
         }
         saveIcon.snp.makeConstraints {
+            // TODO: 개발이후
+            $0.height.equalTo(0)
+            
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         saveLabel.snp.makeConstraints {
+            // TODO: 개발이후
+            $0.height.equalTo(0)
+            
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
         }
@@ -380,16 +396,25 @@ final class MyPageViewController: UIViewController {
         FAQView.snp.makeConstraints {
             $0.top.equalTo(noticeView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(50)
+            
+            // TODO: 개발이후
+            $0.height.equalTo(0)
+//            $0.height.equalTo(50)
         }
     
         FAQLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(24)
+            
+            // TODO: 개발이후
+            $0.height.equalTo(0)
         }
         FAQArrowImage.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-16)
+            
+            // TODO: 개발이후
+            $0.height.equalTo(0)
         }
         footerView.snp.makeConstraints {
             $0.top.equalTo(FAQView.snp.bottom).offset(30)

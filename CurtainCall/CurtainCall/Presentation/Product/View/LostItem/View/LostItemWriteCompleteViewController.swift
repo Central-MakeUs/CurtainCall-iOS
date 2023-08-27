@@ -126,7 +126,7 @@ final class LostItemWriteCompleteViewController: UIViewController {
     
     @objc
     private func nextButtonTouchUpInside() {
-        changeRootViewController(MainTabBarController())
+        changeRootViewController(TempMainTabBarController())
         print("!!!")
     }
     

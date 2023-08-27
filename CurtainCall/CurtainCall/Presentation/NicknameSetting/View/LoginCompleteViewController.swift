@@ -117,7 +117,7 @@ final class LoginCompleteViewController: UIViewController {
                 }
             } receiveValue: { [weak self] isSignUp in
                 if isSignUp {
-                    self?.changeRootViewController(MainTabBarController())
+                    self?.changeRootViewController(TempMainTabBarController())
                 } else {
                     // TODO: 회원가입 실패 얼럿
                 }
