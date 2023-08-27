@@ -649,12 +649,16 @@ extension TempHomeViewController: UITableViewDataSource {
         cell.draw(item: viewModel.recruitmentList[indexPath.row])
         return cell
     }
-    
 }
 
 extension TempHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = viewModel.recruitmentList[indexPath.row].id
+        navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
     }
 }
 

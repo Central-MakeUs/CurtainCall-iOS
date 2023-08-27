@@ -172,8 +172,8 @@ final class MyRecruitmentCell: UITableViewCell {
         } else {
             posterImageView.image = nil
         }
-        titleLabel.text = item.title
-        contentLabel.text = ""
+        titleLabel.text = item.showName
+        contentLabel.text = item.title
         dateLabel.text = item.showAt.convertAPIDateToDateString()
         timeLabel.text = item.showAt.convertAPIDateToDateTime()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
