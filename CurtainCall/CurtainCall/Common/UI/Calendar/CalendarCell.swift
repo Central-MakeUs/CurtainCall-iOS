@@ -23,7 +23,7 @@ final class CalendarCell: UICollectionViewCell {
     
     private let circleView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 12
         return view
     }()
     
@@ -76,8 +76,25 @@ final class CalendarCell: UICollectionViewCell {
         if let date = item.date {
             dayLabel.text = date.convertToDayString()
             dayLabel.alpha = item.isSelectable ? 1 : 0.5
-            dayLabel.textColor = item.isSelected ? .white : dayLabel.textColor
             circleView.backgroundColor = item.isSelected ? .pointColor2 : .white
+            if item.isSelectable {
+                if item.isSunday {
+                    dayLabel.textColor = .myRed
+                } else if item.isSaturday {
+                    dayLabel.textColor = .myBlue
+                } else {
+                    dayLabel.textColor = .hex2B313A
+                }
+            } else {
+                if item.isSunday {
+                    dayLabel.textColor = UIColor(rgb: 0xFFA9B4)
+                } else if item.isSaturday {
+                    dayLabel.textColor = UIColor(rgb: 0x95BDFF)
+                } else {
+                    dayLabel.textColor = UIColor(rgb: 0xC5C8CD)
+                }
+            }
+            dayLabel.textColor = item.isSelected ? .white : dayLabel.textColor
         } else {
             dayLabel.text = ""
         }
