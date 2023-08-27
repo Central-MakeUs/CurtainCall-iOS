@@ -309,6 +309,9 @@ extension CalendarView: UICollectionViewDelegate {
             let item = dataSource.itemIdentifier(for: indexPath),
               let date = item.date
         else { return }
+        if !isSectableDates.isEmpty && dateDict[date.convertToYearMonthDayString()] == nil {
+            return
+        }
         selectedDate = date
         days = days.map { Item(
             date: $0.date,
