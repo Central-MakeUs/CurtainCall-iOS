@@ -129,7 +129,7 @@ final class TempMainTabBarController: UIViewController {
     
     @objc
     func tabbarButtonTapped(_ sender: UIButton) {
-        if sender.tag == 3 && KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
+        if (sender.tag == 3 || sender.tag == 2) && KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
             let popup = NotLoginPopup()
             popup.modalPresentationStyle = .overFullScreen
             present(popup, animated: false)

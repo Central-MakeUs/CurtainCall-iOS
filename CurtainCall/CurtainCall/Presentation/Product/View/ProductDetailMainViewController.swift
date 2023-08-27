@@ -10,6 +10,7 @@ import UIKit
 import Moya
 import CombineMoya
 import Combine
+import SwiftKeychainWrapper
 
 final class ProductDetailMainViewController: UIViewController {
     
@@ -443,9 +444,9 @@ final class ProductDetailMainViewController: UIViewController {
         }
         
         productTitleLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
             $0.top.equalTo(categoryView.snp.bottom).offset(10)
-            
+            $0.trailing.equalToSuperview().inset(40)
         }
         
         keepButton.snp.makeConstraints {
@@ -528,23 +529,31 @@ final class ProductDetailMainViewController: UIViewController {
     
     @objc
     private func subButtonTouchUpInside(_ sender: UIButton) {
-        sender.isSelected = true
         switch sender {
         case detailButton:
             setupInfoView()
             reviewButton.isSelected = false
             lostItemButton.isSelected = false
         case reviewButton:
+            if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
+                presentNotLoginPopup()
+                return
+            }
             setupReviewView()
             detailButton.isSelected = false
             lostItemButton.isSelected = false
         case lostItemButton:
+            if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
+                presentNotLoginPopup()
+                return
+            }
             setupLostItemView()
             detailButton.isSelected = false
             reviewButton.isSelected = false
         default:
             fatalError("Error: Not Button")
         }
+        sender.isSelected = true
     }
     
     private func setupInfoView() {
@@ -585,9 +594,20 @@ final class ProductDetailMainViewController: UIViewController {
             $0.bottom.equalToSuperview()
         }
     }
+    
+    private func presentNotLoginPopup() {
+        let popup = NotLoginPopup()
+        popup.modalPresentationStyle = .overFullScreen
+        present(popup, animated: false)
+    }
 
     @objc
     func keepButtonTouchUpInside() {
+        if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
+            presentNotLoginPopup()
+            return
+        }
+            
         if !keepButton.isSelected {
             favoriteProvider.requestPublisher(.putShow(id: id))
                 .sink { completion in
