@@ -16,6 +16,7 @@ final class ProductSearchViewModel {
     private let provider = MoyaProvider<ProductAPI>()
     @Published var productList: [ProductListContent] = []
     var page: Int = 0
+    var isLoding: Bool = false
     
     func requestSearch(page: Int, size: Int, keyword: String) {
         provider.requestPublisher(.search(page: page, size: size, keyword: keyword))
@@ -26,7 +27,12 @@ final class ProductSearchViewModel {
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(ProductListResponse.self) {
-                    self?.productList = data.content
+                    if page == 0 {
+                        self?.productList = data.content
+                    } else {
+                        self?.productList.append(contentsOf: data.content)
+                    }
+                    
                 }
                 print("##SEARCH", String(data: response.data, encoding: .utf8))
             }.store(in: &subscriptions)

@@ -39,7 +39,7 @@ final class ProductSearchViewController: UIViewController {
     private var datasource: Datasource?
     private var subscriptions: Set<AnyCancellable> = []
     private let viewModel: ProductSearchViewModel
-    
+    private var searchString = ""
     // MARK: Life Cycle
     
     init(viewModel: ProductSearchViewModel) {
@@ -136,6 +136,7 @@ final class ProductSearchViewController: UIViewController {
                 snapshot.appendSections([.main])
                 snapshot.appendItems(data, toSection: .main)
                 datasource?.apply(snapshot)
+                viewModel.isLoding = false
             }.store(in: &subscriptions)
     }
     
@@ -168,12 +169,19 @@ extension ProductSearchViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        <#code#>
+        if indexPath.row > (viewModel.page + 1) * 20 - 3 {
+            if !viewModel.isLoding {
+                viewModel.isLoding = true
+                viewModel.requestSearch(page: viewModel.page + 1, size: 20, keyword: searchString)
+                viewModel.page += 1
+            }
+        }
     }
 }
 
 extension ProductSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.requestSearch(page: 0, size: 20, keyword: searchText)
+        searchString = searchText
+        viewModel.requestSearch(page: 0, size: 20, keyword: searchString)
     }
 }
