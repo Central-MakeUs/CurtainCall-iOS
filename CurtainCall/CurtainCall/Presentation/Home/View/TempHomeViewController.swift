@@ -289,6 +289,7 @@ final class TempHomeViewController: UIViewController {
         view.backgroundColor = .pointColor1
         configureUI()
         bind()
+        LodingIndicator.showLoading()
         viewModel.requestUserInfo()
         viewModel.requestOpen()
         viewModel.requestTop10()
@@ -614,6 +615,13 @@ final class TempHomeViewController: UIViewController {
                 myParticipationTableView.reloadData()
             }.store(in: &subcriptions)
 
+        viewModel.$requestCount
+            .sink { [weak self] count in
+                if count >= 6 {
+                    LodingIndicator.hideLoading()
+                    self?.viewModel.requestCount = 0
+                }
+            }.store(in: &subcriptions)
     }
 
 }

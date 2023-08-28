@@ -75,6 +75,7 @@
 		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
 		EE3A428E2A9C70FA00273F94 /* ProductSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428D2A9C70FA00273F94 /* ProductSearchViewModel.swift */; };
 		EE3A42902A9C81E300273F94 /* EndShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428F2A9C81E300273F94 /* EndShowResponse.swift */; };
+		EE3A42932A9C9D2200273F94 /* LodingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42922A9C9D2200273F94 /* LodingIndicator.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -309,6 +310,7 @@
 		EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
 		EE3A428D2A9C70FA00273F94 /* ProductSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewModel.swift; sourceTree = "<group>"; };
 		EE3A428F2A9C81E300273F94 /* EndShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndShowResponse.swift; sourceTree = "<group>"; };
+		EE3A42922A9C9D2200273F94 /* LodingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicator.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EE3A42912A9C9D0E00273F94 /* LodingIndicator */,
 				EE0283132A986F9C008F8100 /* FavoriteService */,
 				EE02830C2A97B88E008F8100 /* ImageService */,
 				EE0283022A97919E008F8100 /* UserInfo */,
@@ -828,6 +831,14 @@
 				EE1DF3892A95054B003AD078 /* SettingViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		EE3A42912A9C9D0E00273F94 /* LodingIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A42922A9C9D2200273F94 /* LodingIndicator.swift */,
+			);
+			path = LodingIndicator;
 			sourceTree = "<group>";
 		};
 		EE3E02912A77EF35007C3D71 /* LostItem */ = {
@@ -1901,6 +1912,7 @@
 				EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */,
 				EEAA40F02A8E0CF7000990B0 /* ReviewService.swift in Sources */,
 				EE5251EB2A8E63B3003DFEE3 /* MyPageRecruitmentCell.swift in Sources */,
+				EE3A42932A9C9D2200273F94 /* LodingIndicator.swift in Sources */,
 				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
 				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,

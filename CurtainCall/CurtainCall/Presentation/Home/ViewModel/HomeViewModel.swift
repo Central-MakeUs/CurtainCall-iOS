@@ -20,9 +20,10 @@ final class HomeViewModel {
     @Published var openShowList: [OpenShowContent] = []
     @Published var top10ShowList: [Top10ShowContent] = []
     @Published var endShowList: [EndShowContent] = []
+    var isAllRequest = PassthroughSubject<Bool, Never>()
     var recruitmentList = PassthroughSubject<[MyRecruitmentContent], Never>()
     var participationList = PassthroughSubject<[MyRecruitmentContent], Never>()
-    
+    @Published var requestCount = 0
     func requestUserInfo() {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
             print("UserId not exist")
@@ -32,16 +33,19 @@ final class HomeViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print("UserInfo Error", error)
+                    self.requestCount += 1
                     return
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyPageDetailResponse.self) {
                     UserInfoManager.shared.userInfo = data
                     self?.userInfoSubject.send(data)
+                    self?.requestCount += 1
                     print("###", data)
                     return
                 } else {
                     print("User Info respone Error")
+                    self?.requestCount += 1
                     return
                 }
             }.store(in: &subscriptions)
@@ -54,6 +58,7 @@ final class HomeViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
+                    self.requestCount += 1
                     return
                 }
             } receiveValue: { [weak self] response in
@@ -64,8 +69,10 @@ final class HomeViewModel {
                     } else {
                         top10ShowList = data.content.prefix(10).map { $0 }
                     }
+                    self.requestCount += 1
                 } else {
                     top10ShowList = []
+                    self.requestCount += 1
                 }
             }.store(in: &subscriptions)
         
@@ -76,6 +83,7 @@ final class HomeViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
+                    self.requestCount += 1
                     return
                 }
             } receiveValue: { [weak self] response in
@@ -87,8 +95,10 @@ final class HomeViewModel {
                     } else {
                         openShowList = randomOpenShowList.prefix(10).map { $0 }
                     }
+                    self.requestCount += 1
                 } else {
                     openShowList = []
+                    self.requestCount += 1
                 }
             }.store(in: &subscriptions)
         
@@ -100,6 +110,7 @@ final class HomeViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
+                    self.requestCount += 1
                     return
                 }
             } receiveValue: { [weak self] response in
@@ -112,8 +123,10 @@ final class HomeViewModel {
                     } else {
                         endShowList = randomEndShowList.prefix(10).map { $0 }
                     }
+                    self.requestCount += 1
                 } else {
                     openShowList = []
+                    self.requestCount += 1
                 }
             }.store(in: &subscriptions)
 
@@ -126,15 +139,18 @@ final class HomeViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
+                    self.requestCount += 1
                     return
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     self?.recruitmentList.send(data.content)
+                    
                 } else {
                     self?.recruitmentList.send([])
                     print("ERROR: MyRecruitmentError")
                 }
+                self?.requestCount += 1
             }.store(in: &subscriptions)
     }
     
@@ -145,6 +161,7 @@ final class HomeViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
+                    self.requestCount += 1
                     return
                 }
             } receiveValue: { [weak self] response in
@@ -154,6 +171,7 @@ final class HomeViewModel {
                     self?.participationList.send([])
                     print("ERROR: MyParticipationError")
                 }
+                self?.requestCount += 1
             }.store(in: &subscriptions)
         
 
