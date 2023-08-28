@@ -139,7 +139,7 @@ final class HomeViewModel {
             requestCount += 1
             return
         }
-        provider.requestPublisher(.recruitments(id: userId, page: 0, size: 2, category: nil))
+        provider.requestPublisher(.recruitments(id: userId, page: 0, size: 20, category: nil))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
@@ -148,7 +148,8 @@ final class HomeViewModel {
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
-                    self?.recruitmentList.send(data.content)
+                    // TODO: 기타 셀 개발 후 구현
+                    self?.recruitmentList.send(data.content.filter { $0.category != "ETC" })
                     
                 } else {
                     self?.recruitmentList.send([])
@@ -164,7 +165,7 @@ final class HomeViewModel {
             requestCount += 1
             return
         }
-        provider.requestPublisher(.participations(id: userId, page: 0, size: 2, category: nil))
+        provider.requestPublisher(.participations(id: userId, page: 0, size: 20, category: nil))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
@@ -173,7 +174,8 @@ final class HomeViewModel {
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
-                    self?.participationList.send(data.content)
+                    // TODO: 기타 셀 개발 후 구현
+                    self?.participationList.send(data.content.filter { $0.category != "ETC" })
                 } else {
                     self?.participationList.send([])
                     print("ERROR: MyParticipationError")
