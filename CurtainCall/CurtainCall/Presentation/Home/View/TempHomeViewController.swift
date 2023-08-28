@@ -208,26 +208,26 @@ final class TempHomeViewController: UIViewController {
         return collectionView
     }()
     
-    private let goodCostProductView: UIView = {
+    private let scheduledToEndProductView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
     
-    private let goodCostProductHeaderView = UIView()
-    private let goodCostProductLabel: UILabel = {
+    private let scheduledToEndProductHeaderView = UIView()
+    private let scheduledToEndProductLabel: UILabel = {
         let label = UILabel()
-        label.text = "💸  가성비 좋은 공연"
+        label.text = "⏰  마감 임박 공연"
         label.font = .heading2
         label.textColor = .title
         return label
     }()
     
-    private lazy var goodCostProductCollectionView: UICollectionView = {
+    private lazy var scheduledToEndProductCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createTop10Layout())
         collectionView.register(
-            GoodCostProductCell.self,
-            forCellWithReuseIdentifier: GoodCostProductCell.identifier
+            ScheduledToEndProductCell.self,
+            forCellWithReuseIdentifier: ScheduledToEndProductCell.identifier
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
@@ -257,16 +257,16 @@ final class TempHomeViewController: UIViewController {
     }
     typealias ScheduledToOpenProductItem = OpenShowContent
     
-    enum GoodCostProductSection {
+    enum ScheduledToEndProductSection {
         case main
     }
-    typealias GoodCostProductItem = GoodCostProductData
+    typealias ScheduledToEndProductItem = EndShowContent
     
     private var bannerDatasource: UICollectionViewDiffableDataSource<BannerSection, BannerItem>?
     private var liveTalkDatasource: UICollectionViewDiffableDataSource<LiveTalkSection, LiveTalkItem>?
     private var top10Datasource: UICollectionViewDiffableDataSource<Top10Section, Top10Item>?
     private var scheduledToOpenProductDatasource: UICollectionViewDiffableDataSource<ScheduledToOpenProductSection, ScheduledToOpenProductItem>?
-    private var goodCostProductDatasource: UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>?
+    private var scheduledToEndProductDatasource: UICollectionViewDiffableDataSource<ScheduledToEndProductSection, ScheduledToEndProductItem>?
     
     private var subcriptions: Set<AnyCancellable> = []
     private let viewModel: HomeViewModel
@@ -291,6 +291,7 @@ final class TempHomeViewController: UIViewController {
         viewModel.requestOpen()
         viewModel.requestTop10()
         viewModel.requestMyRecuritment()
+        viewModel.requestEnd()
         myParticipationView.isHidden = true
     }
     
@@ -313,6 +314,7 @@ final class TempHomeViewController: UIViewController {
         confgureBannerSnapshot()
         configureTop10Datasource()
         configureScheduledToOpenProductDatasource()
+        configureScheduledToEndProductDatasource()
         
     }
     
@@ -321,7 +323,7 @@ final class TempHomeViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubviews(
             navigationView, helloLabel, bannerView, myStackView,
-            liveTalkView, top10View, scheduledToOpenProductView, goodCostProductView
+            liveTalkView, top10View, scheduledToOpenProductView, scheduledToEndProductView
         )
         bannerView.addSubviews(bannerCollectionView, pageControl)
         navigationView.addSubviews(titleImageView, searchButton)
@@ -343,9 +345,9 @@ final class TempHomeViewController: UIViewController {
             scheduledToOpenProductHeaderView, scheduledToOpenProductCollectionView)
         scheduledToOpenProductHeaderView.addSubview(scheduledToOpenProductLabel)
         
-        goodCostProductView.addSubviews(
-            goodCostProductHeaderView, goodCostProductCollectionView)
-        goodCostProductHeaderView.addSubview(goodCostProductLabel)
+        scheduledToEndProductView.addSubviews(
+            scheduledToEndProductHeaderView, scheduledToEndProductCollectionView)
+        scheduledToEndProductHeaderView.addSubview(scheduledToEndProductLabel)
         
     }
     
@@ -475,8 +477,6 @@ final class TempHomeViewController: UIViewController {
         scheduledToOpenProductView.snp.makeConstraints {
             $0.top.equalTo(top10View.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            // TODO: 추가
-            $0.bottom.equalToSuperview()
         }
         scheduledToOpenProductHeaderView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -494,32 +494,32 @@ final class TempHomeViewController: UIViewController {
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.height.equalTo(220)
-            $0.bottom.equalToSuperview().inset(100)
+            $0.bottom.equalToSuperview()
         }
         
-//        goodCostProductView.snp.makeConstraints {
-//            $0.top.equalTo(scheduledToOpenProductView.snp.bottom)
-//            $0.horizontalEdges.equalToSuperview()
-//            $0.bottom.equalToSuperview()
-//        }
-//        goodCostProductHeaderView.snp.makeConstraints {
-//            $0.top.equalToSuperview()
-//            $0.horizontalEdges.equalToSuperview()
-//            $0.height.equalTo(98)
-//
-//        }
-//        goodCostProductLabel.snp.makeConstraints {
-//            $0.leading.equalToSuperview().offset(24)
-//            $0.bottom.equalToSuperview().inset(10)
-//        }
-//
-//        goodCostProductCollectionView.snp.makeConstraints {
-//            $0.top.equalTo(goodCostProductHeaderView.snp.bottom)
-//            $0.leading.equalToSuperview()
-//            $0.trailing.equalToSuperview()
-//            $0.height.equalTo(220)
-//            $0.bottom.equalToSuperview().inset(100)
-//        }
+        scheduledToEndProductView.snp.makeConstraints {
+            $0.top.equalTo(scheduledToOpenProductView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        scheduledToEndProductHeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(98)
+
+        }
+        scheduledToEndProductLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
+            $0.bottom.equalToSuperview().inset(10)
+        }
+
+        scheduledToEndProductCollectionView.snp.makeConstraints {
+            $0.top.equalTo(scheduledToEndProductHeaderView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(220)
+            $0.bottom.equalToSuperview().inset(100)
+        }
     }
     
     private func bind() {
@@ -540,6 +540,20 @@ final class TempHomeViewController: UIViewController {
                 snapshot.appendItems(response, toSection: .main)
                 self?.scheduledToOpenProductDatasource?.apply(snapshot)
             }.store(in: &subcriptions)
+        
+        viewModel.$endShowList
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                var snapshot = NSDiffableDataSourceSnapshot<ScheduledToEndProductSection, ScheduledToEndProductItem>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(response, toSection: .main)
+                self?.scheduledToEndProductDatasource?.apply(snapshot)
+            }.store(in: &subcriptions)
+        
         viewModel.$top10ShowList
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -805,12 +819,12 @@ extension TempHomeViewController {
         )
     }
     
-    private func configureGoodCostProductDatasource() {
-        goodCostProductDatasource = UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>(
-            collectionView: goodCostProductCollectionView,
+    private func configureScheduledToEndProductDatasource() {
+        scheduledToEndProductDatasource = UICollectionViewDiffableDataSource<ScheduledToEndProductSection, ScheduledToEndProductItem>(
+            collectionView: scheduledToEndProductCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 guard let cell = collectionView.dequeueCell(
-                    type: GoodCostProductCell.self,
+                    type: ScheduledToEndProductCell.self,
                     indexPath: indexPath
                 ) else { return UICollectionViewCell() }
                 print(itemIdentifier)
@@ -818,12 +832,5 @@ extension TempHomeViewController {
                 return cell
             }
         )
-    }
-    
-    private func configureGoodCostProductSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<GoodCostProductSection, GoodCostProductItem>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(GoodCostProductData.list, toSection: .main)
-        goodCostProductDatasource?.apply(snapshot)
     }
 }

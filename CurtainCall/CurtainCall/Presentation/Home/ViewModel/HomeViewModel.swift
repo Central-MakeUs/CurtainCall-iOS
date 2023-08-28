@@ -19,6 +19,7 @@ final class HomeViewModel {
     var userInfoSubject = PassthroughSubject<MyPageDetailResponse, Never>()
     @Published var openShowList: [OpenShowContent] = []
     @Published var top10ShowList: [Top10ShowContent] = []
+    @Published var endShowList: [EndShowContent] = []
     @Published var recruitmentList: [MyRecruitmentContent] = []
     
     func requestUserInfo() {
@@ -90,6 +91,31 @@ final class HomeViewModel {
                 }
             }.store(in: &subscriptions)
         
+    }
+    
+    func requestEnd() {
+        let provider = MoyaProvider<HomeAPI>()
+        provider.requestPublisher(.end(page: 0, size: 100, endDate: Date().convertToAPIDateYearMonthDayString(), genre: "PLAY"))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(EndShowResponse.self) {
+                    let randomEndShowList = data.content.shuffled()
+                    
+                    if randomEndShowList.count < 10 {
+                        endShowList = randomEndShowList
+                    } else {
+                        endShowList = randomEndShowList.prefix(10).map { $0 }
+                    }
+                } else {
+                    openShowList = []
+                }
+            }.store(in: &subscriptions)
+
     }
     
     func requestMyRecuritment() {

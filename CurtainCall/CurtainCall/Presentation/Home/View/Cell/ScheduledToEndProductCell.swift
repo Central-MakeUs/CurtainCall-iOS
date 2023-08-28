@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GoodCostProductCell: UICollectionViewCell {
+final class ScheduledToEndProductCell: UICollectionViewCell {
     
     // MARK: UI Property
     
@@ -69,7 +69,18 @@ final class GoodCostProductCell: UICollectionViewCell {
         label.textColor = UIColor(rgb: 0x99A1B2)
         return label
     }()
-
+    
+    private let dayLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(rgb: 0x242424).withAlphaComponent(0.7)
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = .subTitle2
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
+        return label
+    }()
+    
     
     // MARK: Property
     
@@ -92,7 +103,7 @@ final class GoodCostProductCell: UICollectionViewCell {
     }
     private func configureSubview() {
         addSubview(wholeView)
-        wholeView.addSubviews(posterImage, titleLabel, bottomStackView)
+        wholeView.addSubviews(posterImage, dayLabel, titleLabel, bottomStackView)
         bottomStackView.addArrangedSubviews(starIcon, averageLabel, countLabel)
     }
     
@@ -102,10 +113,14 @@ final class GoodCostProductCell: UICollectionViewCell {
             $0.top.left.right.equalToSuperview()
             $0.height.equalTo(160)
         }
-
+        dayLabel.snp.makeConstraints {
+            $0.top.left.equalToSuperview()
+            $0.height.equalTo(36)
+            $0.width.equalTo(73)
+        }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImage.snp.bottom).offset(10)
-            $0.left.equalToSuperview().offset(12)
+            $0.horizontalEdges.equalToSuperview().inset(12)
         }
         bottomStackView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(12)
@@ -115,13 +130,33 @@ final class GoodCostProductCell: UICollectionViewCell {
         
     }
     
-    func drawCell(data: GoodCostProductData) {
-        posterImage.image = data.posterImage
-        titleLabel.text = data.title
-        averageLabel.text = String(format: "%.1f", data.average)
-        countLabel.text = "(\(data.count))"
+    func drawCell(data: EndShowContent) {
+        if let url = URL(string: data.poster) {
+            posterImage.kf.setImage(with: url)
+            posterImage.kf.indicatorType = .activity
+        } else {
+            posterImage.image = nil
+        }
+        titleLabel.text = data.name
+        if data.reviewCount == 0 && data.reviewGradeSum == 0 {
+            averageLabel.text = "0"
+        } else {
+            averageLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
+        }
+        let diffDay = dateDiff(endDateString: data.endDate) ?? 0
+        dayLabel.text = diffDay == 0 ? "D-DAY" : "D-\(diffDay)"
+        countLabel.text = "(\(Int(data.reviewCount)))"
         
     }
     
+    private func dateDiff(endDateString: String) -> Int? {
+        guard let endDate = endDateString.convertYearMonthDayDashStringToDate() else {
+            return nil
+        }
+        let diff = Calendar.current.dateComponents([.day], from: Date(), to: endDate)
+        return diff.day
+    }
+    
 }
+
 

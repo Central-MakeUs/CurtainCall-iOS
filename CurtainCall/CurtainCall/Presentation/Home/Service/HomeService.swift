@@ -15,6 +15,7 @@ import SwiftKeychainWrapper
 enum HomeAPI {
     case open(page: Int, size: Int, startDate: String)
     case top10(type: String, genre: String, baseDate: String)
+    case end(page: Int, size: Int, endDate: String, genre: String)
 }
 
 extension HomeAPI: TargetType {
@@ -25,6 +26,8 @@ extension HomeAPI: TargetType {
             return "/shows-to-open"
         case .top10:
             return "/box-office"
+        case .end:
+            return "/shows-to-end"
         }
     }
     
@@ -44,6 +47,12 @@ extension HomeAPI: TargetType {
             param.updateValue(type, forKey: "type")
             param.updateValue(genre, forKey: "genre")
             param.updateValue(baseDate, forKey: "baseDate")
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .end(let page, let size, let endDate, let genre):
+            param.updateValue(page, forKey: "page")
+            param.updateValue(size, forKey: "size")
+            param.updateValue(endDate, forKey: "endDate")
+            param.updateValue(genre, forKey: "genre")
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }

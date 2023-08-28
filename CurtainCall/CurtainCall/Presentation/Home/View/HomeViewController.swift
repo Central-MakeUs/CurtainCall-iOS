@@ -224,8 +224,8 @@ final class HomeViewController: UIViewController {
     private lazy var goodCostProductCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createTop10Layout())
         collectionView.register(
-            GoodCostProductCell.self,
-            forCellWithReuseIdentifier: GoodCostProductCell.identifier
+            ScheduledToEndProductCell.self,
+            forCellWithReuseIdentifier: ScheduledToEndProductCell.identifier
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
@@ -755,18 +755,18 @@ extension HomeViewController {
     }
     
     private func configureGoodCostProductDatasource() {
-        goodCostProductDatasource = UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>(
-            collectionView: goodCostProductCollectionView,
-            cellProvider: { collectionView, indexPath, itemIdentifier in
-                guard let cell = collectionView.dequeueCell(
-                    type: GoodCostProductCell.self,
-                    indexPath: indexPath
-                ) else { return UICollectionViewCell() }
-                print(itemIdentifier)
-                cell.drawCell(data: itemIdentifier)
-                return cell
-            }
-        )
+//        goodCostProductDatasource = UICollectionViewDiffableDataSource<GoodCostProductSection, GoodCostProductItem>(
+//            collectionView: goodCostProductCollectionView,
+//            cellProvider: { collectionView, indexPath, itemIdentifier in
+//                guard let cell = collectionView.dequeueCell(
+//                    type: GoodCostProductCell.self,
+//                    indexPath: indexPath
+//                ) else { return UICollectionViewCell() }
+//                print(itemIdentifier)
+//                cell.drawCell(data: itemIdentifier)
+//                return cell
+//            }
+//        )
     }
     
     private func configureGoodCostProductSnapshot() {

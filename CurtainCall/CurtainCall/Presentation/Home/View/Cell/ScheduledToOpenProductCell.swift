@@ -116,7 +116,7 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
         dayLabel.snp.makeConstraints {
             $0.top.left.equalToSuperview()
             $0.height.equalTo(36)
-            $0.width.equalTo(53)
+            $0.width.equalTo(73)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImage.snp.bottom).offset(10)
@@ -144,7 +144,8 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
             averageLabel.text = String(format: "%.1f", data.reviewGradeSum / data.reviewCount)
         }
         
-        dayLabel.text = "D-\(dateDiff(startDateString: data.startDate) ?? 0)"
+        let diffDay = dateDiff(startDateString: data.startDate) ?? 0
+        dayLabel.text = diffDay == 0 ? "D-DAY" : "D-\(diffDay)"
         countLabel.text = "(\(Int(data.reviewCount)))"
         
     }
