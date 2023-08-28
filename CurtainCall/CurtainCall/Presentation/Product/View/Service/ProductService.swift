@@ -28,6 +28,7 @@ enum ProductAPI {
     case list(page: Int, size: Int, genre: ProductListAPI)
     case detail(id: String)
     case ticketking
+    case search(page: Int, size: Int, keyword: String)
 }
 
 extension ProductAPI: TargetType {
@@ -37,6 +38,8 @@ extension ProductAPI: TargetType {
         case .list: return "/shows"
         case .detail(let id): return "/shows/\(id)"
         case .ticketking: return ""
+        case .search:
+            return "/search/shows"
         }
     }
     
@@ -56,6 +59,11 @@ extension ProductAPI: TargetType {
             return .requestPlain
         case .ticketking:
             return .requestPlain
+        case .search(let page, let size, let keyword):
+            param.updateValue(page, forKey: "page")
+            param.updateValue(size, forKey: "size")
+            param.updateValue(keyword, forKey: "keyword")
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }
     

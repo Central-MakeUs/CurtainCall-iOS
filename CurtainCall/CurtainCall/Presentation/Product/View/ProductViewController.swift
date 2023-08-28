@@ -238,10 +238,10 @@ final class ProductViewController: UIViewController {
             image: UIImage(systemName: "magnifyingglass"),
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(searchBarButtonTapped)
         )
         searchBarButtonItem.tintColor = .black
-//        navigationItem.rightBarButtonItem = searchBarButtonItem
+        navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
     private func addTarget() {
@@ -255,6 +255,14 @@ final class ProductViewController: UIViewController {
                 for: .touchUpInside
             )
         }
+    }
+    
+    @objc
+    func searchBarButtonTapped() {
+        navigationController?.pushViewController(
+            ProductSearchViewController(viewModel: ProductSearchViewModel()),
+            animated: true
+        )
     }
     
     @objc

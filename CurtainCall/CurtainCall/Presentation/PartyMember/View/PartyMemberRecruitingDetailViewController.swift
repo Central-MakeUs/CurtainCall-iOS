@@ -235,6 +235,11 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         requestDetail()
+        partyInButton.addTarget(
+            self,
+            action: #selector(partyInButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     // MARK: - Helpers
@@ -485,11 +490,20 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                         configureReportButton()
                     } else {
                         configureDeleteButton()
+                        partyInButton.setNextButton(isSelected: false)
                     }
                 }
                         
             }.store(in: &subscriptions)
 
+    }
+    
+    @objc
+    private func partyInButtonTouchUpInside() {
+        let popup = PartyInPopup()
+        popup.modalPresentationStyle = .overFullScreen
+        popup.delegate = self
+        present(popup, animated: false)
     }
     
     @objc
@@ -521,6 +535,26 @@ extension PartyMemberRecruitingDetailViewController: DeletePopDelegate {
             } receiveValue: { [weak self] response in
                 if response.statusCode == 200 {
                     self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &subscriptions)
+
+    }
+}
+
+extension PartyMemberRecruitingDetailViewController: PartyInPopupDelegate {
+    func partyInButtonTapped() {
+        provider.requestPublisher(.participation(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if response.statusCode == 200 {
+                    print("파티 참여 완료")
+                } else {
+                    // TODO: Network Error
                 }
             }.store(in: &subscriptions)
 

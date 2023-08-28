@@ -71,6 +71,9 @@
 		EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */; };
 		EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3892A95054B003AD078 /* SettingViewController.swift */; };
 		EE3A42882A9C61C600273F94 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */; };
+		EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */; };
+		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
+		EE3A428E2A9C70FA00273F94 /* ProductSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428D2A9C70FA00273F94 /* ProductSearchViewModel.swift */; };
 		EE3E02932A77EF57007C3D71 /* LostItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */; };
 		EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */; };
 		EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */; };
@@ -301,6 +304,9 @@
 		EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailResponse.swift; sourceTree = "<group>"; };
 		EE1DF3892A95054B003AD078 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
+		EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyInPopup.swift; sourceTree = "<group>"; };
+		EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
+		EE3A428D2A9C70FA00273F94 /* ProductSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewModel.swift; sourceTree = "<group>"; };
 		EE3E02922A77EF57007C3D71 /* LostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemViewController.swift; sourceTree = "<group>"; };
 		EE3E02942A77FA6B007C3D71 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 		EE3E02962A77FF06007C3D71 /* LostItemLargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemLargeCategoryView.swift; sourceTree = "<group>"; };
@@ -889,6 +895,7 @@
 				EEAA40E82A8E0354000990B0 /* Service */,
 				EE9301222A723A8E00C8FBA5 /* Cell */,
 				EE3F2FF72A58129300BC539C /* ProductViewController.swift */,
+				EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */,
 				EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */,
 				EE0283182A9886B4008F8100 /* ProductSortBottomSheet.swift */,
 				EE3E02912A77EF35007C3D71 /* LostItem */,
@@ -1334,6 +1341,7 @@
 			children = (
 				EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */,
 				EE1CF9F32A93384200964DFE /* ProductViewModel.swift */,
+				EE3A428D2A9C70FA00273F94 /* ProductSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1342,6 +1350,7 @@
 			isa = PBXGroup;
 			children = (
 				EEC5573D2A9B7CCC005CD281 /* NotLoginPopup.swift */,
+				EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1767,6 +1776,7 @@
 				EEF815512A73B2D5009C1C57 /* ProductReviewCell.swift in Sources */,
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EE6127062A974F5300961109 /* UpdateMyPageBody.swift in Sources */,
+				EE3A428E2A9C70FA00273F94 /* ProductSearchViewModel.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EE9A88722A8765A80085F816 /* TicketingInfo.swift in Sources */,
 				EE0283192A9886B4008F8100 /* ProductSortBottomSheet.swift in Sources */,
@@ -1817,6 +1827,7 @@
 				EE5251ED2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift in Sources */,
 				EE02831B2A989A77008F8100 /* FacilityService.swift in Sources */,
 				EE0282FF2A96458E008F8100 /* RemoveAccountViewController.swift in Sources */,
+				EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */,
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */,
@@ -1875,6 +1886,7 @@
 				EEA944412A5D440F0081E784 /* PartyMemberProductViewModel.swift in Sources */,
 				EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
+				EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */,
 				EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */,
 				EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
