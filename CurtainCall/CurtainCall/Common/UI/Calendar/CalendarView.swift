@@ -135,7 +135,7 @@ final class CalendarView: UIView, CalendarDelegate {
         configureDatasoruce()
         setCalendar(date: date)
         addTarget()
-        print(dateDict)
+        
     }
     
     private func configureSubviews() {

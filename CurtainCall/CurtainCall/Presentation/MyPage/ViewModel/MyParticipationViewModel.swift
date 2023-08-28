@@ -30,7 +30,6 @@ final class MyParticipationViewModel {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     self?.myParticipationSubject.send(data.content)
-                    print("MY참여 data: " ,data)
                 } else {
                     print("ERROR: myParticipationSubject")
                 }

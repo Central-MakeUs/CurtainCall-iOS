@@ -292,7 +292,6 @@ final class ProductSearchCell: UICollectionViewCell {
         productRunningTimeLabel.text = item.runtime.isEmpty ? "정보 없음" : item.runtime
         keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(item.id)
         let timeInfo = showTimeToDict(showTiems: item.showTimes)
-        print("### timeINfo", timeInfo)
         if timeInfo.count >= 2 {
             productScheduleLabel.text = timeInfo[0]
             productScheduleSubLabel.text = timeInfo[1]

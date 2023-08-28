@@ -32,7 +32,6 @@ final class MyPageViewModel {
                 if let data = try? response.map(MyPageDetailResponse.self) {
                     UserInfoManager.shared.userInfo = data
                     self?.userInfoSubject.send(data)
-                    print("###", data)
                     return
                 } else {
                     print("User Info respone Error")

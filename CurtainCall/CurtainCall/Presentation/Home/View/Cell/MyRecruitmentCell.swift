@@ -167,15 +167,19 @@ final class MyRecruitmentCell: UITableViewCell {
     }
     
     func draw(item: MyRecruitmentContent) {
-        if let url = URL(string: item.showPoster) {
+        if let url = URL(string: item.showPoster ?? "") {
             posterImageView.kf.setImage(with: url)
         } else {
             posterImageView.image = nil
         }
-        titleLabel.text = item.showName
+        if let showName = item.showName {
+            titleLabel.text = "[\(showName)]"
+        } else {
+            titleLabel.text = nil
+        }
         contentLabel.text = item.title
-        dateLabel.text = item.showAt.convertAPIDateToDateString()
-        timeLabel.text = item.showAt.convertAPIDateToDateTime()
+        dateLabel.text = item.showAt?.convertAPIDateToDateString()
+        timeLabel.text = item.showAt?.convertAPIDateToDateTime()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
     }
 }

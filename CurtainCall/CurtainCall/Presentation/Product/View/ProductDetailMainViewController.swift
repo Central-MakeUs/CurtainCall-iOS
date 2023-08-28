@@ -666,7 +666,6 @@ final class ProductDetailMainViewController: UIViewController {
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(ShowReviewResponse.self) {
-                    print("####", data)
                     if data.content.isEmpty {
                         self?.detailReviewView.setEmptyView()
                     } else {
@@ -738,7 +737,6 @@ final class ProductDetailMainViewController: UIViewController {
     }
     
     private func draw(data: ProductDetailResponse) {
-        print("### Detail DATA: ", data)
         titleLabel.text = data.name
         if let url = URL(string: data.poster) {
             posterImageView.kf.setImage(with: url)

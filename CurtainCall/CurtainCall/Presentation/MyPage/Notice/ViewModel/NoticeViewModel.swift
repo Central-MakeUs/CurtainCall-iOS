@@ -27,7 +27,7 @@ final class NoticeViewModel {
                 guard let self else { return }
                 if let data = try? response.map(NoticeResponse.self) {
                     noticeItem = data.content
-                    print("###", noticeItem)
+                    
                 } else {
                     print("NOTICE ERROR: ")
                 }

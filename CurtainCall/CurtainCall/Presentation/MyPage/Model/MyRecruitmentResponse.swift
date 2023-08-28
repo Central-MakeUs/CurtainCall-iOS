@@ -16,15 +16,15 @@ struct MyRecruitmentContent: Hashable, Decodable {
     let title: String
     let curMemberNum: Int
     let maxMemberNum: Int
-    let showAt: String
+    let showAt: String?
     let createdAt: String
     let category: String
     let creatorId: Int
     let creatorNickname: String
     let creatorImageUrl: String?
-    let showId: String
-    let showName: String
-    let showPoster: String
-    let facilityId: String
-    let facilityName: String
+    let showId: String?
+    let showName: String?
+    let showPoster: String?
+    let facilityId: String?
+    let facilityName: String?
 }

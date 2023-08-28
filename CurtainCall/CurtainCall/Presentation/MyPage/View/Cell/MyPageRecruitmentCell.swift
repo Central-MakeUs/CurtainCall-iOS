@@ -293,7 +293,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     }
 
     func setUI(_ item: MyRecruitmentContent) {
-        productTitleLabel.text = item.showName
+        productTitleLabel.text = "\(item.showName ?? "")"
         if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
         } else {
@@ -303,12 +303,12 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         dateLabel.text = item.createdAt.convertAPIDateToDateString() + " " + item.createdAt.convertAPIDateToDateTime()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
-        if let url = URL(string: item.showPoster) {
+        if let url = URL(string: item.showPoster ?? "") {
             posterImageView.kf.setImage(with: url)
         } else {
             posterImageView.image = nil
         }
-        if let showDate = item.showAt.convertAPIDateToDate() {
+        if let showDate = item.showAt?.convertAPIDateToDate() {
             dateBadgeLabel.text = showDate.convertToYearMonthDayWeekString()
             timeBadgeLabel.text = showDate.convertToHourMinString()
         } else {

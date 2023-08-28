@@ -14,8 +14,8 @@ import SwiftKeychainWrapper
 enum MyPageAPI {
     case detailProfile(id: Int)
     case updateProfile(body: UpdateMyPageBody)
-    case recruitments(id: Int, page: Int, size: Int, category: PartyCategoryType)
-    case participations(id: Int, page: Int, size: Int, category: PartyCategoryType)
+    case recruitments(id: Int, page: Int, size: Int, category: PartyCategoryType?)
+    case participations(id: Int, page: Int, size: Int, category: PartyCategoryType?)
 }
 
 extension MyPageAPI: TargetType {
@@ -61,12 +61,12 @@ extension MyPageAPI: TargetType {
         case .recruitments(_, let page, let size, let category):
             param.updateValue(page, forKey: "page")
             param.updateValue(size, forKey: "size")
-            param.updateValue(category.rawValue, forKey: "category")
+            if let category { param.updateValue(category.rawValue, forKey: "category") }
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         case .participations(_, let page, let size, let category):
             param.updateValue(page, forKey: "page")
             param.updateValue(size, forKey: "size")
-            param.updateValue(category.rawValue, forKey: "category")
+            if let category { param.updateValue(category.rawValue, forKey: "category") }
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }

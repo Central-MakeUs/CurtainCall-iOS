@@ -320,7 +320,6 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
                 }
             } receiveValue: { [weak self] response in
                 guard let self else { return }
-                print("###", String(data: response.data, encoding: .utf8))
                 if let data = try? response.map(PartyDetailResponse.self) {
                     draw(partyInfo: data)
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0

@@ -270,6 +270,8 @@ final class TempHomeViewController: UIViewController {
     
     private var subcriptions: Set<AnyCancellable> = []
     private let viewModel: HomeViewModel
+    private var recruitmentList: [MyRecruitmentContent] = []
+    private var participationList: [MyRecruitmentContent] = []
     
     // MARK: - Lifecycles
     
@@ -290,14 +292,15 @@ final class TempHomeViewController: UIViewController {
         viewModel.requestUserInfo()
         viewModel.requestOpen()
         viewModel.requestTop10()
-        viewModel.requestMyRecuritment()
         viewModel.requestEnd()
-        myParticipationView.isHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        viewModel.requestMyParticipation()
+        viewModel.requestMyRecuritment()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -567,7 +570,7 @@ final class TempHomeViewController: UIViewController {
                 snapshot.appendItems(response, toSection: .main)
                 top10Datasource?.apply(snapshot)
             }.store(in: &subcriptions)
-        viewModel.$recruitmentList
+        viewModel.recruitmentList
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
@@ -578,21 +581,41 @@ final class TempHomeViewController: UIViewController {
                 if response.isEmpty {
                     myRecruitmentView.isHidden = true
                 } else {
+                    print("##MY 모집", response)
                     myRecruitmentView.isHidden = false
+                    recruitmentList = response
                     myRecruitmentTableView.snp.updateConstraints({ make in
                         make.height.equalTo(response.count * 111 + 10)
                     })
-                    myRecruitmentTableView.reloadData()
+                    
                 }
+                myRecruitmentTableView.reloadData()
+            }.store(in: &subcriptions)
+        
+        viewModel.participationList
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                
+                if response.isEmpty {
+                    myParticipationView.isHidden = true
+                } else {
+                    print("##MY참여", response)
+                    participationList = response
+                    myParticipationView.isHidden = false
+                    myParticipationTableView.snp.updateConstraints({ make in
+                        make.height.equalTo(response.count * 111 + 10)
+                    })
+                }
+                myParticipationTableView.reloadData()
             }.store(in: &subcriptions)
 
     }
-    
-    func setMyRecruitmentTableView(count: Int) {
-       
-        view.layoutIfNeeded()
-        
-    }
+
 }
 
 extension TempHomeViewController: UICollectionViewDelegate {
@@ -651,7 +674,11 @@ extension TempHomeViewController: UICollectionViewDelegate {
 
 extension TempHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.recruitmentList.count
+        if tableView == myRecruitmentTableView {
+            return recruitmentList.count
+        } else {
+            return participationList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -660,7 +687,11 @@ extension TempHomeViewController: UITableViewDataSource {
             indexPath: indexPath
         ) else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.draw(item: viewModel.recruitmentList[indexPath.row])
+        if tableView == myRecruitmentTableView {
+            cell.draw(item: recruitmentList[indexPath.row])
+        } else {
+            cell.draw(item: participationList[indexPath.row])
+        }
         return cell
     }
 }
@@ -671,8 +702,13 @@ extension TempHomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = viewModel.recruitmentList[indexPath.row].id
-        navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+        if tableView == myRecruitmentTableView {
+            let id = recruitmentList[indexPath.row].id
+            navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+        } else {
+            let id = participationList[indexPath.row].id
+            navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+        }
     }
 }
 

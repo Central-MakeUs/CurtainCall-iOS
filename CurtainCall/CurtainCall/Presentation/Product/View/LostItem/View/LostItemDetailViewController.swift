@@ -459,10 +459,10 @@ final class LostItemDetailViewController: UIViewController {
                 }
             } receiveValue: { [weak self] response in
                 guard let self else { return }
-                print(String(data: response.data, encoding: .utf8))
+                
                 if let data = try? response.map(LostItemDetailResponse.self) {
                     draw(info: data)
-                    print("## 분실물 상세", data)
+                    
                 }
             }.store(in: &subscriptions)
     }

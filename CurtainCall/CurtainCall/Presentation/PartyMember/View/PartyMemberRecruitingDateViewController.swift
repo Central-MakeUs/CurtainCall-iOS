@@ -271,7 +271,7 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
         configureUI()
         addTargets()
         bind()
-        print("상영 날짜", product)
+        
     }
     
     // MARK: - Helpers
