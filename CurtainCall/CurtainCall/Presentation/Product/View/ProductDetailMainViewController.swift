@@ -598,6 +598,7 @@ final class ProductDetailMainViewController: UIViewController {
     private func presentNotLoginPopup() {
         let popup = NotLoginPopup()
         popup.modalPresentationStyle = .overFullScreen
+        popup.delegate = self
         present(popup, animated: false)
     }
 
@@ -772,5 +773,12 @@ extension ProductDetailMainViewController: DetailLostItemViewDelegate {
         guard let id = product?.facilityId, let name = product?.facilityName else { return }
         
         show(LostItemViewController(id: id, name: name), sender: nil)
+    }
+}
+
+extension ProductDetailMainViewController: NotLoginPopupDelegate {
+    func loginButtonTapped() {
+        let loginViewController = LoginViewController(viewModel: LoginViewModel())
+        changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
 }

@@ -57,8 +57,7 @@ final class SplashViewController: UIViewController {
             } else if KeychainWrapper.standard.string(forKey: .refreshToken) == nil ||
                         KeychainWrapper.standard.string(forKey: .accessToken) == nil {
                 let loginViewController = LoginViewController(
-                    viewModel: LoginViewModel(
-                    useCase: LoginInteractor())
+                    viewModel: LoginViewModel()
                 )
                 self?.changeRootViewController(UINavigationController(rootViewController: loginViewController))
             } else {

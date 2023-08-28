@@ -34,15 +34,10 @@ final class LoginViewModel: LoginViewModelIO {
     
     // MARK: - Properties
     
-    private let useCase: LoginUseCase
     private var cancellables = Set<AnyCancellable>()
     private let loginProvider = MoyaProvider<LoginAPI>()
     var loginPublisher = PassthroughSubject<(LoginType, Int?), Error>()
     weak var loginViewController: UIViewController?
-    
-    init(useCase: LoginUseCase) {
-        self.useCase = useCase
-    }
     
     // MARK: - Helpers
     
@@ -112,20 +107,20 @@ final class LoginViewModel: LoginViewModelIO {
             loginPublisher.send(completion: .failure(error))
         }
         
-        if let result, let token = result.token?.tokenString {
-            useCase.loginWithFacebook(token: token)
-                .sink { [weak self] completion in
-                    switch completion {
-                    case .failure(let error):
-                        self?.loginPublisher.send(completion: .failure(error))
-                    case .finished:
-                        return
-                    }
-                } receiveValue: { [weak self] token in
-                    print(token)
-                    self?.loginPublisher.send((.facebook, nil))
-                }.store(in: &cancellables)
-        }
+//        if let result, let token = result.token?.tokenString {
+//            useCase.loginWithFacebook(token: token)
+//                .sink { [weak self] completion in
+//                    switch completion {
+//                    case .failure(let error):
+//                        self?.loginPublisher.send(completion: .failure(error))
+//                    case .finished:
+//                        return
+//                    }
+//                } receiveValue: { [weak self] token in
+//                    print(token)
+//                    self?.loginPublisher.send((.facebook, nil))
+//                }.store(in: &cancellables)
+//        }
     }
     
     func requestLogin(result: GIDSignInResult?, error: Error?) {
@@ -133,20 +128,20 @@ final class LoginViewModel: LoginViewModelIO {
             loginPublisher.send(completion: .failure(error))
         }
         
-        if let result {
-            useCase.loginWithGoogle(token: result.user.accessToken.tokenString)
-                .sink { [weak self] completion in
-                    switch completion {
-                    case .failure(let error):
-                        self?.loginPublisher.send(completion: .failure(error))
-                    case .finished:
-                        return
-                    }
-                } receiveValue: { [weak self] token in
-                    print(token)
-                    self?.loginPublisher.send((.google, nil))
-                }.store(in: &cancellables)
-        }
+//        if let result {
+//            useCase.loginWithGoogle(token: result.user.accessToken.tokenString)
+//                .sink { [weak self] completion in
+//                    switch completion {
+//                    case .failure(let error):
+//                        self?.loginPublisher.send(completion: .failure(error))
+//                    case .finished:
+//                        return
+//                    }
+//                } receiveValue: { [weak self] token in
+//                    print(token)
+//                    self?.loginPublisher.send((.google, nil))
+//                }.store(in: &cancellables)
+//        }
     }
     
     

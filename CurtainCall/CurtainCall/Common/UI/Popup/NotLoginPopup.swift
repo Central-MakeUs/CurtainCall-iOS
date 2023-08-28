@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NotLoginPopupDelegate: AnyObject {
+    func loginButtonTapped()
+}
+
 final class NotLoginPopup: UIViewController {
     
     // MARK: - UI properties
@@ -28,14 +32,33 @@ final class NotLoginPopup: UIViewController {
         return label
     }()
     
+    private let buttonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 12
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    private let cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("취소", for: .normal)
+        button.backgroundColor = .hexE4E7EC
+        button.setTitleColor(.hexBEC2CA, for: .normal)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
     private let completeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("확인", for: .normal)
+        button.setTitle("로그인하기", for: .normal)
         button.backgroundColor = .pointColor2
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         return button
     }()
+    
+    weak var delegate: NotLoginPopupDelegate?
     
     // MARK: - Lifecycles
     
@@ -55,7 +78,8 @@ final class NotLoginPopup: UIViewController {
     
     private func configureSubviews() {
         view.addSubview(popupView)
-        popupView.addSubviews(titleLabel, completeButton)
+        popupView.addSubviews(titleLabel, buttonStackView)
+        buttonStackView.addArrangedSubviews(cancelButton, completeButton)
     }
     
     private func configureConstraints() {
@@ -68,9 +92,9 @@ final class NotLoginPopup: UIViewController {
             $0.top.equalToSuperview().offset(38)
             $0.centerX.equalToSuperview()
         }
-        completeButton.snp.makeConstraints {
+        buttonStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(34)
-            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.horizontalEdges.equalToSuperview().inset(18)
             $0.bottom.equalToSuperview().inset(20)
             $0.height.equalTo(46)
         }
@@ -83,13 +107,22 @@ final class NotLoginPopup: UIViewController {
             action: #selector(completeButtonTouchUpInside),
             for: .touchUpInside
         )
+        cancelButton.addTarget(
+            self,
+            action: #selector(cancelButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    private func cancelButtonTouchUpInside() {
+        dismiss(animated: false)
     }
     
     @objc
     func completeButtonTouchUpInside() {
+        delegate?.loginButtonTapped()
         dismiss(animated: false)
     }
     
 }
-
-

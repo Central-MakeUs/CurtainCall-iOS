@@ -132,6 +132,7 @@ final class TempMainTabBarController: UIViewController {
         if (sender.tag == 3 || sender.tag == 2) && KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
             let popup = NotLoginPopup()
             popup.modalPresentationStyle = .overFullScreen
+            popup.delegate = self
             present(popup, animated: false)
             return
         }
@@ -156,5 +157,11 @@ final class TempMainTabBarController: UIViewController {
         self.addChild(vc)
         self.view.addSubview(vc.view)
         self.view.bringSubviewToFront(wholeView)
+    }
+}
+extension TempMainTabBarController: NotLoginPopupDelegate {
+    func loginButtonTapped() {
+        let loginViewController = LoginViewController(viewModel: LoginViewModel())
+        changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
 }

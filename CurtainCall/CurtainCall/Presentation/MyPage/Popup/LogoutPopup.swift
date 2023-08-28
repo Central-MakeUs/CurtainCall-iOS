@@ -26,7 +26,7 @@ final class LogoutPopup: UIViewController {
         let label = UILabel()
         label.font = .subTitle2
         label.textColor = .title
-        label.text = "정말 삭제하시겠습니까?"
+        label.text = "로그아웃 할까요?"
         return label
     }()
     

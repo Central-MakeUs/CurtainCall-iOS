@@ -160,8 +160,7 @@ final class OnboardingViewController: UIViewController {
     
     private func moveToLoginViewController() {
         let loginViewController = LoginViewController(
-            viewModel: LoginViewModel(
-            useCase: LoginInteractor())
+            viewModel: LoginViewModel()
         )
         changeRootViewController(UINavigationController(rootViewController: loginViewController))
     }
