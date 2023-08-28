@@ -15,6 +15,9 @@ enum ReviewAPI {
     case list(id: String, page: Int, size: Int)
     case update(id: String, grade: Int, content: String)
     case delete(id: String)
+    case like(id: Int)
+    case unLike(id: Int)
+    case likeSearch(id: [Int])
 }
 
 extension ReviewAPI: TargetType {
@@ -30,6 +33,12 @@ extension ReviewAPI: TargetType {
             return "/reviews/\(id)"
         case .delete(let id):
             return "/reviews/\(id)"
+        case .like(let id):
+            return "/reviews/\(id)/like"
+        case .unLike(let id):
+            return "/reviews/\(id)/like"
+        case .likeSearch:
+            return "/member/like"
         }
     }
     
@@ -43,6 +52,12 @@ extension ReviewAPI: TargetType {
             return .patch
         case .delete:
             return .delete
+        case .like:
+            return .put
+        case .unLike:
+            return .delete
+        case .likeSearch:
+            return .get
         }
     }
     
@@ -63,6 +78,17 @@ extension ReviewAPI: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .delete:
             return .requestPlain
+        case .like:
+            return .requestPlain
+        case .unLike:
+            return .requestPlain
+        case .likeSearch(let id):
+            var param: [String: Any] = [:]
+            param.updateValue(id, forKey: "reviewIds")
+            return .requestParameters(
+                parameters: param,
+                encoding: URLEncoding(arrayEncoding: .noBrackets)
+            )
         }
         
     }

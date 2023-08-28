@@ -77,6 +77,7 @@ final class TempHomeViewController: UIViewController {
     private let myRecruitmentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.isHidden = true
         return view
     }()
     
@@ -104,6 +105,7 @@ final class TempHomeViewController: UIViewController {
     private let myParticipationView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.isHidden = true
         return view
     }()
     

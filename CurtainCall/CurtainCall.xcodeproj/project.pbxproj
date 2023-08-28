@@ -204,6 +204,8 @@
 		EEC441D92A77E28400CD93BC /* ReviewWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */; };
 		EEC5573C2A9B7794005CD281 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5573B2A9B7794005CD281 /* UILabel + Extension.swift */; };
 		EEC5573E2A9B7CCC005CD281 /* NotLoginPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC5573D2A9B7CCC005CD281 /* NotLoginPopup.swift */; };
+		EEC557442A9CE3E8005CD281 /* LikeReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC557432A9CE3E8005CD281 /* LikeReviewResponse.swift */; };
+		EEC557472A9CE481005CD281 /* LikeReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC557462A9CE481005CD281 /* LikeReviewService.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED24A612A9B6B01000C3BA4 /* ReportService.swift */; };
@@ -436,6 +438,8 @@
 		EEC441D82A77E28400CD93BC /* ReviewWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewModel.swift; sourceTree = "<group>"; };
 		EEC5573B2A9B7794005CD281 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		EEC5573D2A9B7CCC005CD281 /* NotLoginPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoginPopup.swift; sourceTree = "<group>"; };
+		EEC557432A9CE3E8005CD281 /* LikeReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeReviewResponse.swift; sourceTree = "<group>"; };
+		EEC557462A9CE481005CD281 /* LikeReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeReviewService.swift; sourceTree = "<group>"; };
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
@@ -704,6 +708,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEC557452A9CE457005CD281 /* LikeReviewService */,
 				EE3A42912A9C9D0E00273F94 /* LodingIndicator */,
 				EE0283132A986F9C008F8100 /* FavoriteService */,
 				EE02830C2A97B88E008F8100 /* ImageService */,
@@ -775,6 +780,7 @@
 			children = (
 				EE1DF3712A93A44F003AD078 /* ShowReviewReponse.swift */,
 				EE84FC812A94A65F001134B5 /* WriteReviewResponse.swift */,
+				EEC557432A9CE3E8005CD281 /* LikeReviewResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1369,6 +1375,14 @@
 			path = Popup;
 			sourceTree = "<group>";
 		};
+		EEC557452A9CE457005CD281 /* LikeReviewService */ = {
+			isa = PBXGroup;
+			children = (
+				EEC557462A9CE481005CD281 /* LikeReviewService.swift */,
+			);
+			path = LikeReviewService;
+			sourceTree = "<group>";
+		};
 		EEC60A462A4AB262001DDC2A /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -1722,6 +1736,7 @@
 				EEC441D42A76336300CD93BC /* ReviewWriteViewController.swift in Sources */,
 				EEA944352A5BF55C0081E784 /* PartyMemberProductViewController.swift in Sources */,
 				EE0283212A98A7E3008F8100 /* CreateLostItemBody.swift in Sources */,
+				EEC557442A9CE3E8005CD281 /* LikeReviewResponse.swift in Sources */,
 				EE5251CD2A8E639A003DFEE3 /* ReportViewController.swift in Sources */,
 				EE9A88692A8757320085F816 /* GuideCategoryButton.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
@@ -1765,6 +1780,7 @@
 				EE0283042A9791B4008F8100 /* UserInfoManager.swift in Sources */,
 				EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */,
 				EE747B992A96E960006A8AB3 /* RemoveAccountService.swift in Sources */,
+				EEC557472A9CE481005CD281 /* LikeReviewService.swift in Sources */,
 				EEA1322F2A7FD6920016D01A /* HomeBannerCell.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
 				EE9A885B2A83DCF00085F816 /* ScheduledToEndProductCell.swift in Sources */,

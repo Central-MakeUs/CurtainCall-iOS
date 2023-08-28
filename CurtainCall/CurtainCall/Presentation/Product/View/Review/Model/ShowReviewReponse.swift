@@ -20,4 +20,5 @@ struct ShowReviewContent: Decodable {
     let creatorNickname: String
     let creatorImageUrl: String?
     let createdAt: String
+    let likeCount: Int?
 }

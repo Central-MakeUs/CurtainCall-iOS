@@ -27,6 +27,7 @@ final class HomeViewModel {
     func requestUserInfo() {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
             print("UserId not exist")
+            requestCount += 1
             return
         }
         userInfoProvider.requestPublisher(.detailProfile(id: userId))
@@ -134,7 +135,10 @@ final class HomeViewModel {
     
     func requestMyRecuritment() {
         let provider = MoyaProvider<MyPageAPI>()
-        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else { return }
+        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
+            requestCount += 1
+            return
+        }
         provider.requestPublisher(.recruitments(id: userId, page: 0, size: 2, category: nil))
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -156,7 +160,10 @@ final class HomeViewModel {
     
     func requestMyParticipation() {
         let provider = MoyaProvider<MyPageAPI>()
-        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else { return }
+        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
+            requestCount += 1
+            return
+        }
         provider.requestPublisher(.participations(id: userId, page: 0, size: 2, category: nil))
             .sink { completion in
                 if case let .failure(error) = completion {

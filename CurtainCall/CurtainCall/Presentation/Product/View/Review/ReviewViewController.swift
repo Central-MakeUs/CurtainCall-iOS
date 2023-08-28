@@ -20,6 +20,8 @@ final class ReviewViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ProductReviewCell.self, forCellReuseIdentifier: ProductReviewCell.identifier)
+        tableView.backgroundColor = .white
+        tableView.contentInset = .zero
         return tableView
     }()
     
@@ -86,6 +88,7 @@ final class ReviewViewController: UIViewController {
     }
     
     private func configureSubviews() {
+        view.backgroundColor = .white
         view.addSubviews(tableView, emptyView, writeButton)
         emptyView.addSubviews(emptyImage, emptyLabel)
         
@@ -149,9 +152,30 @@ final class ReviewViewController: UIViewController {
                         self?.reviewInfos = data.content
                         self?.emptyView.isHidden = true
                         self?.tableView.reloadData()
+                        self?.requestIsLike(id: data.content.map { $0.id })
                     }
                 }
             }.store(in: &subscriptions)
+    }
+    
+    private func requestIsLike(id: [Int]) {
+        let provider = MoyaProvider<ReviewAPI>()
+        provider.requestPublisher(.likeSearch(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if let data = try? response.map(LikeReviewResponse.self) {
+                    data.content.filter { $0.liked }.forEach {
+                        LikeReviewService.shared.isLikeReview.insert($0.showReviewId)
+                    }
+                    tableView.reloadData()
+                }
+            }.store(in: &subscriptions)
+
     }
     
     private func setUpEmptyView() {
@@ -171,6 +195,7 @@ extension ReviewViewController: UITableViewDataSource {
         ) as? ProductReviewCell else { return UITableViewCell() }
         
         cell.draw(item: reviewInfos[indexPath.row])
+        cell.contentView.isUserInteractionEnabled = false
         return cell
     }
 }

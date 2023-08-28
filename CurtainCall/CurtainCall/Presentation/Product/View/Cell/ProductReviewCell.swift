@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 import Kingfisher
+import Moya
+import CombineMoya
 
 final class ProductReviewCell: UITableViewCell {
     
@@ -78,6 +81,8 @@ final class ProductReviewCell: UITableViewCell {
     // MARK: Property
     
     private var isHeart: Bool = false
+    private var reviewId: Int?
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: Life Cycle
     
@@ -86,6 +91,7 @@ final class ProductReviewCell: UITableViewCell {
         selectionStyle = .none
         configureUI()
         thumbupButton.addTarget(self, action: #selector(thumbupButtonTouchUpInside), for: .touchUpInside)
+        reportButton.addTarget(self, action: #selector(reportButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -100,9 +106,9 @@ final class ProductReviewCell: UITableViewCell {
     }
     
     private func configureSubviews() {
-        addSubviews(profileImageView, gradeNameView, contentLabel, reportButton, thumbupView)
+        addSubviews(thumbupView, profileImageView, gradeNameView, contentLabel, reportButton)
         gradeNameView.addSubviews(gradeStackView, nickNameDateLabel)
-        thumbupView.addSubviews(thumbupImageView, thumbupLabel, thumbupButton)
+        thumbupView.addSubviews(thumbupButton, thumbupImageView, thumbupLabel)
     }
     
     private func configureConstraints() {
@@ -118,10 +124,12 @@ final class ProductReviewCell: UITableViewCell {
         gradeStackView.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.width.equalTo(80)
+            
         }
         
         nickNameDateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(10)
             $0.top.equalTo(gradeStackView.snp.bottom).offset(4)
             $0.bottom.equalToSuperview()
         }
@@ -152,9 +160,11 @@ final class ProductReviewCell: UITableViewCell {
         thumbupLabel.snp.makeConstraints {
             $0.leading.equalTo(thumbupImageView.snp.trailing).offset(4)
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-4)
+            $0.trailing.equalToSuperview().offset(-6)
         }
     }
+    
+    
     
     func draw(item: ShowReviewContent) {
         if let profileURLString = item.creatorImageUrl, let profileURL = URL(string: profileURLString) {
@@ -168,22 +178,75 @@ final class ProductReviewCell: UITableViewCell {
         } else {
             nickNameDateLabel.text = "\(item.creatorNickname)"
         }
+        if let likeCount = item.likeCount {
+            thumbupLabel.text = "\(likeCount)"
+        } else {
+            thumbupLabel.text = "0"
+        }
         contentLabel.text = item.content
+        reviewId = item.id
+        setupThumbUpButton(isHeart: LikeReviewService.shared.isLikeReview.contains(item.id))
+        
     }
     
 
     
     @objc
     func thumbupButtonTouchUpInside() {
-        isHeart.toggle()
-        setupThumbUpButton()
+        guard let reviewId else { return }
+        print("##", reviewId)
+        if !thumbupButton.isSelected {
+            let provider = MoyaProvider<ReviewAPI>()
+            provider.requestPublisher(.like(id: reviewId))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                        return
+                    }
+                } receiveValue: { [weak self] response in
+                    if response.statusCode == 200 {
+                        self?.setupThumbUpButton(isHeart: true)
+                        self?.thumbupButton.isSelected = true
+                        if let currentReviewCount = Int(self?.thumbupLabel.text ?? "") {
+                            self?.thumbupLabel.text = "\(currentReviewCount + 1)"
+                            
+                        }
+                        LikeReviewService.shared.isLikeReview.insert(reviewId)
+                    }
+                }.store(in: &subscriptions)
+        } else {
+            let provider = MoyaProvider<ReviewAPI>()
+            provider.requestPublisher(.unLike(id: reviewId))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                        return
+                    }
+                } receiveValue: { [weak self] response in
+                    if response.statusCode == 200 {
+                        self?.setupThumbUpButton(isHeart: false)
+                        self?.thumbupButton.isSelected = false
+                        if let currentReviewCount = Int(self?.thumbupLabel.text ?? "") {
+                            self?.thumbupLabel.text = "\(min(0, currentReviewCount - 1))"
+                        }
+                        LikeReviewService.shared.isLikeReview.remove(reviewId)
+                    }
+                }.store(in: &subscriptions)
+        }
     }
     
-    func setupThumbUpButton() {
+    @objc
+    func reportButtonTapped() {
+        print("신고하기")
+    }
+    
+    func setupThumbUpButton(isHeart: Bool) {
         thumbupView.backgroundColor = isHeart ? .pointColor2 : .hexF2F3F5
         thumbupImageView.image = isHeart ?
                                 UIImage(named: ImageNamespace.thumbUpSelectedSymbol) :
                                 UIImage(named: ImageNamespace.thumbUpDeselectedSymbol)
+        thumbupLabel.textColor = isHeart ? .white : .hexBEC2CA
+        thumbupButton.isSelected = isHeart
     }
     
 }

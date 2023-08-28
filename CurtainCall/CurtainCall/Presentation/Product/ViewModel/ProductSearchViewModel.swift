@@ -34,7 +34,6 @@ final class ProductSearchViewModel {
                     }
                     
                 }
-                print("##SEARCH", String(data: response.data, encoding: .utf8))
             }.store(in: &subscriptions)
 
     }
