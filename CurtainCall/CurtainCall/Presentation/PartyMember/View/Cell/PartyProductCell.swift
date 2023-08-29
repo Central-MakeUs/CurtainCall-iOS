@@ -15,25 +15,23 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let cardView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 12
         view.backgroundColor = .white
         return view
     }()
     
     private let productLabelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .pointColor2
-        view.layer.cornerRadius = 4
-        view.layer.maskedCorners = CACornerMask(
-            arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner
-        )
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 12
         return view
     }()
     
     private let productTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .title
         label.font = .subTitle4
+        label.textAlignment = .center
         return label
     }()
     
@@ -67,8 +65,8 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = .body1
+        label.textColor = .title
+        label.font = .body4
         return label
     }()
     
@@ -80,12 +78,6 @@ final class PartyProductCell: UICollectionViewCell {
         return label
     }()
     
-    private let borderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .hexF2F3F5
-        return view
-    }()
-    
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
@@ -95,9 +87,15 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let dateBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .hexE4E7EC
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 4
         return view
+    }()
+    
+    private let dateBadgeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.myPageDateSymbol)
+        return imageView
     }()
     
     private let dateBadgeLabel: UILabel = {
@@ -109,9 +107,15 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let timeBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .hexE4E7EC
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 4
         return view
+    }()
+    
+    private let timeBadgeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.myPageTimeSymbol)
+        return imageView
     }()
     
     private let timeBadgeLabel: UILabel = {
@@ -123,9 +127,15 @@ final class PartyProductCell: UICollectionViewCell {
     
     private let locationBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .hexE4E7EC
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 4
         return view
+    }()
+    
+    private let locationBadgeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.myPageLocationSymbol)
+        return imageView
     }()
     
     private let locationBadgeLabel: UILabel = {
@@ -135,40 +145,6 @@ final class PartyProductCell: UICollectionViewCell {
         return label
     }()
     
-    private let partyMemberStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = -4
-        return stackView
-    }()
-    
-    private let partyMemberImageView1: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        return imageView
-    }()
-    
-    private let partyMemberImageView2: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        return imageView
-    }()
-    private let partyMemberImageView3: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        return imageView
-    }()
-    private let partyMemberImageView4: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        return imageView
-    }()
-    private let partyMemberImageView5: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        return imageView
-    }()
-    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -176,6 +152,8 @@ final class PartyProductCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        clipsToBounds = true
+        layer.applySketchShadow(color: .black, alpha: 0.1, x: 0, y: 4, blur: 4, spread: 0)
     }
     
     @available(*, unavailable)
@@ -188,42 +166,41 @@ final class PartyProductCell: UICollectionViewCell {
     private func configureUI() {
         configureSubviews()
         configureConstraints()
+        layoutIfNeeded()
+        drawViewDotLine(view: productLabelView)
     }
     
     private func configureSubviews() {
         addSubviews(cardView, productLabelView)
         cardView.addSubviews(
-            profileImageView, nicknameDateStackView, countLabel, titleLabel, borderView,
-            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView, partyMemberStackView
+            profileImageView, nicknameDateStackView, countLabel, titleLabel,
+            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView
         )
         productLabelView.addSubview(productTitleLabel)
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, dateLabel)
-        dateBadgeView.addSubview(dateBadgeLabel)
-        timeBadgeView.addSubview(timeBadgeLabel)
-        locationBadgeView.addSubview(locationBadgeLabel)
-        partyMemberStackView.addArrangedSubviews(
-            partyMemberImageView1, partyMemberImageView2, partyMemberImageView3,
-            partyMemberImageView4, partyMemberImageView5
-        )
+        dateBadgeView.addSubviews(dateBadgeImageView, dateBadgeLabel)
+        timeBadgeView.addSubviews(timeBadgeImageView, timeBadgeLabel)
+        locationBadgeView.addSubviews(locationBadgeImageView, locationBadgeLabel)
     }
     
     private func configureConstraints() {
-        cardView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().offset(12)
-            $0.bottom.equalToSuperview()
-        }
         productTitleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(12)
-            $0.top.bottom.equalToSuperview().inset(4)
+            $0.center.equalToSuperview()
         }
         productLabelView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading)
             $0.trailing.equalTo(cardView.snp.trailing)
             $0.top.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        cardView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.top.equalTo(productLabelView.snp.bottom)
+            $0.bottom.equalToSuperview()
         }
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(29)
+            $0.top.equalToSuperview().offset(17)
             $0.leading.equalToSuperview().offset(20)
             $0.size.equalTo(42)
         }
@@ -232,61 +209,85 @@ final class PartyProductCell: UICollectionViewCell {
             $0.centerY.equalTo(profileImageView)
         }
         countLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(31)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
         titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.top.equalTo(profileImageView.snp.bottom).offset(16)
-            $0.bottom.equalTo(borderView.snp.top).offset(-15)
             
         }
-        borderView.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(posterImageView.snp.top).offset(-16)
-        }
         posterImageView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(20)
-            $0.height.equalTo(92)
-            $0.width.equalTo(69)
+            $0.height.equalTo(87)
+            $0.width.equalTo(66)
             $0.bottom.equalToSuperview().inset(20)
         }
+        
+        dateBadgeImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(6)
+        }
+        
         dateBadgeLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(10)
-            $0.verticalEdges.equalToSuperview().inset(4)
+            $0.leading.equalTo(dateBadgeImageView.snp.trailing).offset(6)
+            $0.trailing.equalToSuperview().inset(6)
+            $0.centerY.equalToSuperview()
         }
         dateBadgeView.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.top)
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.height.equalTo(23)
+        }
+        timeBadgeImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(6)
         }
         timeBadgeLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(10)
-            $0.verticalEdges.equalToSuperview().inset(4)
+            $0.leading.equalTo(timeBadgeImageView.snp.trailing).offset(6)
+            $0.trailing.equalToSuperview().inset(6)
+            $0.centerY.equalToSuperview()
         }
         timeBadgeView.snp.makeConstraints {
-            $0.top.equalTo(dateBadgeView.snp.top)
-            $0.leading.equalTo(dateBadgeView.snp.trailing).offset(8)
+            $0.top.equalTo(dateBadgeView.snp.bottom).offset(9)
+            $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.height.equalTo(23)
         }
+        
+        locationBadgeImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(6)
+        }
+        
         locationBadgeLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(10)
-            $0.verticalEdges.equalToSuperview().inset(4)
+            $0.leading.equalTo(locationBadgeImageView.snp.trailing).offset(6)
+            $0.trailing.equalToSuperview().inset(6)
+            $0.centerY.equalToSuperview()
         }
         locationBadgeView.snp.makeConstraints {
-            $0.top.equalTo(dateBadgeView.snp.bottom).offset(8)
-            $0.leading.equalTo(dateBadgeView)
-            $0.trailing.lessThanOrEqualToSuperview().inset(12)
+            $0.top.equalTo(timeBadgeView.snp.bottom).offset(9)
+            $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.height.equalTo(23)
         }
-        partyMemberStackView.snp.makeConstraints {
-            $0.top.equalTo(locationBadgeView.snp.bottom).offset(12)
-            $0.leading.equalTo(locationBadgeView)
-        }
-        [partyMemberImageView1, partyMemberImageView2, partyMemberImageView3,
-         partyMemberImageView4, partyMemberImageView5].forEach {
-            $0.snp.makeConstraints { make in
-                make.size.equalTo(24)
-            }
-        }
+        
+    }
+    
+    func drawViewDotLine(view: UIView) {
+        let layer = CAShapeLayer()
+        layer.strokeColor = UIColor.hexE4E7EC?.cgColor
+        layer.lineDashPattern = [2, 2]
+             
+        let path = UIBezierPath()
+        let point1 = CGPoint(x: view.bounds.minX, y: view.bounds.maxY)
+        let point2 = CGPoint(x: view.bounds.maxX, y: view.bounds.maxY)
+        
+        path.move(to: point1)
+        path.addLine(to: point2)
+             
+        layer.path = path.cgPath
+        
+        view.layer.addSublayer(layer)
     }
     
     func setUI(_ item: PartyListContent) {
@@ -297,7 +298,6 @@ final class PartyProductCell: UICollectionViewCell {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
         nicknameLabel.text = item.creatorNickname
-//        dateLabel.text = item.writeDate.convertToYearMonthDayHourMinString()
         dateLabel.text = item.createdAt.convertAPIDateToDateString()
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
@@ -308,8 +308,6 @@ final class PartyProductCell: UICollectionViewCell {
         }
         dateBadgeLabel.text = item.showAt?.convertAPIDateToDateString() ?? ""
         timeBadgeLabel.text = item.showAt?.convertAPIDateToDateTime() ?? ""
-//        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
-//        timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.facilityName
     }
 }
