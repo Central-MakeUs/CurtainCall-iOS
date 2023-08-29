@@ -438,11 +438,13 @@ final class PartyMemberRecruitingDateViewController: UIViewController {
             return view
         }()
         view.addSubview(timeSelectView)
+        timeSelectButton.isUserInteractionEnabled = false
         timeSelectView.snp.makeConstraints {
             $0.top.equalTo(timeSelectButton.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(min(60 * times.count, 180))
         }
+        
     }
     
     // MARK: - Actions
@@ -511,6 +513,7 @@ extension PartyMemberRecruitingDateViewController: CalendarViewDelegate {
             date: dateSelectButton.titleLabel?.text,
             time: timeSelectButton.titleLabel?.text
         )
+        timeSelectButton.isUserInteractionEnabled = true
     }
 }
 
@@ -524,5 +527,6 @@ extension PartyMemberRecruitingDateViewController: TimeSelectViewDelegate {
             date: dateSelectButton.titleLabel?.text,
             time: timeSelectButton.titleLabel?.text
         )
+        timeSelectButton.isUserInteractionEnabled = true
     }
 }
