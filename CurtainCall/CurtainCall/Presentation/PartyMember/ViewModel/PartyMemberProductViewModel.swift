@@ -16,8 +16,10 @@ final class PartyMemberProductViewModel {
     // MARK: - Properties
     
     private var cancellables = Set<AnyCancellable>()
-    var productInfoData = PassthroughSubject<[PartyListContent], Error>()
+    @Published var productInfoData: [PartyListContent] = []
     private let provider = MoyaProvider<PartyAPI>()
+    var page = 0
+    var isLoding = false
     
     // MARK: - Lifecycles
 
@@ -33,10 +35,12 @@ final class PartyMemberProductViewModel {
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if let data = try? response.map(PartyListResponse.self) {
-                    productInfoData.send(data.content)
+                    if page == 0 {
+                        productInfoData = data.content
+                    } else {
+                        productInfoData.append(contentsOf: data.content)
+                    }
                     return
-                } else {
-                    productInfoData.send(completion: .failure(NSError(domain: "DecodeError", code: 999)))
                 }
                 
             }.store(in: &cancellables)

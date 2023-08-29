@@ -146,14 +146,13 @@ final class PartyMemberProductViewController: UIViewController {
             image: UIImage(systemName: "magnifyingglass"),
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(searchButtonTapped)
         )
         
         leftBarbuttonItem.tintColor = .black
         searchBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarbuttonItem
-        // TODO: 1차 배포 이후 구현
-//        navigationItem.rightBarButtonItem = searchBarButtonItem
+        navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
     private func createCollectionViewLayout() -> UICollectionViewCompositionalLayout {
@@ -196,12 +195,12 @@ final class PartyMemberProductViewController: UIViewController {
     }
     
     private func configureSnapshot() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot?.appendSections([.main])
+        
+        
     }
     
     private func bind() {
-        viewModel.productInfoData
+        viewModel.$productInfoData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case let .failure(error) = completion {
@@ -215,11 +214,14 @@ final class PartyMemberProductViewController: UIViewController {
                     emptyView.isHidden = false
                     guideLabel.isHidden = true
                 } else {
-                    guard var snapshot = self.snapshot else { return }
+                    var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                    snapshot.deleteAllItems()
+                    snapshot.appendSections([.main])
                     snapshot.appendItems(item, toSection: .main)
                     dataSource?.apply(snapshot)
                     emptyView.isHidden = true
                     guideLabel.isHidden = false
+                    viewModel.isLoding = false
                 }
             }.store(in: &cancellables)
 
@@ -245,6 +247,12 @@ final class PartyMemberProductViewController: UIViewController {
         moveToWriteView()
     }
     
+    @objc
+    private func searchButtonTapped() {
+        let searchViewController = PartyMemberSearchViewController(partyType: partyType)
+        navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
     private func moveToWriteView() {
         configureBackbarButton()
         let writeViewController = PartyMemberRecruitingProductViewController(
@@ -263,5 +271,15 @@ extension PartyMemberProductViewController: UICollectionViewDelegate {
         let detailViewController = PartyMemberRecruitingDetailViewController(id: item.id,
             partyType: partyType)
         navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row > (viewModel.page + 1) * 20 - 3 {
+            if !viewModel.isLoding {
+                viewModel.isLoding = true
+                viewModel.requestPartyProductInfo(page: viewModel.page + 1, size: 20, category: partyType)
+                viewModel.page += 1
+            }
+        }
     }
 }

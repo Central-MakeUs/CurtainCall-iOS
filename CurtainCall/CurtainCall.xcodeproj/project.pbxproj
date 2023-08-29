@@ -89,6 +89,8 @@
 		EE3F2FF82A58129300BC539C /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3F2FF72A58129300BC539C /* ProductViewController.swift */; };
 		EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4467352A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift */; };
 		EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */; };
+		EE4A36E72A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A36E62A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift */; };
+		EE4A36E92A9DB7B9007D3C9F /* PartySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A36E82A9DB7B9007D3C9F /* PartySearchViewModel.swift */; };
 		EE4B34282A66D28900E6EB01 /* SpoqaHanSansNeo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34232A66D28700E6EB01 /* SpoqaHanSansNeo-Light.otf */; };
 		EE4B34292A66D28900E6EB01 /* SpoqaHanSansNeo-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34242A66D28800E6EB01 /* SpoqaHanSansNeo-Medium.otf */; };
 		EE4B342B2A66D28900E6EB01 /* SpoqaHanSansNeo-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */; };
@@ -326,6 +328,8 @@
 		EE3F2FF72A58129300BC539C /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EE4467352A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberOtherRecruitingDateViewController.swift; sourceTree = "<group>"; };
 		EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewModel.swift; sourceTree = "<group>"; };
+		EE4A36E62A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberSearchViewController.swift; sourceTree = "<group>"; };
+		EE4A36E82A9DB7B9007D3C9F /* PartySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySearchViewModel.swift; sourceTree = "<group>"; };
 		EE4B34232A66D28700E6EB01 /* SpoqaHanSansNeo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.otf"; sourceTree = "<group>"; };
 		EE4B34242A66D28800E6EB01 /* SpoqaHanSansNeo-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.otf"; sourceTree = "<group>"; };
 		EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.otf"; sourceTree = "<group>"; };
@@ -948,6 +952,7 @@
 				EE93AA352A6D70E000E30C76 /* PartyMemberRecruitingDetailViewController.swift */,
 				EE93011F2A70114700C8FBA5 /* PartyMemberRecruitingOtherDetailViewController.swift */,
 				EE0132152A5E53C800873107 /* Cell */,
+				EE4A36E62A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1307,6 +1312,7 @@
 				EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */,
 				EE5DED0E2A6581E10027B0D4 /* PartyMemberRecruitingContentViewModel.swift */,
 				EE93AA2E2A6BAE4400E30C76 /* PartyMemberOtherRecruitingDateViewModel.swift */,
+				EE4A36E82A9DB7B9007D3C9F /* PartySearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1783,6 +1789,7 @@
 				EEC557472A9CE481005CD281 /* LikeReviewService.swift in Sources */,
 				EEA1322F2A7FD6920016D01A /* HomeBannerCell.swift in Sources */,
 				EE3F2FF62A58128600BC539C /* LiveTalkViewController.swift in Sources */,
+				EE4A36E92A9DB7B9007D3C9F /* PartySearchViewModel.swift in Sources */,
 				EE9A885B2A83DCF00085F816 /* ScheduledToEndProductCell.swift in Sources */,
 				EE8437BC2A81431B00ADD3D8 /* LiveTalkData.swift in Sources */,
 				EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */,
@@ -1880,6 +1887,7 @@
 				EE0283172A987BFF008F8100 /* WeekDayAPI.swift in Sources */,
 				EEA9444E2A5D8ABC0081E784 /* PartyMemberOtherUsecase.swift in Sources */,
 				EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */,
+				EE4A36E72A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift in Sources */,
 				EE02832E2A98FF83008F8100 /* TempHomeViewController.swift in Sources */,
 				EEA944462A5D5FA20081E784 /* PartyMemberOtherViewController.swift in Sources */,
 				EEE8F0F62A56FFF600E31597 /* NicknameSettingViewModel.swift in Sources */,
