@@ -233,6 +233,7 @@ final class TempHomeViewController: UIViewController {
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -678,6 +679,17 @@ extension TempHomeViewController: UICollectionViewDelegate {
             detailViewController.modalPresentationStyle = .overFullScreen
             present(detailViewController, animated: true)
             return
+        }
+        
+        if collectionView == scheduledToEndProductCollectionView {
+            guard let item = scheduledToEndProductDatasource?.itemIdentifier(for: indexPath) else { return }
+            let detailViewController = UINavigationController(
+                rootViewController: ProductDetailMainViewController(id: item.id)
+            )
+            detailViewController.modalPresentationStyle = .overFullScreen
+            present(detailViewController, animated: true)
+            return
+            
         }
     }
 }
