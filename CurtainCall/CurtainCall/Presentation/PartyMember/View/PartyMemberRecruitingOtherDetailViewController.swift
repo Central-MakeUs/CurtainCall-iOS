@@ -336,7 +336,7 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     
     @objc
     private func reportButtonTouchUpInside() {
-        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id))
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id, type: .party))
         navigationController?.pushViewController(reportViewController, animated: true)
     }
     

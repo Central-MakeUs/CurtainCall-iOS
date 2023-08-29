@@ -34,9 +34,10 @@ extension ReportAPI: TargetType {
         var param: [String: Any] = [:]
         switch self {
         case .party(let body):
-            param.updateValue(body.partyId, forKey: "partyId")
+            param.updateValue(body.idToReport, forKey: "idToReport")
             param.updateValue(body.reason.rawValue, forKey: "reason")
             param.updateValue(body.content, forKey: "content")
+            param.updateValue(body.type.rawValue, forKey: "type")
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
     }
@@ -51,7 +52,8 @@ extension ReportAPI: TargetType {
 }
 
 struct PartyReportBody: Encodable {
-    let partyId: Int
+    let idToReport: Int
+    let type: ReportAPIType
     let reason: ReportType
     let content: String
 }
@@ -64,4 +66,10 @@ enum ReportType: String, CaseIterable, Encodable {
     case teenager = "HARMFUL_TO_TEENAGER"
     case personalInformationDisclosure = "PERSONAL_INFORMATION_DISCLOSURE"
     case etc = "ETC"
+}
+
+enum ReportAPIType: String, Encodable {
+    case party = "PARTY"
+    case review = "SHOW_REVIEW"
+    case lostItem = "LOST_ITEM"
 }
