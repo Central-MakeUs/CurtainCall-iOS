@@ -20,7 +20,10 @@ final class PartyMemberRecruitingDateViewModel {
     // MARK: - Helpers
     
     func countValueChanged(_ value: Int) {
-        countValue = max(countValue + value, 1)
+        if !(1...10 ~= (countValue + value)) {
+            return
+        }
+        countValue = countValue + value
     }
     
     func isValidDate(date: String?, time: String?) {
