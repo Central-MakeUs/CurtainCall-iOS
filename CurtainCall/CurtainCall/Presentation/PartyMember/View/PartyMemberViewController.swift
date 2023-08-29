@@ -255,7 +255,6 @@ final class PartyMemberViewController: UIViewController {
         case .etc:
             return PartyMemberOtherViewController(
                 viewModel: PartyMemberOtherViewModel(
-                    usecase: PartyMemberOtherInteractor()
                 ))
         default:
             return PartyMemberProductViewController(

@@ -105,7 +105,6 @@ final class PartyMemberOtherViewController: UIViewController {
         configureConstraints()
         configureNavigation()
         configureDatasource()
-        configureSnapshot()
     }
     
     private func configureSubviews() {
@@ -145,7 +144,7 @@ final class PartyMemberOtherViewController: UIViewController {
             image: UIImage(systemName: "magnifyingglass"),
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(searchButtonTapped)
         )
         leftBarbuttonItem.tintColor = .black
         searchBarButtonItem.tintColor = .black
@@ -192,11 +191,6 @@ final class PartyMemberOtherViewController: UIViewController {
         )
     }
     
-    private func configureSnapshot() {
-        snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot?.appendSections([.main])
-    }
-    
     private func bind() {
         viewModel.otherInfoData
             .receive(on: DispatchQueue.main)
@@ -205,18 +199,23 @@ final class PartyMemberOtherViewController: UIViewController {
                     print(error.localizedDescription)
                     self?.emptyView.isHidden = false
                     self?.guideLabel.isHidden = true
+                    self?.viewModel.isLoding = false
                 }
             } receiveValue: { [weak self] item in
                 guard let self else { return }
                 if item.isEmpty {
                     emptyView.isHidden = false
                     guideLabel.isHidden = true
+                    viewModel.isLoding = false
                 } else {
-                    guard var snapshot = self.snapshot else { return }
+                    var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                    snapshot.deleteAllItems()
+                    snapshot.appendSections([.main])
                     snapshot.appendItems(item, toSection: .main)
                     dataSource?.apply(snapshot)
                     emptyView.isHidden = true
                     guideLabel.isHidden = false
+                    viewModel.isLoding = false
                 }
             }.store(in: &cancellables)
 
@@ -241,6 +240,12 @@ final class PartyMemberOtherViewController: UIViewController {
         moveToWriteView()
     }
     
+    @objc
+    private func searchButtonTapped() {
+        let searchViewController = PartyMemberSearchViewController(partyType: .etc)
+        navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
     private func moveToWriteView() {
         configureBackbarButton()
         let writeViewController = PartyMemberOtherRecruitingDateViewController(
@@ -257,5 +262,14 @@ extension PartyMemberOtherViewController: UICollectionViewDelegate {
         }
         let detailViewController = PartyMemberRecruitingOtherDetailViewController(id: item.id)
         navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row > (viewModel.page + 1) * 20 - 3 {
+            if !viewModel.isLoding {
+                viewModel.isLoding = true
+                viewModel.requestPartyProductInfo(page: viewModel.page + 1, size: 20)
+                viewModel.page += 1
+            }
+        }
     }
 }

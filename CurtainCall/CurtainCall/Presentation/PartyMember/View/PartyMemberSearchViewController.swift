@@ -21,6 +21,10 @@ final class PartyMemberSearchViewController: UIViewController {
             PartyProductCell.self,
             forCellWithReuseIdentifier: PartyProductCell.identifier
         )
+        collectionView.register(
+            PartyOtherCell.self,
+            forCellWithReuseIdentifier: PartyOtherCell.identifier
+        )
         return collectionView
     }()
     
@@ -138,13 +142,22 @@ final class PartyMemberSearchViewController: UIViewController {
     private func configureDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, item in
-                guard let cell = collectionView.dequeueCell(
-                    type: PartyProductCell.self,
-                    indexPath: indexPath
-                ) else { return UICollectionViewCell() }
-                cell.setUI(item)
-                return cell
+            cellProvider: { [weak self] collectionView, indexPath, item in
+                if self?.partyType != .etc {
+                    guard let cell = collectionView.dequeueCell(
+                        type: PartyProductCell.self,
+                        indexPath: indexPath
+                    ) else { return UICollectionViewCell() }
+                    cell.setUI(item)
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueCell(
+                        type: PartyOtherCell.self,
+                        indexPath: indexPath
+                    ) else { return UICollectionViewCell() }
+                    cell.setUI(item)
+                    return cell
+                }
             }
         )
     }
