@@ -27,7 +27,7 @@ extension Date {
     func convertToYearMonthDayWeekString() -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy.M.dd (E)"
+        formatter.dateFormat = "yyyy.MM.dd(E)"
         return formatter.string(from: self)
     }
     
@@ -58,6 +58,7 @@ extension Date {
     func convertToWeekend() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
+        formatter.locale = Locale(identifier: "en_US")
         return formatter.string(from: self).uppercased()
     }
     

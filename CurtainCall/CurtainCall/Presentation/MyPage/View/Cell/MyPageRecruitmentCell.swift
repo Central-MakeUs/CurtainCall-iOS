@@ -13,34 +13,30 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     private let cardView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 12
         view.backgroundColor = .white
         return view
     }()
     
     private let productLabelView: UIView = {
         let view = UIView()
-        view.backgroundColor = .pointColor2
-        view.layer.cornerRadius = 4
-        view.layer.maskedCorners = CACornerMask(
-            arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner
-        )
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 12
         return view
     }()
     
     private let productTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .title
         label.font = .subTitle4
+        label.textAlignment = .center
         return label
     }()
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
-        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         return imageView
     }()
     
@@ -67,8 +63,8 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     private let countLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = .body1
+        label.textColor = .title
+        label.font = .body4
         return label
     }()
     
@@ -80,12 +76,6 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         return label
     }()
     
-    private let borderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .hexF2F3F5
-        return view
-    }()
-    
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
@@ -95,7 +85,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     private let dateBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .hexE4E7EC
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 4
         return view
     }()
@@ -115,7 +105,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     private let timeBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .hexE4E7EC
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 4
         return view
     }()
@@ -135,7 +125,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     private let locationBadgeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .hexE4E7EC
+        view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 4
         return view
     }()
@@ -153,15 +143,6 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         return label
     }()
     
-    private let enterTalkButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("TALK 입장", for: .normal)
-        button.backgroundColor = .pointColor2
-        button.layer.cornerRadius = 8
-        button.titleLabel?.font = .body3
-        return button
-    }()
-    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -169,6 +150,8 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        clipsToBounds = true
+        layer.applySketchShadow(color: .black, alpha: 0.1, x: 0, y: 4, blur: 4, spread: 0)
     }
     
     @available(*, unavailable)
@@ -181,39 +164,41 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     private func configureUI() {
         configureSubviews()
         configureConstraints()
+        layoutIfNeeded()
+        drawViewDotLine(view: productLabelView)
     }
     
     private func configureSubviews() {
         addSubviews(cardView, productLabelView)
         cardView.addSubviews(
-            profileImageView, nicknameDateStackView, countLabel, titleLabel, borderView,
-            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView, enterTalkButton
+            profileImageView, nicknameDateStackView, countLabel, titleLabel,
+            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView
         )
         productLabelView.addSubview(productTitleLabel)
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, dateLabel)
         dateBadgeView.addSubviews(dateBadgeImageView, dateBadgeLabel)
         timeBadgeView.addSubviews(timeBadgeImageView, timeBadgeLabel)
         locationBadgeView.addSubviews(locationBadgeImageView, locationBadgeLabel)
-        
     }
     
     private func configureConstraints() {
-        cardView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(24)
-            $0.top.equalToSuperview().offset(12)
-            $0.bottom.equalToSuperview()
-        }
         productTitleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(12)
-            $0.top.bottom.equalToSuperview().inset(4)
+            $0.center.equalToSuperview()
         }
         productLabelView.snp.makeConstraints {
             $0.leading.equalTo(cardView.snp.leading)
             $0.trailing.equalTo(cardView.snp.trailing)
             $0.top.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        cardView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.top.equalTo(productLabelView.snp.bottom)
+            $0.bottom.equalToSuperview()
         }
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(29)
+            $0.top.equalToSuperview().offset(17)
             $0.leading.equalToSuperview().offset(20)
             $0.size.equalTo(42)
         }
@@ -222,40 +207,37 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
             $0.centerY.equalTo(profileImageView)
         }
         countLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(31)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
         titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.top.equalTo(profileImageView.snp.bottom).offset(16)
-            $0.bottom.equalTo(borderView.snp.top).offset(-15)
             
         }
-        borderView.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(posterImageView.snp.top).offset(-16)
-        }
         posterImageView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(20)
-            $0.height.equalTo(85)
-            $0.width.equalTo(64)
+            $0.height.equalTo(87)
+            $0.width.equalTo(66)
+            $0.bottom.equalToSuperview().inset(20)
         }
         
         dateBadgeImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(6)
         }
+        
         dateBadgeLabel.snp.makeConstraints {
             $0.leading.equalTo(dateBadgeImageView.snp.trailing).offset(6)
             $0.trailing.equalToSuperview().inset(6)
-            $0.verticalEdges.equalToSuperview().inset(4)
+            $0.centerY.equalToSuperview()
         }
         dateBadgeView.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.top)
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.height.equalTo(23)
         }
-        
         timeBadgeImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(6)
@@ -263,33 +245,49 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         timeBadgeLabel.snp.makeConstraints {
             $0.leading.equalTo(timeBadgeImageView.snp.trailing).offset(6)
             $0.trailing.equalToSuperview().inset(6)
-            $0.verticalEdges.equalToSuperview().inset(4)
+            $0.centerY.equalToSuperview()
         }
         timeBadgeView.snp.makeConstraints {
-            $0.top.equalTo(dateBadgeView.snp.bottom).offset(8)
+            $0.top.equalTo(dateBadgeView.snp.bottom).offset(9)
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.height.equalTo(23)
         }
         
         locationBadgeImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(6)
+            $0.size.equalTo(16)
         }
         
         locationBadgeLabel.snp.makeConstraints {
             $0.leading.equalTo(locationBadgeImageView.snp.trailing).offset(6)
             $0.trailing.equalToSuperview().inset(6)
-            $0.verticalEdges.equalToSuperview().inset(4)
+            $0.centerY.equalToSuperview()
         }
         locationBadgeView.snp.makeConstraints {
-            $0.top.equalTo(timeBadgeView.snp.bottom).offset(8)
+            $0.top.equalTo(timeBadgeView.snp.bottom).offset(9)
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
-        }
-        enterTalkButton.snp.makeConstraints {
-            $0.top.equalTo(posterImageView.snp.bottom).offset(22)
-            $0.horizontalEdges.bottom.equalToSuperview().inset(20)
-            $0.height.equalTo(40)
+            $0.trailing.lessThanOrEqualToSuperview().inset(50)
+            $0.height.equalTo(23)
         }
         
+    }
+    
+    func drawViewDotLine(view: UIView) {
+        let layer = CAShapeLayer()
+        layer.strokeColor = UIColor.hexE4E7EC?.cgColor
+        layer.lineDashPattern = [2, 2]
+             
+        let path = UIBezierPath()
+        let point1 = CGPoint(x: view.bounds.minX, y: view.bounds.maxY)
+        let point2 = CGPoint(x: view.bounds.maxX, y: view.bounds.maxY)
+        
+        path.move(to: point1)
+        path.addLine(to: point2)
+             
+        layer.path = path.cgPath
+        
+        view.layer.addSublayer(layer)
     }
 
     func setUI(_ item: MyRecruitmentContent) {

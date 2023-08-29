@@ -121,6 +121,7 @@
 		EE5251EE2A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5251E02A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift */; };
 		EE5251EF2A8E63B3003DFEE3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5251E12A8E63B3003DFEE3 /* MyPageViewController.swift */; };
 		EE5251F12A8E668D003DFEE3 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5251F02A8E668D003DFEE3 /* credentials.plist */; };
+		EE5C9DB02A9E365600889C73 /* MyPageRecruitmentOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5C9DAF2A9E365600889C73 /* MyPageRecruitmentOtherCell.swift */; };
 		EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */; };
 		EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */; };
 		EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */; };
@@ -360,6 +361,7 @@
 		EE5251E02A8E63B3003DFEE3 /* MyPageEditBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageEditBottomSheet.swift; sourceTree = "<group>"; };
 		EE5251E12A8E63B3003DFEE3 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		EE5251F02A8E668D003DFEE3 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
+		EE5C9DAF2A9E365600889C73 /* MyPageRecruitmentOtherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRecruitmentOtherCell.swift; sourceTree = "<group>"; };
 		EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectView.swift; sourceTree = "<group>"; };
 		EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Extension.swift"; sourceTree = "<group>"; };
 		EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
@@ -1075,6 +1077,7 @@
 			children = (
 				EE5251DB2A8E63B3003DFEE3 /* MyPageParticipationCell.swift */,
 				EE5251DC2A8E63B3003DFEE3 /* MyPageRecruitmentCell.swift */,
+				EE5C9DAF2A9E365600889C73 /* MyPageRecruitmentOtherCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1819,6 +1822,7 @@
 				EE0132172A5E542A00873107 /* PartyMemberRecruitingProductViewController.swift in Sources */,
 				EE6127062A974F5300961109 /* UpdateMyPageBody.swift in Sources */,
 				EE3A428E2A9C70FA00273F94 /* ProductSearchViewModel.swift in Sources */,
+				EE5C9DB02A9E365600889C73 /* MyPageRecruitmentOtherCell.swift in Sources */,
 				EEF8154D2A73A7A4009C1C57 /* LostItemInfo.swift in Sources */,
 				EE9A88722A8765A80085F816 /* TicketingInfo.swift in Sources */,
 				EE0283192A9886B4008F8100 /* ProductSortBottomSheet.swift in Sources */,

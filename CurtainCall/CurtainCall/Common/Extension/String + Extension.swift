@@ -41,6 +41,13 @@ extension String {
         return d
     }
     
+    func convertAPIDateToDateWeekString() -> String {
+        var d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }.first ?? ""
+        d = d.replacingOccurrences(of: ":", with: "-")
+        guard let date = d.convertYearMonthDayDashStringToDate() else { return "" }
+        return date.convertToYearMonthDayWeekString()
+    }
+    
     func convertAPIDateToDateTime() -> String {
         let d = self.components(separatedBy: ["T","."]).joined(separator: " ").split(separator: " ").map { String($0) }[1]
         let times = d.split(separator: ":").map { String($0) }

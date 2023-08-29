@@ -1,13 +1,13 @@
 //
-//  PartyOtherCell.swift
+//  MyPageRecruitmentOtherCell.swift
 //  CurtainCall
 //
-//  Created by 김민석 on 2023/07/11.
+//  Created by 김민석 on 2023/08/29.
 //
 
 import UIKit
 
-final class PartyOtherCell: UICollectionViewCell {
+final class MyPageRecruitmentOtherCell: UICollectionViewCell {
     
     // MARK: - UI properties
     
@@ -160,7 +160,7 @@ final class PartyOtherCell: UICollectionViewCell {
 
     }
     
-    func setUI(_ item: PartyListContent) {
+    func setUI(_ item: MyRecruitmentContent) {
         if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
         } else {

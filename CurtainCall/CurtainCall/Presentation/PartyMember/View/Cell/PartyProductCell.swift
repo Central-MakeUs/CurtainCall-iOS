@@ -258,6 +258,7 @@ final class PartyProductCell: UICollectionViewCell {
         locationBadgeImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(6)
+            $0.size.equalTo(16)
         }
         
         locationBadgeLabel.snp.makeConstraints {
@@ -268,6 +269,7 @@ final class PartyProductCell: UICollectionViewCell {
         locationBadgeView.snp.makeConstraints {
             $0.top.equalTo(timeBadgeView.snp.bottom).offset(9)
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
+            $0.trailing.lessThanOrEqualToSuperview().inset(50)
             $0.height.equalTo(23)
         }
         
@@ -306,7 +308,7 @@ final class PartyProductCell: UICollectionViewCell {
         } else {
             posterImageView.image = nil
         }
-        dateBadgeLabel.text = item.showAt?.convertAPIDateToDateString() ?? ""
+        dateBadgeLabel.text = item.showAt?.convertAPIDateToDateWeekString() ?? ""
         timeBadgeLabel.text = item.showAt?.convertAPIDateToDateTime() ?? ""
         locationBadgeLabel.text = item.facilityName
     }
