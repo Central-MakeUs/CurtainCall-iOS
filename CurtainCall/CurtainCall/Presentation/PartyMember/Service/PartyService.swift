@@ -18,6 +18,7 @@ enum PartyAPI {
     case delete(id: Int)
     case update(id: Int, title: String, content: String)
     case participation(id: Int)
+    case isMyParty(id: [Int])
 }
 
 extension PartyAPI: TargetType {
@@ -39,6 +40,8 @@ extension PartyAPI: TargetType {
             return "/parties/\(id)"
         case .participation(let id):
             return "/member/parties/\(id)"
+        case .isMyParty:
+            return "/member/participated"
         }
     }
     
@@ -58,6 +61,8 @@ extension PartyAPI: TargetType {
             return .patch
         case .participation:
             return .put
+        case .isMyParty:
+            return .get
         }
     }
     
@@ -100,6 +105,9 @@ extension PartyAPI: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .participation:
             return .requestPlain
+        case .isMyParty(let id):
+            param.updateValue(id, forKey: "partyIds")
+            return .requestParameters(parameters: param, encoding: URLEncoding(arrayEncoding: .noBrackets))
         }
     }
     

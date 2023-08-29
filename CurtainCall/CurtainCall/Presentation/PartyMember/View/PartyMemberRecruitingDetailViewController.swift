@@ -233,6 +233,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LodingIndicator.showLoading()
         configureUI()
         requestDetail()
         partyInButton.addTarget(
@@ -280,7 +281,6 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
         detailLocationView.addSubviews(
             detailLocationSymbolImageView, detailLocationLabel, detailProductLocationLabel
         )
-        partyInButton.setNextButton(isSelected: true)
     }
     
     private func configureConstraints() {
@@ -479,6 +479,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
+                    LodingIndicator.hideLoading()
                     return
                 }
             } receiveValue: { [weak self] response in
@@ -488,12 +489,31 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
                     if data.creatorId != currentUserId {
                         configureReportButton()
+                        isMyParty()
                     } else {
                         configureDeleteButton()
                         partyInButton.setNextButton(isSelected: false)
                     }
                 }
                         
+            }.store(in: &subscriptions)
+    }
+    
+    private func isMyParty() {
+        provider.requestPublisher(.isMyParty(id: [id]))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    LodingIndicator.hideLoading()
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(IsMyPartyResponse.self),
+                   let isMyParty = data.content.first {
+                    self?.partyInButton.setNextButton(isSelected: !isMyParty.participated)
+                }
+                    
+                LodingIndicator.hideLoading()
             }.store(in: &subscriptions)
 
     }
@@ -552,7 +572,8 @@ extension PartyMemberRecruitingDetailViewController: PartyInPopupDelegate {
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if response.statusCode == 200 {
-                    print("파티 참여 완료")
+                    LodingIndicator.showLoading()
+                    self.isMyParty()
                 } else {
                     // TODO: Network Error
                 }

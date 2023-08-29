@@ -90,11 +90,11 @@ final class PartyMemberOtherViewController: UIViewController {
         registerCell()
         addTarget()
         bind()
-        viewModel.requestPartyProductInfo(page: 0, size: 20)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.requestPartyProductInfo(page: 0, size: 20)
         configureNavigation()
     }
     

@@ -91,6 +91,7 @@
 		EE45438F2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */; };
 		EE4A36E72A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A36E62A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift */; };
 		EE4A36E92A9DB7B9007D3C9F /* PartySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A36E82A9DB7B9007D3C9F /* PartySearchViewModel.swift */; };
+		EE4A36EB2A9DE3A5007D3C9F /* IsMyPartyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A36EA2A9DE3A5007D3C9F /* IsMyPartyResponse.swift */; };
 		EE4B34282A66D28900E6EB01 /* SpoqaHanSansNeo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34232A66D28700E6EB01 /* SpoqaHanSansNeo-Light.otf */; };
 		EE4B34292A66D28900E6EB01 /* SpoqaHanSansNeo-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34242A66D28800E6EB01 /* SpoqaHanSansNeo-Medium.otf */; };
 		EE4B342B2A66D28900E6EB01 /* SpoqaHanSansNeo-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */; };
@@ -330,6 +331,7 @@
 		EE45438E2A63CD0F00A2A427 /* PartyMemberRecruitingDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberRecruitingDateViewModel.swift; sourceTree = "<group>"; };
 		EE4A36E62A9D8A9D007D3C9F /* PartyMemberSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyMemberSearchViewController.swift; sourceTree = "<group>"; };
 		EE4A36E82A9DB7B9007D3C9F /* PartySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySearchViewModel.swift; sourceTree = "<group>"; };
+		EE4A36EA2A9DE3A5007D3C9F /* IsMyPartyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsMyPartyResponse.swift; sourceTree = "<group>"; };
 		EE4B34232A66D28700E6EB01 /* SpoqaHanSansNeo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.otf"; sourceTree = "<group>"; };
 		EE4B34242A66D28800E6EB01 /* SpoqaHanSansNeo-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.otf"; sourceTree = "<group>"; };
 		EE4B34262A66D28800E6EB01 /* SpoqaHanSansNeo-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.otf"; sourceTree = "<group>"; };
@@ -1141,6 +1143,7 @@
 				EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */,
 				EE747B912A95E208006A8AB3 /* PartyListResponse.swift */,
 				EE02830A2A97ACDC008F8100 /* PartyDetailResponse.swift */,
+				EE4A36EA2A9DE3A5007D3C9F /* IsMyPartyResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1907,6 +1910,7 @@
 				EE8437BA2A81280D00ADD3D8 /* HomeMyProductData.swift in Sources */,
 				EE3A42902A9C81E300273F94 /* EndShowResponse.swift in Sources */,
 				EE5251BE2A8E5BDC003DFEE3 /* Secret.swift in Sources */,
+				EE4A36EB2A9DE3A5007D3C9F /* IsMyPartyResponse.swift in Sources */,
 				EEA944372A5C03130081E784 /* PartyType.swift in Sources */,
 				EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,

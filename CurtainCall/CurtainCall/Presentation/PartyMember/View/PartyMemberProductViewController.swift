@@ -92,11 +92,13 @@ final class PartyMemberProductViewController: UIViewController {
         registerCell()
         addTarget()
         bind()
-        viewModel.requestPartyProductInfo(page: 0, size: 20, category: partyType)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        LodingIndicator.showLoading()
+        viewModel.requestPartyProductInfo(page: 0, size: 20, category: partyType)
         configureNavigation()
     }
     
@@ -207,6 +209,7 @@ final class PartyMemberProductViewController: UIViewController {
                     print(error.localizedDescription)
                     self?.emptyView.isHidden = false
                     self?.guideLabel.isHidden = true
+                    LodingIndicator.hideLoading()
                 }
             } receiveValue: { [weak self] item in
                 guard let self else { return }
@@ -223,6 +226,7 @@ final class PartyMemberProductViewController: UIViewController {
                     guideLabel.isHidden = false
                     viewModel.isLoding = false
                 }
+                LodingIndicator.hideLoading()
             }.store(in: &cancellables)
 
     }
@@ -277,6 +281,7 @@ extension PartyMemberProductViewController: UICollectionViewDelegate {
         if indexPath.row > (viewModel.page + 1) * 20 - 3 {
             if !viewModel.isLoding {
                 viewModel.isLoding = true
+                LodingIndicator.showLoading()
                 viewModel.requestPartyProductInfo(page: viewModel.page + 1, size: 20, category: partyType)
                 viewModel.page += 1
             }
