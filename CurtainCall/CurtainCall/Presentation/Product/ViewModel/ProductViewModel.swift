@@ -23,8 +23,8 @@ final class ProductViewModel {
     var theaterPage: Int = 0
     var musicalPage: Int = 0
     
-    func requestShow(page: Int, size: Int, genre: ProductListAPI) {
-        provider.requestPublisher(.list(page: page, size: size, genre: genre))
+    func requestShow(page: Int, size: Int, genre: ProductListAPI, sort: ProductSortType) {
+        provider.requestPublisher(.list(page: page, size: size, genre: genre, sortedBy: sort))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)

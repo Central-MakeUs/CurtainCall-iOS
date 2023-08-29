@@ -77,7 +77,7 @@ final class ProductViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ImageNamespace.productSearchSortIcon)
         // TODO: API 개발 후
-        imageView.isHidden = true
+//        imageView.isHidden = true
         return imageView
     }()
     
@@ -87,7 +87,7 @@ final class ProductViewController: UIViewController {
         button.titleLabel?.font = .body1
         button.setTitleColor(.body1, for: .normal)
         // TODO: API 개발 후
-        button.isHidden = true
+//        button.isHidden = true
         return button
     }()
     
@@ -126,6 +126,7 @@ final class ProductViewController: UIViewController {
     private var subscriptions: Set<AnyCancellable> = []
     private let provider = MoyaProvider<ProductAPI>()
     private let viewModel: ProductViewModel
+    private var productSortType: ProductSortType = .star
     
     // MARK: - Lifecycles
     
@@ -143,7 +144,6 @@ final class ProductViewController: UIViewController {
         configureUI()
         addTarget()
         bind()
-        orderSelectButtonTouchUpInside(reservationOrderButton)
         typeButtonTouchUpInside(theaterButton)
         
     }
@@ -195,9 +195,9 @@ final class ProductViewController: UIViewController {
         }
 
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(categoryView.snp.bottom).offset(8)
+//            $0.top.equalTo(categoryView.snp.bottom).offset(8)
             // TODO: API 개발 후, 순서 변경에 맞춰서 변경
-//            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
+            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-90)
         }
@@ -273,15 +273,25 @@ final class ProductViewController: UIViewController {
             $0.backgroundColor = sender == $0 ? .pointColor2 : .clear
         }
         if sender == theaterButton {
-            viewModel.requestShow(page: 0, size: 20, genre: .play)
+            viewModel.requestShow(page: 0, size: 20, genre: .play, sort: productSortType)
         } else {
-            viewModel.requestShow(page: 0, size: 20, genre: .musical)
+            viewModel.requestShow(page: 0, size: 20, genre: .musical, sort: productSortType)
         }
     }
     
     @objc
     private func orderSelectButtonTouchUpInside(_ sender: UIButton) {
-        
+        let sheet = ProductSortBottomSheet(type: productSortType)
+        sheet.modalPresentationStyle = .pageSheet
+        let fraction = UISheetPresentationController.Detent.custom { _ in
+            return 185
+        }
+        if let sheet = sheet.sheetPresentationController {
+            sheet.detents = [fraction]
+            sheet.preferredCornerRadius = 20
+        }
+        sheet.delegate = self
+        present(sheet, animated: true)
     }
     
     private func bind() {
@@ -335,7 +345,7 @@ extension ProductViewController: UICollectionViewDelegate {
             if indexPath.row > (viewModel.theaterPage + 1) * 20 - 3 {
                 if !viewModel.isLoding {
                     viewModel.isLoding = true
-                    viewModel.requestShow(page: viewModel.theaterPage + 1, size: 20, genre: .play)
+                    viewModel.requestShow(page: viewModel.theaterPage + 1, size: 20, genre: .play, sort: productSortType)
                     viewModel.theaterPage += 1
                 }
             }
@@ -343,10 +353,28 @@ extension ProductViewController: UICollectionViewDelegate {
             if indexPath.row > (viewModel.musicalPage + 1) * 20 - 3 {
                 if !viewModel.isLoding {
                     viewModel.isLoding = true
-                    viewModel.requestShow(page: viewModel.musicalPage + 1, size: 20, genre: .musical)
+                    viewModel.requestShow(page: viewModel.musicalPage + 1, size: 20, genre: .musical, sort: productSortType)
                     viewModel.musicalPage += 1
                 }
             }
         }
     }
+}
+
+extension ProductViewController: ProductSortBottomSheetDelegate {
+    func sort(type: ProductSortType) {
+        productSortType = type
+        reservationOrderButton.setTitle(type.title, for: .normal)
+        let indexPath = IndexPath(row: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        if theaterButton.isSelected {
+            viewModel.theaterPage = 0
+            viewModel.requestShow(page: 0, size: 20, genre: .play, sort: productSortType)
+        } else {
+            viewModel.musicalPage = 0
+            viewModel.requestShow(page: 0, size: 20, genre: .musical, sort: productSortType)
+        }
+    }
+    
+    
 }
