@@ -15,16 +15,13 @@ final class PartyMemberOtherViewModel {
     
     // MARK: - Properties
     
-    private let usecase: PartyMemberOtherUsecase
     private var cancellables = Set<AnyCancellable>()
     var otherInfoData = PassthroughSubject<[PartyListContent], Error>()
     private let provider = MoyaProvider<PartyAPI>()
+    var page = 0
+    var isLoding = false
     
     // MARK: - Lifecycles
-    
-    init(usecase: PartyMemberOtherUsecase) {
-        self.usecase = usecase
-    }
 
     // MARK: - Helpers
     
