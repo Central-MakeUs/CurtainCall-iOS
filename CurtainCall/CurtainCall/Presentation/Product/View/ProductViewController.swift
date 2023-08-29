@@ -273,9 +273,9 @@ final class ProductViewController: UIViewController {
             $0.backgroundColor = sender == $0 ? .pointColor2 : .clear
         }
         if sender == theaterButton {
-            viewModel.requestShow(page: 0, size: 20, genre: .play)
+            viewModel.requestShow(page: 0, size: 20, genre: .play, sort: productSortType)
         } else {
-            viewModel.requestShow(page: 0, size: 20, genre: .musical)
+            viewModel.requestShow(page: 0, size: 20, genre: .musical, sort: productSortType)
         }
     }
     
@@ -345,7 +345,7 @@ extension ProductViewController: UICollectionViewDelegate {
             if indexPath.row > (viewModel.theaterPage + 1) * 20 - 3 {
                 if !viewModel.isLoding {
                     viewModel.isLoding = true
-                    viewModel.requestShow(page: viewModel.theaterPage + 1, size: 20, genre: .play)
+                    viewModel.requestShow(page: viewModel.theaterPage + 1, size: 20, genre: .play, sort: productSortType)
                     viewModel.theaterPage += 1
                 }
             }
@@ -353,7 +353,7 @@ extension ProductViewController: UICollectionViewDelegate {
             if indexPath.row > (viewModel.musicalPage + 1) * 20 - 3 {
                 if !viewModel.isLoding {
                     viewModel.isLoding = true
-                    viewModel.requestShow(page: viewModel.musicalPage + 1, size: 20, genre: .musical)
+                    viewModel.requestShow(page: viewModel.musicalPage + 1, size: 20, genre: .musical, sort: productSortType)
                     viewModel.musicalPage += 1
                 }
             }
@@ -365,6 +365,15 @@ extension ProductViewController: ProductSortBottomSheetDelegate {
     func sort(type: ProductSortType) {
         productSortType = type
         reservationOrderButton.setTitle(type.title, for: .normal)
+        let indexPath = IndexPath(row: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        if theaterButton.isSelected {
+            viewModel.theaterPage = 0
+            viewModel.requestShow(page: 0, size: 20, genre: .play, sort: productSortType)
+        } else {
+            viewModel.musicalPage = 0
+            viewModel.requestShow(page: 0, size: 20, genre: .musical, sort: productSortType)
+        }
     }
     
     

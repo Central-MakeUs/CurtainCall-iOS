@@ -19,6 +19,14 @@ enum ProductSortType {
         case .dict: return "가나다순"
         }
     }
+    
+    var APIName: String {
+        switch self {
+        case .star: return "reviewGradeAvg,desc"
+        case .end: return "endDate"
+        case .dict: return "name"
+        }
+    }
 }
 
 protocol ProductSortBottomSheetDelegate: AnyObject {
