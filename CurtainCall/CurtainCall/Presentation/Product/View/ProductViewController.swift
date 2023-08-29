@@ -77,7 +77,7 @@ final class ProductViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ImageNamespace.productSearchSortIcon)
         // TODO: API 개발 후
-        imageView.isHidden = true
+//        imageView.isHidden = true
         return imageView
     }()
     
@@ -87,7 +87,7 @@ final class ProductViewController: UIViewController {
         button.titleLabel?.font = .body1
         button.setTitleColor(.body1, for: .normal)
         // TODO: API 개발 후
-        button.isHidden = true
+//        button.isHidden = true
         return button
     }()
     
@@ -126,6 +126,7 @@ final class ProductViewController: UIViewController {
     private var subscriptions: Set<AnyCancellable> = []
     private let provider = MoyaProvider<ProductAPI>()
     private let viewModel: ProductViewModel
+    private var productSortType: ProductSortType = .star
     
     // MARK: - Lifecycles
     
@@ -143,7 +144,6 @@ final class ProductViewController: UIViewController {
         configureUI()
         addTarget()
         bind()
-        orderSelectButtonTouchUpInside(reservationOrderButton)
         typeButtonTouchUpInside(theaterButton)
         
     }
@@ -195,9 +195,9 @@ final class ProductViewController: UIViewController {
         }
 
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(categoryView.snp.bottom).offset(8)
+//            $0.top.equalTo(categoryView.snp.bottom).offset(8)
             // TODO: API 개발 후, 순서 변경에 맞춰서 변경
-//            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
+            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(9)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-90)
         }
@@ -281,7 +281,17 @@ final class ProductViewController: UIViewController {
     
     @objc
     private func orderSelectButtonTouchUpInside(_ sender: UIButton) {
-        
+        let sheet = ProductSortBottomSheet(type: productSortType)
+        sheet.modalPresentationStyle = .pageSheet
+        let fraction = UISheetPresentationController.Detent.custom { _ in
+            return 185
+        }
+        if let sheet = sheet.sheetPresentationController {
+            sheet.detents = [fraction]
+            sheet.preferredCornerRadius = 20
+        }
+        sheet.delegate = self
+        present(sheet, animated: true)
     }
     
     private func bind() {
@@ -349,4 +359,13 @@ extension ProductViewController: UICollectionViewDelegate {
             }
         }
     }
+}
+
+extension ProductViewController: ProductSortBottomSheetDelegate {
+    func sort(type: ProductSortType) {
+        productSortType = type
+        reservationOrderButton.setTitle(type.title, for: .normal)
+    }
+    
+    
 }
