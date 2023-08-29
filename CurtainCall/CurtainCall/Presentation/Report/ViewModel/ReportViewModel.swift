@@ -38,8 +38,9 @@ final class ReportViewModel {
                     return
                 }
             } receiveValue: { [weak self] response in
+                print("##", String(data: response.data, encoding: .utf8))
                 self?.isSuccessReport.send(response.statusCode == 200) 
             }.store(in: &subscriptions)
-        String(data: response.data, encoding: .utf8)
+        
     }
 }

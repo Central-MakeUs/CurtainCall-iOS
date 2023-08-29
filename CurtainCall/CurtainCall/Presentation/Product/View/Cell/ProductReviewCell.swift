@@ -12,6 +12,10 @@ import Kingfisher
 import Moya
 import CombineMoya
 
+protocol ProductReviewCellDelegate: AnyObject {
+    func didTappedReportButton(id: Int)
+}
+
 final class ProductReviewCell: UITableViewCell {
     
     // MARK: UI Property
@@ -83,6 +87,7 @@ final class ProductReviewCell: UITableViewCell {
     private var isHeart: Bool = false
     private var reviewId: Int?
     private var subscriptions: Set<AnyCancellable> = []
+    weak var delegate: ProductReviewCellDelegate?
     
     // MARK: Life Cycle
     
@@ -237,7 +242,8 @@ final class ProductReviewCell: UITableViewCell {
     
     @objc
     func reportButtonTapped() {
-        print("신고하기")
+        guard let reviewId else { return }
+        delegate?.didTappedReportButton(id: reviewId)
     }
     
     func setupThumbUpButton(isHeart: Bool) {

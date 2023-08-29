@@ -447,6 +447,14 @@ final class LostItemDetailViewController: UIViewController {
     private func configureNavigation() {
         configureBackbarButton()
         title = "분실물 찾기"
+        let reportButton = UIBarButtonItem(
+            title: nil,
+            image: UIImage(named: ImageNamespace.navigationReportButton),
+            target: self,
+            action: #selector(reportButtonTouchUpInside)
+        )
+        navigationItem.rightBarButtonItem = reportButton
+        navigationItem.rightBarButtonItem?.tintColor = .hex828996
     }
     
     private func requestDetail() {
@@ -490,5 +498,11 @@ final class LostItemDetailViewController: UIViewController {
         
         keepLocationLabel.text = "보관장소   \(info.facilityName)"
         phoneNumberLabel.text = "전화번호   \(info.facilityPhone)"
+    }
+    
+    @objc
+    private func reportButtonTouchUpInside() {
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id, type: .lostItem))
+        navigationController?.pushViewController(reportViewController, animated: true)
     }
 }

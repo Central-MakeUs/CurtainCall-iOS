@@ -195,6 +195,7 @@ extension ReviewViewController: UITableViewDataSource {
         ) as? ProductReviewCell else { return UITableViewCell() }
         
         cell.draw(item: reviewInfos[indexPath.row])
+        cell.delegate = self
         cell.contentView.isUserInteractionEnabled = false
         return cell
     }
@@ -203,5 +204,12 @@ extension ReviewViewController: UITableViewDataSource {
 extension ReviewViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension ReviewViewController: ProductReviewCellDelegate {
+    func didTappedReportButton(id: Int) {
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: id, type: .review))
+        navigationController?.pushViewController(reportViewController, animated: true)
     }
 }
