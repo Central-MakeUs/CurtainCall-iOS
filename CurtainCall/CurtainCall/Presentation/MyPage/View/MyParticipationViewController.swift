@@ -57,6 +57,10 @@ final class MyParticipationViewController: UIViewController {
             MyPageRecruitmentCell.self,
             forCellWithReuseIdentifier: MyPageRecruitmentCell.identifier
         )
+        collectionView.register(
+            MyPageRecruitmentOtherCell.self,
+            forCellWithReuseIdentifier: MyPageRecruitmentOtherCell.identifier
+        )
         collectionView.delegate = self
         collectionView.isHidden = true
         return collectionView
@@ -72,6 +76,7 @@ final class MyParticipationViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     private let viewModel: MyParticipationViewModel
+    private var category: PartyCategoryType = .watching
     
     // MARK: - Lifecycles
     
@@ -172,13 +177,22 @@ final class MyParticipationViewController: UIViewController {
     private func configureDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, item in
-                guard let cell = collectionView.dequeueCell(
-                    type: MyPageRecruitmentCell.self,
-                    indexPath: indexPath
-                ) else { return UICollectionViewCell() }
-                cell.setUI(item)
-                return cell
+            cellProvider: { [weak self] collectionView, indexPath, item in
+                if self?.category != .etc {
+                    guard let cell = collectionView.dequeueCell(
+                        type: MyPageRecruitmentCell.self,
+                        indexPath: indexPath
+                    ) else { return UICollectionViewCell() }
+                    cell.setUI(item)
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueCell(
+                        type: MyPageRecruitmentOtherCell.self,
+                        indexPath: indexPath
+                    ) else { return UICollectionViewCell() }
+                    cell.setUI(item)
+                    return cell
+                }
             }
         )
     }
@@ -217,10 +231,13 @@ final class MyParticipationViewController: UIViewController {
         sender.isSelected = true
         sender.setBackground(true)
         if sender == productButton {
+            category = .watching
             viewModel.requestRecruitment(category: .watching)
         } else if sender == foodButton {
+            category = .food
             viewModel.requestRecruitment(category: .food)
         } else {
+            category = .etc
             viewModel.requestRecruitment(category: .etc)
         }
     }
