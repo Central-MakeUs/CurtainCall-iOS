@@ -242,7 +242,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func signInWithApple() {
         let appleProvider = ASAuthorizationAppleIDProvider()
         let request = appleProvider.createRequest()
-        request.requestedScopes = []
+        request.requestedScopes = [.fullName, .email]
         
         let controller = ASAuthorizationController(authorizationRequests: [request])
         controller.delegate = self

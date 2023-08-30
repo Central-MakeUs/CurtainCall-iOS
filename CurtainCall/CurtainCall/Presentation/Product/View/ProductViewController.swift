@@ -84,7 +84,7 @@ final class ProductViewController: UIViewController {
     private let reservationOrderButton: UIButton = {
         let button = UIButton()
         button.setTitle("별점순", for: .normal)
-        button.titleLabel?.font = .body1
+        button.titleLabel?.font = .body3
         button.setTitleColor(.body1, for: .normal)
         // TODO: API 개발 후
 //        button.isHidden = true

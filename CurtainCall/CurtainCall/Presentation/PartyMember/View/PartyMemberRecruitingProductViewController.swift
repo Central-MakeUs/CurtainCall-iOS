@@ -153,37 +153,35 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         return label
     }()
 
-    private let reservationDotView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pointColor2
-        view.layer.cornerRadius = 2
-        return view
+    private let reservationImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.productSearchSortIcon)
+        return imageView
     }()
     
     private let reservationOrderButton: UIButton = {
         let button = UIButton()
-        button.setTitle("예매율순", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.setTitleColor(.body1, for: .selected)
-        button.setTitleColor(.hexBEC2CA, for: .normal)
+        button.setTitle("별점순", for: .normal)
+        button.titleLabel?.font = .body3
+        button.setTitleColor(.body1, for: .normal)
         return button
     }()
     
-    private let dictionaryOrderDotView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pointColor2
-        view.layer.cornerRadius = 2
-        return view
-    }()
-    
-    private let dictionaryOrderButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("가나다순", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.setTitleColor(.body1, for: .selected)
-        button.setTitleColor(.hexBEC2CA, for: .normal)
-        return button
-    }()
+//    private let dictionaryOrderDotView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .pointColor2
+//        view.layer.cornerRadius = 2
+//        return view
+//    }()
+//
+//    private let dictionaryOrderButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("가나다순", for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
+//        button.setTitleColor(.body1, for: .selected)
+//        button.setTitleColor(.hexBEC2CA, for: .normal)
+//        return button
+//    }()
     
     private let updateTimeLabel: UILabel = {
         let label = UILabel()
@@ -228,6 +226,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
     private var datasource: UICollectionViewDiffableDataSource<Section, Item>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, Item>?
     private var selectedItem: ProductListContentHaveSelected?
+    private var productSortType: ProductSortType = .star
     
     // MARK: - Lifecycles
     
@@ -249,8 +248,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         registerCell()
         bind()
         typeButtonTouchUpInside(theaterButton)
-        orderSelectButtonTouchUpInside(reservationOrderButton)
-        viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play)
+//        orderSelectButtonTouchUpInside(reservationOrderButton)
+        viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play, sort: .star)
     }
     
     // MARK: - Helpers
@@ -266,9 +265,8 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubviews(
             stepLabelStackView, stepViewStackView, titleView, typeSelectLabel,
-            typeSelectStackView, productSelectLabel, essentialLabel, reservationDotView,
-            reservationOrderButton, dictionaryOrderDotView, dictionaryOrderButton,
-            updateTimeLabel, collectionView, nextButton
+            typeSelectStackView, productSelectLabel, essentialLabel, reservationImageView,
+            reservationOrderButton, updateTimeLabel, collectionView, nextButton
         )
         stepLabelStackView.addArrangedSubviews(step1Label, step2Label, step3Label)
         stepViewStackView.addArrangedSubviews(step1View, step2View, step3View)
@@ -314,35 +312,20 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
             $0.height.equalTo(22)
         }
         
-        reservationDotView.snp.makeConstraints {
-            $0.height.width.equalTo(4)
-            $0.top.equalTo(essentialLabel.snp.bottom).offset(14)
-            $0.leading.equalToSuperview().offset(24)
-        }
+        
         
         reservationOrderButton.snp.makeConstraints {
-            $0.centerY.equalTo(reservationDotView)
-            $0.leading.equalTo(reservationDotView.snp.trailing).offset(4)
+            $0.top.equalTo(productSelectLabel.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(24)
         }
-        dictionaryOrderDotView.snp.makeConstraints {
-            $0.height.width.equalTo(4)
-            $0.centerY.equalTo(reservationDotView)
-            $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(10)
-        }
-        
-        dictionaryOrderButton.snp.makeConstraints {
-            $0.centerY.equalTo(dictionaryOrderDotView)
-            $0.leading.equalTo(dictionaryOrderDotView.snp.trailing).offset(4)
-        }
-        
-        updateTimeLabel.snp.makeConstraints {
-            $0.centerY.equalTo(dictionaryOrderDotView)
-            $0.trailing.equalToSuperview().inset(24)
+        reservationImageView.snp.makeConstraints {
+            $0.centerY.equalTo(reservationOrderButton)
+            $0.leading.equalTo(reservationOrderButton.snp.trailing).offset(6)
         }
         
         collectionView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(updateTimeLabel.snp.bottom).offset(21)
+            $0.top.equalTo(reservationOrderButton.snp.bottom).offset(8)
             $0.bottom.equalToSuperview()
         }
         
@@ -402,7 +385,7 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
         [theaterButton, musicalButton].forEach {
             $0.addTarget(self, action: #selector(typeButtonTouchUpInside), for: .touchUpInside)
         }
-        [reservationOrderButton, dictionaryOrderButton].forEach {
+        [reservationOrderButton].forEach {
             $0.addTarget(
                 self,
                 action: #selector(orderSelectButtonTouchUpInside),
@@ -485,22 +468,27 @@ final class PartyMemberRecruitingProductViewController: UIViewController {
             : UIColor.hexBEC2CA?.cgColor
         }
         if sender == theaterButton {
-            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play)
+            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play, sort: productSortType)
             viewModel.theaterPage = 0
         } else {
-            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .musical)
+            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .musical, sort: productSortType)
             viewModel.musicalPage = 0
         }
     }
     
     @objc
     private func orderSelectButtonTouchUpInside(_ sender: UIButton) {
-        [reservationOrderButton, dictionaryOrderButton].forEach {
-            $0.isSelected = sender == $0
-            $0.isUserInteractionEnabled = !(sender == $0)
+        let sheet = ProductSortBottomSheet(type: productSortType)
+        sheet.modalPresentationStyle = .pageSheet
+        let fraction = UISheetPresentationController.Detent.custom { _ in
+            return 185
         }
-        reservationDotView.alpha = sender == reservationOrderButton ? 1 : 0
-        dictionaryOrderDotView.alpha = sender == dictionaryOrderButton ? 1 : 0
+        if let sheet = sheet.sheetPresentationController {
+            sheet.detents = [fraction]
+            sheet.preferredCornerRadius = 20
+        }
+        sheet.delegate = self
+        present(sheet, animated: true)
     }
     
     @objc
@@ -522,7 +510,7 @@ extension PartyMemberRecruitingProductViewController: UICollectionViewDelegate {
             if indexPath.row > (viewModel.theaterPage + 1) * 21 - 3 {
                 if !viewModel.isLoding {
                     viewModel.isLoding = true
-                    viewModel.requestProductSelectInfo(page: viewModel.theaterPage + 1, size: 21, genre: .play)
+                    viewModel.requestProductSelectInfo(page: viewModel.theaterPage + 1, size: 21, genre: .play, sort: productSortType)
                     viewModel.theaterPage += 1
                 }
             }
@@ -530,10 +518,28 @@ extension PartyMemberRecruitingProductViewController: UICollectionViewDelegate {
             if indexPath.row > (viewModel.musicalPage + 1) * 21 - 3 {
                 if !viewModel.isLoding {
                     viewModel.isLoding = true
-                    viewModel.requestProductSelectInfo(page: viewModel.musicalPage + 1, size: 21, genre: .musical)
+                    viewModel.requestProductSelectInfo(page: viewModel.musicalPage + 1, size: 21, genre: .musical, sort: productSortType)
                     viewModel.musicalPage += 1
                 }
             }
         }
     }
+}
+
+extension PartyMemberRecruitingProductViewController: ProductSortBottomSheetDelegate {
+    func sort(type: ProductSortType) {
+        productSortType = type
+        reservationOrderButton.setTitle(type.title, for: .normal)
+        let indexPath = IndexPath(row: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        if theaterButton.isSelected {
+            viewModel.theaterPage = 0
+            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .play, sort: productSortType)
+        } else {
+            viewModel.musicalPage = 0
+            viewModel.requestProductSelectInfo(page: 0, size: 21, genre: .musical, sort: productSortType)
+        }
+    }
+    
+    
 }

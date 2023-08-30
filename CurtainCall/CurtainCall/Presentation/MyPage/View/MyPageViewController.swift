@@ -377,6 +377,9 @@ final class MyPageViewController: UIViewController {
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
         }
+        
+        saveButton.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
         borderView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(saveView.snp.bottom)
@@ -498,6 +501,11 @@ final class MyPageViewController: UIViewController {
             action: #selector(myWriteButtonTouchUpInside),
             for: .touchUpInside
         )
+        saveButton.addTarget(
+            self,
+            action: #selector(myFavoriteButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     private func bind() {
@@ -572,8 +580,19 @@ final class MyPageViewController: UIViewController {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
             return
         }
-        let viewModel = MyWriteViewModel(id: userId)
-        navigationController?.pushViewController(MyWriteViewController(viewModel: viewModel), animated: true)
+//        let viewModel = MyFavoriteViewModel(id: userId)
+//        navigationController?.pushViewController(MyFavoriteViewController(viewModel: viewModel), animated: true)
+    }
+    
+    @objc
+    private func myFavoriteButtonTouchUpInside() {
+        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
+            return
+        }
+        let viewModel = MyFavoriteViewModel(id: userId)
+        let myFavoriteView = UINavigationController(rootViewController: MyFavoriteViewController(viewModel: viewModel))
+        myFavoriteView.modalPresentationStyle = .fullScreen
+        present(myFavoriteView, animated: true)
     }
     
     @objc

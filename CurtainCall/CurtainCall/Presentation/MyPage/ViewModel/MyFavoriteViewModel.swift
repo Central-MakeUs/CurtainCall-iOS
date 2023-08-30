@@ -11,18 +11,18 @@ import Combine
 import CombineMoya
 import Moya
 
-final class MyWriteViewModel {
+final class MyFavoriteViewModel {
     
     private let provider = MoyaProvider<FavoriteShowAPI>()
     private let id: Int
     private var subscriptions: Set<AnyCancellable> = []
-    var myShowList = CurrentValueSubject<[MyFavoriteShowContent], Error>([])
+    var myFavoriteShowList = CurrentValueSubject<[MyFavoriteShowContent], Error>([])
     
     init(id: Int) {
         self.id = id
     }
     
-    func requestMyWrite() {
+    func requestMyFavorite() {
         provider.requestPublisher(.getMyFavoriteShow(memberId: id))
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -30,10 +30,11 @@ final class MyWriteViewModel {
                     return
                 }
             } receiveValue: { [weak self] response in
+                print("####", String(data: response.data, encoding: .utf8))
                 if let data = try? response.map(MyFavoriteShowResponse.self) {
-                    self?.myShowList.send(data.content)
+                    self?.myFavoriteShowList.send(data.content)
                 } else {
-                    self?.myShowList.send(completion: .failure(NSError(domain: "Decoding Error", code: 999)))
+                    self?.myFavoriteShowList.send(completion: .failure(NSError(domain: "Decoding Error", code: 999)))
                 }
             }.store(in: &subscriptions)
 
@@ -44,7 +45,7 @@ struct MyFavoriteShowResponse: Decodable {
     let content: [MyFavoriteShowContent]
 }
 
-struct MyFavoriteShowContent: Decodable {
+struct MyFavoriteShowContent: Hashable, Decodable {
     let id: String
     let name: String
     let poster: String

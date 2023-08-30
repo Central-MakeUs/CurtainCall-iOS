@@ -29,8 +29,8 @@ final class PartyMemberRecruitingProductViewModel {
     
     // MARK: - Helpers
     
-    func requestProductSelectInfo(page: Int, size: Int, genre: ProductListAPI) {
-        provider.requestPublisher(.list(page: page, size: size, genre: genre, sortedBy: nil))
+    func requestProductSelectInfo(page: Int, size: Int, genre: ProductListAPI, sort: ProductSortType) {
+        provider.requestPublisher(.list(page: page, size: size, genre: genre, sortedBy: sort))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
