@@ -70,14 +70,20 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
         return label
     }()
     
+    private let dayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(rgb: 0x242424).withAlphaComponent(0.7)
+        view.layer.cornerRadius = 10
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
+        view.clipsToBounds = true
+        return view
+    }()
+    
     private let dayLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor(rgb: 0x242424).withAlphaComponent(0.7)
         label.textAlignment = .center
         label.textColor = .white
-        label.font = .subTitle2
-        label.layer.cornerRadius = 10
-        label.clipsToBounds = true
+        label.font = .subTitle4
         return label
     }()
     
@@ -103,7 +109,8 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
     }
     private func configureSubview() {
         addSubview(wholeView)
-        wholeView.addSubviews(posterImage, dayLabel, titleLabel, bottomStackView)
+        wholeView.addSubviews(posterImage, dayView, titleLabel, bottomStackView)
+        dayView.addSubview(dayLabel)
         bottomStackView.addArrangedSubviews(starIcon, averageLabel, countLabel)
     }
     
@@ -113,10 +120,13 @@ final class ScheduledToOpenProductCell: UICollectionViewCell {
             $0.top.left.right.equalToSuperview()
             $0.height.equalTo(160)
         }
-        dayLabel.snp.makeConstraints {
+        dayView.snp.makeConstraints {
             $0.top.left.equalToSuperview()
-            $0.height.equalTo(36)
-            $0.width.equalTo(73)
+            $0.height.equalTo(32)
+        }
+        dayLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(10)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(posterImage.snp.bottom).offset(10)

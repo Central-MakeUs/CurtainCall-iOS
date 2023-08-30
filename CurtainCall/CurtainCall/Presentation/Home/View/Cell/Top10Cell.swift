@@ -75,7 +75,7 @@ final class Top10Cell: UICollectionViewCell {
         label.backgroundColor = UIColor(rgb: 0x242424).withAlphaComponent(0.7)
         label.textAlignment = .center
         label.textColor = .white
-        label.font = .subTitle2
+        label.font = .subTitle4
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
         return label

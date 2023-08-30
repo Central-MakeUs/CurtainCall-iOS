@@ -92,9 +92,9 @@ final class HomeViewModel {
                 if let data = try? response.map(OpenShowResponse.self) {
                     let randomOpenShowList = data.content.shuffled()
                     if randomOpenShowList.count < 10 {
-                        openShowList = randomOpenShowList
+                        openShowList = randomOpenShowList.sorted { $0.startDate < $1.startDate }
                     } else {
-                        openShowList = randomOpenShowList.prefix(10).map { $0 }
+                        openShowList = randomOpenShowList.prefix(10).map { $0 }.sorted { $0.startDate < $1.startDate }
                     }
                     self.requestCount += 1
                 } else {
@@ -120,9 +120,9 @@ final class HomeViewModel {
                     let randomEndShowList = data.content.shuffled()
                     
                     if randomEndShowList.count < 10 {
-                        endShowList = randomEndShowList
+                        endShowList = randomEndShowList.sorted { $0.endDate < $1.endDate }
                     } else {
-                        endShowList = randomEndShowList.prefix(10).map { $0 }
+                        endShowList = randomEndShowList.prefix(10).map { $0 }.sorted { $0.endDate < $1.endDate }
                     }
                     self.requestCount += 1
                 } else {
