@@ -171,6 +171,11 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         requestDetail()
+        partyInButton.addTarget(
+            self,
+            action: #selector(partyInButtonTouchUpInside),
+            for: .touchUpInside
+        )
         
     }
     
@@ -200,7 +205,6 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
         detailDateView.addSubviews(
             detailDateSymbolImageView, detailDateLabel, detailProductDateLabel
         )
-        partyInButton.setNextButton(isSelected: true)
     }
     
     private func configureConstraints() {
@@ -316,6 +320,7 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
+                    LodingIndicator.hideLoading()
                     return
                 }
             } receiveValue: { [weak self] response in
@@ -325,14 +330,44 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
                     if data.creatorId != currentUserId {
                         configureReportButton()
+                        isMyParty()
                     } else {
                         configureDeleteButton()
+                        partyInButton.setNextButton(isSelected: false)
                     }
+                    
                 }
+                LodingIndicator.hideLoading()
                         
+            }.store(in: &subscriptions)
+    }
+    private func isMyParty() {
+        provider.requestPublisher(.isMyParty(id: [id]))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    LodingIndicator.hideLoading()
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(IsMyPartyResponse.self),
+                   let isMyParty = data.content.first {
+                    self?.partyInButton.setNextButton(isSelected: !isMyParty.participated)
+                }
+                    
+                LodingIndicator.hideLoading()
             }.store(in: &subscriptions)
 
     }
+    
+    @objc
+    private func partyInButtonTouchUpInside() {
+        let popup = PartyInPopup()
+        popup.modalPresentationStyle = .overFullScreen
+        popup.delegate = self
+        present(popup, animated: false)
+    }
+    
     
     @objc
     private func reportButtonTouchUpInside() {
@@ -388,6 +423,27 @@ extension PartyMemberRecruitingOtherDetailViewController: DeletePopDelegate {
             } receiveValue: { [weak self] response in
                 if response.statusCode == 200 {
                     self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &subscriptions)
+
+    }
+}
+
+extension PartyMemberRecruitingOtherDetailViewController: PartyInPopupDelegate {
+    func partyInButtonTapped() {
+        provider.requestPublisher(.participation(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                if response.statusCode == 200 {
+                    LodingIndicator.showLoading()
+                    self.isMyParty()
+                } else {
+                    // TODO: Network Error
                 }
             }.store(in: &subscriptions)
 
