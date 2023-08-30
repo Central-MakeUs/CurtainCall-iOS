@@ -14,7 +14,7 @@ enum FavoriteShowAPI {
     case putShow(id: String)
     case deleteShow(id: String)
     case getShowList(id: [String])
-    case getMyFavoriteShow(memberId: String)
+    case getMyFavoriteShow(memberId: Int)
     
 }
 

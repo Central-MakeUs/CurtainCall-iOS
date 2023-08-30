@@ -10,6 +10,7 @@ import Combine
 
 import SnapKit
 import Kingfisher
+import SwiftKeychainWrapper
 
 final class MyPageViewController: UIViewController {
     
@@ -103,6 +104,7 @@ final class MyPageViewController: UIViewController {
         label.text = "내가 쓴 글"
         return label
     }()
+    private let myWriteButton = UIButton()
     
     private let saveView = UIView()
     private let saveIcon: UIImageView = {
@@ -117,6 +119,7 @@ final class MyPageViewController: UIViewController {
         label.text = "저장된 작품 목록"
         return label
     }()
+    private let saveButton = UIButton()
     
     private let listSeperator: UIView = {
         let view = UIView()
@@ -258,8 +261,8 @@ final class MyPageViewController: UIViewController {
         myView.addSubviews(myRecruitmentView, myParticipationView, myViewSperator)
         myRecruitmentView.addSubviews(myRecruitmentLabel, myRecruitmentCountLabel, myRecruitmentButton)
         myParticipationView.addSubviews(myParticipationLabel, myParticipationCountLabel, myParticipationButton)
-        myWriteView.addSubviews(myWriteIcon, myWriteLabel)
-        saveView.addSubviews(saveIcon, saveLabel)
+        myWriteView.addSubviews(myWriteIcon, myWriteLabel, myWriteButton)
+        saveView.addSubviews(saveIcon, saveLabel, saveButton)
         noticeView.addSubviews(noticeLabel, noticeArrowImage, noticeButton)
         FAQView.addSubviews(FAQLabel, FAQArrowImage, FAQButton)
         footerView.addSubviews(footerHeadTitle, emailLabel, dayLabel, footerSeperator, sourceLabel)
@@ -322,28 +325,30 @@ final class MyPageViewController: UIViewController {
             $0.center.equalToSuperview()
             $0.height.equalTo(30)
             // TODO: 개발이후
-            $0.height.equalTo(0)
-//            $0.width.equalTo(1)
+//            $0.height.equalTo(0)
+            $0.width.equalTo(1)
         }
         myWriteView.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
-//            $0.height.equalTo(85)
+//            $0.height.equalTo(0)
+            $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(myView.snp.bottom).offset(20)
         }
         myWriteIcon.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         myWriteLabel.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
         }
+        
+        myWriteButton.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         listSeperator.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
@@ -353,21 +358,21 @@ final class MyPageViewController: UIViewController {
         
         saveView.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
-//            $0.height.equalTo(85)
+//            $0.height.equalTo(0)
+            $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(listSeperator.snp.bottom)
         }
         saveIcon.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         saveLabel.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
@@ -488,6 +493,11 @@ final class MyPageViewController: UIViewController {
             action: #selector(FAQButtonTouchUpInside),
             for: .touchUpInside
         )
+        myWriteButton.addTarget(
+            self,
+            action: #selector(myWriteButtonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     private func bind() {
@@ -555,6 +565,15 @@ final class MyPageViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         let noticeViewController = NoticeViewController(viewModel: NoticeViewModel())
         navigationController?.pushViewController(noticeViewController, animated: true)
+    }
+    
+    @objc
+    private func myWriteButtonTouchUpInside() {
+        guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
+            return
+        }
+        let viewModel = MyWriteViewModel(id: userId)
+        navigationController?.pushViewController(MyWriteViewController(viewModel: viewModel), animated: true)
     }
     
     @objc

@@ -214,6 +214,8 @@
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED24A612A9B6B01000C3BA4 /* ReportService.swift */; };
 		EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED302122A8A63C000957566 /* GuideSale.storyboard */; };
+		EED52EEA2A9F3F9800DBF55F /* MyWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED52EE92A9F3F9800DBF55F /* MyWriteViewController.swift */; };
+		EED52EEC2A9F3FA400DBF55F /* MyWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED52EEB2A9F3FA400DBF55F /* MyWriteViewModel.swift */; };
 		EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
 		EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */; };
@@ -454,6 +456,8 @@
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
 		EED24A612A9B6B01000C3BA4 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
 		EED302122A8A63C000957566 /* GuideSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideSale.storyboard; sourceTree = "<group>"; };
+		EED52EE92A9F3F9800DBF55F /* MyWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWriteViewController.swift; sourceTree = "<group>"; };
+		EED52EEB2A9F3FA400DBF55F /* MyWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWriteViewModel.swift; sourceTree = "<group>"; };
 		EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailMainViewController.swift; sourceTree = "<group>"; };
 		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -1043,6 +1047,7 @@
 				EE5251D22A8E63B3003DFEE3 /* MyParticipationViewModel.swift */,
 				EE0283002A979140008F8100 /* MyPageViewModel.swift */,
 				EE02830F2A97C652008F8100 /* MyPageEditViewModel.swift */,
+				EED52EEB2A9F3FA400DBF55F /* MyWriteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1060,6 +1065,7 @@
 				EE5251DE2A8E63B3003DFEE3 /* PartyMemberEmptyView.swift */,
 				EE5251DF2A8E63B3003DFEE3 /* BottomSheet */,
 				EE5251E12A8E63B3003DFEE3 /* MyPageViewController.swift */,
+				EED52EE92A9F3F9800DBF55F /* MyWriteViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1752,6 +1758,7 @@
 				EE0283212A98A7E3008F8100 /* CreateLostItemBody.swift in Sources */,
 				EEC557442A9CE3E8005CD281 /* LikeReviewResponse.swift in Sources */,
 				EE5251CD2A8E639A003DFEE3 /* ReportViewController.swift in Sources */,
+				EED52EEA2A9F3F9800DBF55F /* MyWriteViewController.swift in Sources */,
 				EE9A88692A8757320085F816 /* GuideCategoryButton.swift in Sources */,
 				EE0132412A5F034800873107 /* PartyMemberRecruitingProductViewModel.swift in Sources */,
 				EE0669D62A7DDE95000C8296 /* LostItemCollectionViewCell.swift in Sources */,
@@ -1939,6 +1946,7 @@
 				EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */,
 				EE8437BE2A8143F900ADD3D8 /* HomeLiveTalkCell.swift in Sources */,
 				EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */,
+				EED52EEC2A9F3FA400DBF55F /* MyWriteViewModel.swift in Sources */,
 				EE1DF3722A93A44F003AD078 /* ShowReviewReponse.swift in Sources */,
 				EE0283072A979267008F8100 /* HomeViewModel.swift in Sources */,
 				EEB776382A6031B300BFCAAD /* CalendarCell.swift in Sources */,
