@@ -64,11 +64,11 @@ final class PartyMemberViewController: UIViewController {
         return button
     }()
     
-    private let foodView: UIView = {
+    private lazy var foodView: UIView = {
         let view = UIView()
         view.backgroundColor = .pointColor1
         view.layer.cornerRadius = 10
-        
+        view.clipsToBounds = true
         return view
     }()
     
@@ -228,7 +228,7 @@ final class PartyMemberViewController: UIViewController {
     func drawViewDotLine(view: UIView) {
         let layer = CAShapeLayer()
         layer.strokeColor = UIColor.white.cgColor
-        layer.lineDashPattern = [10, 10]
+        layer.lineDashPattern = [2, 2]
              
         let path = UIBezierPath()
         let point1 = CGPoint(x: view.bounds.minX, y: view.bounds.maxY - 20)

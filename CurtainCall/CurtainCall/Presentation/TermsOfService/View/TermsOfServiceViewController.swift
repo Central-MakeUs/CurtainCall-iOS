@@ -200,6 +200,7 @@ final class TermsOfServiceViewController: UIViewController {
         title = "약관 동의"
         configureSubviews()
         configureConstraints()
+        configureNavigation()
     }
     
     private func configureSubviews() {
@@ -212,16 +213,16 @@ final class TermsOfServiceViewController: UIViewController {
         )
         allCheckStackView.addArrangedSubviews(allCheckButton, allCheckLabelButton)
         serviceStackView.addArrangedSubviews(
-            serviceCheckButton, serviceCheckLabelButton, serviceExpandButton
+            serviceCheckButton, serviceCheckLabelButton
         )
         locationStackView.addArrangedSubviews(
-            locationCheckButton, locationCheckLabelButton, locationExpandButton
+            locationCheckButton, locationCheckLabelButton
         )
         alarmStackView.addArrangedSubviews(
-            alarmCheckButton, alarmCheckLabelButton, alarmExpandButton
+            alarmCheckButton, alarmCheckLabelButton
         )
         marketingStackView.addArrangedSubviews(
-            marketingCheckButton, marketingCheckLabelButton, marketingExpandButton
+            marketingCheckButton, marketingCheckLabelButton
         )
     }
     
@@ -236,9 +237,9 @@ final class TermsOfServiceViewController: UIViewController {
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
         }
         
-        [allCheckButton, serviceCheckButton, serviceExpandButton,
-         locationCheckButton, locationExpandButton, alarmCheckButton,
-         alarmExpandButton, marketingCheckButton, marketingExpandButton
+        [allCheckButton, serviceCheckButton,
+         locationCheckButton,  alarmCheckButton,
+          marketingCheckButton,
         ].forEach {
             $0.snp.makeConstraints { make in
                 make.size.equalTo(24)
@@ -266,6 +267,11 @@ final class TermsOfServiceViewController: UIViewController {
             $0.height.equalTo(1)
         }
         
+    }
+    
+    private func configureNavigation() {
+        configureBackbarButton(.pop)
+        title = "약관 동의"
     }
     
     private func addTargets() {

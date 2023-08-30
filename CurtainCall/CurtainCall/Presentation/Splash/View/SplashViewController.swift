@@ -54,8 +54,7 @@ final class SplashViewController: UIViewController {
             if KeychainWrapper.standard.bool(forKey: .isFirstUser) == nil {
                 self?.pushToOnboardingViewController()
                 KeychainWrapper.standard[.isFirstUser] = false
-            } else if KeychainWrapper.standard.string(forKey: .refreshToken) == nil ||
-                        KeychainWrapper.standard.string(forKey: .accessToken) == nil {
+            } else if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
                 let loginViewController = LoginViewController(
                     viewModel: LoginViewModel()
                 )
