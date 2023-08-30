@@ -495,6 +495,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                         partyInButton.setNextButton(isSelected: false)
                     }
                 }
+                LodingIndicator.hideLoading()
                         
             }.store(in: &subscriptions)
     }

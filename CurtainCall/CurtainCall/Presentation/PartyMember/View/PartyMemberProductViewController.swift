@@ -212,7 +212,10 @@ final class PartyMemberProductViewController: UIViewController {
                     LodingIndicator.hideLoading()
                 }
             } receiveValue: { [weak self] item in
-                guard let self else { return }
+                guard let self else {
+                    LodingIndicator.hideLoading()
+                    return
+                }
                 if item.isEmpty {
                     emptyView.isHidden = false
                     guideLabel.isHidden = true
