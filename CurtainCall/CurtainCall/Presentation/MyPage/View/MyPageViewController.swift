@@ -24,6 +24,14 @@ final class MyPageViewController: UIViewController {
     
     private let contentView = UIView()
     
+    private let myTitle: UILabel = {
+        let label = UILabel()
+        label.textColor = .pointColor1
+        label.font = .heading1
+        label.text = "MY"
+        return label
+    }()
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 30
@@ -235,12 +243,12 @@ final class MyPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.requestUserInfo()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        
     }
     
     // MARK: - Helpers
@@ -256,7 +264,7 @@ final class MyPageViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubviews(
             profileImageView, profileEditButton, nicknameLabel, myView, myWriteView, saveView,
-            listSeperator, borderView, noticeView, FAQView, footerView
+            listSeperator, borderView, noticeView, FAQView, footerView, myTitle
         )
         myView.addSubviews(myRecruitmentView, myParticipationView, myViewSperator)
         myRecruitmentView.addSubviews(myRecruitmentLabel, myRecruitmentCountLabel, myRecruitmentButton)
@@ -276,9 +284,13 @@ final class MyPageViewController: UIViewController {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide)
         }
+        myTitle.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(8)
+            $0.leading.equalToSuperview().offset(24)
+        }
         profileImageView.snp.makeConstraints {
             $0.size.equalTo(90)
-            $0.top.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().offset(70)
             $0.centerX.equalToSuperview()
         }
         profileEditButton.snp.makeConstraints {
@@ -325,25 +337,25 @@ final class MyPageViewController: UIViewController {
             $0.center.equalToSuperview()
             $0.height.equalTo(30)
             // TODO: 개발이후
-//            $0.height.equalTo(0)
-            $0.width.equalTo(1)
+            $0.height.equalTo(0)
+//            $0.width.equalTo(1)
         }
         myWriteView.snp.makeConstraints {
             // TODO: 개발이후
-//            $0.height.equalTo(0)
+            $0.height.equalTo(0)
             $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(myView.snp.bottom).offset(20)
         }
         myWriteIcon.snp.makeConstraints {
             // TODO: 개발이후
-//            $0.height.equalTo(0)
+            $0.height.equalTo(0)
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         myWriteLabel.snp.makeConstraints {
             // TODO: 개발이후
-//            $0.height.equalTo(0)
+            $0.height.equalTo(0)
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
         }
@@ -358,21 +370,21 @@ final class MyPageViewController: UIViewController {
         
         saveView.snp.makeConstraints {
             // TODO: 개발이후
-//            $0.height.equalTo(0)
-            $0.height.equalTo(85)
+            $0.height.equalTo(0)
+//            $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(listSeperator.snp.bottom)
         }
         saveIcon.snp.makeConstraints {
             // TODO: 개발이후
-//            $0.height.equalTo(0)
+            $0.height.equalTo(0)
             
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         saveLabel.snp.makeConstraints {
             // TODO: 개발이후
-//            $0.height.equalTo(0)
+            $0.height.equalTo(0)
             
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
@@ -456,8 +468,6 @@ final class MyPageViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        title = "MY"
-        navigationController?.navigationBar.prefersLargeTitles = true
         let settingImage = UIImage(named: ImageNamespace.myPageNavigationSettingIcon)
         let settingBarbuttonItem = UIBarButtonItem(
             image: settingImage,
@@ -466,7 +476,7 @@ final class MyPageViewController: UIViewController {
             action: #selector(settingButtonTouchUpInside)
         )
         navigationItem.rightBarButtonItem = settingBarbuttonItem
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem?.tintColor = .hex828996
         
     }
     
