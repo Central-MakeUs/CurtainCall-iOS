@@ -15,7 +15,12 @@ final class TempHomeViewController: UIViewController {
     
     // MARK: - UI properties
     
-    private let scrollView = UIScrollView()
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.delegate = self
+        return scrollView
+    }()
+    
     private let contentView = UIView()
     
     private let navigationView: UIView = {
@@ -374,10 +379,11 @@ final class TempHomeViewController: UIViewController {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(24)
         }
-        searchButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(24)
-        }
+        // TODO: 추후 개발
+//        searchButton.snp.makeConstraints {
+//            $0.centerY.equalToSuperview()
+//            $0.trailing.equalToSuperview().inset(24)
+//        }
         helloLabel.snp.makeConstraints {
             $0.top.equalTo(navigationView.snp.bottom).offset(26)
             $0.leading.equalToSuperview().offset(26)
@@ -630,11 +636,6 @@ final class TempHomeViewController: UIViewController {
 }
 
 extension TempHomeViewController: UICollectionViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
-        pageControl.currentPage = page
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == bannerCollectionView {
             switch indexPath.row {
@@ -891,4 +892,22 @@ extension TempHomeViewController {
             }
         )
     }
+}
+
+extension TempHomeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == bannerCollectionView {
+            let page = Int((scrollView.contentOffset.x / scrollView.frame.width).rounded(.up))
+            pageControl.currentPage = page
+        }
+        
+        if scrollView == self.scrollView {
+            if scrollView.contentOffset.y > 338 {
+                view.backgroundColor = .white
+            } else {
+                view.backgroundColor = .pointColor1
+            }
+        }
+    }
+    
 }
