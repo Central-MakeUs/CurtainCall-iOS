@@ -123,6 +123,9 @@
 		EE5251F12A8E668D003DFEE3 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5251F02A8E668D003DFEE3 /* credentials.plist */; };
 		EE5C9DB02A9E365600889C73 /* MyPageRecruitmentOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5C9DAF2A9E365600889C73 /* MyPageRecruitmentOtherCell.swift */; };
 		EE5C9DB22A9F7FDA00889C73 /* MyFavoriteShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5C9DB12A9F7FDA00889C73 /* MyFavoriteShowCell.swift */; };
+		EE5C9DB42AA0CDF700889C73 /* MyWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5C9DB32AA0CDF700889C73 /* MyWriteViewController.swift */; };
+		EE5C9DB62AA0D3C900889C73 /* MyWriteReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5C9DB52AA0D3C900889C73 /* MyWriteReviewCell.swift */; };
+		EE5C9DB82AA0DB6300889C73 /* MyWriteLostItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5C9DB72AA0DB6300889C73 /* MyWriteLostItemCell.swift */; };
 		EE5DED032A6511AB0027B0D4 /* TimeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */; };
 		EE5DED052A6514670027B0D4 /* UITableViewCell + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */; };
 		EE5DED072A6514890027B0D4 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */; };
@@ -366,6 +369,9 @@
 		EE5251F02A8E668D003DFEE3 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		EE5C9DAF2A9E365600889C73 /* MyPageRecruitmentOtherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRecruitmentOtherCell.swift; sourceTree = "<group>"; };
 		EE5C9DB12A9F7FDA00889C73 /* MyFavoriteShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteShowCell.swift; sourceTree = "<group>"; };
+		EE5C9DB32AA0CDF700889C73 /* MyWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWriteViewController.swift; sourceTree = "<group>"; };
+		EE5C9DB52AA0D3C900889C73 /* MyWriteReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWriteReviewCell.swift; sourceTree = "<group>"; };
+		EE5C9DB72AA0DB6300889C73 /* MyWriteLostItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWriteLostItemCell.swift; sourceTree = "<group>"; };
 		EE5DED022A6511AB0027B0D4 /* TimeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectView.swift; sourceTree = "<group>"; };
 		EE5DED042A6514660027B0D4 /* UITableViewCell + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Extension.swift"; sourceTree = "<group>"; };
 		EE5DED062A6514890027B0D4 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
@@ -1068,6 +1074,7 @@
 				EE5251DF2A8E63B3003DFEE3 /* BottomSheet */,
 				EE5251E12A8E63B3003DFEE3 /* MyPageViewController.swift */,
 				EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */,
+				EE5C9DB32AA0CDF700889C73 /* MyWriteViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1087,6 +1094,8 @@
 				EE5251DC2A8E63B3003DFEE3 /* MyPageRecruitmentCell.swift */,
 				EE5C9DAF2A9E365600889C73 /* MyPageRecruitmentOtherCell.swift */,
 				EE5C9DB12A9F7FDA00889C73 /* MyFavoriteShowCell.swift */,
+				EE5C9DB52AA0D3C900889C73 /* MyWriteReviewCell.swift */,
+				EE5C9DB72AA0DB6300889C73 /* MyWriteLostItemCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1863,6 +1872,7 @@
 				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
 				EE5DED0B2A654EE20027B0D4 /* UITextField + Extension.swift in Sources */,
+				EE5C9DB62AA0D3C900889C73 /* MyWriteReviewCell.swift in Sources */,
 				EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */,
 				EEF815492A73885F009C1C57 /* ReviewInfo.swift in Sources */,
 				EE5251E42A8E63B3003DFEE3 /* MyParticipationViewModel.swift in Sources */,
@@ -1932,6 +1942,7 @@
 				EE0283242A98C90F008F8100 /* LostItemResponse.swift in Sources */,
 				EEE8F0DE2A55515500E31597 /* OnboardingViewModel.swift in Sources */,
 				EE0283352A9915CC008F8100 /* LogoutPopup.swift in Sources */,
+				EE5C9DB82AA0DB6300889C73 /* MyWriteLostItemCell.swift in Sources */,
 				EE0669D82A7DEB9B000C8296 /* LostItemDetailViewController.swift in Sources */,
 				EE9A88592A83DCB20085F816 /* GoodCostProductData.swift in Sources */,
 				EE4467362A68270500CDFE05 /* PartyMemberOtherRecruitingDateViewController.swift in Sources */,
@@ -1959,6 +1970,7 @@
 				EEAA40F02A8E0CF7000990B0 /* ReviewService.swift in Sources */,
 				EE5251EB2A8E63B3003DFEE3 /* MyPageRecruitmentCell.swift in Sources */,
 				EE3A42932A9C9D2200273F94 /* LodingIndicator.swift in Sources */,
+				EE5C9DB42AA0CDF700889C73 /* MyWriteViewController.swift in Sources */,
 				EE0669DD2A7E0E95000C8296 /* APIResource.swift in Sources */,
 				EEA132222A7F46C40016D01A /* LostItemSmallCategoryView.swift in Sources */,
 				EEE8F0CD2A53ED3900E31597 /* UIViewController + Extension.swift in Sources */,

@@ -44,7 +44,7 @@ final class GuideDictViewController: UIViewController {
     
     private let ticketingButton: GuideCategoryButton = {
         let button = GuideCategoryButton()
-        button.setTitle("예메 및 좌석", for: .normal)
+        button.setTitle("예매 및 좌석", for: .normal)
         button.guideType = .ticketing
         return button
     }()

@@ -307,6 +307,10 @@ final class ProductSearchCell: UICollectionViewCell {
         
     }
     
+    func keepButtonSelect() {
+        keepButton.isSelected = true
+    }
+    
     @objc
     func setKeepButton(_ notification: Notification) {
         guard let id else { return }

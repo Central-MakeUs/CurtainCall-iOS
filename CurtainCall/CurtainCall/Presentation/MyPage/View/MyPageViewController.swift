@@ -590,8 +590,9 @@ final class MyPageViewController: UIViewController {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
             return
         }
-//        let viewModel = MyFavoriteViewModel(id: userId)
-//        navigationController?.pushViewController(MyFavoriteViewController(viewModel: viewModel), animated: true)
+        let myWriteView = UINavigationController(rootViewController: MyWriteViewController())
+        myWriteView.modalPresentationStyle = .fullScreen
+        present(myWriteView, animated: true)
     }
     
     @objc

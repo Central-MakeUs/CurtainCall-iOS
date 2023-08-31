@@ -16,6 +16,8 @@ enum MyPageAPI {
     case updateProfile(body: UpdateMyPageBody)
     case recruitments(id: Int, page: Int, size: Int, category: PartyCategoryType?)
     case participations(id: Int, page: Int, size: Int, category: PartyCategoryType?)
+    case myWriteReview
+    case myWriteLostItem
 }
 
 extension MyPageAPI: TargetType {
@@ -31,6 +33,10 @@ extension MyPageAPI: TargetType {
             return "/members/\(id)/recruitments"
         case .participations(let id, _, _, _):
             return "/members/\(id)/participations"
+        case .myWriteReview:
+            return "/member/reviews"
+        case .myWriteLostItem:
+            return "/member/lostItems"
         }
     }
     
@@ -43,6 +49,10 @@ extension MyPageAPI: TargetType {
         case .recruitments:
             return .get
         case .participations:
+            return .get
+        case .myWriteReview:
+            return .get
+        case .myWriteLostItem:
             return .get
         }
     }
@@ -67,6 +77,14 @@ extension MyPageAPI: TargetType {
             param.updateValue(page, forKey: "page")
             param.updateValue(size, forKey: "size")
             if let category { param.updateValue(category.rawValue, forKey: "category") }
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .myWriteReview:
+            param.updateValue(0, forKey: "page")
+            param.updateValue(100, forKey: "size")
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .myWriteLostItem:
+            param.updateValue(0, forKey: "page")
+            param.updateValue(100, forKey: "size")
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }

@@ -139,4 +139,5 @@ enum ImageNamespace {
     static let defaultProfile = "default_profile"
     
     static let productSearchSortIcon = "product_search_sort_icon"
+    static let myWriteMoreButton = "myWrite_more_button"
 }

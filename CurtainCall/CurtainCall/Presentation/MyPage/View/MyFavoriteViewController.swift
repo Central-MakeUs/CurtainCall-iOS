@@ -109,6 +109,7 @@ final class MyFavoriteViewController: UIViewController {
             ) else { return UICollectionViewCell() }
             cell.id = item.id
             cell.draw(item: item)
+            cell.keepButtonSelect()
             return cell
         })
     }
