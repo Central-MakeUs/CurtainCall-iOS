@@ -55,11 +55,13 @@ final class MyFavoriteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         bind()
-        viewModel.requestMyFavorite()
         configureUI()
         configureDatasource()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.requestMyFavorite()
+    }
     // MARK: Configure
     
     private func configureUI() {
@@ -142,7 +144,7 @@ extension MyFavoriteViewController: UICollectionViewDelegate {
         let detailViewController = UINavigationController(
             rootViewController: ProductDetailMainViewController(id: item.id)
         )
-        detailViewController.modalPresentationStyle = .overFullScreen
+        detailViewController.modalPresentationStyle = .fullScreen
         present(detailViewController, animated: true)
     }
 }

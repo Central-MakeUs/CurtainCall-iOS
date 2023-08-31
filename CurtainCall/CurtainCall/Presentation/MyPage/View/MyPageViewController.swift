@@ -591,7 +591,7 @@ final class MyPageViewController: UIViewController {
             return
         }
         let myWriteView = UINavigationController(rootViewController: MyWriteViewController())
-        myWriteView.modalPresentationStyle = .fullScreen
+        myWriteView.modalPresentationStyle = .overFullScreen
         present(myWriteView, animated: true)
     }
     
@@ -602,7 +602,7 @@ final class MyPageViewController: UIViewController {
         }
         let viewModel = MyFavoriteViewModel(id: userId)
         let myFavoriteView = UINavigationController(rootViewController: MyFavoriteViewController(viewModel: viewModel))
-        myFavoriteView.modalPresentationStyle = .fullScreen
+        myFavoriteView.modalPresentationStyle = .overFullScreen
         present(myFavoriteView, animated: true)
     }
     

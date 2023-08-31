@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import NMapsMap
 
@@ -212,17 +213,23 @@ final class DetailInfoView: UIView {
     private let emptyView = UIView()
     
     // MARK: Property
-    
+    private var subscriptions: Set<AnyCancellable> = []
     var content: FacilityResponse?
     var introductionImages: [String] = []
     var showTime: [ProductDetailShowTime] = []
-    
+    var count: Int = 0
+    @Published var isAllImageUpdate: Bool = false
     // MARK: Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        LodingIndicator.showLoading()
         configureUI()
+        $isAllImageUpdate.sink { isFinished in
+            if isFinished {
+                LodingIndicator.hideLoading()
+                print("###", self.introductionStackView.frame)
+            }
+        }.store(in: &subscriptions)
     }
     
     @available (*, unavailable)
@@ -318,6 +325,7 @@ final class DetailInfoView: UIView {
         marker.mapView = mapView
         let during = showTimeToDict(showTiems: showTime).joined(separator: "\n")
         duringLabel.text = during.isEmpty ? "정보 없음" : during
+        
         introductionImages.enumerated().forEach { index, str in
 
             if let url = URL(string: str) {
@@ -326,12 +334,14 @@ final class DetailInfoView: UIView {
                     switch result {
                     case .success(let value):
                         let ratio = value.image.size.width / value.image.size.height
-                        let newHeight = self.introductionImageViews[index].frame.width / ratio
+                        let newHeight = UIScreen.main.bounds.size.width / ratio
                         self.introductionImageViews[index].snp.remakeConstraints {
                             $0.height.equalTo(newHeight)
                         }
+                        self.count += 1
                     case .failure(let error):
                         print(error)
+                        self.count += 1
                     }
                     
                 }
@@ -339,9 +349,11 @@ final class DetailInfoView: UIView {
                 introductionImageViews[index].isHidden = false
             } else {
                 introductionImageViews[index].isHidden = true
+                self.count += 1
             }
+            isAllImageUpdate = count == introductionImages.count
         }
-        
+        LodingIndicator.hideLoading()
         
     }
     
