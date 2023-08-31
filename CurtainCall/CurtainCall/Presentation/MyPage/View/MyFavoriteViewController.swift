@@ -57,6 +57,7 @@ final class MyFavoriteViewController: UIViewController {
         bind()
         viewModel.requestMyFavorite()
         configureUI()
+        configureDatasource()
     }
     
     // MARK: Configure
