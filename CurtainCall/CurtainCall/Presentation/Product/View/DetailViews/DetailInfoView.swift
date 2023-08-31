@@ -150,7 +150,6 @@ final class DetailInfoView: UIView {
     
     private let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "서울 강서구 마곡중앙로 136"
         label.textAlignment = .left
         label.font = UIFont(name: "SpoqaHanSansNeo-Regular", size: 14)
         label.textColor = .body1
@@ -174,7 +173,6 @@ final class DetailInfoView: UIView {
     
     private let phoneLabel: UILabel = {
         let label = UILabel()
-        label.text = "1661-0070"
         label.textAlignment = .left
         label.font = UIFont(name: "SpoqaHanSansNeo-Regular", size: 14)
         label.textColor = .body1
@@ -198,7 +196,6 @@ final class DetailInfoView: UIView {
     
     private let websiteLabel: UILabel = {
         let label = UILabel()
-        label.text = "https://www.lgart.com/"
         label.font = UIFont(name: "SpoqaHanSansNeo-Regular", size: 14)
         label.textColor = .body1
         return label
@@ -211,6 +208,13 @@ final class DetailInfoView: UIView {
     }()
     
     private let emptyView = UIView()
+    private let moreButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("더보기", for: .normal)
+        button.titleLabel?.font = .subTitle2
+        button.titleLabel?.textAlignment = .center
+        return button
+    }()
     
     // MARK: Property
     private var subscriptions: Set<AnyCancellable> = []
@@ -230,6 +234,7 @@ final class DetailInfoView: UIView {
                 print("###", self.introductionStackView.frame)
             }
         }.store(in: &subscriptions)
+//        moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
     }
     
     @available (*, unavailable)
@@ -248,7 +253,7 @@ final class DetailInfoView: UIView {
         backgroundColor = .white
         addSubviews(
             timeTitleLabel, duringDotView, duringLabel,
-            locationTitleLabel, infoStackView, mapView, emptyView, introductionStackView
+            locationTitleLabel, infoStackView, mapView, emptyView, introductionStackView, moreButton
         )
         introductionStackView.addArrangedSubviews(
             introductionImageView1, introductionImageView2,
@@ -266,7 +271,8 @@ final class DetailInfoView: UIView {
     
     private func configureConstraints() {
         introductionStackView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview().offset(50)
+            $0.leading.trailing.equalToSuperview()
         }
         
         timeTitleLabel.snp.makeConstraints {
@@ -374,4 +380,11 @@ final class DetailInfoView: UIView {
         }
         return result
     }
+    
+//    @objc func moreButtonTapped() {
+//        introductionStackView.snp.remakeConstraints {
+//            $0.top.equalToSuperview().offset(50)
+//            $0.leading.trailing.equalToSuperview()
+//        }
+//    }
 }

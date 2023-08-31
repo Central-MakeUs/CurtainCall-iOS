@@ -316,6 +316,8 @@ final class ProductDetailMainViewController: UIViewController {
     private let detailLostItemView = DetailLostItemView()
     
     
+    
+    
     // MARK: - Properties
     private let provider = MoyaProvider<ProductAPI>()
     private let favoriteProvider = MoyaProvider<FavoriteShowAPI>()

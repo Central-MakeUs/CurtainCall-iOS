@@ -128,7 +128,7 @@ final class ProductSearchViewController: UIViewController {
     
     private func bind() {
         viewModel.$productList
-            .debounce(for: .seconds(0.7), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .sink { [weak self] data in
                 guard let self else { return }
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
@@ -182,6 +182,7 @@ extension ProductSearchViewController: UICollectionViewDelegate {
 extension ProductSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchString = searchText
+        guard !searchString.isEmpty else { return }
         viewModel.requestSearch(page: 0, size: 20, keyword: searchString)
     }
 }

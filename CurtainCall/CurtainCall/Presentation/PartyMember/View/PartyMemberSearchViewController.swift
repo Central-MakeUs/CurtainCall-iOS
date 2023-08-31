@@ -164,7 +164,7 @@ final class PartyMemberSearchViewController: UIViewController {
     
     private func bind() {
         viewModel.$partyList
-            .debounce(for: .seconds(0.7), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .sink { [weak self] data in
                 guard let self else { return }
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
@@ -215,6 +215,7 @@ extension PartyMemberSearchViewController: UICollectionViewDelegate {
 extension PartyMemberSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchString = searchText
+        guard !searchString.isEmpty else { return }
         viewModel.requestSearch(page: 0, size: 20, keyword: searchString)
     }
 }
