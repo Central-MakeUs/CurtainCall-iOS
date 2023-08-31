@@ -32,7 +32,7 @@ final class MyFavoriteViewController: UIViewController {
     // MARK: Property
     
     enum Section { case main }
-    typealias Item = MyFavoriteShowContent
+    typealias Item = ProductListContent
     typealias Datasource = UICollectionViewDiffableDataSource<Section, Item>
     
     private let viewModel: MyFavoriteViewModel
@@ -99,18 +99,18 @@ final class MyFavoriteViewController: UIViewController {
         return UICollectionViewCompositionalLayout(section: section)
     }
     
-//    private func configureDatasource() {
-//        datasource = Datasource(collectionView: collectionView, cellProvider: {
-//            collectionView, indexPath, item in
-//            guard let cell = collectionView.dequeueCell(
-//                type: ProductSearchCell.self,
-//                indexPath: indexPath
-//            ) else { return UICollectionViewCell() }
-//            cell.id = item.id
-//            cell.draw(item: item)
-//            return cell
-//        })
-//    }
+    private func configureDatasource() {
+        datasource = Datasource(collectionView: collectionView, cellProvider: {
+            collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueCell(
+                type: ProductSearchCell.self,
+                indexPath: indexPath
+            ) else { return UICollectionViewCell() }
+            cell.id = item.id
+            cell.draw(item: item)
+            return cell
+        })
+    }
     
     private func bind() {
         viewModel.myFavoriteShowList
@@ -121,11 +121,10 @@ final class MyFavoriteViewController: UIViewController {
                 }
             } receiveValue: { [weak self] value in
                 guard let self else { return }
-                print("###", value)
-//                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-//                snapshot.appendSections([.main])
-//                snapshot.appendItems(value, toSection: .main)
-//                datasource?.apply(snapshot)
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(value, toSection: .main)
+                datasource?.apply(snapshot)
 //                viewModel.isLoding = false
             }.store(in: &subscriptions)
 

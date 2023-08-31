@@ -16,7 +16,7 @@ final class MyFavoriteViewModel {
     private let provider = MoyaProvider<FavoriteShowAPI>()
     private let id: Int
     private var subscriptions: Set<AnyCancellable> = []
-    var myFavoriteShowList = CurrentValueSubject<[MyFavoriteShowContent], Error>([])
+    var myFavoriteShowList = CurrentValueSubject<[ProductListContent], Error>([])
     
     init(id: Int) {
         self.id = id
@@ -31,7 +31,7 @@ final class MyFavoriteViewModel {
                 }
             } receiveValue: { [weak self] response in
                 print("####", String(data: response.data, encoding: .utf8))
-                if let data = try? response.map(MyFavoriteShowResponse.self) {
+                if let data = try? response.map(ProductListResponse.self) {
                     self?.myFavoriteShowList.send(data.content)
                 } else {
                     self?.myFavoriteShowList.send(completion: .failure(NSError(domain: "Decoding Error", code: 999)))
@@ -41,15 +41,15 @@ final class MyFavoriteViewModel {
     }
 }
 
-struct MyFavoriteShowResponse: Decodable {
-    let content: [MyFavoriteShowContent]
-}
-
-struct MyFavoriteShowContent: Hashable, Decodable {
-    let id: String
-    let name: String
-    let poster: String
-    let story: String
-    let reviewCount: Double
-    let reviewGradeSum: Double
-}
+//struct MyFavoriteShowResponse: Decodable {
+//    let content: [MyFavoriteShowContent]
+//}
+//
+//struct MyFavoriteShowContent: Hashable, Decodable {
+//    let id: String
+//    let name: String
+//    let poster: String
+//    let story: String
+//    let reviewCount: Double
+//    let reviewGradeSum: Double
+//}
