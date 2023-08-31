@@ -648,6 +648,7 @@ final class ProductDetailMainViewController: UIViewController {
                 if let data = try? response.map(ProductDetailResponse.self) {
                     product = data
                     detailInfoView.showTime = data.showTimes
+                    detailInfoView.introductionImages = data.introductionImages
                     requestFacility(id: data.facilityId)
                     requestLostItem(id: data.facilityId)
                     draw(data: data)
@@ -738,6 +739,7 @@ final class ProductDetailMainViewController: UIViewController {
     }
     
     private func draw(data: ProductDetailResponse) {
+        print("###", data)
         titleLabel.text = data.name
         if let url = URL(string: data.poster) {
             posterImageView.kf.setImage(with: url)

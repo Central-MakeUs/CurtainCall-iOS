@@ -13,6 +13,48 @@ final class DetailInfoView: UIView {
     
     // MARK: UI Property
     
+    private let introductionStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private let introductionImageView1: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    private let introductionImageView2: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    private let introductionImageView3: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    private let introductionImageView4: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    private let introductionImageView5: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    
+    private lazy var introductionImageViews: [UIImageView] = [
+        introductionImageView1, introductionImageView2, introductionImageView3,
+        introductionImageView4, introductionImageView5
+    ]
+    
     private let timeTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "공연시간"
@@ -21,20 +63,20 @@ final class DetailInfoView: UIView {
         return label
     }()
     
-//    private let reservationDotView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .body1
-//        view.layer.cornerRadius = 3
-//        return view
-//    }()
-//
-//    private let reservationLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "예매 가능 시간: 관람 2시간 전까지"
-//        label.textColor = .body1
-//        label.font = .body3
-//        return label
-//    }()
+    //    private let reservationDotView: UIView = {
+    //        let view = UIView()
+    //        view.backgroundColor = .body1
+    //        view.layer.cornerRadius = 3
+    //        return view
+    //    }()
+    //
+    //    private let reservationLabel: UILabel = {
+    //        let label = UILabel()
+    //        label.text = "예매 가능 시간: 관람 2시간 전까지"
+    //        label.textColor = .body1
+    //        label.font = .body3
+    //        return label
+    //    }()
     
     private let duringDotView: UIView = {
         let view = UIView()
@@ -168,16 +210,18 @@ final class DetailInfoView: UIView {
     }()
     
     private let emptyView = UIView()
-    	
+    
     // MARK: Property
     
     var content: FacilityResponse?
+    var introductionImages: [String] = []
     var showTime: [ProductDetailShowTime] = []
     
     // MARK: Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+//        LodingIndicator.showLoading()
         configureUI()
     }
     
@@ -197,7 +241,12 @@ final class DetailInfoView: UIView {
         backgroundColor = .white
         addSubviews(
             timeTitleLabel, duringDotView, duringLabel,
-            locationTitleLabel, infoStackView, mapView, emptyView
+            locationTitleLabel, infoStackView, mapView, emptyView, introductionStackView
+        )
+        introductionStackView.addArrangedSubviews(
+            introductionImageView1, introductionImageView2,
+            introductionImageView3, introductionImageView4,
+            introductionImageView5
         )
         infoStackView.addArrangedSubviews(
             concertHallStackView, addressStackView, phoneStackView, websiteStackView
@@ -209,19 +258,14 @@ final class DetailInfoView: UIView {
     }
     
     private func configureConstraints() {
+        introductionStackView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
         timeTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(30)
+            $0.top.equalTo(introductionStackView.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(24)
         }
-//        reservationDotView.snp.makeConstraints {
-//            $0.top.equalTo(timeTitleLabel.snp.bottom).offset(24)
-//            $0.leading.equalToSuperview().offset(24)
-//            $0.size.equalTo(6)
-//        }
-//        reservationLabel.snp.makeConstraints {
-//            $0.centerY.equalTo(reservationDotView)
-//            $0.leading.equalTo(reservationDotView.snp.trailing).offset(10)
-//        }
         duringDotView.snp.makeConstraints {
             $0.top.equalTo(timeTitleLabel.snp.bottom).offset(19)
             $0.leading.equalToSuperview().offset(24)
@@ -244,7 +288,7 @@ final class DetailInfoView: UIView {
         
         infoStackView.snp.makeConstraints {
             $0.top.equalTo(locationTitleLabel.snp.bottom).offset(10)
-//            $0.leading.equalTo(24)
+            //            $0.leading.equalTo(24)
             $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
@@ -274,8 +318,34 @@ final class DetailInfoView: UIView {
         marker.mapView = mapView
         let during = showTimeToDict(showTiems: showTime).joined(separator: "\n")
         duringLabel.text = during.isEmpty ? "정보 없음" : during
-    }
+        introductionImages.enumerated().forEach { index, str in
 
+            if let url = URL(string: str) {
+                introductionImageViews[index].kf.indicatorType = .activity
+                introductionImageViews[index].kf.setImage(with: url) { result in
+                    switch result {
+                    case .success(let value):
+                        let ratio = value.image.size.width / value.image.size.height
+                        let newHeight = self.introductionImageViews[index].frame.width / ratio
+                        self.introductionImageViews[index].snp.remakeConstraints {
+                            $0.height.equalTo(newHeight)
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                }
+                
+                introductionImageViews[index].isHidden = false
+            } else {
+                introductionImageViews[index].isHidden = true
+            }
+        }
+        
+        
+    }
+    
+    
     func showTimeToDict(showTiems: [ProductDetailShowTime]) -> [String] {
         var timeDict: [String: [(String, Int)]] = [:]
         showTiems.forEach {
