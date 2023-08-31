@@ -25,7 +25,7 @@ final class NicknameSettingViewController: UIViewController {
     
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "닉네임은 공백없이 최소 2자에서 최대 15자 이하로,\n한글, 영문, 숫자를 자유롭게 조합해주세요."
+        label.text = "닉네임은 공백없이 최소 2자에서 최대 10자 이하로,\n한글, 영문, 숫자를 자유롭게 조합해주세요."
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = UIColor(rgb: 0x91959D)

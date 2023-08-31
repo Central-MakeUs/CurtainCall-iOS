@@ -21,7 +21,7 @@ enum NicknameValidType {
         case .blank:
             return "공백이 포함되어 있습니다."
         case .length:
-            return "최소 2자에서 최대 15자 이하로 작성해주세요."
+            return "최소 2자에서 최대 10자 이하로 작성해주세요."
         case .invalidForm:
             return "한글, 영문, 숫자만 가능합니다."
         case .isDuplicated:
