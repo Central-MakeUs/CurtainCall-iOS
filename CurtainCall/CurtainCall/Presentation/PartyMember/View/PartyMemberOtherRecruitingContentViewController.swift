@@ -289,15 +289,16 @@ final class PartyMemberOtherRecruitingContentViewController: UIViewController {
             }.store(in: &cancellables)
         
         viewModel.$isSuccessCreateParty
-            .sink { [weak self] isSuccess in
-                guard let self else { return }
-                if isSuccess {
-                    let completeViewController = PartyMemberWriteCompleteViewController()
-                    navigationController?.isNavigationBarHidden = true
-                    navigationController?.pushViewController(completeViewController, animated: true)
-                } else {
-                    // TODO: 실패
+            .dropFirst(1)
+            .sink { [weak self] completion in
+                if case let .failure(error) = completion {
+                    print(error.localizedDescription)
+                    self?.showToast(isSuccess: false)
+                    return
                 }
+            } receiveValue: { [weak self] isSuccess in
+                guard let self else { return }
+                showToast(isSuccess: isSuccess)
             }.store(in: &cancellables)
     }
     
@@ -352,6 +353,40 @@ final class PartyMemberOtherRecruitingContentViewController: UIViewController {
         
     
     }
+    
+    func showToast(isSuccess: Bool) {
+        let toast = PartyCompleteToastView(isSuccess: isSuccess)
+        view.addSubview(toast)
+        toast.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(66)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
+        }
+        if isSuccess {
+            nextButton.removeFromSuperview()
+            UIView.animate(
+                withDuration: 1.5,
+                delay: 0.3,
+                animations: {
+                    toast.alpha = 0.9
+                    
+                }) { [weak self] _ in
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
+        } else {
+            UIView.animate(
+                withDuration: 1.5,
+                delay: 0.3,
+                animations: {
+                    toast.alpha = 0.9
+                }) {  _ in
+                    toast.removeFromSuperview()
+                }
+            
+        }
+        
+    }
+    
     
     @objc
     private func textFieldChanged(sender: UITextField) {
