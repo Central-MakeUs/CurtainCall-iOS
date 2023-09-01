@@ -16,10 +16,10 @@ final class ProductDetailMainViewController: UIViewController {
     
     // MARK: - UI properties
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
-        scrollView.bounces = false
+        scrollView.delegate = self
         return scrollView
     }()
     
@@ -426,6 +426,7 @@ final class ProductDetailMainViewController: UIViewController {
         
         headerImageView.snp.makeConstraints {
             $0.top.trailing.leading.equalToSuperview()
+            
             $0.bottom.equalToSuperview().offset(-50)
         }
         posterImageView.snp.makeConstraints {
@@ -786,5 +787,19 @@ extension ProductDetailMainViewController: NotLoginPopupDelegate {
     func loginButtonTapped() {
         let loginViewController = LoginViewController(viewModel: LoginViewModel())
         changeRootViewController(UINavigationController(rootViewController: loginViewController))
+    }
+}
+
+extension ProductDetailMainViewController: UIScrollViewDelegate {
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        scrollView.backgroundColor = .white
+//    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 1000 {
+            scrollView.backgroundColor = .clear
+        } else {
+            scrollView.backgroundColor = .white
+        }
     }
 }
