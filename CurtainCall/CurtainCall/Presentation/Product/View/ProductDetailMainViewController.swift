@@ -347,6 +347,7 @@ final class ProductDetailMainViewController: UIViewController {
         detailLostItemView.delegate = self
         subButtonTouchUpInside(detailButton)
         requestIsFavorite(id: id)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -426,8 +427,7 @@ final class ProductDetailMainViewController: UIViewController {
         
         headerImageView.snp.makeConstraints {
             $0.top.trailing.leading.equalToSuperview()
-            
-            $0.bottom.equalToSuperview().offset(-50)
+            $0.height.equalTo(700)
         }
         posterImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -640,6 +640,8 @@ final class ProductDetailMainViewController: UIViewController {
         }
     }
     
+   
+    
     private func requestShowDetail(id: String) {
         provider.requestPublisher(.detail(id: id))
             .sink { completion in
@@ -793,9 +795,9 @@ extension ProductDetailMainViewController: NotLoginPopupDelegate {
 }
 
 extension ProductDetailMainViewController: UIScrollViewDelegate {
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        scrollView.backgroundColor = .white
-//    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("#########")
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 1000 {

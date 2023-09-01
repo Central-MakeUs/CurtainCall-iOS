@@ -8,6 +8,9 @@
 import UIKit
 
 import Kingfisher
+import Combine
+import Moya
+import CombineMoya
 
 final class ProductSearchCell: UICollectionViewCell {
     
@@ -189,6 +192,7 @@ final class ProductSearchCell: UICollectionViewCell {
     // MARK: - Properties
     
     var id: String?
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
@@ -201,6 +205,7 @@ final class ProductSearchCell: UICollectionViewCell {
             name: Notification.Name("setKeepButton"),
             object: nil
         )
+        keepButton.addTarget(self, action: #selector(keepButtonTapped), for: .touchUpInside)
     }
     
     @available (*, unavailable)
@@ -318,6 +323,46 @@ final class ProductSearchCell: UICollectionViewCell {
         guard let id else { return }
         keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(id)
 
+    }
+    
+    @objc
+    func keepButtonTapped() {
+        guard let id else { return }
+        let favoriteProvider = MoyaProvider<FavoriteShowAPI>()
+        if keepButton.isSelected {
+//            NotificationCenter.default.post(
+//            name: Notification.Name("deleteKeepButton"),
+//            object: id
+//            )
+            favoriteProvider.requestPublisher(.deleteShow(id: id))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                    }
+                } receiveValue: { [weak self] _ in
+                    guard let self else { return }
+                    keepButton.isSelected = false
+                    FavoriteService.shared.isFavoriteIds.remove(id)
+                    NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
+                }.store(in: &subscriptions)
+            
+        } else {
+//            NotificationCenter.default.post(
+//            name: Notification.Name("putKeepButton"),
+//            object: id
+//            )
+            favoriteProvider.requestPublisher(.putShow(id: id))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                    }
+                } receiveValue: { [weak self] _ in
+                    guard let self else { return }
+                    keepButton.isSelected = true
+                    FavoriteService.shared.isFavoriteIds.insert(id)
+                    NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
+                }.store(in: &subscriptions)
+        }
     }
     
     func showTimeToDict(showTiems: [ProductListShowTime]) -> String {
