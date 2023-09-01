@@ -97,7 +97,6 @@ final class PartyMemberProductViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        LodingIndicator.showLoading()
         viewModel.requestPartyProductInfo(page: 0, size: 20, category: partyType)
         configureNavigation()
     }

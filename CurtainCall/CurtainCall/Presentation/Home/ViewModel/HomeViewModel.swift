@@ -55,7 +55,7 @@ final class HomeViewModel {
     
     func requestTop10() {
         let provider = MoyaProvider<HomeAPI>()
-        provider.requestPublisher(.top10(type: "DAY", genre: "ALL", baseDate: "2023-08-19"))
+        provider.requestPublisher(.top10(type: "DAY", genre: "ALL", baseDate: Date().convertToAPIDateYearMonthDayString()))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)

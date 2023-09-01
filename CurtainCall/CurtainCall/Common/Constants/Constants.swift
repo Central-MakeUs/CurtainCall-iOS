@@ -44,7 +44,7 @@ enum Constants {
     """
     static let LOSTITEM_OTHER_CONTENT_PLACEHOLDER =
     """
-    내용을 적어주세요.
+    내용을 적어주세요. (최대 100자)
     """
     static let REPORT_DETAIL_TEXTVIEW_PLACEHOLDER =
     """

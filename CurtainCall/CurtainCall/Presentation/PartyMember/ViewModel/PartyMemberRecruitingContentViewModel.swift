@@ -56,6 +56,7 @@ final class PartyMemberRecruitingContentViewModel {
                     return
                 }
             } receiveValue: { [weak self] response in
+                print("#####", String(data: response.data, encoding: .utf8))
                 self?.isSuccessCreateParty = true
             }.store(in: &subscriptions)
     }

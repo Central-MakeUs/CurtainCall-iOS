@@ -128,7 +128,7 @@ final class FAQViewController: UIViewController {
         }
     }
     private func configureNavigation() {
-        configureBackbarButton()
+        configureBackbarButton(.dismiss)
         title = "자주 묻는 질문"
     }
     private func addTargets() {

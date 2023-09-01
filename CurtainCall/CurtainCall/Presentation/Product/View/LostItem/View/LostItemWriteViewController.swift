@@ -863,7 +863,7 @@ extension LostItemWriteViewController: UITextViewDelegate {
         }
         
         // TODO: count 변경
-        guard content.count <= 5 else { return false }
+        guard content.count <= 100 else { return false }
         return true
     }
 }
