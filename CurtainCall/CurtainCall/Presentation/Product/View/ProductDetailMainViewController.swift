@@ -733,7 +733,9 @@ final class ProductDetailMainViewController: UIViewController {
                         self?.detailLostItemView.setEmptyView()
                     } else {
                         self?.detailLostItemView.lostItems = data.content
+                        self?.detailLostItemView.removeEmptyView()
                         self?.detailLostItemView.setTableView()
+                        
                         self?.detailLostItemView.tableView.reloadData()
                     }
                 } else {

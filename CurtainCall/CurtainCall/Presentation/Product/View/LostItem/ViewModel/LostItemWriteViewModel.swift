@@ -19,6 +19,7 @@ final class LostItemWriteViewModel {
     @Published var isAddFile = false
     
     @Published var uploadImageLoading = false
+    @Published var isSuccesUpload = false
     var imageID: Int?
     var selectedDate: Date?
     var selectedTime: Date?
@@ -91,10 +92,11 @@ final class LostItemWriteViewModel {
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
+                    self.isSuccesUpload = false
                     return
                 }
             } receiveValue: { [weak self] response in
-                print("##분실물 생성", String(data: response.data, encoding: .utf8))
+                self?.isSuccesUpload = true
             }.store(in: &subscriptions)
 
     }

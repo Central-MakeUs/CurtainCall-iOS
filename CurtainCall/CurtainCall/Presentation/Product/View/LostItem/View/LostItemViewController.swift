@@ -197,8 +197,10 @@ final class LostItemViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         addTargets()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestLostItem(page: 0, type: nil, date: nil, title: nil)
-//        requestItem()
     }
     
     // MARK: - Helpers

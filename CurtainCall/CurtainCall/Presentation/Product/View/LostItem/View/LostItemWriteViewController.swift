@@ -695,6 +695,12 @@ final class LostItemWriteViewController: UIViewController {
             self?.completeButton.setNextButton(isSelected: isValid)
         }.store(in: &cancellables)
         
+        viewModel.$isSuccesUpload
+            .dropFirst(1)
+            .sink { [weak self] isSuccess in
+                self?.showToast(isSuccess: isSuccess)
+            }.store(in: &cancellables)
+        
     }
     
     private func viewBorderInit() {
@@ -798,10 +804,41 @@ final class LostItemWriteViewController: UIViewController {
             detail: detailLocationTextField.text,
             particulars: otherTextView.text ?? ""
         )
-        navigationController?.navigationBar.isHidden = true
-        navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
+//        navigationController?.navigationBar.isHidden = true
+//        navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
     }
     
+    func showToast(isSuccess: Bool) {
+        let toast = LostItemCompleteToastView(isSuccess: isSuccess)
+        view.addSubview(toast)
+        toast.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(66)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
+        }
+        if isSuccess {
+            UIView.animate(
+                withDuration: 1.5,
+                delay: 0.3,
+                animations: {
+                    toast.alpha = 0.9
+                    
+                }) { [weak self] _ in
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
+        } else {
+            UIView.animate(
+                withDuration: 1.5,
+                delay: 0.3,
+                animations: {
+                    toast.alpha = 0.9
+                }) {  _ in
+                    toast.removeFromSuperview()
+                }
+            
+        }
+        
+    }
 }
 
 // MARK: Keyboard
