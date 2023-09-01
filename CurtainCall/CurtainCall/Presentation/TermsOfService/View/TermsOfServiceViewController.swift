@@ -240,7 +240,7 @@ final class TermsOfServiceViewController: UIViewController {
         }
         [serviceView, locationView, alarmView].forEach {
             $0.snp.makeConstraints { make in
-                make.height.equalTo(44)
+                make.height.equalTo(24)
             }
         }
         [allCheckButton, serviceCheckButton,
