@@ -314,9 +314,7 @@ final class ProductDetailMainViewController: UIViewController {
     private let detailInfoView = DetailInfoView()
     private let detailReviewView = DetailReviewView()
     private let detailLostItemView = DetailLostItemView()
-    
-    
-    
+
     
     // MARK: - Properties
     private let provider = MoyaProvider<ProductAPI>()
@@ -427,7 +425,6 @@ final class ProductDetailMainViewController: UIViewController {
         
         headerImageView.snp.makeConstraints {
             $0.top.trailing.leading.equalToSuperview()
-            $0.height.equalTo(700)
         }
         posterImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -538,6 +535,7 @@ final class ProductDetailMainViewController: UIViewController {
             setupInfoView()
             reviewButton.isSelected = false
             lostItemButton.isSelected = false
+            scrollView.bounces = true
         case reviewButton:
             if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
                 presentNotLoginPopup()
@@ -546,6 +544,7 @@ final class ProductDetailMainViewController: UIViewController {
             setupReviewView()
             detailButton.isSelected = false
             lostItemButton.isSelected = false
+            scrollView.bounces = false
         case lostItemButton:
             if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
                 presentNotLoginPopup()
@@ -554,6 +553,7 @@ final class ProductDetailMainViewController: UIViewController {
             setupLostItemView()
             detailButton.isSelected = false
             reviewButton.isSelected = false
+            scrollView.bounces = false
         default:
             fatalError("Error: Not Button")
         }
