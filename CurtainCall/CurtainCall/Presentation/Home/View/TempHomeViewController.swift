@@ -297,17 +297,16 @@ final class TempHomeViewController: UIViewController {
         view.backgroundColor = .pointColor1
         configureUI()
         bind()
-        LodingIndicator.showLoading()
-        viewModel.requestUserInfo()
-        viewModel.requestOpen()
-        viewModel.requestTop10()
-        viewModel.requestEnd()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        LodingIndicator.showLoading()
+        viewModel.requestUserInfo()
+        viewModel.requestOpen()
+        viewModel.requestTop10()
+        viewModel.requestEnd()
         viewModel.requestMyParticipation()
         viewModel.requestMyRecuritment()
     }

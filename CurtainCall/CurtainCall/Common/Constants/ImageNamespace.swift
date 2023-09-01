@@ -31,6 +31,8 @@ enum ImageNamespace {
     static let checkmarkButtonDeselected = "checkmark_button_deselected"
     static let checkmarkButtonSelected = "checkmark_button_selected"
     static let ExpandButtonArrowBottom = "expand_button_arrow_bottom"
+    static let ExpandButtonArrowUp = "expand_button_arrow_up"
+    
     
     static let tabbarHomeSelected = "tabbar_home_selected"
     static let tabbarHomeDeselected = "tabbar_home_deselected"

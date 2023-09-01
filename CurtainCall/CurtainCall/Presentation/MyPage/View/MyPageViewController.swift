@@ -608,6 +608,8 @@ final class MyPageViewController: UIViewController {
     
     @objc
     private func FAQButtonTouchUpInside() {
-        // tapped
+        let FAQViewController = UINavigationController(rootViewController: FAQViewController())
+        FAQViewController.modalPresentationStyle = .overFullScreen
+        present(FAQViewController, animated: true)
     }
 }
