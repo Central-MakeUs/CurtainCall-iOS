@@ -292,17 +292,19 @@ final class ProductSearchCell: UICollectionViewCell {
         productRunningTimeLabel.text = item.runtime.isEmpty ? "정보 없음" : item.runtime
         keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(item.id)
         let timeInfo = showTimeToDict(showTiems: item.showTimes)
-        if timeInfo.count >= 2 {
-            productScheduleLabel.text = timeInfo[0]
-            productScheduleSubLabel.text = timeInfo[1]
-            scheduleSubStackView.isHidden = false
-        } else if timeInfo.count == 1 {
-            productScheduleLabel.text = timeInfo[0]
-            scheduleSubStackView.isHidden = true
-        } else {
-            productScheduleLabel.text = "정보 없음"
-            scheduleSubStackView.isHidden = true
-        }
+        productScheduleLabel.text = timeInfo.isEmpty ? "정보 없음" : timeInfo
+        scheduleSubStackView.isHidden = true
+//        if timeInfo.count >= 2 {
+//            productScheduleLabel.text = timeInfo[0]
+//            productScheduleSubLabel.text = timeInfo[1]
+//            scheduleSubStackView.isHidden = false
+//        } else if timeInfo.count == 1 {
+//            productScheduleLabel.text = timeInfo[0]
+//            scheduleSubStackView.isHidden = true
+//        } else {
+//            productScheduleLabel.text = "정보 없음"
+//            scheduleSubStackView.isHidden = true
+//        }
         productLocationLabel.text = item.facilityName
         
     }
@@ -318,20 +320,25 @@ final class ProductSearchCell: UICollectionViewCell {
 
     }
     
-    func showTimeToDict(showTiems: [ProductListShowTime]) -> [String] {
+    func showTimeToDict(showTiems: [ProductListShowTime]) -> String {
         var timeDict: [String: [(String, Int)]] = [:]
+        var weekKR: [(String, Int)] = []
+        
         showTiems.forEach {
             let time = $0.time.split(separator: ":").prefix(2).joined(separator: ":")
             guard let week = WeekDayAPI(rawValue: $0.dayOfWeek) else {
                 return
             }
+            if !weekKR.contains(where: { $0.0 == week.KRname.0 }) {
+                weekKR.append(week.KRname)
+            }
             timeDict[time, default: []].append(week.KRname)
         }
-        var result: [String] = []
-        timeDict.forEach {
-            let sortedWeek = $0.value.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ",")
-            result.append(sortedWeek + " " +  $0.key)
-        }
-        return result
+//        var result: [String] = []
+//        timeDict.forEach {
+//            let sortedWeek = $0.value.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ", ")
+//
+//        }
+        return weekKR.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ", ")
     }
 }
