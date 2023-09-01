@@ -2142,8 +2142,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "커튼콜";
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용 문구";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 허용 문구";
+				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진을 업로드하려면 커튼콜이 사진 라이브러리에 액세스할 수 있어야 합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 사진을 업로드하려면 카메라 접근 권한을 허용해야 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -2181,8 +2181,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "커튼콜";
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 허용 문구";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 허용 문구";
+				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진을 업로드하려면 커튼콜이 사진 라이브러리에 액세스할 수 있어야 합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 사진을 업로드하려면 카메라 접근 권한을 허용해야 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
