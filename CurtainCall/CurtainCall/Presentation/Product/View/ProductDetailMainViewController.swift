@@ -676,6 +676,7 @@ final class ProductDetailMainViewController: UIViewController {
                     } else {
                         self?.detailReviewView.reviewInfos = data.content
                         self?.detailReviewView.setTableView()
+                        self?.detailReviewView.removeEmptyView()
                         self?.detailReviewView.tableView.reloadData()
                     }
                 }

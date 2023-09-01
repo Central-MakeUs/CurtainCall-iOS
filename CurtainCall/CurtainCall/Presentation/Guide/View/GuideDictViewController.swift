@@ -15,7 +15,7 @@ final class GuideDictViewController: UIViewController {
         let label = UILabel()
         label.font = .subTitle1
         label.textColor = .title
-        label.text = "📚 알쏭달쏭 용어 사진"
+        label.text = "📚 알쏭달쏭 용어 사전"
         return label
     }()
     
