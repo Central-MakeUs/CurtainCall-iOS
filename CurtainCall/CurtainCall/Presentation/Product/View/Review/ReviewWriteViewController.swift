@@ -110,6 +110,7 @@ final class ReviewWriteViewController: UIViewController {
         slider.minimumTrackTintColor = .clear
         slider.maximumTrackTintColor = .clear
         slider.thumbTintColor = .clear
+        slider.addTapGesture()
         return slider
     }()
     
@@ -328,7 +329,7 @@ final class ReviewWriteViewController: UIViewController {
     
     @objc
     func completeButtonTouchUpInside() {
-        viewModel.requestCreateReview(id: id, grade: Int(slider.value), content: reviewTextView.text)
+        viewModel.requestCreateReview(id: id, grade: Int(slider.value.rounded()), content: reviewTextView.text)
     }
     
     @objc
@@ -400,5 +401,18 @@ extension ReviewWriteViewController: UITextViewDelegate {
         }
         guard content.count <= 20 else { return false }
         return true
+    }
+}
+extension UISlider {
+    public func addTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        addGestureRecognizer(tap)
+    }
+
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: self)
+        let percent = minimumValue + Float(location.x / bounds.width) * maximumValue
+        setValue(percent, animated: true)
+        sendActions(for: .valueChanged)
     }
 }
