@@ -245,6 +245,7 @@
 		EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EEED57122A4EA321003D2F9C /* GoogleSignIn */; };
 		EEED76052AA20D8C002C544D /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED76042AA20D8C002C544D /* FAQViewController.swift */; };
 		EEED760A2AA2491F002C544D /* LostItemCompleteToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED76092AA2491F002C544D /* LostItemCompleteToastView.swift */; };
+		EEED760F2AA7641B002C544D /* LiveTalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED760E2AA7641B002C544D /* LiveTalkCell.swift */; };
 		EEF8153E2A735BC5009C1C57 /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8153D2A735BC5009C1C57 /* DetailInfoView.swift */; };
 		EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8153F2A7361F6009C1C57 /* BorderView.swift */; };
 		EEF815432A736C4F009C1C57 /* DetailReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF815422A736C4F009C1C57 /* DetailReviewView.swift */; };
@@ -493,6 +494,7 @@
 		EEE8F0F72A57025000E31597 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		EEED76042AA20D8C002C544D /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		EEED76092AA2491F002C544D /* LostItemCompleteToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCompleteToastView.swift; sourceTree = "<group>"; };
+		EEED760E2AA7641B002C544D /* LiveTalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkCell.swift; sourceTree = "<group>"; };
 		EEF8153D2A735BC5009C1C57 /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
 		EEF8153F2A7361F6009C1C57 /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
 		EEF815422A736C4F009C1C57 /* DetailReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReviewView.swift; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */,
+				EEED760E2AA7641B002C544D /* LiveTalkCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1834,6 +1837,7 @@
 				EE1DF3852A94F77E003AD078 /* NoticeDetailViewModel.swift in Sources */,
 				EE9301262A72470200C8FBA5 /* ProductSearchInfo.swift in Sources */,
 				EE9A88572A83D73D0085F816 /* ScheduledToOpenProductData.swift in Sources */,
+				EEED760F2AA7641B002C544D /* LiveTalkCell.swift in Sources */,
 				EEE8F0D22A55323600E31597 /* OnboardingViewController.swift in Sources */,
 				EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */,
 				EEF815402A7361F6009C1C57 /* BorderView.swift in Sources */,
