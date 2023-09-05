@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tabbar_live_talk.png",
+      "filename" : "live talk.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tabbar_live_talk@2x.png",
+      "filename" : "live talk@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tabbar_live_talk@3x.png",
+      "filename" : "live talk@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

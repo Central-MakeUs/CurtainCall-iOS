@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tabbar_home_deselect.png",
+      "filename" : "tabbar_home_select.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tabbar_home_deselect@2x.png",
+      "filename" : "tabbar_home_select@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tabbar_home_deselect@3x.png",
+      "filename" : "tabbar_home_select@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
