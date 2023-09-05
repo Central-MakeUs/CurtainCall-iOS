@@ -46,6 +46,7 @@ final class LiveTalkViewController: UIViewController {
         collectionView.backgroundColor = .pointColor1
         collectionView.register(LiveTalkCell.self, forCellWithReuseIdentifier: LiveTalkCell.identifier)
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 110, right: 0)
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -168,3 +169,11 @@ final class LiveTalkViewController: UIViewController {
     }
 }
 
+extension LiveTalkViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let chatViewController = LiveTalkChatViewController()
+        chatViewController.modalPresentationStyle = .overFullScreen
+        present(chatViewController, animated: true)
+        
+    }
+}
