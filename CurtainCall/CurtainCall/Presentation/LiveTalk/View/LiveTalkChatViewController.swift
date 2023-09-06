@@ -56,12 +56,13 @@ final class LiveTalkChatViewController: UIViewController {
     
     private lazy var chatTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "메시지 입력..."
+        textView.text = Constants.MESSAGE_PLACEHODER
         textView.textColor = .pointColor1
         textView.font = .body3
         textView.isScrollEnabled = false
         textView.textContainerInset = .zero
         textView.delegate = self
+        textView.keyboardAppearance = .dark
         return textView
     }()
     
@@ -98,12 +99,20 @@ final class LiveTalkChatViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+        navigationController?.navigationBar.isHidden = true
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let indexPath = IndexPath(row: TalkMessageData.list.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Helpers
@@ -212,6 +221,7 @@ extension LiveTalkChatViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueCell(type: LiveTalkChatReceiveCell.self, indexPath: indexPath) else {
                 return UITableViewCell()
             }
+            cell.delegate = self
             cell.draw(data: data)
             return cell
         } else {
@@ -234,6 +244,32 @@ extension LiveTalkChatViewController: UITableViewDelegate {
 
 extension LiveTalkChatViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        if textView.text == Constants.MESSAGE_PLACEHODER {
+            // 버튼 처리
+        }
         textView.isScrollEnabled = textView.numberOfLine() > 3
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == Constants.MESSAGE_PLACEHODER {
+            textView.text = nil
+            return
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = Constants.MESSAGE_PLACEHODER
+            return
+        }
+        
+    }
+}
+
+extension LiveTalkChatViewController: LiveTalkChatCellDelegate {
+    func didTappedReportButton() {
+        // TODO: 신고 기능 추가
+        let reportViewController = ReportViewController(viewModel: ReportViewModel(id: 1, type: .party))
+        navigationController?.pushViewController(reportViewController, animated: true)
     }
 }

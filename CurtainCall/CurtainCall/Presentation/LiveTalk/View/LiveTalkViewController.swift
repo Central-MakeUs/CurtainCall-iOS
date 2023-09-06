@@ -171,7 +171,7 @@ final class LiveTalkViewController: UIViewController {
 
 extension LiveTalkViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let chatViewController = LiveTalkChatViewController()
+        let chatViewController = UINavigationController(rootViewController: LiveTalkChatViewController()) 
         chatViewController.modalPresentationStyle = .overFullScreen
         present(chatViewController, animated: true)
         

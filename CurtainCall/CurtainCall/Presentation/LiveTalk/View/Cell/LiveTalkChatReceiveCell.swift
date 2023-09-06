@@ -51,16 +51,18 @@ final class LiveTalkChatReceiveCell: UITableViewCell {
         return button
     }()
     
-    
-    
     // MARK: Property
+    
+    weak var delegate: LiveTalkChatCellDelegate?
     
     // MARK: Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        contentView.isUserInteractionEnabled = false
         configureUI()
+        dateButton.addTarget(self, action: #selector(reportButtonTapped), for: .touchUpInside)
         
     }
     
@@ -111,6 +113,11 @@ final class LiveTalkChatReceiveCell: UITableViewCell {
     func draw(data: TalkMessageData) {
         nicknameLabel.text = data.nickname
         messageLabel.text = data.message
+    }
+    
+    @objc
+    private func reportButtonTapped() {
+        delegate?.didTappedReportButton()
     }
 }
 

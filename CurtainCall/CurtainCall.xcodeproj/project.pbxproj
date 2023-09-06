@@ -73,6 +73,7 @@
 		EE2BDF272AA8220C00E9AFFF /* LiveTalkChatSendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */; };
 		EE2BDF2A2AA8224F00E9AFFF /* TalkMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */; };
 		EE2BDF2C2AA829BC00E9AFFF /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF2B2AA829BC00E9AFFF /* UITextView + Extension.swift */; };
+		EE2BDF2E2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */; };
 		EE3A42882A9C61C600273F94 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */; };
 		EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */; };
 		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
@@ -329,6 +330,7 @@
 		EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkChatSendCell.swift; sourceTree = "<group>"; };
 		EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkMessageData.swift; sourceTree = "<group>"; };
 		EE2BDF2B2AA829BC00E9AFFF /* UITextView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extension.swift"; sourceTree = "<group>"; };
+		EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkChatCellDelegate.swift; sourceTree = "<group>"; };
 		EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
 		EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyInPopup.swift; sourceTree = "<group>"; };
 		EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
@@ -882,6 +884,7 @@
 			isa = PBXGroup;
 			children = (
 				EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */,
+				EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1977,6 +1980,7 @@
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE9A88672A874C9F0085F816 /* PerformanceExpressionDictionaryData.swift in Sources */,
 				EEF8154F2A73AE69009C1C57 /* ReviewViewController.swift in Sources */,
+				EE2BDF2E2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift in Sources */,
 				EE0BEE002A4971FE008D9D05 /* ImageNamespace.swift in Sources */,
 				EEF8153E2A735BC5009C1C57 /* DetailInfoView.swift in Sources */,
 				EE1DF37E2A94F13E003AD078 /* NoticeResponse.swift in Sources */,
