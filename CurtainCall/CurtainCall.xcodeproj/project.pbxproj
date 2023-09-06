@@ -70,6 +70,8 @@
 		EE1DF3852A94F77E003AD078 /* NoticeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */; };
 		EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */; };
 		EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3892A95054B003AD078 /* SettingViewController.swift */; };
+		EE2BDF272AA8220C00E9AFFF /* LiveTalkChatSendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */; };
+		EE2BDF2A2AA8224F00E9AFFF /* TalkMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */; };
 		EE3A42882A9C61C600273F94 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */; };
 		EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */; };
 		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
@@ -143,6 +145,7 @@
 		EE6127012A974EA300961109 /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6127002A974EA300961109 /* MyPageService.swift */; };
 		EE6127042A974EFD00961109 /* MyPageDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6127032A974EFD00961109 /* MyPageDetailResponse.swift */; };
 		EE6127062A974F5300961109 /* UpdateMyPageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6127052A974F5300961109 /* UpdateMyPageBody.swift */; };
+		EE68E81C2AA80CE10025F272 /* LiveTalkChatReceiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE68E81B2AA80CE10025F272 /* LiveTalkChatReceiveCell.swift */; };
 		EE747B8A2A95D90A006A8AB3 /* PartyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B892A95D90A006A8AB3 /* PartyService.swift */; };
 		EE747B8D2A95D9B6006A8AB3 /* PartyCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */; };
 		EE747B902A95DA3F006A8AB3 /* CreatePartyBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */; };
@@ -322,6 +325,8 @@
 		EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewModel.swift; sourceTree = "<group>"; };
 		EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailResponse.swift; sourceTree = "<group>"; };
 		EE1DF3892A95054B003AD078 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkChatSendCell.swift; sourceTree = "<group>"; };
+		EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkMessageData.swift; sourceTree = "<group>"; };
 		EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
 		EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyInPopup.swift; sourceTree = "<group>"; };
 		EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +399,7 @@
 		EE6127032A974EFD00961109 /* MyPageDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailResponse.swift; sourceTree = "<group>"; };
 		EE6127052A974F5300961109 /* UpdateMyPageBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyPageBody.swift; sourceTree = "<group>"; };
 		EE625B572A85DBAB00BFF7B6 /* PerformanceExpressionDictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceExpressionDictionaryData.swift; sourceTree = "<group>"; };
+		EE68E81B2AA80CE10025F272 /* LiveTalkChatReceiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkChatReceiveCell.swift; sourceTree = "<group>"; };
 		EE747B892A95D90A006A8AB3 /* PartyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyService.swift; sourceTree = "<group>"; };
 		EE747B8C2A95D9B6006A8AB3 /* PartyCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCategoryType.swift; sourceTree = "<group>"; };
 		EE747B8F2A95DA3F006A8AB3 /* CreatePartyBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePartyBody.swift; sourceTree = "<group>"; };
@@ -870,6 +876,14 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		EE2BDF282AA8224500E9AFFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EE3A42912A9C9D0E00273F94 /* LodingIndicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,6 +937,7 @@
 		EE3F2FEA2A58120A00BC539C /* LiveTalk */ = {
 			isa = PBXGroup;
 			children = (
+				EE2BDF282AA8224500E9AFFF /* Model */,
 				EE3F2FEE2A58122100BC539C /* View */,
 			);
 			path = LiveTalk;
@@ -959,8 +974,8 @@
 		EE3F2FEE2A58122100BC539C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE68E81A2AA80CCB0025F272 /* Cell */,
 				EE3F2FF52A58128600BC539C /* LiveTalkViewController.swift */,
-				EEED760E2AA7641B002C544D /* LiveTalkCell.swift */,
 				EEED76112AA77D60002C544D /* LiveTalkChatViewController.swift */,
 			);
 			path = View;
@@ -1155,6 +1170,16 @@
 				EE0283082A979A86008F8100 /* MyRecruitmentResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EE68E81A2AA80CCB0025F272 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EEED760E2AA7641B002C544D /* LiveTalkCell.swift */,
+				EE68E81B2AA80CE10025F272 /* LiveTalkChatReceiveCell.swift */,
+				EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		EE747B882A95D8EC006A8AB3 /* Service */ = {
@@ -1818,6 +1843,7 @@
 				EE0283102A97C652008F8100 /* MyPageEditViewModel.swift in Sources */,
 				EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */,
 				EE02833B2A992089008F8100 /* TermsOfUseViewController.swift in Sources */,
+				EE2BDF2A2AA8224F00E9AFFF /* TalkMessageData.swift in Sources */,
 				EE3F2FE42A5802C400BC539C /* MainTabBarController.swift in Sources */,
 				EE5C9DB22A9F7FDA00889C73 /* MyFavoriteShowCell.swift in Sources */,
 				EE5FDBF22A8CB06600376E26 /* KeychainWrapper + Extension.swift in Sources */,
@@ -1916,6 +1942,7 @@
 				EE3E02972A77FF06007C3D71 /* LostItemLargeCategoryView.swift in Sources */,
 				EE5DED092A6534050027B0D4 /* PartyMemberRecruitingContentViewController.swift in Sources */,
 				EE5FDBF82A8CB5B500376E26 /* NicknameDuplicateResponse.swift in Sources */,
+				EE2BDF272AA8220C00E9AFFF /* LiveTalkChatSendCell.swift in Sources */,
 				EE3F2FDE2A57D2A300BC539C /* NicknameSettingUsecase.swift in Sources */,
 				EE0669DF2A7E2E81000C8296 /* LostItemWriteViewController.swift in Sources */,
 				EE0BEDE02A495539008D9D05 /* SceneDelegate.swift in Sources */,
@@ -1970,6 +1997,7 @@
 				EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */,
 				EEB776362A602B0500BFCAAD /* CalendarView.swift in Sources */,
 				EE3F2FE22A57E4CC00BC539C /* LoginCompleteViewController.swift in Sources */,
+				EE68E81C2AA80CE10025F272 /* LiveTalkChatReceiveCell.swift in Sources */,
 				EEF8154B2A73A536009C1C57 /* DetailLostItemView.swift in Sources */,
 				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,
 				EE1DF3742A94E859003AD078 /* FavoriteProductListResponse.swift in Sources */,

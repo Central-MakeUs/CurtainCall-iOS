@@ -63,6 +63,25 @@ final class LiveTalkChatViewController: UIViewController {
         textView.textContainerInset = .zero
         return textView
     }()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(
+            LiveTalkChatReceiveCell.self,
+            forCellReuseIdentifier: LiveTalkChatReceiveCell.identifier
+        )
+        tableView.register(
+            LiveTalkChatSendCell.self,
+            forCellReuseIdentifier: LiveTalkChatSendCell.identifier
+        )
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .pointColor1
+        return tableView
+    }()
+    
+    private let emptyView = UIView()
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -95,7 +114,7 @@ final class LiveTalkChatViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .pointColor1
-        view.addSubviews(topView, bottomView)
+        view.addSubviews(topView, bottomView, tableView, emptyView)
         topView.addSubviews(backButton, titleLabel, showDateLabel)
         bottomView.addSubviews(addButton, chatView)
         chatView.addSubview(chatTextView)
@@ -105,6 +124,11 @@ final class LiveTalkChatViewController: UIViewController {
         topView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(124)
+        }
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(bottomView.snp.top)
         }
         backButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(51)
@@ -122,16 +146,17 @@ final class LiveTalkChatViewController: UIViewController {
             $0.trailing.lessThanOrEqualToSuperview().inset(24)
         }
         bottomView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(40)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(emptyView.snp.top).offset(10)
         }
         addButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(24)
         }
         chatView.snp.makeConstraints {
-            $0.height.equalTo(40)
-            $0.centerY.equalToSuperview()
+            $0.height.greaterThanOrEqualTo(40)
+            $0.height.lessThanOrEqualTo(200)
+            $0.verticalEdges.equalToSuperview().inset(10)
             $0.leading.equalTo(addButton.snp.trailing).offset(10)
             $0.trailing.equalToSuperview().inset(24)
         }
@@ -139,6 +164,12 @@ final class LiveTalkChatViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.top.equalToSuperview().offset(10)
             $0.bottom.equalToSuperview().inset(10)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(0)
         }
     }
     
@@ -155,17 +186,47 @@ final class LiveTalkChatViewController: UIViewController {
     private func keyboardUp(notification: NSNotification) {
         if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
-            
-            UIView.animate(
-                withDuration: 0.3, animations: { [weak self] in
-                    self?.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-                }
-            )
+            emptyView.snp.updateConstraints {
+                $0.height.equalTo(keyboardRectangle.height)
+            }
         }
     }
     
     @objc
     private func keyboardDown() {
-        self.view.transform = .identity
+        emptyView.snp.updateConstraints {
+            $0.height.equalTo(0)
+        }
+    }
+}
+
+extension LiveTalkChatViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return TalkMessageData.list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = TalkMessageData.list[indexPath.row]
+        if data.chatType == .receive {
+            guard let cell = tableView.dequeueCell(type: LiveTalkChatReceiveCell.self, indexPath: indexPath) else {
+                return UITableViewCell()
+            }
+            cell.draw(data: data)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueCell(type: LiveTalkChatSendCell.self, indexPath: indexPath) else {
+                return UITableViewCell()
+            }
+            cell.draw(data: data)
+            return cell
+        }
+    }
+    
+    
+}
+
+extension LiveTalkChatViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
