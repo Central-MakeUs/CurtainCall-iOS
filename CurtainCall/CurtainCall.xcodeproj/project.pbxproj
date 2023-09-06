@@ -74,6 +74,8 @@
 		EE2BDF2A2AA8224F00E9AFFF /* TalkMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */; };
 		EE2BDF2C2AA829BC00E9AFFF /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF2B2AA829BC00E9AFFF /* UITextView + Extension.swift */; };
 		EE2BDF2E2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */; };
+		EE2BDF312AA871C200E9AFFF /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = EE2BDF302AA871C200E9AFFF /* StreamChat */; };
+		EE2BDF332AA871C200E9AFFF /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE2BDF322AA871C200E9AFFF /* StreamChatUI */; };
 		EE3A42882A9C61C600273F94 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */; };
 		EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */; };
 		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
@@ -530,10 +532,12 @@
 				EE1825BA2A8899540020BADA /* Moya in Frameworks */,
 				EE4EBAE32A4C013B00939823 /* KakaoSDKAuth in Frameworks */,
 				EE4EBAE52A4C013B00939823 /* KakaoSDKUser in Frameworks */,
+				EE2BDF312AA871C200E9AFFF /* StreamChat in Frameworks */,
 				EE0304B42A4E816C0038A09E /* FacebookCore in Frameworks */,
 				EEED57132A4EA321003D2F9C /* GoogleSignIn in Frameworks */,
 				EE7730482A93527E00658D84 /* Kingfisher in Frameworks */,
 				EE1825B82A8899540020BADA /* CombineMoya in Frameworks */,
+				EE2BDF332AA871C200E9AFFF /* StreamChatUI in Frameworks */,
 				0AE959D30E1325E953B34349 /* Pods_CurtainCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1691,6 +1695,8 @@
 				EE1825B92A8899540020BADA /* Moya */,
 				EE5FDBEF2A8CAF7B00376E26 /* SwiftKeychainWrapper */,
 				EE7730472A93527E00658D84 /* Kingfisher */,
+				EE2BDF302AA871C200E9AFFF /* StreamChat */,
+				EE2BDF322AA871C200E9AFFF /* StreamChatUI */,
 			);
 			productName = CurtainCall;
 			productReference = EE0BEDDA2A495539008D9D05 /* CurtainCall.app */;
@@ -1729,6 +1735,7 @@
 				EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */,
 				EE5FDBEE2A8CAF7B00376E26 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				EE7730462A93527E00658D84 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				EE2BDF2F2AA871C200E9AFFF /* XCRemoteSwiftPackageReference "stream-chat-swift" */,
 			);
 			productRefGroup = EE0BEDDB2A495539008D9D05 /* Products */;
 			projectDirPath = "";
@@ -2302,6 +2309,14 @@
 				minimumVersion = 15.0.0;
 			};
 		};
+		EE2BDF2F2AA871C200E9AFFF /* XCRemoteSwiftPackageReference "stream-chat-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/stream-chat-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		EE4EBAE12A4C013B00939823 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -2361,6 +2376,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE1825B62A8899540020BADA /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		EE2BDF302AA871C200E9AFFF /* StreamChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE2BDF2F2AA871C200E9AFFF /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChat;
+		};
+		EE2BDF322AA871C200E9AFFF /* StreamChatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE2BDF2F2AA871C200E9AFFF /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChatUI;
 		};
 		EE4EBAE22A4C013B00939823 /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;
