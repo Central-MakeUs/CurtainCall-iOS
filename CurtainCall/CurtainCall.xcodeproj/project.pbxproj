@@ -76,6 +76,7 @@
 		EE2BDF2E2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */; };
 		EE2BDF312AA871C200E9AFFF /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = EE2BDF302AA871C200E9AFFF /* StreamChat */; };
 		EE2BDF332AA871C200E9AFFF /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE2BDF322AA871C200E9AFFF /* StreamChatUI */; };
+		EE2BDF362AA8729600E9AFFF /* ChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF352AA8729600E9AFFF /* ChatClient.swift */; };
 		EE3A42882A9C61C600273F94 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */; };
 		EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */; };
 		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
@@ -333,6 +334,7 @@
 		EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkMessageData.swift; sourceTree = "<group>"; };
 		EE2BDF2B2AA829BC00E9AFFF /* UITextView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extension.swift"; sourceTree = "<group>"; };
 		EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkChatCellDelegate.swift; sourceTree = "<group>"; };
+		EE2BDF352AA8729600E9AFFF /* ChatClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClient.swift; sourceTree = "<group>"; };
 		EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
 		EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyInPopup.swift; sourceTree = "<group>"; };
 		EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EE2BDF342AA8727C00E9AFFF /* GetStream */,
 				EEC557452A9CE457005CD281 /* LikeReviewService */,
 				EE3A42912A9C9D0E00273F94 /* LodingIndicator */,
 				EE0283132A986F9C008F8100 /* FavoriteService */,
@@ -891,6 +894,14 @@
 				EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EE2BDF342AA8727C00E9AFFF /* GetStream */ = {
+			isa = PBXGroup;
+			children = (
+				EE2BDF352AA8729600E9AFFF /* ChatClient.swift */,
+			);
+			path = GetStream;
 			sourceTree = "<group>";
 		};
 		EE3A42912A9C9D0E00273F94 /* LodingIndicator */ = {
@@ -2016,6 +2027,7 @@
 				EE3F2FE82A5811BA00BC539C /* HomeViewController.swift in Sources */,
 				EE1DF3742A94E859003AD078 /* FavoriteProductListResponse.swift in Sources */,
 				EEA944412A5D440F0081E784 /* PartyMemberProductViewModel.swift in Sources */,
+				EE2BDF362AA8729600E9AFFF /* ChatClient.swift in Sources */,
 				EE8437B82A81241800ADD3D8 /* MyRecruitmentCell.swift in Sources */,
 				EEE8F0F82A57025000E31597 /* String + Extension.swift in Sources */,
 				EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */,
