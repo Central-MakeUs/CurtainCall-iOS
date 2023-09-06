@@ -54,13 +54,14 @@ final class LiveTalkChatViewController: UIViewController {
         return view
     }()
     
-    private let chatTextView: UITextView = {
+    private lazy var chatTextView: UITextView = {
         let textView = UITextView()
         textView.text = "메시지 입력..."
         textView.textColor = .pointColor1
         textView.font = .body3
         textView.isScrollEnabled = false
         textView.textContainerInset = .zero
+        textView.delegate = self
         return textView
     }()
     
@@ -155,7 +156,7 @@ final class LiveTalkChatViewController: UIViewController {
         }
         chatView.snp.makeConstraints {
             $0.height.greaterThanOrEqualTo(40)
-            $0.height.lessThanOrEqualTo(200)
+            $0.height.lessThanOrEqualTo((chatTextView.font?.lineHeight ?? 0) * 4 + 20)
             $0.verticalEdges.equalToSuperview().inset(10)
             $0.leading.equalTo(addButton.snp.trailing).offset(10)
             $0.trailing.equalToSuperview().inset(24)
@@ -228,5 +229,11 @@ extension LiveTalkChatViewController: UITableViewDataSource {
 extension LiveTalkChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension LiveTalkChatViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        textView.isScrollEnabled = textView.numberOfLine() > 3
     }
 }
