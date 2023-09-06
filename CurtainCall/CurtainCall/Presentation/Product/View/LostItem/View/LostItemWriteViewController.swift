@@ -37,6 +37,7 @@ final class LostItemWriteViewController: UIViewController {
         textField.font = .body1
         textField.textColor = .body1
         textField.tintColor = .pointColor2
+        textField.delegate = self
         return textField
     }()
     
@@ -133,12 +134,13 @@ final class LostItemWriteViewController: UIViewController {
         return view
     }()
     
-    private let detailLocationTextField: UITextField = {
+    private lazy var detailLocationTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "세부 장소를 적어주세요."
         textField.font = .body1
         textField.textColor = .body1
         textField.tintColor = .pointColor2
+        textField.delegate = self
         return textField
     }()
     
@@ -922,6 +924,19 @@ extension LostItemWriteViewController: UITextViewDelegate {
     }
 }
 
+extension LostItemWriteViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let char = string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        guard let text = textField.text, text.count <= 20 else { return false }
+        return true
+    }
+}
+
 extension LostItemWriteViewController: LostItemViewDelegate {
     func didTappedCategoryButton(categoryType: LostItemCategoryType) {
         lostItemCategoryView.isHidden = true
@@ -991,4 +1006,6 @@ extension LostItemWriteViewController: UIImagePickerControllerDelegate & UINavig
         }
     }
 }
+
+
 
