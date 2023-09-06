@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 import SnapKit
+import Moya
+import CombineMoya
 import SwiftKeychainWrapper
 
 final class TempHomeViewController: UIViewController {
@@ -297,6 +299,9 @@ final class TempHomeViewController: UIViewController {
         view.backgroundColor = .pointColor1
         configureUI()
         bind()
+        if !(KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? false) {
+            viewModel.requestToken()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -631,6 +636,8 @@ final class TempHomeViewController: UIViewController {
                 }
             }.store(in: &subcriptions)
     }
+    
+    
 
 }
 

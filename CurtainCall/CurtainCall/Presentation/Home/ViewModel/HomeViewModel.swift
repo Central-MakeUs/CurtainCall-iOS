@@ -182,8 +182,26 @@ final class HomeViewModel {
                 }
                 self?.requestCount += 1
             }.store(in: &subscriptions)
-        
+    }
+    
+    func requestToken() {
+        let provider = MoyaProvider<ChatAPI>()
+        provider.requestPublisher(.requestToken)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(RequestTokenResponse.self) {
+                    print("##TOKEN:", data)
+                }
+            }.store(in: &subscriptions)
 
     }
     
+}
+
+struct RequestTokenResponse: Decodable {
+    let value: String
 }

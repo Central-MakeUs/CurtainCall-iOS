@@ -229,6 +229,7 @@
 		EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED302122A8A63C000957566 /* GuideSale.storyboard */; };
 		EED52EEA2A9F3F9800DBF55F /* MyFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */; };
 		EED52EEC2A9F3FA400DBF55F /* MyFavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED52EEB2A9F3FA400DBF55F /* MyFavoriteViewModel.swift */; };
+		EEE272C12AA8AC540014B266 /* ChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE272C02AA8AC540014B266 /* ChatAPI.swift */; };
 		EEE6875A2A7276060063B94A /* ProductDetailMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */; };
 		EEE8F0B92A5195F300E31597 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0B82A5195F300E31597 /* LoginError.swift */; };
 		EEE8F0C52A52C1EF00E31597 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */; };
@@ -486,6 +487,7 @@
 		EED302122A8A63C000957566 /* GuideSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideSale.storyboard; sourceTree = "<group>"; };
 		EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteViewController.swift; sourceTree = "<group>"; };
 		EED52EEB2A9F3FA400DBF55F /* MyFavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteViewModel.swift; sourceTree = "<group>"; };
+		EEE272C02AA8AC540014B266 /* ChatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPI.swift; sourceTree = "<group>"; };
 		EEE687592A7276060063B94A /* ProductDetailMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailMainViewController.swift; sourceTree = "<group>"; };
 		EEE8F0B82A5195F300E31597 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		EEE8F0C42A52C1EF00E31597 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 		EE0BEDF52A4958B3008D9D05 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EEE272BF2AA8AC3B0014B266 /* Chatting */,
 				EE2BDF342AA8727C00E9AFFF /* GetStream */,
 				EEC557452A9CE457005CD281 /* LikeReviewService */,
 				EE3A42912A9C9D0E00273F94 /* LodingIndicator */,
@@ -1506,6 +1509,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		EEE272BF2AA8AC3B0014B266 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				EEE272C02AA8AC540014B266 /* ChatAPI.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
 		EEE8F0B72A5195E500E31597 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1934,6 +1945,7 @@
 				EE5251EC2A8E63B3003DFEE3 /* MyRecruitmentEditViewController.swift in Sources */,
 				EEC5573E2A9B7CCC005CD281 /* NotLoginPopup.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
+				EEE272C12AA8AC540014B266 /* ChatAPI.swift in Sources */,
 				EE84FC842A94B450001134B5 /* FavoriteShowService.swift in Sources */,
 				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,
