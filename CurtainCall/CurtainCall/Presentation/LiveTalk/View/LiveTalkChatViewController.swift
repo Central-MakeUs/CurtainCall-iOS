@@ -8,6 +8,7 @@
 import UIKit
 
 import StreamChat
+import SwiftKeychainWrapper
 
 final class LiveTalkChatViewController: UIViewController {
     
@@ -42,15 +43,15 @@ final class LiveTalkChatViewController: UIViewController {
     }()
     
     private let bottomView = UIView()
-    private let addButton: UIButton = {
+    private let sendButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.chatAddButton), for: .normal)
+        button.setImage(UIImage(named: ImageNamespace.chatSendButton), for: .normal)
         return button
     }()
     
     private let chatView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .white.withAlphaComponent(0.2)
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
         return view
@@ -59,12 +60,13 @@ final class LiveTalkChatViewController: UIViewController {
     private lazy var chatTextView: UITextView = {
         let textView = UITextView()
         textView.text = Constants.MESSAGE_PLACEHODER
-        textView.textColor = .pointColor1
+        textView.textColor = .white
         textView.font = .body3
         textView.isScrollEnabled = false
         textView.textContainerInset = .zero
         textView.delegate = self
         textView.keyboardAppearance = .dark
+        textView.backgroundColor = .clear
         return textView
     }()
     
@@ -87,18 +89,35 @@ final class LiveTalkChatViewController: UIViewController {
     
     private let emptyView = UIView()
     
-    private let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
-    
+//    private let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
+//    
     // MARK: - Properties
     
+    private let channelController: ChatChannelController
+    private var eventsController: EventsController!
+    private var messageData: [TalkMessageData] = []
+    var isFirst = true
+    
     // MARK: - Lifecycles
+    
+    init(channelController: ChatChannelController) {
+        self.channelController = channelController
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         channelController.delegate = self
+        eventsController = ChatClient.shared.eventsController()
+        eventsController.delegate = self
         addTargets()
-        hideKeyboardWhenTappedArround()
+        hideKeyboardTableViewTappedArround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,8 +128,8 @@ final class LiveTalkChatViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let indexPath = IndexPath(row: TalkMessageData.list.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        let indexPath = IndexPath(row: TalkMessageData.list.count - 1, section: 0)
+//        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
     }
     
@@ -132,7 +151,7 @@ final class LiveTalkChatViewController: UIViewController {
         view.backgroundColor = .pointColor1
         view.addSubviews(topView, bottomView, tableView, emptyView)
         topView.addSubviews(backButton, titleLabel, showDateLabel)
-        bottomView.addSubviews(addButton, chatView)
+        bottomView.addSubviews(sendButton, chatView)
         chatView.addSubview(chatTextView)
     }
     
@@ -165,16 +184,17 @@ final class LiveTalkChatViewController: UIViewController {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalTo(emptyView.snp.top).offset(10)
         }
-        addButton.snp.makeConstraints {
+        sendButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.size.equalTo(40)
         }
         chatView.snp.makeConstraints {
             $0.height.greaterThanOrEqualTo(40)
             $0.height.lessThanOrEqualTo((chatTextView.font?.lineHeight ?? 0) * 4 + 20)
             $0.verticalEdges.equalToSuperview().inset(10)
-            $0.leading.equalTo(addButton.snp.trailing).offset(10)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalTo(sendButton.snp.leading).offset(-10)
         }
         chatTextView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
@@ -191,6 +211,7 @@ final class LiveTalkChatViewController: UIViewController {
     
     private func addTargets() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
     }
     
     @objc
@@ -214,15 +235,36 @@ final class LiveTalkChatViewController: UIViewController {
             $0.height.equalTo(0)
         }
     }
+    
+    func hideKeyboardTableViewTappedArround() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func sendButtonTapped() {
+        guard let text = chatTextView.text, text != Constants.MESSAGE_PLACEHODER else { return }
+        print(text)
+        channelController.createNewMessage(text: text) { result in
+            switch result {
+            case .success(let messageId):
+                print("## message:", messageId)
+            case .failure(let error):
+                print("## message Error", error.localizedDescription)
+            }
+        }
+        chatTextView.text = ""
+    }
 }
 
 extension LiveTalkChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TalkMessageData.list.count
+        return messageData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = TalkMessageData.list[indexPath.row]
+        let data = messageData[indexPath.row]
         if data.chatType == .receive {
             guard let cell = tableView.dequeueCell(type: LiveTalkChatReceiveCell.self, indexPath: indexPath) else {
                 return UITableViewCell()
@@ -283,9 +325,46 @@ extension LiveTalkChatViewController: LiveTalkChatCellDelegate {
 extension LiveTalkChatViewController: ChatChannelControllerDelegate {
     func channelController(_ channelController: ChatChannelController, didUpdateChannel channel: EntityChange<ChatChannel>) {
         print("## updateChannel: \(channel)")
+        
     }
     
     func channelController(_ channelController: ChatChannelController, didUpdateMessages changes: [ListChange<ChatMessage>]) {
+        let item = changes.map { $0.item }
+    
+        let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+        let message = item.map { TalkMessageData(
+            chatType: $0.author.id == "\(userId)" ? .send : .receive,
+            nickname: $0.author.name ?? "no name",
+            message: $0.text,
+            createAt: $0.createdAt
+            )
+        }.sorted { $0.createAt < $1.createAt }
+        
         print("## update Event: \(changes.map { $0.item })")
+        if isFirst {
+            messageData = message
+            isFirst = false
+            tableView.reloadData()
+        }
+    }
+    
+}
+extension LiveTalkChatViewController: EventsControllerDelegate {
+    
+    func eventsController(_ controller: EventsController, didReceiveEvent event: Event) {
+        switch event {
+        case let event as MessageNewEvent:
+            let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+            messageData.append(TalkMessageData(
+                chatType: event.user.id == "\(userId)" ? .send : .receive,
+                nickname: event.user.name ?? "no name",
+                message: event.message.text,
+                createAt: event.createdAt)
+            )
+            tableView.reloadData()
+        default:
+            return
+        }
+        print("&&&", event)
     }
 }

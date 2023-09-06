@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import StreamChat
 
 final class LiveTalkViewController: UIViewController {
     
@@ -172,7 +173,17 @@ final class LiveTalkViewController: UIViewController {
 
 extension LiveTalkViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let chatViewController = UINavigationController(rootViewController: LiveTalkChatViewController()) 
+        let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
+        channelController.synchronize { error in
+            if let error {
+                print("### 채널 에러", error.localizedDescription)
+            }
+        }
+        let chatViewController = UINavigationController(
+            rootViewController: LiveTalkChatViewController(
+                channelController: channelController
+            )
+        )
         chatViewController.modalPresentationStyle = .overFullScreen
         present(chatViewController, animated: true)
         

@@ -13,4 +13,5 @@ extension KeychainWrapper.Key {
     static let refreshToken: KeychainWrapper.Key = "refreshToken"
     static let isFirstUser: KeychainWrapper.Key = "isFirstUser"
     static let isGuestUser: KeychainWrapper.Key = "isGuestUser"
+    static let chatToken: KeychainWrapper.Key = "chatToken"
 }

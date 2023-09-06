@@ -15,12 +15,7 @@ extension ChatClient {
 //        let userInfo = UserInfo(id: userId, name: name)
 //        ChatClient.shared.connectUser(userInfo: userInfo, token: .development(userId: <#T##UserId#>))
 //    }
-    func connectSuperUser() {
-        ChatClient.shared.connectUser(
-            userInfo: .init(id: "super-user"),
-            token: .development(userId: "super-user")
-        )
-    }
+
 //    func createChannel(id: String) {
 //        let channelId = ChannelId(type: .messaging, id: id)
 //        ChatClient.shared.chan

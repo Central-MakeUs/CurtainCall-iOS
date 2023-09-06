@@ -147,4 +147,5 @@ enum ImageNamespace {
     static let toastFailParty = "toast_fail_party"
     
     static let chatAddButton = "chat_addButton"
+    static let chatSendButton = "chat_sendButton"
 }

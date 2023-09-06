@@ -299,9 +299,9 @@ final class TempHomeViewController: UIViewController {
         view.backgroundColor = .pointColor1
         configureUI()
         bind()
-        if !(KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? false) {
-            viewModel.requestToken()
-        }
+//        if !(KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? false) {
+//            viewModel.requestToken()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

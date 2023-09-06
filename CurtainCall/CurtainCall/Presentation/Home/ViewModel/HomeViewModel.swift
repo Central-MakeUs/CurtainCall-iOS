@@ -11,6 +11,7 @@ import Combine
 import Moya
 import CombineMoya
 import SwiftKeychainWrapper
+import StreamChat
 
 final class HomeViewModel {
     
@@ -42,6 +43,7 @@ final class HomeViewModel {
                     UserInfoManager.shared.userInfo = data
                     self?.userInfoSubject.send(data)
                     self?.requestCount += 1
+                    self?.requestToken()
                     print("###", data)
                     return
                 } else {
@@ -194,6 +196,24 @@ final class HomeViewModel {
                 }
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(RequestTokenResponse.self) {
+                    KeychainWrapper.standard[.chatToken] = data.value
+                    let id = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+                    let nickname = UserInfoManager.shared.userInfo?.nickname ?? "no name"
+                    print("$$$", UserInfoManager.shared.userInfo)
+                    let token = try? Token(rawValue: data.value)
+                    if let imageURLString = UserInfoManager.shared.userInfo?.imageUrl,
+                       let imageURL = URL(string: imageURLString) {
+                        ChatClient.shared.connectUser(
+                            userInfo: UserInfo(id: "\(id)", name: nickname, imageURL: imageURL),
+                            token: token!
+                        )
+                    } else {
+                        ChatClient.shared.connectUser(
+                            userInfo: UserInfo(id: "\(id)", name: nickname),
+                            token: token!
+                        )
+                    }
+                    
                     print("##TOKEN:", data)
                 }
             }.store(in: &subscriptions)
