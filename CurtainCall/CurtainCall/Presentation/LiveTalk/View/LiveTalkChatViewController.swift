@@ -7,6 +7,8 @@
 
 import UIKit
 
+import StreamChat
+
 final class LiveTalkChatViewController: UIViewController {
     
     // MARK: - UI properties
@@ -84,6 +86,9 @@ final class LiveTalkChatViewController: UIViewController {
     }()
     
     private let emptyView = UIView()
+    
+    private let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
+    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -91,6 +96,7 @@ final class LiveTalkChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        channelController.delegate = self
         addTargets()
         hideKeyboardWhenTappedArround()
     }
@@ -271,5 +277,15 @@ extension LiveTalkChatViewController: LiveTalkChatCellDelegate {
         // TODO: 신고 기능 추가
         let reportViewController = ReportViewController(viewModel: ReportViewModel(id: 1, type: .party))
         navigationController?.pushViewController(reportViewController, animated: true)
+    }
+}
+
+extension LiveTalkChatViewController: ChatChannelControllerDelegate {
+    func channelController(_ channelController: ChatChannelController, didUpdateChannel channel: EntityChange<ChatChannel>) {
+        print("## updateChannel: \(channel)")
+    }
+    
+    func channelController(_ channelController: ChatChannelController, didUpdateMessages changes: [ListChange<ChatMessage>]) {
+        print("## update Event: \(changes.map { $0.item })")
     }
 }

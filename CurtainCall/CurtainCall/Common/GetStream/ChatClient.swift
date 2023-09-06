@@ -11,8 +11,6 @@ import StreamChat
 
 extension ChatClient {
     static let shared = ChatClient(config: ChatClientConfig(apiKey: .init(Secret.CHAT_CLIENT_APPKEY)))
-    
-    
 //    func connectUser(userId: String, name: String) {
 //        let userInfo = UserInfo(id: userId, name: name)
 //        ChatClient.shared.connectUser(userInfo: userInfo, token: .development(userId: <#T##UserId#>))
@@ -27,4 +25,10 @@ extension ChatClient {
 //        let channelId = ChannelId(type: .messaging, id: id)
 //        ChatClient.shared.chan
 //    }
+    
+    
+}
+
+struct ChannelManager {
+    static let superChannelId = ChannelId(type: .messaging, id: "super-channel-mandos")
 }
