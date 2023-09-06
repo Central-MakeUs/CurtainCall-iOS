@@ -287,7 +287,7 @@ final class LostItemWriteViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: [])
+        let calendarView = CalendarView(isSectableDates: [], isSelectableFuture: false)
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
