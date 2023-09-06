@@ -64,6 +64,7 @@ final class LiveTalkViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         categoryButtonTapped(playCategoryButton)
+        hideKeyboardWhenTappedArround()
         
     }
     

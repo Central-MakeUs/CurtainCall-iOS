@@ -384,7 +384,7 @@ final class LostItemWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        hideKeyboardWhenTappedArround()
+//        hideKeyboardWhenTappedArround()
         addTargets()
         bind()
     }
@@ -712,6 +712,10 @@ final class LostItemWriteViewController: UIViewController {
     }
     
     private func addTargets() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissInlineView))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
         categoryButton.addTarget(
             self,
             action: #selector(categoryButtonTouchUpInside),
@@ -838,6 +842,19 @@ final class LostItemWriteViewController: UIViewController {
             
         }
         
+    }
+
+    @objc
+    private func dismissInlineView() {
+        view.endEditing(true)
+        lostItemCategoryView.isHidden = true
+        calendarView.isHidden = true
+        timePickerView.isHidden = true
+        lostItemAddFileView.isHidden = true
+        categoryView.layer.borderWidth = 0
+        keepDateView.layer.borderWidth = 0
+        keepTimeView.layer.borderWidth = 0
+        addFileView.layer.borderWidth = 0
     }
 }
 
