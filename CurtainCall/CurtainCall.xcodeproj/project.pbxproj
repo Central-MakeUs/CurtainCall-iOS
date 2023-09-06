@@ -759,12 +759,12 @@
 			children = (
 				EEE272BF2AA8AC3B0014B266 /* Chatting */,
 				EE2BDF342AA8727C00E9AFFF /* GetStream */,
+				EE0669D92A7E0943000C8296 /* Network */,
 				EEC557452A9CE457005CD281 /* LikeReviewService */,
 				EE3A42912A9C9D0E00273F94 /* LodingIndicator */,
 				EE0283132A986F9C008F8100 /* FavoriteService */,
 				EE02830C2A97B88E008F8100 /* ImageService */,
 				EE0283022A97919E008F8100 /* UserInfo */,
-				EE0669D92A7E0943000C8296 /* Network */,
 				EEE8F0E42A5690CB00E31597 /* UI */,
 				EEE8F0C92A53D05B00E31597 /* Extension */,
 				EEE8F0B72A5195E500E31597 /* Errors */,
@@ -2216,12 +2216,13 @@
 				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "커튼콜";
 				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진을 업로드하려면 커튼콜이 사진 라이브러리에 액세스할 수 있어야 합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크를 사용하려면 마이크 접근 권한을 허용해야 합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 사진을 업로드하려면 카메라 접근 권한을 허용해야 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2255,12 +2256,13 @@
 				CODE_SIGN_ENTITLEMENTS = CurtainCall/CurtainCall.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = H2N9KXXP3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurtainCall/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "커튼콜";
 				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진을 업로드하려면 커튼콜이 사진 라이브러리에 액세스할 수 있어야 합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크를 사용하려면 마이크 접근 권한을 허용해야 합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 사진을 업로드하려면 카메라 접근 권한을 허용해야 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
