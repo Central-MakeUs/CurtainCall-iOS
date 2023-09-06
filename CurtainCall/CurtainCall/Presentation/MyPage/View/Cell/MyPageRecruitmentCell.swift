@@ -143,6 +143,14 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         return label
     }()
     
+    private let partyInButton: BottomNextButton = {
+        let button = BottomNextButton()
+        button.setTitle("TALK 입장", for: .normal)
+        button.setNextButton(isSelected: true)
+        button.titleLabel?.font = .body3
+        return button
+    }()
+    
     // MARK: - Properties
     
     // MARK: - Lifecycles
@@ -172,7 +180,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         addSubviews(cardView, productLabelView)
         cardView.addSubviews(
             profileImageView, nicknameDateStackView, countLabel, titleLabel,
-            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView
+            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView, partyInButton
         )
         productLabelView.addSubview(productTitleLabel)
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, dateLabel)
@@ -220,7 +228,6 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
             $0.leading.equalToSuperview().offset(20)
             $0.height.equalTo(87)
             $0.width.equalTo(66)
-            $0.bottom.equalToSuperview().inset(20)
         }
         
         dateBadgeImageView.snp.makeConstraints {
@@ -269,6 +276,12 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
             $0.leading.equalTo(posterImageView.snp.trailing).offset(14)
             $0.trailing.lessThanOrEqualToSuperview().inset(50)
             $0.height.equalTo(23)
+        }
+        partyInButton.snp.makeConstraints {
+            $0.top.equalTo(posterImageView.snp.bottom).offset(16)
+            $0.height.equalTo(40)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(19)
         }
         
     }

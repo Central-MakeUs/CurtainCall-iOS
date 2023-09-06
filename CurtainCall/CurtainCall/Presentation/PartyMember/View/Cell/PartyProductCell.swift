@@ -272,7 +272,6 @@ final class PartyProductCell: UICollectionViewCell {
             $0.trailing.lessThanOrEqualToSuperview().inset(50)
             $0.height.equalTo(23)
         }
-        
     }
     
     func drawViewDotLine(view: UIView) {
