@@ -12,7 +12,7 @@ final class PartyMemberRecruitingDateViewModel {
     
     // MARK: - Properties
     
-    @Published var countValue: Int = 1
+    @Published var countValue: Int = 2
     var selectedDate = CurrentValueSubject<Date?, Never>(nil)
     
     // MARK: - Lifecycles
@@ -20,7 +20,7 @@ final class PartyMemberRecruitingDateViewModel {
     // MARK: - Helpers
     
     func countValueChanged(_ value: Int) {
-        if !(1...10 ~= (countValue + value)) {
+        if !(2...10 ~= (countValue + value)) {
             return
         }
         countValue = countValue + value
