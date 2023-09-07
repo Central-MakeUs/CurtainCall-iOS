@@ -80,6 +80,8 @@
 		EE2BDF392AA98B5600E9AFFF /* PartyTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF382AA98B5600E9AFFF /* PartyTalkViewController.swift */; };
 		EE2BDF3B2AA9924700E9AFFF /* PartyTalkChatReceiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF3A2AA9924700E9AFFF /* PartyTalkChatReceiveCell.swift */; };
 		EE2BDF3D2AA992CF00E9AFFF /* PartyTalkChatSendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF3C2AA992CF00E9AFFF /* PartyTalkChatSendCell.swift */; };
+		EE2BDF3F2AA9B3DE00E9AFFF /* LiveTalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF3E2AA9B3DE00E9AFFF /* LiveTalkService.swift */; };
+		EE2BDF422AA9B50700E9AFFF /* LiveTalkShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF412AA9B50700E9AFFF /* LiveTalkShowResponse.swift */; };
 		EE3A42882A9C61C600273F94 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */; };
 		EE3A428A2A9C67AA00273F94 /* PartyInPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */; };
 		EE3A428C2A9C6D5900273F94 /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */; };
@@ -342,6 +344,8 @@
 		EE2BDF382AA98B5600E9AFFF /* PartyTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyTalkViewController.swift; sourceTree = "<group>"; };
 		EE2BDF3A2AA9924700E9AFFF /* PartyTalkChatReceiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyTalkChatReceiveCell.swift; sourceTree = "<group>"; };
 		EE2BDF3C2AA992CF00E9AFFF /* PartyTalkChatSendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyTalkChatSendCell.swift; sourceTree = "<group>"; };
+		EE2BDF3E2AA9B3DE00E9AFFF /* LiveTalkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkService.swift; sourceTree = "<group>"; };
+		EE2BDF412AA9B50700E9AFFF /* LiveTalkShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkShowResponse.swift; sourceTree = "<group>"; };
 		EE3A42872A9C61C600273F94 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
 		EE3A42892A9C67AA00273F94 /* PartyInPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyInPopup.swift; sourceTree = "<group>"; };
 		EE3A428B2A9C6D5900273F94 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
@@ -901,6 +905,7 @@
 			children = (
 				EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */,
 				EE2BDF2D2AA8517500E9AFFF /* LiveTalkChatCellDelegate.swift */,
+				EE2BDF412AA9B50700E9AFFF /* LiveTalkShowResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -911,6 +916,14 @@
 				EE2BDF352AA8729600E9AFFF /* ChatClient.swift */,
 			);
 			path = GetStream;
+			sourceTree = "<group>";
+		};
+		EE2BDF402AA9B3E300E9AFFF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE2BDF3E2AA9B3DE00E9AFFF /* LiveTalkService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		EE3A42912A9C9D0E00273F94 /* LodingIndicator */ = {
@@ -968,6 +981,7 @@
 			children = (
 				EE2BDF282AA8224500E9AFFF /* Model */,
 				EE3F2FEE2A58122100BC539C /* View */,
+				EE2BDF402AA9B3E300E9AFFF /* Service */,
 			);
 			path = LiveTalk;
 			sourceTree = "<group>";
@@ -1866,6 +1880,7 @@
 				EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */,
 				EE0283382A991D2B008F8100 /* PrivacyPolicyViewController.swift in Sources */,
 				EE747B9C2A96E9A3006A8AB3 /* RemoveAccountBody.swift in Sources */,
+				EE2BDF422AA9B50700E9AFFF /* LiveTalkShowResponse.swift in Sources */,
 				EEA132242A7F5A690016D01A /* TimePickerView.swift in Sources */,
 				EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */,
 				EEE8F0E82A56A87700E31597 /* ExpandButton.swift in Sources */,
@@ -2017,6 +2032,7 @@
 				EE3F2FE02A57DE3A00BC539C /* NicknameValidType.swift in Sources */,
 				EE9B9A152A5FCB64009C6DB4 /* PartyMemberRecruitingDateViewController.swift in Sources */,
 				EEE8F0E12A559F7D00E31597 /* TermsOfServiceViewController.swift in Sources */,
+				EE2BDF3F2AA9B3DE00E9AFFF /* LiveTalkService.swift in Sources */,
 				EE1DF3782A94EF3C003AD078 /* NoticeViewController.swift in Sources */,
 				EEE8F0D42A55395F00E31597 /* OnboardingCell.swift in Sources */,
 				EE9A88672A874C9F0085F816 /* PerformanceExpressionDictionaryData.swift in Sources */,

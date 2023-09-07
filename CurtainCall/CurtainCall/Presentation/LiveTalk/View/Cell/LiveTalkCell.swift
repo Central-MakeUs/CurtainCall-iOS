@@ -14,7 +14,6 @@ final class LiveTalkCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "dummy_poster")
         return imageView
     }()
     
@@ -22,7 +21,6 @@ final class LiveTalkCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font =  UIFont(name: "SpoqaHanSansNeo-Bold", size: 13)
-        label.text = "19:30~21:00"
         label.textColor = .white
         label.backgroundColor = .red
         label.layer.cornerRadius = 15
@@ -35,7 +33,7 @@ final class LiveTalkCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 12)
         label.textColor = .white
-        label.text = "82명"
+        label.text = ""
         return label
     }()
     
@@ -109,5 +107,17 @@ final class LiveTalkCell: UICollectionViewCell {
             $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview().inset(12)
         }
+    }
+    
+    func draw(item: LiveTalkShowContent) {
+        if let url = URL(string: item.poster) {
+            posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = nil
+        }
+        timeLabel.text = "\(item.showAt.convertAPIDateToDateTime())~\(item.showEndAt.convertAPIDateToDateTime())"
+        showLabel.text = item.name
+        locationLabel.text = item.facilityName
+        
     }
 }

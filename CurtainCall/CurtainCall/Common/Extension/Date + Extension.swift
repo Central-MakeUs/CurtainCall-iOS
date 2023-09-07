@@ -76,6 +76,14 @@ extension Date {
         return formatter.string(from: self).uppercased()
     }
     
+    func convertToAPIString() -> String {
+        let formatter1 = DateFormatter()
+        let formatter2 = DateFormatter()
+        formatter1.dateFormat = "yyyy-MM-dd"
+        formatter2.dateFormat = "hh:mm"
+        return formatter1.string(from: self) + "T" + formatter2.string(from: self)
+    }
+    
     static func getDuringDate(start: String, end: String) -> [Date] {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -110,6 +118,8 @@ extension Date {
         }
         return result
     }
+    
+    
 }
 
 extension [Date] {
