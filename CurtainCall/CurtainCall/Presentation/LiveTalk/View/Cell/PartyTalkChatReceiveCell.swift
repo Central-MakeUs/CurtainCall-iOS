@@ -119,7 +119,7 @@ final class PartyTalkChatReceiveCell: UITableViewCell {
         } else {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
-        print("@@@data: \(data)")
+        dateButton.setTitle(data.createAt.convertToChatTimeToKorean() + " | 신고", for: .normal)
     }
     
     @objc

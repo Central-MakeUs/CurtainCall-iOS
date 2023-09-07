@@ -15,8 +15,7 @@ final class LiveTalkChatReceiveCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "dummy_profile1")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -113,6 +112,12 @@ final class LiveTalkChatReceiveCell: UITableViewCell {
     func draw(data: TalkMessageData) {
         nicknameLabel.text = data.nickname
         messageLabel.text = data.message
+        if let imageURL = data.imageURL {
+            profileImageView.kf.setImage(with: imageURL)
+        } else {
+            profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
+        }
+        dateButton.setTitle(data.createAt.convertToChatTimeToKorean() + " | 신고", for: .normal)
     }
     
     @objc

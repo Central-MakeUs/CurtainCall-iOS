@@ -28,7 +28,6 @@ final class PartyTalkChatSendCell: UITableViewCell {
     
     private let dateButton: UIButton = {
         let button = UIButton()
-        button.setTitle("오전 12:04", for: .normal)
         button.titleLabel?.font = .caption
         button.setTitleColor(.hex828996, for: .normal)
         return button
@@ -84,6 +83,7 @@ final class PartyTalkChatSendCell: UITableViewCell {
     
     func draw(data: TalkMessageData) {
         messageLabel.text = data.message
+        dateButton.setTitle(data.createAt.convertToChatTimeToKorean(), for: .normal)
     }
 }
 
