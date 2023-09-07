@@ -78,7 +78,9 @@ extension Date {
     
     func convertToAPIString() -> String {
         let formatter1 = DateFormatter()
+        formatter1.locale = Locale(identifier: "ko_KR")
         let formatter2 = DateFormatter()
+        formatter2.locale = Locale(identifier: "ko_KR")
         formatter1.dateFormat = "yyyy-MM-dd"
         formatter2.dateFormat = "hh:mm"
         return formatter1.string(from: self) + "T" + formatter2.string(from: self)
