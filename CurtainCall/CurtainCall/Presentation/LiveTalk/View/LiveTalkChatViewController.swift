@@ -235,9 +235,9 @@ final class LiveTalkChatViewController: UIViewController {
             emptyView.snp.updateConstraints {
                 $0.height.equalTo(keyboardRectangle.height)
             }
-            bottomView.snp.updateConstraints {
-                $0.bottom.equalTo(emptyView.snp.top).inset(25)
-            }
+//            bottomView.snp.updateConstraints {
+//                $0.bottom.equalTo(emptyView.snp.top).inset(30)
+//            }
         }
     }
     
@@ -246,9 +246,9 @@ final class LiveTalkChatViewController: UIViewController {
         emptyView.snp.updateConstraints {
             $0.height.equalTo(0)
         }
-        bottomView.snp.updateConstraints {
-            $0.bottom.equalTo(emptyView.snp.top).offset(10)
-        }
+//        bottomView.snp.updateConstraints {
+//            $0.bottom.equalTo(emptyView.snp.top).offset(10)
+//        }
     }
     
     func hideKeyboardTableViewTappedArround() {
@@ -260,7 +260,7 @@ final class LiveTalkChatViewController: UIViewController {
     @objc
     private func sendButtonTapped() {
         guard let text = chatTextView.text, text != Constants.MESSAGE_PLACEHODER else { return }
-        print(text)
+        if text.isEmpty { return }
         channelController.createNewMessage(text: text) { result in
             switch result {
             case .success(let messageId):

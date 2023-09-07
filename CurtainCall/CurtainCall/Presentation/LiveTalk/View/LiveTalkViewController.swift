@@ -147,7 +147,7 @@ final class LiveTalkViewController: UIViewController {
 //            $0.width.equalTo(91)
 //        }
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(24)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(30)
             $0.leading.trailing.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()

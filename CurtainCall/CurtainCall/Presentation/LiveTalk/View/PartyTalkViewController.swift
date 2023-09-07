@@ -236,9 +236,9 @@ final class PartyTalkViewController: UIViewController {
             emptyView.snp.updateConstraints {
                 $0.height.equalTo(keyboardRectangle.height)
             }
-            bottomView.snp.updateConstraints {
-                $0.bottom.equalTo(emptyView.snp.top).inset(25)
-            }
+//            bottomView.snp.updateConstraints {
+//                $0.bottom.equalTo(emptyView.snp.top).inset(30)
+//            }
         }
     }
     
@@ -247,9 +247,9 @@ final class PartyTalkViewController: UIViewController {
         emptyView.snp.updateConstraints {
             $0.height.equalTo(0)
         }
-        bottomView.snp.updateConstraints {
-            $0.bottom.equalTo(emptyView.snp.top).offset(10)
-        }
+//        bottomView.snp.updateConstraints {
+//            $0.bottom.equalTo(emptyView.snp.top).offset(10)
+//        }
     }
     
     func hideKeyboardTableViewTappedArround() {
