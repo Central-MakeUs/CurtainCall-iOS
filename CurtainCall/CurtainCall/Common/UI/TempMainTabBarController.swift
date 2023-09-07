@@ -26,7 +26,7 @@ final class TempMainTabBarController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-//        stackView.backgroundColor = .white
+        stackView.backgroundColor = .white
         return stackView
     }()
     
