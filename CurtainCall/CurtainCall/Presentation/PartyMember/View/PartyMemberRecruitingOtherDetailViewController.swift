@@ -12,6 +12,7 @@ import Combine
 import Moya
 import CombineMoya
 import SwiftKeychainWrapper
+import StreamChat
 
 final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     
@@ -155,6 +156,8 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     private let id: Int
     private var subscriptions: Set<AnyCancellable> = []
     private let provider = MoyaProvider<PartyAPI>()
+    private var item: PartyDetailResponse?
+    private var isMyPartyIn: Bool = false
     
     // MARK: - Lifecycles
     
@@ -326,14 +329,15 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if let data = try? response.map(PartyDetailResponse.self) {
+                    item = data
                     draw(partyInfo: data)
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+                    isMyParty()
                     if data.creatorId != currentUserId {
                         configureReportButton()
-                        isMyParty()
                     } else {
                         configureDeleteButton()
-                        partyInButton.setNextButton(isSelected: false)
+
                     }
                     
                 }
@@ -352,7 +356,11 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(IsMyPartyResponse.self),
                    let isMyParty = data.content.first {
-                    self?.partyInButton.setNextButton(isSelected: !isMyParty.participated)
+                    if !isMyParty.participated {
+                        self?.partyInButton.setTitle("TALK 만들기", for: .normal)
+                        self?.partyInButton.setNextButton(isSelected: true)
+                    }
+                    self?.isMyPartyIn = !isMyParty.participated
                 }
                     
                 LodingIndicator.hideLoading()
@@ -362,10 +370,41 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     
     @objc
     private func partyInButtonTouchUpInside() {
-        let popup = PartyInPopup()
-        popup.modalPresentationStyle = .overFullScreen
-        popup.delegate = self
-        present(popup, animated: false)
+        if isMyPartyIn {
+            guard let item else { return }
+            let convertItem = MyRecruitmentContent(
+                id: item.id,
+                title: item.title,
+                curMemberNum: item.curMemberNum,
+                maxMemberNum: item.maxMemberNum,
+                showAt: item.showAt,
+                createdAt: item.createdAt,
+                category: item.category ?? "",
+                creatorId: item.creatorId,
+                creatorNickname: item.creatorNickname,
+                creatorImageUrl: item.creatorImageUrl,
+                showId: item.showId,
+                showName: item.showName,
+                showPoster: "",
+                facilityId: item.facilityId,
+                facilityName: item.facilityName
+            )
+            
+            let channelId = ChannelId(type: .messaging, id: "PARTY-\(item.id)")
+            let channelController = ChatClient.shared.channelController(for: channelId)
+            channelController.synchronize { error in
+                if let error {
+                    print("### 채널 에러", error.localizedDescription)
+                }
+            }
+            let talkViewController = PartyTalkViewController(item: convertItem, channelController: channelController)
+            navigationController?.pushViewController(talkViewController, animated: true)
+        } else {
+            let popup = PartyInPopup()
+            popup.modalPresentationStyle = .overFullScreen
+            popup.delegate = self
+            present(popup, animated: false)
+        }
     }
     
     
