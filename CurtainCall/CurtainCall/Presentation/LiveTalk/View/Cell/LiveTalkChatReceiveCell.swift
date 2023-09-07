@@ -30,6 +30,7 @@ final class LiveTalkChatReceiveCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0x525D77)
         view.layer.cornerRadius = 12
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
 //        view.clipsToBounds = true
         return view
     }()

@@ -32,6 +32,7 @@ final class PartyTalkChatReceiveCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = .hexF5F6F8
         view.layer.cornerRadius = 12
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
 //        view.clipsToBounds = true
         return view
     }()

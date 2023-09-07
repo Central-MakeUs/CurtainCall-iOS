@@ -15,6 +15,7 @@ final class PartyTalkChatSendCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = .pointColor2
         view.layer.cornerRadius = 12
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
         return view
     }()
     
