@@ -46,7 +46,6 @@ final class LiveTalkCell: UICollectionViewCell {
     
     private let showLabel: UILabel = {
         let label = UILabel()
-        label.text = "드림하이"
         label.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 16)
         label.textColor = .white
         return label
@@ -54,7 +53,7 @@ final class LiveTalkCell: UICollectionViewCell {
     
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.text = "대학로 고라파센터"
+
         label.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 12)
         label.textColor = .white
         return label

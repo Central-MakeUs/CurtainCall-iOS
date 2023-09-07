@@ -125,7 +125,6 @@ final class PartyTalkViewController: UIViewController {
         configureUI()
         channelController.delegate = self
         eventsController = ChatClient.shared.eventsController()
-        eventsController.delegate = self
         addTargets()
         hideKeyboardTableViewTappedArround()
     }
@@ -256,7 +255,6 @@ final class PartyTalkViewController: UIViewController {
     @objc
     private func sendButtonTapped() {
         guard let text = chatTextView.text, text != Constants.MESSAGE_PLACEHODER else { return }
-        print(text)
         channelController.createNewMessage(text: text) { result in
             switch result {
             case .success(let messageId):
@@ -346,7 +344,6 @@ extension PartyTalkViewController: ChatChannelControllerDelegate {
     
     func channelController(_ channelController: ChatChannelController, didUpdateMessages changes: [ListChange<ChatMessage>]) {
         let item = changes.map { $0.item }
-        
         let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
         let message = item.map { TalkMessageData(
             chatType: $0.author.id == "\(userId)" ? .send : .receive,
@@ -357,23 +354,39 @@ extension PartyTalkViewController: ChatChannelControllerDelegate {
         )
         }.sorted { $0.createAt < $1.createAt }
         
+        var removeDuplicatedMessage: [TalkMessageData] = []
+        var prev = TalkMessageData(
+            chatType: .receive,
+            nickname: UUID().uuidString,
+            message: "",
+            createAt: Date() + Double.random(in: 1...10000),
+            imageURL: nil
+        )
+        message.forEach {
+            if $0.message != prev.message && $0.createAt != prev.createAt {
+                removeDuplicatedMessage.append($0)
+            }
+            prev = $0
+        }
+        
         if isFirst {
-            messageData = message
             isFirst = false
+            messageData = removeDuplicatedMessage
+            eventsController.delegate = self
             tableView.reloadData()
 //            let indexPath = IndexPath(row: min(messageData.count - 1, 0), section: 0)
 //            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            
-            
         }
     }
     
 }
 extension PartyTalkViewController: EventsControllerDelegate {
     func eventsController(_ controller: EventsController, didReceiveEvent event: Event) {
+        if isFirst { return }
         switch event {
         case let event as MessageNewEvent:
             let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+            if isFirst { return }
             messageData.append(
                 TalkMessageData(
                     chatType: event.user.id == "\(userId)" ? .send : .receive,
@@ -388,7 +401,6 @@ extension PartyTalkViewController: EventsControllerDelegate {
         default:
             return
         }
-        print("&&&", event)
     }
 }
 

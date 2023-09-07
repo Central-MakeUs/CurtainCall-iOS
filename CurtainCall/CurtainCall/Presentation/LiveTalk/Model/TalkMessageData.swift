@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum ChatType {
+enum ChatType: String, Hashable {
     case receive
     case send
 }
 
-struct TalkMessageData {
+struct TalkMessageData: Hashable {
     let chatType: ChatType
     let nickname: String
     let message: String
