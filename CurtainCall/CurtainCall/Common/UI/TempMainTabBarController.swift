@@ -159,6 +159,12 @@ final class TempMainTabBarController: UIViewController {
             return
         }
         
+        if sender == liveTalkButton {
+            liveTalkTapped()
+        } else {
+            otherTapped()
+        }
+        
         previousIndex = selectedIndex
         selectedIndex = sender.tag
         
@@ -179,6 +185,28 @@ final class TempMainTabBarController: UIViewController {
         self.addChild(vc)
         self.view.addSubview(vc.view)
         self.view.bringSubviewToFront(wholeView)
+    }
+    
+    func liveTalkTapped() {
+        homeButton.setImage(UIImage(named: ImageNamespace.tabbarHomeInlive), for: .normal)
+        productButton.setImage(UIImage(named: ImageNamespace.tabbarProductInlive), for: .normal)
+        partyMemberButton.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberInlive), for: .normal)
+        myPageButton.setImage(UIImage(named: ImageNamespace.tabbarMypageInlive), for: .normal)
+        emptyButton.setImage(UIImage(named: ImageNamespace.tabbarEmptyInlive), for: .normal)
+        tabStackView.backgroundColor = .pointColor1
+    }
+    
+    func otherTapped() {
+        homeButton.setImage(UIImage(named: ImageNamespace.tabbarHomeDeselected), for: .normal)
+        homeButton.setImage(UIImage(named: ImageNamespace.tabbarHomeSelected), for: .selected)
+        productButton.setImage(UIImage(named: ImageNamespace.tabbarProductDeselected), for: .normal)
+        productButton.setImage(UIImage(named: ImageNamespace.tabbarProductSelected), for: .selected)
+        partyMemberButton.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberDeselected), for: .normal)
+        partyMemberButton.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberSelected), for: .selected)
+        myPageButton.setImage(UIImage(named: ImageNamespace.tabbarMyPageDeselected), for: .normal)
+        myPageButton.setImage(UIImage(named: ImageNamespace.tabbarMyPageSelected), for: .selected)
+        emptyButton.setImage(UIImage(named: ImageNamespace.tabbarEmpty), for: .normal)
+        tabStackView.backgroundColor = .white
     }
 }
 extension TempMainTabBarController: NotLoginPopupDelegate {
