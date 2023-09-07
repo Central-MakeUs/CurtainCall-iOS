@@ -345,12 +345,14 @@ extension PartyTalkViewController: ChatChannelControllerDelegate {
     func channelController(_ channelController: ChatChannelController, didUpdateMessages changes: [ListChange<ChatMessage>]) {
         let item = changes.map { $0.item }
         let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+        
         let message = item.map { TalkMessageData(
             chatType: $0.author.id == "\(userId)" ? .send : .receive,
             nickname: $0.author.name ?? "no name",
             message: $0.text,
             createAt: $0.createdAt,
-            imageURL: $0.author.imageURL
+            imageURL: $0.author.imageURL,
+            messageId: $0.id
         )
         }.sorted { $0.createAt < $1.createAt }
         
@@ -360,10 +362,11 @@ extension PartyTalkViewController: ChatChannelControllerDelegate {
             nickname: UUID().uuidString,
             message: "",
             createAt: Date() + Double.random(in: 1...10000),
-            imageURL: nil
+            imageURL: nil,
+            messageId: UUID().uuidString
         )
         message.forEach {
-            if $0.message != prev.message && $0.createAt != prev.createAt {
+            if $0.messageId != prev.messageId {
                 removeDuplicatedMessage.append($0)
             }
             prev = $0
@@ -382,18 +385,18 @@ extension PartyTalkViewController: ChatChannelControllerDelegate {
 }
 extension PartyTalkViewController: EventsControllerDelegate {
     func eventsController(_ controller: EventsController, didReceiveEvent event: Event) {
-        if isFirst { return }
         switch event {
         case let event as MessageNewEvent:
             let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
-            if isFirst { return }
+            if messageData.contains(where: { $0.messageId == event.message.id }) { return }
             messageData.append(
                 TalkMessageData(
                     chatType: event.user.id == "\(userId)" ? .send : .receive,
                     nickname: event.user.name ?? "no name",
                     message: event.message.text,
                     createAt: event.createdAt,
-                    imageURL: event.user.imageURL
+                    imageURL: event.user.imageURL,
+                    messageId: event.message.id
                 )
             )
             tableView.reloadData()

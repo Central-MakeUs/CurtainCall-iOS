@@ -18,4 +18,5 @@ struct TalkMessageData: Hashable {
     let message: String
     let createAt: Date
     let imageURL: URL?
+    let messageId: String
 }

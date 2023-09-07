@@ -344,9 +344,26 @@ extension LiveTalkChatViewController: ChatChannelControllerDelegate {
             nickname: $0.author.name ?? "no name",
             message: $0.text,
             createAt: $0.createdAt,
-            imageURL: $0.author.imageURL
+            imageURL: $0.author.imageURL,
+            messageId: $0.id
             )
         }.sorted { $0.createAt < $1.createAt }
+        
+        var removeDuplicatedMessage: [TalkMessageData] = []
+        var prev = TalkMessageData(
+            chatType: .receive,
+            nickname: UUID().uuidString,
+            message: "",
+            createAt: Date() + Double.random(in: 1...10000),
+            imageURL: nil,
+            messageId: UUID().uuidString
+        )
+        message.forEach {
+            if $0.messageId != prev.messageId {
+                removeDuplicatedMessage.append($0)
+            }
+            prev = $0
+        }
         
         print("## update Event: \(changes.map { $0.item })")
         if isFirst {
@@ -365,13 +382,15 @@ extension LiveTalkChatViewController: EventsControllerDelegate {
         switch event {
         case let event as MessageNewEvent:
             let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+            if messageData.contains(where: { $0.messageId == event.message.id }) { return }
             messageData.append(
                 TalkMessageData(
                     chatType: event.user.id == "\(userId)" ? .send : .receive,
                     nickname: event.user.name ?? "no name",
                     message: event.message.text,
                     createAt: event.createdAt,
-                    imageURL: event.user.imageURL
+                    imageURL: event.user.imageURL,
+                    messageId: event.message.id
                 )
             )
             tableView.reloadData()
