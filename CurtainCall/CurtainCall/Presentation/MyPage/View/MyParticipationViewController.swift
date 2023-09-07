@@ -8,6 +8,8 @@
 import UIKit
 import Combine
 
+import StreamChat
+
 final class MyParticipationViewController: UIViewController {
     
     // MARK: - UI properties
@@ -261,7 +263,15 @@ extension MyParticipationViewController: UICollectionViewDelegate {
 }
 
 extension MyParticipationViewController: MyPagePartyInDelegate {
-    func didTappedPartyInButton(id: Int) {
-        print("Party Id: \(id)")
+    func didTappedPartyInButton(item: MyRecruitmentContent) {
+        let channelId = ChannelId(type: .messaging, id: "PARTY-\(item.id)")
+        let channelController = ChatClient.shared.channelController(for: channelId)
+        channelController.synchronize { error in
+            if let error {
+                print("### 채널 에러", error.localizedDescription)
+            }
+        }
+        let talkViewController = PartyTalkViewController(item: item, channelController: channelController)
+        navigationController?.pushViewController(talkViewController, animated: true)
     }
 }

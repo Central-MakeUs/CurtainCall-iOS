@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MyPagePartyInDelegate: AnyObject {
-    func didTappedPartyInButton(id: Int)
+    func didTappedPartyInButton(item: MyRecruitmentContent)
 }
 
 final class MyPageRecruitmentCell: UICollectionViewCell {
@@ -157,7 +157,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var id: Int?
+    var item: MyRecruitmentContent?
     weak var delegate: MyPagePartyInDelegate?
     
     // MARK: - Lifecycles
@@ -312,7 +312,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     }
 
     func setUI(_ item: MyRecruitmentContent) {
-        id = item.id
+        self.item = item
         productTitleLabel.text = "\(item.showName ?? "")"
         if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
@@ -342,7 +342,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     @objc
     private func enterButtonTapped() {
-        guard let id else { return }
-        delegate?.didTappedPartyInButton(id: id)
+        guard let item else { return }
+        delegate?.didTappedPartyInButton(item: item)
     }
 }

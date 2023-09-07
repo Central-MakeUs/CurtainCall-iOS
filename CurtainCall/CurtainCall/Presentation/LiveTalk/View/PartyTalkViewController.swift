@@ -1,57 +1,66 @@
 //
-//  LiveTalkChatViewController.swift
+//  PartyTalkViewController.swift
 //  CurtainCall
 //
-//  Created by 김민석 on 2023/09/06.
+//  Created by 김민석 on 2023/09/07.
 //
+
+import UIKit
 
 import UIKit
 
 import StreamChat
 import SwiftKeychainWrapper
 
-final class LiveTalkChatViewController: UIViewController {
+final class PartyTalkViewController: UIViewController {
     
     // MARK: - UI properties
     
     private let topView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.05)
+        view.backgroundColor = .hexF5F6F8
         return view
     }()
     
     private let backButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.navigationBackButtonWhite), for: .normal)
+        button.setImage(UIImage(named: ImageNamespace.navigationBackButton), for: .normal)
         return button
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "드림하이 (82/100)"
+        label.text = "\(item.title) (\(item.curMemberNum)/\(item.maxMemberNum))"
         label.font = .subTitle3
-        label.textColor = .white
+        label.textColor = .title
         return label
     }()
     
-    private let showDateLabel: UILabel = {
+    private lazy var showDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "일시 | 2023.06.24 (수) 오후 7:30"
+        let showAt = item.showAt?.convertAPIDateToDate() ?? Date()
+        let showAtString = showAt.convertToChatDateToKorean()
+        label.text = "일시 | \(showAtString)"
         label.font = .body3
-        label.textColor = .white
+        label.textColor = .hex828996
         return label
     }()
     
-    private let bottomView = UIView()
+    private let bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .hexE4E7EC
+        return view
+    }()
+    
     private let sendButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.chatSendButton), for: .normal)
+        button.setImage(UIImage(named: ImageNamespace.chatSendButtonWhite), for: .normal)
         return button
     }()
     
     private let chatView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.2)
+        view.backgroundColor = .white
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
         return view
@@ -60,12 +69,11 @@ final class LiveTalkChatViewController: UIViewController {
     private lazy var chatTextView: UITextView = {
         let textView = UITextView()
         textView.text = Constants.MESSAGE_PLACEHODER
-        textView.textColor = .white
-        textView.font = .body3
+        textView.textColor = .body1
+        textView.font = .body2
         textView.isScrollEnabled = false
         textView.textContainerInset = .zero
         textView.delegate = self
-        textView.keyboardAppearance = .dark
         textView.backgroundColor = .clear
         return textView
     }()
@@ -73,41 +81,43 @@ final class LiveTalkChatViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(
-            LiveTalkChatReceiveCell.self,
-            forCellReuseIdentifier: LiveTalkChatReceiveCell.identifier
+            PartyTalkChatReceiveCell.self,
+            forCellReuseIdentifier: PartyTalkChatReceiveCell.identifier
         )
         tableView.register(
-            LiveTalkChatSendCell.self,
-            forCellReuseIdentifier: LiveTalkChatSendCell.identifier
+            PartyTalkChatSendCell.self,
+            forCellReuseIdentifier: PartyTalkChatSendCell.identifier
         )
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .pointColor1
+        tableView.backgroundColor = .white
         return tableView
     }()
     
     private let emptyView = UIView()
     
-//    private let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
-//    
+    //    private let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
+    //
     // MARK: - Properties
     
     private let channelController: ChatChannelController
     private var eventsController: EventsController!
     private var messageData: [TalkMessageData] = []
+    private let item: MyRecruitmentContent
     var isFirst = true
     
     // MARK: - Lifecycles
     
-    init(channelController: ChatChannelController) {
+    init(item: MyRecruitmentContent, channelController: ChatChannelController) {
+        self.item = item
         self.channelController = channelController
         super.init(nibName: nil, bundle: nil)
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-
+        
     }
     
     override func viewDidLoad() {
@@ -129,8 +139,8 @@ final class LiveTalkChatViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollToBottom()
-//        let indexPath = IndexPath(row: TalkMessageData.list.count - 1, section: 0)
-//        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        //        let indexPath = IndexPath(row: TalkMessageData.list.count - 1, section: 0)
+        //        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
     }
     
@@ -149,7 +159,7 @@ final class LiveTalkChatViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.backgroundColor = .pointColor1
+        view.backgroundColor = .hexE4E7EC
         view.addSubviews(topView, bottomView, tableView, emptyView)
         topView.addSubviews(backButton, titleLabel, showDateLabel)
         bottomView.addSubviews(sendButton, chatView)
@@ -217,7 +227,7 @@ final class LiveTalkChatViewController: UIViewController {
     
     @objc
     private func backButtonTapped() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc
@@ -255,11 +265,12 @@ final class LiveTalkChatViewController: UIViewController {
                 print("## message Error", error.localizedDescription)
             }
         }
+
         chatTextView.text = ""
     }
 }
 
-extension LiveTalkChatViewController: UITableViewDataSource {
+extension PartyTalkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageData.count
     }
@@ -267,14 +278,14 @@ extension LiveTalkChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = messageData[indexPath.row]
         if data.chatType == .receive {
-            guard let cell = tableView.dequeueCell(type: LiveTalkChatReceiveCell.self, indexPath: indexPath) else {
+            guard let cell = tableView.dequeueCell(type: PartyTalkChatReceiveCell.self, indexPath: indexPath) else {
                 return UITableViewCell()
             }
             cell.delegate = self
             cell.draw(data: data)
             return cell
         } else {
-            guard let cell = tableView.dequeueCell(type: LiveTalkChatSendCell.self, indexPath: indexPath) else {
+            guard let cell = tableView.dequeueCell(type: PartyTalkChatSendCell.self, indexPath: indexPath) else {
                 return UITableViewCell()
             }
             cell.draw(data: data)
@@ -288,16 +299,15 @@ extension LiveTalkChatViewController: UITableViewDataSource {
             self.tableView.setContentOffset(point, animated: true)
         }
     }
-    
 }
 
-extension LiveTalkChatViewController: UITableViewDelegate {
+extension PartyTalkViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 }
 
-extension LiveTalkChatViewController: UITextViewDelegate {
+extension PartyTalkViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text == Constants.MESSAGE_PLACEHODER {
             // 버튼 처리
@@ -321,7 +331,7 @@ extension LiveTalkChatViewController: UITextViewDelegate {
     }
 }
 
-extension LiveTalkChatViewController: LiveTalkChatCellDelegate {
+extension PartyTalkViewController: LiveTalkChatCellDelegate {
     func didTappedReportButton() {
         // TODO: 신고 기능 추가
         let reportViewController = ReportViewController(viewModel: ReportViewModel(id: 1, type: .party))
@@ -329,15 +339,14 @@ extension LiveTalkChatViewController: LiveTalkChatCellDelegate {
     }
 }
 
-extension LiveTalkChatViewController: ChatChannelControllerDelegate {
+extension PartyTalkViewController: ChatChannelControllerDelegate {
     func channelController(_ channelController: ChatChannelController, didUpdateChannel channel: EntityChange<ChatChannel>) {
-        print("## updateChannel: \(channel)")
         
     }
     
     func channelController(_ channelController: ChatChannelController, didUpdateMessages changes: [ListChange<ChatMessage>]) {
         let item = changes.map { $0.item }
-    
+        
         let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
         let message = item.map { TalkMessageData(
             chatType: $0.author.id == "\(userId)" ? .send : .receive,
@@ -345,22 +354,22 @@ extension LiveTalkChatViewController: ChatChannelControllerDelegate {
             message: $0.text,
             createAt: $0.createdAt,
             imageURL: $0.author.imageURL
-            )
+        )
         }.sorted { $0.createAt < $1.createAt }
         
-        print("## update Event: \(changes.map { $0.item })")
         if isFirst {
             messageData = message
             isFirst = false
             tableView.reloadData()
+//            let indexPath = IndexPath(row: min(messageData.count - 1, 0), section: 0)
+//            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            
+            
         }
-        
     }
     
-    
 }
-extension LiveTalkChatViewController: EventsControllerDelegate {
-    
+extension PartyTalkViewController: EventsControllerDelegate {
     func eventsController(_ controller: EventsController, didReceiveEvent event: Event) {
         switch event {
         case let event as MessageNewEvent:
@@ -382,3 +391,4 @@ extension LiveTalkChatViewController: EventsControllerDelegate {
         print("&&&", event)
     }
 }
+

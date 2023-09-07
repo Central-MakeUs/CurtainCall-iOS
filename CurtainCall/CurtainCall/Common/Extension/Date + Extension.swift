@@ -55,6 +55,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func convertToChatDateToKorean() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy.MM.dd (E) a h시 m분"
+        return formatter.string(from: self)
+    }
+    
     func convertToWeekend() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"

@@ -96,7 +96,7 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var id: Int?
+    var item: MyRecruitmentContent?
     weak var delegate: MyPagePartyInDelegate?
     
     // MARK: - Lifecycles
@@ -183,7 +183,7 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
         } else {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
-        id = item.id
+        self.item = item
         nicknameLabel.text = item.creatorNickname
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
@@ -193,7 +193,7 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
     
     @objc
     private func enterButtonTapped() {
-        guard let id else { return }
-        delegate?.didTappedPartyInButton(id: id)
+        guard let item else { return }
+        delegate?.didTappedPartyInButton(item: item)
     }
 }
