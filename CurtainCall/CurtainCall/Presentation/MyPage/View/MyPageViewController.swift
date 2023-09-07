@@ -186,7 +186,7 @@ final class MyPageViewController: UIViewController {
     }()
     private let emailLabel: UILabel = {
         let attr = NSAttributedString(
-            string: "curtaincall@gmail.com",
+            string: "curtaincall.official2023@gmail.com",
             attributes: [
                 NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue
             ])
@@ -196,13 +196,7 @@ final class MyPageViewController: UIViewController {
         label.textColor = .hex3B4350
         return label
     }()
-    private let dayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "평일: 전체 문의 상담 가능"
-        label.font = .caption
-        label.textColor = .hex5A6271
-        return label
-    }()
+
     private let footerSeperator: UIView = {
         let view = UIView()
         view.backgroundColor = .hexE4E7EC
@@ -273,7 +267,7 @@ final class MyPageViewController: UIViewController {
         saveView.addSubviews(saveIcon, saveLabel, saveButton)
         noticeView.addSubviews(noticeLabel, noticeArrowImage, noticeButton)
         FAQView.addSubviews(FAQLabel, FAQArrowImage, FAQButton)
-        footerView.addSubviews(footerHeadTitle, emailLabel, dayLabel, footerSeperator, sourceLabel)
+        footerView.addSubviews(footerHeadTitle, emailLabel, footerSeperator, sourceLabel)
     }
     
     private func configureConstraints() {
@@ -449,14 +443,11 @@ final class MyPageViewController: UIViewController {
             $0.leading.equalToSuperview().offset(26)
             $0.top.equalTo(footerHeadTitle.snp.bottom).offset(4)
         }
-        dayLabel.snp.makeConstraints {
-            $0.top.equalTo(emailLabel.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(26)
-        }
+        
         footerSeperator.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(1)
-            $0.top.equalTo(dayLabel.snp.bottom).offset(20)
+            $0.top.equalTo(emailLabel.snp.bottom).offset(20)
         }
         sourceLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(26)

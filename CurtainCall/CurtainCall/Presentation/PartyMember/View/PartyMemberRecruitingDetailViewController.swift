@@ -206,6 +206,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     private let partyInButton: BottomNextButton = {
         let button = BottomNextButton()
         button.setTitle("참여하기", for: .normal)
+        button.setNextButton(isSelected: true)
         return button
     }()
     
@@ -494,8 +495,12 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                     isMyParty()
                     if data.creatorId != currentUserId {
                         configureReportButton()
+                        partyInButton.setTitle("참여하기", for: .normal)
                     } else {
                         configureDeleteButton()
+                        partyInButton.setTitle("TALK 만들기", for: .normal)
+                        partyInButton.setNextButton(isSelected: true)
+                        
 //                        partyInButton.setNextButton(isSelected: false)
                     }
                 }
@@ -516,11 +521,11 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                 if let data = try? response.map(IsMyPartyResponse.self),
                    let isMyParty = data.content.first {
 //                    self?.partyInButton.setNextButton(isSelected: !isMyParty.participated)
-                    if !isMyParty.participated {
+                    if isMyParty.participated {
                         self?.partyInButton.setTitle("TALK 만들기", for: .normal)
                         self?.partyInButton.setNextButton(isSelected: true)
                     }
-                    self?.isMyPartyIn = !isMyParty.participated
+                    self?.isMyPartyIn = isMyParty.participated
                 }
                     
                 LodingIndicator.hideLoading()

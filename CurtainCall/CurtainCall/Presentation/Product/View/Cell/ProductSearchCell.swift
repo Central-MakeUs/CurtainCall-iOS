@@ -11,6 +11,7 @@ import Kingfisher
 import Combine
 import Moya
 import CombineMoya
+import SwiftKeychainWrapper
 
 final class ProductSearchCell: UICollectionViewCell {
     
@@ -182,10 +183,11 @@ final class ProductSearchCell: UICollectionViewCell {
         return view
     }()
     
-    private let keepButton: UIButton = {
+    private lazy var keepButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: ImageNamespace.productKeepDeselect), for: .normal)
         button.setBackgroundImage(UIImage(named: ImageNamespace.productKeepSelect), for: .selected)
+        button.isUserInteractionEnabled = !(KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true)
         return button
     }()
     

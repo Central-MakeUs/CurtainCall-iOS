@@ -41,6 +41,8 @@ final class MyPageDetailViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 26
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

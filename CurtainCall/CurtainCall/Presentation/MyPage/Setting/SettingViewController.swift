@@ -236,6 +236,7 @@ extension SettingViewController: LogoutPopupDelegate {
         KeychainWrapper.standard.remove(forKey: .accessToken)
         KeychainWrapper.standard.remove(forKey: .refreshToken)
         KeychainWrapper.standard.remove(forKey: .userID)
+        KeychainWrapper.standard.remove(forKey: .isGuestUser)
         print("logout")
     }
 }
