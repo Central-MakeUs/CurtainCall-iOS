@@ -236,6 +236,9 @@ final class PartyTalkViewController: UIViewController {
             emptyView.snp.updateConstraints {
                 $0.height.equalTo(keyboardRectangle.height)
             }
+            bottomView.snp.updateConstraints {
+                $0.bottom.equalTo(emptyView.snp.top).inset(25)
+            }
         }
     }
     
@@ -243,6 +246,9 @@ final class PartyTalkViewController: UIViewController {
     private func keyboardDown() {
         emptyView.snp.updateConstraints {
             $0.height.equalTo(0)
+        }
+        bottomView.snp.updateConstraints {
+            $0.bottom.equalTo(emptyView.snp.top).offset(10)
         }
     }
     
@@ -255,6 +261,9 @@ final class PartyTalkViewController: UIViewController {
     @objc
     private func sendButtonTapped() {
         guard let text = chatTextView.text, text != Constants.MESSAGE_PLACEHODER else { return }
+        if text.isEmpty {
+            return
+        }
         channelController.createNewMessage(text: text) { result in
             switch result {
             case .success(let messageId):

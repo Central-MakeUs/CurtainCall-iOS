@@ -127,6 +127,7 @@ final class TermsOfServiceViewController: UIViewController {
     private let alarmExpandButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "navigate_next"), for: .normal)
+        button.isHidden = true
         return button
     }()
     
@@ -303,6 +304,8 @@ final class TermsOfServiceViewController: UIViewController {
             $0.addTarget(self, action: #selector(checkButtonTouchUpInside), for: .touchUpInside)
         }
         nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
+        serviceExpandButton.addTarget(self, action: #selector(serviceButtonTapped), for: .touchUpInside)
+        locationExpandButton.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
     }
     
     private func bind() {
@@ -351,6 +354,16 @@ final class TermsOfServiceViewController: UIViewController {
     @objc
     func nextButtonTouchUpInside() {
         moveToNicknameSettingViewController()
+    }
+    
+    @objc
+    private func serviceButtonTapped() {
+        navigationController?.pushViewController(TermsOfUseViewController(), animated: true)
+    }
+    
+    @objc
+    private func privacyButtonTapped() {
+        navigationController?.pushViewController(PrivacyPolicyViewController(), animated: true)
     }
     
 

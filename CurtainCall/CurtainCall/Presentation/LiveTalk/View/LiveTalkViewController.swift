@@ -154,15 +154,9 @@ final class LiveTalkViewController: UIViewController {
         }
     }
     
-//    private func addTargets() {
-//        [playCategoryButton, playedCategoryButton]
-//            .forEach { $0.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)}
-//    }
-    
     private func requestLiveTalkShow(page: Int, size: Int) {
         let provider = MoyaProvider<LiveTalkService>()
-//        let date = Date() - (60 * 60 * 2)
-        let date = Date() - (60 * 60 * 12) // 임시
+        let date = Date()
         provider.requestPublisher(.show(page: page, size: size, baseDateTime: date.convertToAPIString()))
             .sink { completion in
                 if case let .failure(error) = completion {
@@ -178,7 +172,7 @@ final class LiveTalkViewController: UIViewController {
                         emptyView.isHidden = false
                         self.collectionView.isHidden = true
                     } else {
-                        emptyView.isHidden = true
+                        emptyView.removeFromSuperview()
                         self.collectionView.isHidden = false
                         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
                         snapshot.appendSections([.main])

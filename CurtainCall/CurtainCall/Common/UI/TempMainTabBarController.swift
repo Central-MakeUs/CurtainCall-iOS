@@ -27,6 +27,16 @@ final class TempMainTabBarController: UIViewController {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.backgroundColor = .white
+        
+        stackView.layer.applySketchShadow(
+            color: .black,
+            alpha: 0.25,
+            x: 0,
+            y: 4,
+            blur: 4,
+            spread: 0
+        )
+        stackView.clipsToBounds = true
         return stackView
     }()
     

@@ -16,7 +16,7 @@ final class LiveTalkChatViewController: UIViewController {
     
     private let topView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.05)
+        view.backgroundColor = UIColor(rgb: 0x212F50)
         return view
     }()
     
@@ -44,7 +44,11 @@ final class LiveTalkChatViewController: UIViewController {
         return label
     }()
     
-    private let bottomView = UIView()
+    private let bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(rgb: 0x212F50)
+        return view
+    }()
     private let sendButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.chatSendButton), for: .normal)
@@ -153,7 +157,7 @@ final class LiveTalkChatViewController: UIViewController {
     }
     
     private func configureSubviews() {
-        view.backgroundColor = .pointColor1
+        view.backgroundColor = UIColor(rgb: 0x212F50)
         view.addSubviews(topView, bottomView, tableView, emptyView)
         topView.addSubviews(backButton, titleLabel, showDateLabel)
         bottomView.addSubviews(sendButton, chatView)
@@ -231,6 +235,9 @@ final class LiveTalkChatViewController: UIViewController {
             emptyView.snp.updateConstraints {
                 $0.height.equalTo(keyboardRectangle.height)
             }
+            bottomView.snp.updateConstraints {
+                $0.bottom.equalTo(emptyView.snp.top).inset(25)
+            }
         }
     }
     
@@ -238,6 +245,9 @@ final class LiveTalkChatViewController: UIViewController {
     private func keyboardDown() {
         emptyView.snp.updateConstraints {
             $0.height.equalTo(0)
+        }
+        bottomView.snp.updateConstraints {
+            $0.bottom.equalTo(emptyView.snp.top).offset(10)
         }
     }
     
