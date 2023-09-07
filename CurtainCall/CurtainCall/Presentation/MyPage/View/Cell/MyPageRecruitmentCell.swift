@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MyPagePartyInDelegate: AnyObject {
+    func didTappedPartyInButton(id: Int)
+}
+
 final class MyPageRecruitmentCell: UICollectionViewCell {
     
     // MARK: - UI properties
@@ -153,6 +157,9 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var id: Int?
+    weak var delegate: MyPagePartyInDelegate?
+    
     // MARK: - Lifecycles
 
     override init(frame: CGRect) {
@@ -160,6 +167,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         configureUI()
         clipsToBounds = true
         layer.applySketchShadow(color: .black, alpha: 0.1, x: 0, y: 4, blur: 4, spread: 0)
+        partyInButton.addTarget(self, action: #selector(enterButtonTapped), for: .touchUpInside)
     }
     
     @available(*, unavailable)
@@ -304,6 +312,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     }
 
     func setUI(_ item: MyRecruitmentContent) {
+        id = item.id
         productTitleLabel.text = "\(item.showName ?? "")"
         if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
@@ -329,5 +338,11 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
 //        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
 //        timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.facilityName
+    }
+    
+    @objc
+    private func enterButtonTapped() {
+        guard let id else { return }
+        delegate?.didTappedPartyInButton(id: id)
     }
 }

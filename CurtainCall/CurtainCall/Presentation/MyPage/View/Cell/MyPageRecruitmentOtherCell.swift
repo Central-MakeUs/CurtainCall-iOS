@@ -96,11 +96,15 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var id: Int?
+    weak var delegate: MyPagePartyInDelegate?
+    
     // MARK: - Lifecycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        partyInButton.addTarget(self, action: #selector(enterButtonTapped), for: .touchUpInside)
     }
     
     @available (*, unavailable)
@@ -179,10 +183,17 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
         } else {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
+        id = item.id
         nicknameLabel.text = item.creatorNickname
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
         writeDateLabel.text = item.createdAt.convertAPIDateToDateString() + " " + item.createdAt.convertAPIDateToDateTime()
         dateBadgeLabel.text = item.showAt?.convertAPIDateToDateWeekString() ?? "날짜 미정"
+    }
+    
+    @objc
+    private func enterButtonTapped() {
+        guard let id else { return }
+        delegate?.didTappedPartyInButton(id: id)
     }
 }

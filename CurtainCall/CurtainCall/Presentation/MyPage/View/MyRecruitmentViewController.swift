@@ -184,6 +184,7 @@ final class MyRecruitmentViewController: UIViewController {
                         indexPath: indexPath
                     ) else { return UICollectionViewCell() }
                     cell.setUI(item)
+                    cell.delegate = self
                     return cell
                 } else {
                     guard let cell = collectionView.dequeueCell(
@@ -191,6 +192,7 @@ final class MyRecruitmentViewController: UIViewController {
                         indexPath: indexPath
                     ) else { return UICollectionViewCell() }
                     cell.setUI(item)
+                    cell.delegate = self
                     return cell
                 }
             }
@@ -255,5 +257,11 @@ extension MyRecruitmentViewController: UICollectionViewDelegate {
             editType: .recruitment
         )
         navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
+
+extension MyRecruitmentViewController: MyPagePartyInDelegate {
+    func didTappedPartyInButton(id: Int) {
+        print("PartyId: \(id)")
     }
 }

@@ -184,6 +184,7 @@ final class MyParticipationViewController: UIViewController {
                         indexPath: indexPath
                     ) else { return UICollectionViewCell() }
                     cell.setUI(item)
+                    cell.delegate = self
                     return cell
                 } else {
                     guard let cell = collectionView.dequeueCell(
@@ -191,6 +192,7 @@ final class MyParticipationViewController: UIViewController {
                         indexPath: indexPath
                     ) else { return UICollectionViewCell() }
                     cell.setUI(item)
+                    cell.delegate = self
                     return cell
                 }
             }
@@ -258,3 +260,8 @@ extension MyParticipationViewController: UICollectionViewDelegate {
     }
 }
 
+extension MyParticipationViewController: MyPagePartyInDelegate {
+    func didTappedPartyInButton(id: Int) {
+        print("Party Id: \(id)")
+    }
+}
