@@ -25,6 +25,34 @@ final class LiveTalkViewController: UIViewController {
         return label
     }()
     
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "공연 시간 기준 2시간 전후에만 채팅이 가능해요!"
+        label.font = .body3
+        label.textColor = .white
+        return label
+    }()
+    
+    private let emptyView: UIView = {
+        let view = UIView()
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ImageNamespace.emptyLiveTalkMarks)
+        let label = UILabel()
+        label.text = "지금은 진행 중인 라이브톡이 없어요!"
+        label.font = .body1
+        label.textColor = .hexF5F6F8
+        view.addSubviews(imageView, label)
+        imageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+        }
+        label.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(18)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        return view
+    }()
 //    private let playCategoryButton: UIButton = {
 //        let button = UIButton()
 //        button.setTitle("진행중", for: .normal)
@@ -91,13 +119,20 @@ final class LiveTalkViewController: UIViewController {
     
     private func configureSubviews() {
         view.backgroundColor = .pointColor1
-        view.addSubviews(titleLabel, collectionView) //playCategoryButton,playedCategoryButton, collectionView)
+        view.addSubviews(emptyView, titleLabel, descriptionLabel, collectionView) //playCategoryButton,playedCategoryButton, collectionView)
     }
     
     private func configureConstraints() {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(6)
             $0.leading.equalToSuperview().offset(24)
+        }
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.leading.equalToSuperview().offset(24)
+        }
+        emptyView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
 //        playCategoryButton.snp.makeConstraints {
 //            $0.top.equalTo(titleLabel.snp.bottom).offset(14)
@@ -112,7 +147,7 @@ final class LiveTalkViewController: UIViewController {
 //            $0.width.equalTo(91)
 //        }
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
@@ -126,27 +161,34 @@ final class LiveTalkViewController: UIViewController {
     
     private func requestLiveTalkShow(page: Int, size: Int) {
         let provider = MoyaProvider<LiveTalkService>()
-        let prevDate = Date() - (60 * 60 * 2)
-        let nextDate = Date() + (60 * 60 * 2)
-        provider.requestPublisher(.show(page: page, size: size, showAt: prevDate.convertToAPIString(), showEndAt: nextDate.convertToAPIString()))
+//        let date = Date() - (60 * 60 * 2)
+        let date = Date() - (60 * 60 * 12) // 임시
+        provider.requestPublisher(.show(page: page, size: size, baseDateTime: date.convertToAPIString()))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error.localizedDescription)
+                    self.emptyView.isHidden = false
+                    self.collectionView.isHidden = true
                     return
                 }
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 if let data = try? response.map(LiveTalkShowResponse.self) {
                     if data.content.isEmpty {
-                        
+                        emptyView.isHidden = false
+                        self.collectionView.isHidden = true
                     } else {
+                        emptyView.isHidden = true
+                        self.collectionView.isHidden = false
                         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
                         snapshot.appendSections([.main])
                         snapshot.appendItems(data.content, toSection: .main)
                         datasoruce?.apply(snapshot)
+                        
                     }
                 } else {
-                    
+                    emptyView.isHidden = false
+                    self.collectionView.isHidden = true
                 }
             }.store(in: &subscriptions)
 
@@ -208,20 +250,22 @@ extension LiveTalkViewController: UICollectionViewDelegate {
         guard let datasoruce, let item = datasoruce.itemIdentifier(for: indexPath) else {
             return
         }
-        print(item)
-//        let channelController = ChatClient.shared.channelController(for: ChannelManager.superChannelId)
-//        channelController.synchronize { error in
-//            if let error {
-//                print("### 채널 에러", error.localizedDescription)
-//            }
-//        }
-//        let chatViewController = UINavigationController(
-//            rootViewController: LiveTalkChatViewController(
-//                channelController: channelController
-//            )
-//        )
-//        chatViewController.modalPresentationStyle = .overFullScreen
-//        present(chatViewController, animated: true)
+        let channelId = ChannelId(type: .messaging, id: "\(item.id)-\(item.showAt)")
+        
+        let channelController = ChatClient.shared.channelController(for: channelId)
+        channelController.synchronize { error in
+            if let error {
+                print("### 채널 에러", error.localizedDescription)
+            }
+        }
+        let chatViewController = UINavigationController(
+            rootViewController: LiveTalkChatViewController(item: item,
+                channelController: channelController
+            )
+        )
+        chatViewController.modalPresentationStyle = .overFullScreen
+        present(chatViewController, animated: true)
         
     }
+    
 }

@@ -13,7 +13,7 @@ import Moya
 import SwiftKeychainWrapper
 
 enum LiveTalkService {
-    case show(page: Int, size: Int, showAt: String, showEndAt: String)
+    case show(page: Int, size: Int, baseDateTime: String)
 }
 
 extension LiveTalkService: TargetType {
@@ -21,7 +21,7 @@ extension LiveTalkService: TargetType {
     
     var path: String {
         switch self {
-        case .show: return "/show-times"
+        case .show: return "/livetalk-show-times"
         }
     }
     
@@ -34,11 +34,10 @@ extension LiveTalkService: TargetType {
     var task: Moya.Task {
         var param: [String: Any] = [:]
         switch self {
-        case .show(let page, let size, let showAt, let showEndAt):
+        case .show(let page, let size, let baseDateTime):
             param.updateValue(page, forKey: "page")
             param.updateValue(size, forKey: "size")
-            param.updateValue(showAt, forKey: "showAt")
-            param.updateValue(showEndAt, forKey: "showEndAt")
+            param.updateValue(baseDateTime, forKey: "baseDateTime")
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }

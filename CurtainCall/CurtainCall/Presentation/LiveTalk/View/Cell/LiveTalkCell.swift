@@ -99,11 +99,11 @@ final class LiveTalkCell: UICollectionViewCell {
         }
         showLabel.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.bottom).offset(10)
-            $0.leading.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
         }
         locationLabel.snp.makeConstraints {
             $0.top.equalTo(showLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(12)
         }
     }

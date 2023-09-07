@@ -137,7 +137,7 @@ final class PartyTalkViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        scrollToBottom()
+//        scrollToBottom()
         //        let indexPath = IndexPath(row: TalkMessageData.list.count - 1, section: 0)
         //        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
@@ -377,6 +377,8 @@ extension PartyTalkViewController: ChatChannelControllerDelegate {
             messageData = removeDuplicatedMessage
             eventsController.delegate = self
             tableView.reloadData()
+            view.layoutIfNeeded()
+            scrollToBottom()
 //            let indexPath = IndexPath(row: min(messageData.count - 1, 0), section: 0)
 //            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
@@ -400,6 +402,7 @@ extension PartyTalkViewController: EventsControllerDelegate {
                 )
             )
             tableView.reloadData()
+            view.layoutIfNeeded()
             scrollToBottom()
         default:
             return

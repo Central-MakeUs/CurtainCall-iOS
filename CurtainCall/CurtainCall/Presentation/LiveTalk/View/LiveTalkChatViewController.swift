@@ -26,17 +26,19 @@ final class LiveTalkChatViewController: UIViewController {
         return button
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "드림하이 (82/100)"
         label.font = .subTitle3
+        label.text = item.name
         label.textColor = .white
         return label
     }()
     
-    private let showDateLabel: UILabel = {
+    private lazy var showDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "일시 | 2023.06.24 (수) 오후 7:30"
+        let showAt = item.showAt.convertAPIDateToDate() ?? Date()
+        let showAtString = showAt.convertToChatDateToKorean()
+        label.text = "일시 | \(showAtString)"
         label.font = .body3
         label.textColor = .white
         return label
@@ -96,11 +98,13 @@ final class LiveTalkChatViewController: UIViewController {
     private let channelController: ChatChannelController
     private var eventsController: EventsController!
     private var messageData: [TalkMessageData] = []
+    private let item: LiveTalkShowContent
     var isFirst = true
     
     // MARK: - Lifecycles
     
-    init(channelController: ChatChannelController) {
+    init(item: LiveTalkShowContent, channelController: ChatChannelController) {
+        self.item = item
         self.channelController = channelController
         super.init(nibName: nil, bundle: nil)
     }
@@ -370,6 +374,8 @@ extension LiveTalkChatViewController: ChatChannelControllerDelegate {
             messageData = message
             isFirst = false
             tableView.reloadData()
+            view.layoutIfNeeded()
+            scrollToBottom()
         }
         
     }
@@ -394,6 +400,7 @@ extension LiveTalkChatViewController: EventsControllerDelegate {
                 )
             )
             tableView.reloadData()
+            view.layoutIfNeeded()
             scrollToBottom()
         default:
             return
