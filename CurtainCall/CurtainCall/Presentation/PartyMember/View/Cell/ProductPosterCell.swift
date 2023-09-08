@@ -50,7 +50,6 @@ final class ProductPosterCell: UICollectionViewCell {
         super.prepareForReuse()
         posterImageView.image = nil
         posterImageView.layer.cornerRadius = 10
-        posterImageView.contentMode = .scaleAspectFit
     }
     
     // MARK: - Helpers

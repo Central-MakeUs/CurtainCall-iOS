@@ -778,7 +778,7 @@ extension TempHomeViewController: UITableViewDelegate {
             if category != "ETC" {
                 navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
             } else {
-                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+                navigationController?.pushViewController(MyPageDetailOtherViewController(id: id, editType: .recruitment), animated: true)
             }
         } else {
             let id = participationList[indexPath.row].id
@@ -786,7 +786,7 @@ extension TempHomeViewController: UITableViewDelegate {
             if category != "ETC" {
                 navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
             } else {
-                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+                navigationController?.pushViewController(MyPageDetailOtherViewController(id: id, editType: .participate), animated: true)
             }
         }
     }

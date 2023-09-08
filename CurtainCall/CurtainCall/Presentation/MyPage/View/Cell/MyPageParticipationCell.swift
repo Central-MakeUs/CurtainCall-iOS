@@ -40,7 +40,6 @@ final class MyPageParticipationCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 21
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         return imageView
     }()
     

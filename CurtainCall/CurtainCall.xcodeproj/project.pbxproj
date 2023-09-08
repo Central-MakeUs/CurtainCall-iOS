@@ -70,6 +70,7 @@
 		EE1DF3852A94F77E003AD078 /* NoticeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */; };
 		EE1DF3872A94F7A8003AD078 /* NoticeDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */; };
 		EE1DF38A2A95054B003AD078 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1DF3892A95054B003AD078 /* SettingViewController.swift */; };
+		EE20475D2AAB6EFD00359FD5 /* MyPageDetailOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE20475C2AAB6EFD00359FD5 /* MyPageDetailOtherViewController.swift */; };
 		EE2BDF272AA8220C00E9AFFF /* LiveTalkChatSendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */; };
 		EE2BDF2A2AA8224F00E9AFFF /* TalkMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */; };
 		EE2BDF2C2AA829BC00E9AFFF /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BDF2B2AA829BC00E9AFFF /* UITextView + Extension.swift */; };
@@ -339,6 +340,7 @@
 		EE1DF3842A94F77E003AD078 /* NoticeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewModel.swift; sourceTree = "<group>"; };
 		EE1DF3862A94F7A8003AD078 /* NoticeDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailResponse.swift; sourceTree = "<group>"; };
 		EE1DF3892A95054B003AD078 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		EE20475C2AAB6EFD00359FD5 /* MyPageDetailOtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailOtherViewController.swift; sourceTree = "<group>"; };
 		EE2BDF262AA8220C00E9AFFF /* LiveTalkChatSendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTalkChatSendCell.swift; sourceTree = "<group>"; };
 		EE2BDF292AA8224F00E9AFFF /* TalkMessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkMessageData.swift; sourceTree = "<group>"; };
 		EE2BDF2B2AA829BC00E9AFFF /* UITextView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extension.swift"; sourceTree = "<group>"; };
@@ -1143,6 +1145,7 @@
 			children = (
 				EE5251D42A8E63B3003DFEE3 /* Popup */,
 				EE5251D62A8E63B3003DFEE3 /* MyPageDetailViewController.swift */,
+				EE20475C2AAB6EFD00359FD5 /* MyPageDetailOtherViewController.swift */,
 				EE5251D72A8E63B3003DFEE3 /* MyParticipationViewController.swift */,
 				EE5251D82A8E63B3003DFEE3 /* MyPageEditViewController.swift */,
 				EE5251D92A8E63B3003DFEE3 /* MyRecruitmentViewController.swift */,
@@ -1983,6 +1986,7 @@
 				EEC5573E2A9B7CCC005CD281 /* NotLoginPopup.swift in Sources */,
 				EEA944542A5D9CE30081E784 /* FoodPartyInfo.swift in Sources */,
 				EEE272C12AA8AC540014B266 /* ChatAPI.swift in Sources */,
+				EE20475D2AAB6EFD00359FD5 /* MyPageDetailOtherViewController.swift in Sources */,
 				EE84FC842A94B450001134B5 /* FavoriteShowService.swift in Sources */,
 				EEAA40EA2A8E037F000990B0 /* ProductService.swift in Sources */,
 				EEE8F0CB2A53D10D00E31597 /* UIColor + Extension.swift in Sources */,

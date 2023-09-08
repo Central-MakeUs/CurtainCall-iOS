@@ -253,11 +253,19 @@ extension MyRecruitmentViewController: UICollectionViewDelegate {
               let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
-        let detailViewController = MyPageDetailViewController(
-            id: item.id,
-            editType: .recruitment
-        )
-        navigationController?.pushViewController(detailViewController, animated: true)
+        if item.category == "ETC" {
+            let detailViewController = MyPageDetailOtherViewController(
+                id: item.id,
+                editType: .recruitment
+            )
+            navigationController?.pushViewController(detailViewController, animated: true)
+        } else {
+            let detailViewController = MyPageDetailViewController(
+                id: item.id,
+                editType: .recruitment
+            )
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
 }
 
