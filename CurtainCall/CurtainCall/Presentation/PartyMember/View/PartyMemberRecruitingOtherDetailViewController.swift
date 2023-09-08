@@ -38,6 +38,8 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 26
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -146,6 +148,7 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
     private let partyInButton: BottomNextButton = {
         let button = BottomNextButton()
         button.setTitle("참여하기", for: .normal)
+        button.setNextButton(isSelected: true)
         return button
     }()
     
@@ -332,13 +335,14 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
                     item = data
                     draw(partyInfo: data)
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
-                    isMyParty()
                     if data.creatorId != currentUserId {
                         configureReportButton()
+                        isMyParty()
                         partyInButton.setTitle("참여하기", for: .normal)
                         isMyPartyIn = false
                     } else {
                         configureDeleteButton()
+                        partyInButton.setTitle("TALK 만들기", for: .normal)
                         partyInButton.setNextButton(isSelected: true)
                         isMyPartyIn = true
 
@@ -360,8 +364,8 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(IsMyPartyResponse.self),
                    let isMyParty = data.content.first {
-                    if !isMyParty.participated {
-                        self?.partyInButton.setTitle("TALK 만들기", for: .normal)
+                    if isMyParty.participated {
+                        self?.partyInButton.setTitle("TALK 입장하기", for: .normal)
                         self?.partyInButton.setNextButton(isSelected: true)
                         self?.isMyPartyIn = true
                     }

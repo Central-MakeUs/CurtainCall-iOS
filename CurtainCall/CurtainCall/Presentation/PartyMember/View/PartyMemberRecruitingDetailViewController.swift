@@ -37,6 +37,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 26
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -492,9 +493,10 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                     draw(partyInfo: data)
                     item = data
                     let currentUserId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
-                    isMyParty()
+                    
                     if data.creatorId != currentUserId {
                         configureReportButton()
+                        isMyParty()
                         partyInButton.setTitle("참여하기", for: .normal)
                         isMyPartyIn = false
                     } else {
@@ -524,7 +526,7 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                    let isMyParty = data.content.first {
 //                    self?.partyInButton.setNextButton(isSelected: !isMyParty.participated)
                     if isMyParty.participated {
-                        self?.partyInButton.setTitle("TALK 만들기", for: .normal)
+                        self?.partyInButton.setTitle("TALK 입장하기", for: .normal)
                         self?.partyInButton.setNextButton(isSelected: true)
                         self?.isMyPartyIn = true
                     }
