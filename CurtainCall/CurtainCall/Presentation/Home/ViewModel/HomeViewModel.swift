@@ -151,7 +151,7 @@ final class HomeViewModel {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     // TODO: 기타 셀 개발 후 구현
-                    self?.recruitmentList.send(data.content.filter { $0.category != "ETC" })
+                    self?.recruitmentList.send(data.content)
                     
                 } else {
                     self?.recruitmentList.send([])
@@ -177,7 +177,7 @@ final class HomeViewModel {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     // TODO: 기타 셀 개발 후 구현
-                    self?.participationList.send(data.content.filter { $0.category != "ETC" })
+                    self?.participationList.send(data.content)
                 } else {
                     self?.participationList.send([])
                     print("ERROR: MyParticipationError")

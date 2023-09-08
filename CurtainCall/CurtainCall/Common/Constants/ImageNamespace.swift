@@ -158,4 +158,6 @@ enum ImageNamespace {
     static let chatSendButtonWhite = "chat_sendButton_white"
     
     static let emptyLiveTalkMarks = "empty_liveTalk_marks"
+    
+    static let homeOtherCellDateIcon = "home_other_cell_date_icon"
 }

@@ -104,6 +104,10 @@ final class TempHomeViewController: UIViewController {
             MyRecruitmentCell.self,
             forCellReuseIdentifier: MyRecruitmentCell.identifier
         )
+        tableView.register(
+            MyRecruitmentOtherCell.self,
+            forCellReuseIdentifier: MyRecruitmentOtherCell.identifier
+        )
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -131,6 +135,10 @@ final class TempHomeViewController: UIViewController {
         tableView.register(
             MyRecruitmentCell.self,
             forCellReuseIdentifier: MyRecruitmentCell.identifier
+        )
+        tableView.register(
+            MyRecruitmentOtherCell.self,
+            forCellReuseIdentifier: MyRecruitmentOtherCell.identifier
         )
         tableView.delegate = self
         tableView.dataSource = self
@@ -711,17 +719,50 @@ extension TempHomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueCell(
-            type: MyRecruitmentCell.self,
-            indexPath: indexPath
-        ) else { return UITableViewCell() }
-        cell.selectionStyle = .none
+//        guard let cell = tableView.dequeueCell(
+//            type: MyRecruitmentCell.self,
+//            indexPath: indexPath
+//        ) else { return UITableViewCell() }
+//
+        
         if tableView == myRecruitmentTableView {
-            cell.draw(item: recruitmentList[indexPath.row])
+            let item = recruitmentList[indexPath.row]
+            if item.category == "ETC" {
+                guard let cell = tableView.dequeueCell(type: MyRecruitmentOtherCell.self, indexPath: indexPath) else {
+                    return UITableViewCell()
+                }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueCell(
+                    type: MyRecruitmentCell.self,
+                    indexPath: indexPath
+                ) else { return UITableViewCell() }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            }
         } else {
-            cell.draw(item: participationList[indexPath.row])
+            let item = participationList[indexPath.row]
+            if item.category == "ETC" {
+                guard let cell = tableView.dequeueCell(type: MyRecruitmentOtherCell.self, indexPath: indexPath) else {
+                    return UITableViewCell()
+                }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueCell(
+                    type: MyRecruitmentCell.self,
+                    indexPath: indexPath
+                ) else { return UITableViewCell() }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            }
         }
-        return cell
+        
     }
 }
 

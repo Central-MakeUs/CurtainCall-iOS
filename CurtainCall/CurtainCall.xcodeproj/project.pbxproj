@@ -232,6 +232,7 @@
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
 		EECF7C9D2AAB05DB00D5E257 /* SameShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF7C9C2AAB05DB00D5E257 /* SameShowCell.swift */; };
 		EECF7C9F2AAB0FAE00D5E257 /* SameShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF7C9E2AAB0FAE00D5E257 /* SameShowResponse.swift */; };
+		EECF7CA12AAB161C00D5E257 /* MyRecruitmentOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF7CA02AAB161B00D5E257 /* MyRecruitmentOtherCell.swift */; };
 		EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED24A612A9B6B01000C3BA4 /* ReportService.swift */; };
 		EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED302122A8A63C000957566 /* GuideSale.storyboard */; };
 		EED52EEA2A9F3F9800DBF55F /* MyFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */; };
@@ -497,6 +498,7 @@
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
 		EECF7C9C2AAB05DB00D5E257 /* SameShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameShowCell.swift; sourceTree = "<group>"; };
 		EECF7C9E2AAB0FAE00D5E257 /* SameShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameShowResponse.swift; sourceTree = "<group>"; };
+		EECF7CA02AAB161B00D5E257 /* MyRecruitmentOtherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecruitmentOtherCell.swift; sourceTree = "<group>"; };
 		EED24A612A9B6B01000C3BA4 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
 		EED302122A8A63C000957566 /* GuideSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideSale.storyboard; sourceTree = "<group>"; };
 		EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteViewController.swift; sourceTree = "<group>"; };
@@ -1388,6 +1390,7 @@
 				EE9A88502A83C0800085F816 /* Top10Cell.swift */,
 				EE9A88542A83D3F10085F816 /* ScheduledToOpenProductCell.swift */,
 				EE9A885A2A83DCF00085F816 /* ScheduledToEndProductCell.swift */,
+				EECF7CA02AAB161B00D5E257 /* MyRecruitmentOtherCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2021,6 +2024,7 @@
 				EE9A88512A83C0800085F816 /* Top10Cell.swift in Sources */,
 				EE0283152A986FAB008F8100 /* FavoriteService.swift in Sources */,
 				EEE8F0F32A56E31F00E31597 /* NicknameSettingViewController.swift in Sources */,
+				EECF7CA12AAB161C00D5E257 /* MyRecruitmentOtherCell.swift in Sources */,
 				EE5251E52A8E63B3003DFEE3 /* MyPageDeletePopup.swift in Sources */,
 				EE747B922A95E208006A8AB3 /* PartyListResponse.swift in Sources */,
 				EEE8F0EF2A56AFEB00E31597 /* TermsOfServiceViewModel.swift in Sources */,

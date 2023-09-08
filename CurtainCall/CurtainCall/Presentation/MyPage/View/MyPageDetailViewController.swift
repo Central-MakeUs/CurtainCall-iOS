@@ -433,7 +433,7 @@ final class MyPageDetailViewController: UIViewController {
     
     private func configureNavigation() {
         configureBackbarButton()
-        title = "MY 모집"
+        title = editType == .participate ? "MY 참여" : "MY 모집"
         
         
         let moreBarButton = UIBarButtonItem(
