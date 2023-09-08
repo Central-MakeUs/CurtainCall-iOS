@@ -496,10 +496,12 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                     if data.creatorId != currentUserId {
                         configureReportButton()
                         partyInButton.setTitle("참여하기", for: .normal)
+                        isMyPartyIn = false
                     } else {
                         configureDeleteButton()
                         partyInButton.setTitle("TALK 만들기", for: .normal)
                         partyInButton.setNextButton(isSelected: true)
+                        isMyPartyIn = true
                         
 //                        partyInButton.setNextButton(isSelected: false)
                     }
@@ -524,8 +526,9 @@ final class PartyMemberRecruitingDetailViewController: UIViewController {
                     if isMyParty.participated {
                         self?.partyInButton.setTitle("TALK 만들기", for: .normal)
                         self?.partyInButton.setNextButton(isSelected: true)
+                        self?.isMyPartyIn = true
                     }
-                    self?.isMyPartyIn = isMyParty.participated
+//                    self?.isMyPartyIn = isMyParty.participated
                 }
                     
                 LodingIndicator.hideLoading()
