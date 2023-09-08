@@ -353,6 +353,7 @@ extension LiveTalkChatViewController: ChatChannelControllerDelegate {
         let item = changes.map { $0.item }
     
         let userId = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+        
         let message = item.map { TalkMessageData(
             chatType: $0.author.id == "\(userId)" ? .send : .receive,
             nickname: $0.author.name ?? "no name",

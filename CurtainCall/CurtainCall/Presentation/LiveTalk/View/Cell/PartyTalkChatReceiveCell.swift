@@ -115,7 +115,7 @@ final class PartyTalkChatReceiveCell: UITableViewCell {
     func draw(data: TalkMessageData) {
         nicknameLabel.text = data.nickname
         messageLabel.text = data.message
-        if let imageURL = data.imageURL {
+        if let imageURL = data.imageURL, let _ = imageURL.scheme {
             profileImageView.kf.setImage(with: imageURL)
         } else {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
