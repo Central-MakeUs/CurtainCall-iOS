@@ -717,6 +717,26 @@ final class ProductDetailMainViewController: UIViewController {
                     detailInfoView.draw()
                 }
             }.store(in: &subscriptions)
+        provider.requestPublisher(.same(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                print("#$#$", String(data: response.data, encoding: .utf8))
+                if let data = try? response.map(SameShowResponse.self) {
+                    
+                    let randomDatas = data.content.shuffled()
+                    if randomDatas.count > 9 {
+                        detailInfoView.sameShow = Array(randomDatas[0..<10])
+                    } else {
+                        detailInfoView.sameShow = randomDatas
+                    }
+                    
+                }
+            }.store(in: &subscriptions)
 
     }
     

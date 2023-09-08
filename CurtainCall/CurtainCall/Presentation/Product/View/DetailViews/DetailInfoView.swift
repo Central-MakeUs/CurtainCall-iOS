@@ -216,13 +216,40 @@ final class DetailInfoView: UIView {
         return button
     }()
     
+    private let sameShowLabel: UILabel = {
+        let label = UILabel()
+        label.text = "비슷한 공연"
+        label.font = .subTitle3
+        label.textColor = .title
+        return label
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createLayout()
+        )
+        collectionView.register(SameShowCell.self, forCellWithReuseIdentifier: SameShowCell.identifier)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        return collectionView
+    }()
+    
+    
+    
     // MARK: Property
     private var subscriptions: Set<AnyCancellable> = []
     var content: FacilityResponse?
     var introductionImages: [String] = []
     var showTime: [ProductDetailShowTime] = []
+    @Published var sameShow: [SameShowContent] = []
     var count: Int = 0
     @Published var isAllImageUpdate: Bool = false
+    
+    enum Section { case main }
+    typealias Item = SameShowContent
+    private var datasource: UICollectionViewDiffableDataSource<Section, Item>?
+    
     // MARK: Life Cycle
     
     override init(frame: CGRect) {
@@ -233,6 +260,14 @@ final class DetailInfoView: UIView {
                 LodingIndicator.hideLoading()
                 print("###", self.introductionStackView.frame)
             }
+        }.store(in: &subscriptions)
+        
+        $sameShow.sink { [weak self] data in
+            guard let self else { return }
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(data, toSection: .main)
+            datasource?.apply(snapshot)
         }.store(in: &subscriptions)
 //        moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
     }
@@ -247,13 +282,14 @@ final class DetailInfoView: UIView {
     private func configureUI() {
         configureSubviews()
         configureConstraints()
+        configureDatasource()
     }
     
     private func configureSubviews() {
         backgroundColor = .white
         addSubviews(
             timeTitleLabel, duringDotView, duringLabel,
-            locationTitleLabel, infoStackView, mapView, emptyView, introductionStackView, moreButton
+            locationTitleLabel, infoStackView, mapView, emptyView, introductionStackView, moreButton, collectionView, sameShowLabel
         )
         introductionStackView.addArrangedSubviews(
             introductionImageView1, introductionImageView2,
@@ -310,8 +346,19 @@ final class DetailInfoView: UIView {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(152)
         }
+        
+        sameShowLabel.snp.makeConstraints {
+            $0.top.equalTo(mapView.snp.bottom).offset(30)
+            $0.leading.equalToSuperview().offset(24)
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(sameShowLabel.snp.bottom).offset(10)
+            $0.height.equalTo(220)
+            $0.horizontalEdges.equalToSuperview()
+        }
         emptyView.snp.makeConstraints {
-            $0.top.equalTo(mapView.snp.bottom)
+            $0.top.equalTo(collectionView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.height.equalTo(20)
@@ -381,10 +428,41 @@ final class DetailInfoView: UIView {
         return result
     }
     
-//    @objc func moreButtonTapped() {
-//        introductionStackView.snp.remakeConstraints {
-//            $0.top.equalToSuperview().offset(50)
-//            $0.leading.trailing.equalToSuperview()
-//        }
-//    }
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(120),
+            heightDimension: .absolute(218)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(120),
+            heightDimension: .absolute(218)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.scrollDirection = .horizontal
+        return UICollectionViewCompositionalLayout(section: section, configuration: config)
+    }
+    
+    private func configureDatasource() {
+        datasource = UICollectionViewDiffableDataSource<Section, Item>(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, itemIdentifier in
+                guard let cell = collectionView.dequeueCell(
+                    type: SameShowCell.self,
+                    indexPath: indexPath
+                ) else { return UICollectionViewCell() }
+                print(itemIdentifier)
+                cell.drawCell(data: itemIdentifier, index: indexPath.row + 1)
+                return cell
+            }
+        )
+    }
 }

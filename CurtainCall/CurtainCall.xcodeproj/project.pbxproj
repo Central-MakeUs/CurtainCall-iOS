@@ -230,6 +230,8 @@
 		EEC557472A9CE481005CD281 /* LikeReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC557462A9CE481005CD281 /* LikeReviewService.swift */; };
 		EEC60A482A4AB26D001DDC2A /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A472A4AB26D001DDC2A /* LoginType.swift */; };
 		EEC60A4C2A4ACB4C001DDC2A /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */; };
+		EECF7C9D2AAB05DB00D5E257 /* SameShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF7C9C2AAB05DB00D5E257 /* SameShowCell.swift */; };
+		EECF7C9F2AAB0FAE00D5E257 /* SameShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF7C9E2AAB0FAE00D5E257 /* SameShowResponse.swift */; };
 		EED24A622A9B6B01000C3BA4 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED24A612A9B6B01000C3BA4 /* ReportService.swift */; };
 		EED302132A8A63C000957566 /* GuideSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EED302122A8A63C000957566 /* GuideSale.storyboard */; };
 		EED52EEA2A9F3F9800DBF55F /* MyFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */; };
@@ -493,6 +495,8 @@
 		EEC60A472A4AB26D001DDC2A /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EEC60A492A4AB90A001DDC2A /* CurtainCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurtainCall.entitlements; sourceTree = "<group>"; };
 		EEC60A4B2A4ACB4C001DDC2A /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
+		EECF7C9C2AAB05DB00D5E257 /* SameShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameShowCell.swift; sourceTree = "<group>"; };
+		EECF7C9E2AAB0FAE00D5E257 /* SameShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameShowResponse.swift; sourceTree = "<group>"; };
 		EED24A612A9B6B01000C3BA4 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
 		EED302122A8A63C000957566 /* GuideSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideSale.storyboard; sourceTree = "<group>"; };
 		EED52EE92A9F3F9800DBF55F /* MyFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteViewController.swift; sourceTree = "<group>"; };
@@ -1324,6 +1328,7 @@
 			children = (
 				EE9301232A723AAC00C8FBA5 /* ProductSearchCell.swift */,
 				EEF815502A73B2D5009C1C57 /* ProductReviewCell.swift */,
+				EECF7C9C2AAB05DB00D5E257 /* SameShowCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1450,6 +1455,7 @@
 				EE0283202A98A7E3008F8100 /* CreateLostItemBody.swift */,
 				EE0283232A98C90F008F8100 /* LostItemResponse.swift */,
 				EE0283252A98DFCB008F8100 /* LostItemDetailResponse.swift */,
+				EECF7C9E2AAB0FAE00D5E257 /* SameShowResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1878,6 +1884,7 @@
 				EE5251E72A8E63B3003DFEE3 /* MyParticipationViewController.swift in Sources */,
 				EE5251CA2A8E639A003DFEE3 /* ReportViewModel.swift in Sources */,
 				EE1825C02A88A1880020BADA /* AuthenticationResponse.swift in Sources */,
+				EECF7C9F2AAB0FAE00D5E257 /* SameShowResponse.swift in Sources */,
 				EE0283382A991D2B008F8100 /* PrivacyPolicyViewController.swift in Sources */,
 				EE747B9C2A96E9A3006A8AB3 /* RemoveAccountBody.swift in Sources */,
 				EE2BDF422AA9B50700E9AFFF /* LiveTalkShowResponse.swift in Sources */,
@@ -1912,6 +1919,7 @@
 				EE3E02952A77FA6B007C3D71 /* CALayer + Extension.swift in Sources */,
 				EE1DF37B2A94F119003AD078 /* NoticeViewModel.swift in Sources */,
 				EEE8F0D82A553A2000E31597 /* UICollectionReusableView.swift in Sources */,
+				EECF7C9D2AAB05DB00D5E257 /* SameShowCell.swift in Sources */,
 				EE01323F2A5F012500873107 /* ProductSelectInfo.swift in Sources */,
 				EE0283042A9791B4008F8100 /* UserInfoManager.swift in Sources */,
 				EE84FC822A94A65F001134B5 /* WriteReviewResponse.swift in Sources */,
