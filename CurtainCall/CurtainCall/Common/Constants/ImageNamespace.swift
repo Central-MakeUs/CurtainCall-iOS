@@ -160,4 +160,5 @@ enum ImageNamespace {
     static let emptyLiveTalkMarks = "empty_liveTalk_marks"
     
     static let homeOtherCellDateIcon = "home_other_cell_date_icon"
+    static let homeOtherMyTimeIcon = "home_other_my_time_icon"
 }

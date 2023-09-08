@@ -430,7 +430,7 @@ final class TempHomeViewController: UIViewController {
         }
         myRecruitmentTableView.snp.makeConstraints {
             $0.top.equalTo(myRecruitmentHeaderView.snp.bottom)
-            $0.height.equalTo(0)
+            $0.height.equalTo(HomeMyProductData.list.count * 137 + 10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
         }
@@ -445,7 +445,7 @@ final class TempHomeViewController: UIViewController {
         }
         myParticipationTableView.snp.makeConstraints {
             $0.top.equalTo(myParticipationHeaderView.snp.bottom)
-            $0.height.equalTo(HomeMyProductData.list.count * 111 + 10)
+            $0.height.equalTo(HomeMyProductData.list.count * 137 + 10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
         }
@@ -607,7 +607,7 @@ final class TempHomeViewController: UIViewController {
                     myRecruitmentView.isHidden = false
                     recruitmentList = response
                     myRecruitmentTableView.snp.updateConstraints({ make in
-                        make.height.equalTo(response.count * 111 + 10)
+                        make.height.equalTo(response.count * 137 + 10)
                     })
                     
                 }
@@ -630,7 +630,7 @@ final class TempHomeViewController: UIViewController {
                     participationList = response
                     myParticipationView.isHidden = false
                     myParticipationTableView.snp.updateConstraints({ make in
-                        make.height.equalTo(response.count * 111 + 10)
+                        make.height.equalTo(response.count * 137 + 10)
                     })
                 }
                 myParticipationTableView.reloadData()
@@ -768,16 +768,26 @@ extension TempHomeViewController: UITableViewDataSource {
 
 extension TempHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
+        return 137
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == myRecruitmentTableView {
             let id = recruitmentList[indexPath.row].id
-            navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+            let category = recruitmentList[indexPath.row].category
+            if category != "ETC" {
+                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+            } else {
+                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+            }
         } else {
             let id = participationList[indexPath.row].id
-            navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+            let category = participationList[indexPath.row].category
+            if category != "ETC" {
+                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+            } else {
+                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+            }
         }
     }
 }

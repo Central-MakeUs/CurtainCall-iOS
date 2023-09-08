@@ -1386,11 +1386,11 @@
 			children = (
 				EEA1322E2A7FD6920016D01A /* HomeBannerCell.swift */,
 				EE8437B72A81241800ADD3D8 /* MyRecruitmentCell.swift */,
+				EECF7CA02AAB161B00D5E257 /* MyRecruitmentOtherCell.swift */,
 				EE8437BD2A8143F900ADD3D8 /* HomeLiveTalkCell.swift */,
 				EE9A88502A83C0800085F816 /* Top10Cell.swift */,
 				EE9A88542A83D3F10085F816 /* ScheduledToOpenProductCell.swift */,
 				EE9A885A2A83DCF00085F816 /* ScheduledToEndProductCell.swift */,
-				EECF7CA02AAB161B00D5E257 /* MyRecruitmentOtherCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

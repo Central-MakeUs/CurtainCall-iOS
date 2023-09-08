@@ -384,6 +384,7 @@ final class PartyMemberRecruitingOtherDetailViewController: UIViewController {
             let convertItem = MyRecruitmentContent(
                 id: item.id,
                 title: item.title,
+                content: item.content,
                 curMemberNum: item.curMemberNum,
                 maxMemberNum: item.maxMemberNum,
                 showAt: item.showAt,

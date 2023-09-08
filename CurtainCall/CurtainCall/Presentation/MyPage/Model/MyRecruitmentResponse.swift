@@ -14,6 +14,7 @@ struct MyRecruitmentResponse: Decodable {
 struct MyRecruitmentContent: Hashable, Decodable {
     let id: Int
     let title: String
+    let content: String
     let curMemberNum: Int
     let maxMemberNum: Int
     let showAt: String?
