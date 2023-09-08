@@ -48,7 +48,7 @@ final class MainTabBarController: UIViewController {
     }()
     private let liveTalkButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalk), for: .normal)
+//        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalk), for: .normal)
         button.tag = 2
         button.adjustsImageWhenHighlighted = false
         return button

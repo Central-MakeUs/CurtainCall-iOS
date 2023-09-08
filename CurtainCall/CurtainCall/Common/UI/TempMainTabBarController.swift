@@ -68,7 +68,8 @@ final class TempMainTabBarController: UIViewController {
     
     private let liveTalkButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalk), for: .normal)
+        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalkSelected), for: .normal)
+        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalkDeselected), for: .selected)
         button.tag = 2
         button.adjustsImageWhenHighlighted = false
         return button
