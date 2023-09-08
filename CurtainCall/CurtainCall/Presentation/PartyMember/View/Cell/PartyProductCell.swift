@@ -39,6 +39,7 @@ final class PartyProductCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
