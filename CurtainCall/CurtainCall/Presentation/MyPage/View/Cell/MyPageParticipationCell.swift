@@ -40,7 +40,6 @@ final class MyPageParticipationCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 21
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         return imageView
     }()
     
@@ -293,6 +292,7 @@ final class MyPageParticipationCell: UICollectionViewCell {
     }
     
     func setUI(_ item: ProductPartyInfo) {
+        
         productTitleLabel.text = item.productName
         profileImageView.image = item.profileImage
         nicknameLabel.text = item.nickname
@@ -303,6 +303,11 @@ final class MyPageParticipationCell: UICollectionViewCell {
         dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
         timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.location
+    }
+    
+    @objc
+    private func enterButtonTapped() {
+        print("Enter")
     }
 }
 

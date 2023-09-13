@@ -18,6 +18,7 @@ final class TempMainTabBarController: UIViewController {
         let view = UIView()
         view.backgroundColor = .clear
         view.clipsToBounds = true
+        
         return view
     }()
     
@@ -25,7 +26,17 @@ final class TempMainTabBarController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = UIColor(rgb: 0xEEF0F3)
+        stackView.backgroundColor = .white
+        
+        stackView.layer.applySketchShadow(
+            color: .black,
+            alpha: 0.25,
+            x: 0,
+            y: 4,
+            blur: 4,
+            spread: 0
+        )
+        stackView.clipsToBounds = true
         return stackView
     }()
     
@@ -38,6 +49,14 @@ final class TempMainTabBarController: UIViewController {
         button.adjustsImageWhenHighlighted = false
         return button
     }()
+    
+    private let emptyButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: ImageNamespace.tabbarEmpty), for: .normal)
+        button.adjustsImageWhenHighlighted = false
+        return button
+    }()
+    
     private let productButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.tabbarProductDeselected), for: .normal)
@@ -46,12 +65,21 @@ final class TempMainTabBarController: UIViewController {
         button.adjustsImageWhenHighlighted = false
         return button
     }()
+    
+    private let liveTalkButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalkSelected), for: .normal)
+        button.setImage(UIImage(named: ImageNamespace.tabbarLiveTalkDeselected), for: .selected)
+        button.tag = 2
+        button.adjustsImageWhenHighlighted = false
+        return button
+    }()
 
     private let partyMemberButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberDeselected), for: .normal)
         button.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberSelected), for: .selected)
-        button.tag = 2
+        button.tag = 3
         button.adjustsImageWhenHighlighted = false
         return button
     }()
@@ -60,7 +88,7 @@ final class TempMainTabBarController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: ImageNamespace.tabbarMyPageDeselected), for: .normal)
         button.setImage(UIImage(named: ImageNamespace.tabbarMyPageSelected), for: .selected)
-        button.tag = 3
+        button.tag = 4
         button.adjustsImageWhenHighlighted = false
         return button
     }()
@@ -68,6 +96,7 @@ final class TempMainTabBarController: UIViewController {
     private var viewControllers = [
         UINavigationController(rootViewController: TempHomeViewController(viewModel: HomeViewModel())),
         UINavigationController(rootViewController: ProductViewController(viewModel: ProductViewModel())),
+        UINavigationController(rootViewController: LiveTalkViewController()),
         PartyMemberViewController(),
         UINavigationController(rootViewController: MyPageViewController(viewModel: MyPageViewModel()))
     ]
@@ -94,7 +123,7 @@ final class TempMainTabBarController: UIViewController {
         view.backgroundColor = .white
         homeButton.isSelected = true
         tabbarButtons = [
-            homeButton, productButton, partyMemberButton, myPageButton
+            homeButton, productButton, liveTalkButton, partyMemberButton, myPageButton
         ]
         configureSubviews()
         configureConstraints()
@@ -102,20 +131,24 @@ final class TempMainTabBarController: UIViewController {
     
     private func configureSubviews() {
         view.addSubviews(wholeView)
-        wholeView.addSubviews(tabStackView)
+        wholeView.addSubviews(tabStackView, liveTalkButton)
         tabStackView.addArrangedSubviews(
-            homeButton, productButton, partyMemberButton, myPageButton
+            homeButton, productButton, emptyButton, partyMemberButton, myPageButton
         )
     }
     
     private func configureConstraints() {
         wholeView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(107)
+            $0.height.equalTo(122)
         }
         tabStackView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
             $0.height.equalTo(90)
+        }
+        liveTalkButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tabStackView.snp.top).offset(-32)
         }
     }
     
@@ -129,12 +162,18 @@ final class TempMainTabBarController: UIViewController {
     
     @objc
     func tabbarButtonTapped(_ sender: UIButton) {
-        if (sender.tag == 3 || sender.tag == 2) && KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
+        if (sender.tag == 3 || sender.tag == 2 || sender.tag == 4) && KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
             let popup = NotLoginPopup()
             popup.modalPresentationStyle = .overFullScreen
             popup.delegate = self
             present(popup, animated: false)
             return
+        }
+        
+        if sender == liveTalkButton {
+            liveTalkTapped()
+        } else {
+            otherTapped()
         }
         
         previousIndex = selectedIndex
@@ -157,6 +196,28 @@ final class TempMainTabBarController: UIViewController {
         self.addChild(vc)
         self.view.addSubview(vc.view)
         self.view.bringSubviewToFront(wholeView)
+    }
+    
+    func liveTalkTapped() {
+        homeButton.setImage(UIImage(named: ImageNamespace.tabbarHomeInlive), for: .normal)
+        productButton.setImage(UIImage(named: ImageNamespace.tabbarProductInlive), for: .normal)
+        partyMemberButton.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberInlive), for: .normal)
+        myPageButton.setImage(UIImage(named: ImageNamespace.tabbarMypageInlive), for: .normal)
+        emptyButton.setImage(UIImage(named: ImageNamespace.tabbarEmptyInlive), for: .normal)
+        tabStackView.backgroundColor = .pointColor1
+    }
+    
+    func otherTapped() {
+        homeButton.setImage(UIImage(named: ImageNamespace.tabbarHomeDeselected), for: .normal)
+        homeButton.setImage(UIImage(named: ImageNamespace.tabbarHomeSelected), for: .selected)
+        productButton.setImage(UIImage(named: ImageNamespace.tabbarProductDeselected), for: .normal)
+        productButton.setImage(UIImage(named: ImageNamespace.tabbarProductSelected), for: .selected)
+        partyMemberButton.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberDeselected), for: .normal)
+        partyMemberButton.setImage(UIImage(named: ImageNamespace.tabbarPartyMemberSelected), for: .selected)
+        myPageButton.setImage(UIImage(named: ImageNamespace.tabbarMyPageDeselected), for: .normal)
+        myPageButton.setImage(UIImage(named: ImageNamespace.tabbarMyPageSelected), for: .selected)
+        emptyButton.setImage(UIImage(named: ImageNamespace.tabbarEmpty), for: .normal)
+        tabStackView.backgroundColor = .white
     }
 }
 extension TempMainTabBarController: NotLoginPopupDelegate {

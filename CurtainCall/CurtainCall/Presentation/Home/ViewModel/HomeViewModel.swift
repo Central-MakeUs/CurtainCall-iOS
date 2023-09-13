@@ -11,6 +11,7 @@ import Combine
 import Moya
 import CombineMoya
 import SwiftKeychainWrapper
+import StreamChat
 
 final class HomeViewModel {
     
@@ -42,6 +43,7 @@ final class HomeViewModel {
                     UserInfoManager.shared.userInfo = data
                     self?.userInfoSubject.send(data)
                     self?.requestCount += 1
+                    self?.requestToken()
                     print("###", data)
                     return
                 } else {
@@ -55,7 +57,7 @@ final class HomeViewModel {
     
     func requestTop10() {
         let provider = MoyaProvider<HomeAPI>()
-        provider.requestPublisher(.top10(type: "DAY", genre: "ALL", baseDate: "2023-08-19"))
+        provider.requestPublisher(.top10(type: "DAY", genre: "ALL", baseDate: Date().convertToAPIDateYearMonthDayString()))
             .sink { completion in
                 if case let .failure(error) = completion {
                     print(error)
@@ -149,7 +151,7 @@ final class HomeViewModel {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     // TODO: 기타 셀 개발 후 구현
-                    self?.recruitmentList.send(data.content.filter { $0.category != "ETC" })
+                    self?.recruitmentList.send(data.content)
                     
                 } else {
                     self?.recruitmentList.send([])
@@ -175,15 +177,51 @@ final class HomeViewModel {
             } receiveValue: { [weak self] response in
                 if let data = try? response.map(MyRecruitmentResponse.self) {
                     // TODO: 기타 셀 개발 후 구현
-                    self?.participationList.send(data.content.filter { $0.category != "ETC" })
+                    self?.participationList.send(data.content)
                 } else {
                     self?.participationList.send([])
                     print("ERROR: MyParticipationError")
                 }
                 self?.requestCount += 1
             }.store(in: &subscriptions)
-        
+    }
+    
+    func requestToken() {
+        let provider = MoyaProvider<ChatAPI>()
+        provider.requestPublisher(.requestToken)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                if let data = try? response.map(RequestTokenResponse.self) {
+                    KeychainWrapper.standard[.chatToken] = data.value
+                    let id = KeychainWrapper.standard.integer(forKey: .userID) ?? 0
+                    let nickname = UserInfoManager.shared.userInfo?.nickname ?? "no name"
+                    print("$$$", UserInfoManager.shared.userInfo)
+                    let token = try? Token(rawValue: data.value)
+                    if let imageURLString = UserInfoManager.shared.userInfo?.imageUrl,
+                       let imageURL = URL(string: imageURLString) {
+                        ChatClient.shared.connectUser(
+                            userInfo: UserInfo(id: "\(id)", name: nickname, imageURL: imageURL),
+                            token: token!
+                        )
+                    } else {
+                        ChatClient.shared.connectUser(
+                            userInfo: UserInfo(id: "\(id)", name: nickname),
+                            token: token!
+                        )
+                    }
+                    
+                    print("##TOKEN:", data)
+                }
+            }.store(in: &subscriptions)
 
     }
     
+}
+
+struct RequestTokenResponse: Decodable {
+    let value: String
 }

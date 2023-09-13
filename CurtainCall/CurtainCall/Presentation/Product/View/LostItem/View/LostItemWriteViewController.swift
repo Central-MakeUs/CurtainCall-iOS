@@ -37,6 +37,7 @@ final class LostItemWriteViewController: UIViewController {
         textField.font = .body1
         textField.textColor = .body1
         textField.tintColor = .pointColor2
+        textField.delegate = self
         return textField
     }()
     
@@ -133,12 +134,13 @@ final class LostItemWriteViewController: UIViewController {
         return view
     }()
     
-    private let detailLocationTextField: UITextField = {
+    private lazy var detailLocationTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "세부 장소를 적어주세요."
         textField.font = .body1
         textField.textColor = .body1
         textField.tintColor = .pointColor2
+        textField.delegate = self
         return textField
     }()
     
@@ -287,7 +289,7 @@ final class LostItemWriteViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
-        let calendarView = CalendarView(isSectableDates: [])
+        let calendarView = CalendarView(isSectableDates: [], isSelectableFuture: false)
         calendarView.layer.cornerRadius = 10
         calendarView.isHidden = true
         calendarView.layer.applySketchShadow(
@@ -384,7 +386,7 @@ final class LostItemWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        hideKeyboardWhenTappedArround()
+//        hideKeyboardWhenTappedArround()
         addTargets()
         bind()
     }
@@ -695,6 +697,12 @@ final class LostItemWriteViewController: UIViewController {
             self?.completeButton.setNextButton(isSelected: isValid)
         }.store(in: &cancellables)
         
+        viewModel.$isSuccesUpload
+            .dropFirst(1)
+            .sink { [weak self] isSuccess in
+                self?.showToast(isSuccess: isSuccess)
+            }.store(in: &cancellables)
+        
     }
     
     private func viewBorderInit() {
@@ -706,6 +714,10 @@ final class LostItemWriteViewController: UIViewController {
     }
     
     private func addTargets() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissInlineView))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
         categoryButton.addTarget(
             self,
             action: #selector(categoryButtonTouchUpInside),
@@ -798,10 +810,54 @@ final class LostItemWriteViewController: UIViewController {
             detail: detailLocationTextField.text,
             particulars: otherTextView.text ?? ""
         )
-        navigationController?.navigationBar.isHidden = true
-        navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
+//        navigationController?.navigationBar.isHidden = true
+//        navigationController?.pushViewController(LostItemWriteCompleteViewController(), animated: true)
     }
     
+    func showToast(isSuccess: Bool) {
+        let toast = LostItemCompleteToastView(isSuccess: isSuccess)
+        view.addSubview(toast)
+        toast.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(66)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
+        }
+        if isSuccess {
+            UIView.animate(
+                withDuration: 1.5,
+                delay: 0.3,
+                animations: {
+                    toast.alpha = 0.9
+                    
+                }) { [weak self] _ in
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
+        } else {
+            UIView.animate(
+                withDuration: 1.5,
+                delay: 0.3,
+                animations: {
+                    toast.alpha = 0.9
+                }) {  _ in
+                    toast.removeFromSuperview()
+                }
+            
+        }
+        
+    }
+
+    @objc
+    private func dismissInlineView() {
+        view.endEditing(true)
+        lostItemCategoryView.isHidden = true
+        calendarView.isHidden = true
+        timePickerView.isHidden = true
+        lostItemAddFileView.isHidden = true
+        categoryView.layer.borderWidth = 0
+        keepDateView.layer.borderWidth = 0
+        keepTimeView.layer.borderWidth = 0
+        addFileView.layer.borderWidth = 0
+    }
 }
 
 // MARK: Keyboard
@@ -863,7 +919,20 @@ extension LostItemWriteViewController: UITextViewDelegate {
         }
         
         // TODO: count 변경
-        guard content.count <= 5 else { return false }
+        guard content.count <= 100 else { return false }
+        return true
+    }
+}
+
+extension LostItemWriteViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let char = string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        guard let text = textField.text, text.count <= 20 else { return false }
         return true
     }
 }
@@ -937,4 +1006,6 @@ extension LostItemWriteViewController: UIImagePickerControllerDelegate & UINavig
         }
     }
 }
+
+
 

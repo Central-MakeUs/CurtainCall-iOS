@@ -186,7 +186,7 @@ final class MyPageViewController: UIViewController {
     }()
     private let emailLabel: UILabel = {
         let attr = NSAttributedString(
-            string: "curtaincall@gmail.com",
+            string: "curtaincall.official2023@gmail.com",
             attributes: [
                 NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue
             ])
@@ -196,13 +196,7 @@ final class MyPageViewController: UIViewController {
         label.textColor = .hex3B4350
         return label
     }()
-    private let dayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "평일: 전체 문의 상담 가능"
-        label.font = .caption
-        label.textColor = .hex5A6271
-        return label
-    }()
+
     private let footerSeperator: UIView = {
         let view = UIView()
         view.backgroundColor = .hexE4E7EC
@@ -273,7 +267,7 @@ final class MyPageViewController: UIViewController {
         saveView.addSubviews(saveIcon, saveLabel, saveButton)
         noticeView.addSubviews(noticeLabel, noticeArrowImage, noticeButton)
         FAQView.addSubviews(FAQLabel, FAQArrowImage, FAQButton)
-        footerView.addSubviews(footerHeadTitle, emailLabel, dayLabel, footerSeperator, sourceLabel)
+        footerView.addSubviews(footerHeadTitle, emailLabel, footerSeperator, sourceLabel)
     }
     
     private func configureConstraints() {
@@ -337,25 +331,25 @@ final class MyPageViewController: UIViewController {
             $0.center.equalToSuperview()
             $0.height.equalTo(30)
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
 //            $0.width.equalTo(1)
         }
         myWriteView.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(myView.snp.bottom).offset(20)
         }
         myWriteIcon.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         myWriteLabel.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
         }
@@ -370,21 +364,21 @@ final class MyPageViewController: UIViewController {
         
         saveView.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
-//            $0.height.equalTo(85)
+//            $0.height.equalTo(0)
+            $0.height.equalTo(85)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.top.equalTo(listSeperator.snp.bottom)
         }
         saveIcon.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             
             $0.leading.equalToSuperview().offset(2)
             $0.centerY.equalToSuperview()
         }
         saveLabel.snp.makeConstraints {
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
             
             $0.leading.equalTo(myWriteIcon.snp.trailing).offset(12)
             $0.centerY.equalToSuperview()
@@ -418,8 +412,8 @@ final class MyPageViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview()
             
             // TODO: 개발이후
-            $0.height.equalTo(0)
-//            $0.height.equalTo(50)
+//            $0.height.equalTo(0)
+            $0.height.equalTo(50)
         }
     
         FAQLabel.snp.makeConstraints {
@@ -427,14 +421,14 @@ final class MyPageViewController: UIViewController {
             $0.leading.equalToSuperview().offset(24)
             
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
         }
         FAQArrowImage.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-16)
             
             // TODO: 개발이후
-            $0.height.equalTo(0)
+//            $0.height.equalTo(0)
         }
         footerView.snp.makeConstraints {
             $0.top.equalTo(FAQView.snp.bottom).offset(30)
@@ -449,14 +443,11 @@ final class MyPageViewController: UIViewController {
             $0.leading.equalToSuperview().offset(26)
             $0.top.equalTo(footerHeadTitle.snp.bottom).offset(4)
         }
-        dayLabel.snp.makeConstraints {
-            $0.top.equalTo(emailLabel.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(26)
-        }
+        
         footerSeperator.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(1)
-            $0.top.equalTo(dayLabel.snp.bottom).offset(20)
+            $0.top.equalTo(emailLabel.snp.bottom).offset(20)
         }
         sourceLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(26)
@@ -590,8 +581,9 @@ final class MyPageViewController: UIViewController {
         guard let userId = KeychainWrapper.standard.integer(forKey: .userID) else {
             return
         }
-//        let viewModel = MyFavoriteViewModel(id: userId)
-//        navigationController?.pushViewController(MyFavoriteViewController(viewModel: viewModel), animated: true)
+        let myWriteView = UINavigationController(rootViewController: MyWriteViewController())
+        myWriteView.modalPresentationStyle = .overFullScreen
+        present(myWriteView, animated: true)
     }
     
     @objc
@@ -601,12 +593,14 @@ final class MyPageViewController: UIViewController {
         }
         let viewModel = MyFavoriteViewModel(id: userId)
         let myFavoriteView = UINavigationController(rootViewController: MyFavoriteViewController(viewModel: viewModel))
-        myFavoriteView.modalPresentationStyle = .fullScreen
+        myFavoriteView.modalPresentationStyle = .overFullScreen
         present(myFavoriteView, animated: true)
     }
     
     @objc
     private func FAQButtonTouchUpInside() {
-        // tapped
+        let FAQViewController = UINavigationController(rootViewController: FAQViewController())
+        FAQViewController.modalPresentationStyle = .overFullScreen
+        present(FAQViewController, animated: true)
     }
 }

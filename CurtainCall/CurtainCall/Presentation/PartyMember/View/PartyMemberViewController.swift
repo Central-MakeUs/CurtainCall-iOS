@@ -231,8 +231,8 @@ final class PartyMemberViewController: UIViewController {
         layer.lineDashPattern = [2, 2]
              
         let path = UIBezierPath()
-        let point1 = CGPoint(x: view.bounds.minX, y: view.bounds.maxY - 20)
-        let point2 = CGPoint(x: view.bounds.maxX, y: view.bounds.maxY - 20)
+        let point1 = CGPoint(x: view.bounds.minX, y: view.bounds.maxY - 18)
+        let point2 = CGPoint(x: view.bounds.maxX, y: view.bounds.maxY - 18)
         
         path.move(to: point1)
         path.addLine(to: point2)

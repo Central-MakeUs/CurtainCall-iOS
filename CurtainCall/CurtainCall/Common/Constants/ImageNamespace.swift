@@ -31,17 +31,27 @@ enum ImageNamespace {
     static let checkmarkButtonDeselected = "checkmark_button_deselected"
     static let checkmarkButtonSelected = "checkmark_button_selected"
     static let ExpandButtonArrowBottom = "expand_button_arrow_bottom"
+    static let ExpandButtonArrowUp = "expand_button_arrow_up"
+    
     
     static let tabbarHomeSelected = "tabbar_home_selected"
     static let tabbarHomeDeselected = "tabbar_home_deselected"
     static let tabbarProductSelected = "tabbar_product_selected"
     static let tabbarProductDeselected = "tabbar_product_deselected"
-    static let tabbarLiveTalk = "tabbar_live_talk"
+    static let tabbarLiveTalkSelected = "tabbar_live_talk"
+    static let tabbarLiveTalkDeselected = "tabbar_live_talk_deselected"
     static let tabbarPartyMemberSelected = "tabbar_party_member_selected"
     static let tabbarPartyMemberDeselected = "tabbar_party_member_deselected"
     static let tabbarMyPageSelected = "tabbar_my_page_selected"
     static let tabbarMyPageDeselected = "tabbar_my_page_deselected"
     static let tabbarEmpty = "tabbar_empty"
+    
+    static let tabbarEmptyInlive = "tabbar_empty_inlive"
+    static let tabbarHomeInlive = "tabbar_home_inlive"
+    static let tabbarProductInlive = "tabbar_product_inlive"
+    static let tabbarPartyMemberInlive = "tabbar_party_member_inlive"
+    static let tabbarMypageInlive = "tabbar_my_page_inlive"
+    
     
     static let partymemberProductCardSymbol = "partymember_product_card_symbol"
     static let partymemberProductFoodSymbol = "partymember_product_food_symbol"
@@ -139,4 +149,17 @@ enum ImageNamespace {
     static let defaultProfile = "default_profile"
     
     static let productSearchSortIcon = "product_search_sort_icon"
+    static let myWriteMoreButton = "myWrite_more_button"
+    
+    static let toastSuccessParty = "toast_success_party"
+    static let toastFailParty = "toast_fail_party"
+    
+    static let chatAddButton = "chat_addButton"
+    static let chatSendButton = "chat_sendButton"
+    static let chatSendButtonWhite = "chat_sendButton_white"
+    
+    static let emptyLiveTalkMarks = "empty_liveTalk_marks"
+    
+    static let homeOtherCellDateIcon = "home_other_cell_date_icon"
+    static let homeOtherMyTimeIcon = "home_other_my_time_icon"
 }

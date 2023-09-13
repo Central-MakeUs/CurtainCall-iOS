@@ -43,6 +43,7 @@ final class DetailReviewView: UIView {
         tableView.delegate = self
         tableView.register(ReviewCell.self, forCellReuseIdentifier: ReviewCell.identifier)
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         return tableView
     }()
     
@@ -155,7 +156,9 @@ final class DetailReviewView: UIView {
 
         setNeedsLayout()
     }
-    
+    func removeEmptyView() {
+        emptyView.removeFromSuperview()
+    }
 }
 
 extension DetailReviewView: UITableViewDataSource {

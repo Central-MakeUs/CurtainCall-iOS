@@ -14,6 +14,7 @@ import SwiftKeychainWrapper
 
 enum FacilityService {
     case detail(id: String)
+    case same(id: String)
 }
 
 extension FacilityService: TargetType {
@@ -23,6 +24,8 @@ extension FacilityService: TargetType {
         switch self {
         case .detail(let id):
             return "/facilities/\(id)"
+        case .same(let id):
+            return "/facilities/\(id)/shows"
         }
     }
     
@@ -31,7 +34,15 @@ extension FacilityService: TargetType {
     }
     
     var task: Moya.Task {
-        return .requestPlain
+        switch self {
+        case .detail:
+            return .requestPlain
+        case .same:
+            var param: [String: Any] = [:]
+            param.updateValue(99, forKey: "size")
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        }
+        
     }
     var headers: [String : String]? {
         let accessToken = KeychainWrapper.standard.string(forKey: .accessToken) ?? ""

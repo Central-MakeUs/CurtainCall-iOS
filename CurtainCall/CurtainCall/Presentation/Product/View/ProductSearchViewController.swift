@@ -40,6 +40,7 @@ final class ProductSearchViewController: UIViewController {
     private var subscriptions: Set<AnyCancellable> = []
     private let viewModel: ProductSearchViewModel
     private var searchString = ""
+    private let favoriteProvider = MoyaProvider<FavoriteShowAPI>()
     // MARK: Life Cycle
     
     init(viewModel: ProductSearchViewModel) {
@@ -55,6 +56,18 @@ final class ProductSearchViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         bind()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(putKeepButton),
+            name: Notification.Name("putKeepButton"),
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(deleteKeepButton),
+            name: Notification.Name("deleteKeepButton"),
+            object: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +141,7 @@ final class ProductSearchViewController: UIViewController {
     
     private func bind() {
         viewModel.$productList
-            .debounce(for: .seconds(0.7), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .sink { [weak self] data in
                 guard let self else { return }
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
@@ -152,6 +165,34 @@ final class ProductSearchViewController: UIViewController {
     private func keyboardDown() {
 //        self.view.transform = .identity
         self.collectionView.contentInset = .zero
+    }
+    
+    @objc func putKeepButton(_ notification: Notification) {
+        guard let id = notification.object as? String else { return }
+//        favoriteProvider.requestPublisher(.putShow(id: id))
+//            .sink { completion in
+//                if case let .failure(error) = completion {
+//                    print(error)
+//                }
+//            } receiveValue: { [weak self] _ in
+//                guard let self else { return }
+//                FavoriteService.shared.isFavoriteIds.insert(id)
+//                NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
+//            }.store(in: &subscriptions)
+    }
+    
+    @objc func deleteKeepButton(_ notification: Notification) {
+        guard let id = notification.object as? String else { return }
+//        favoriteProvider.requestPublisher(.deleteShow(id: id))
+//            .sink { completion in
+//                if case let .failure(error) = completion {
+//                    print(error)
+//                }
+//            } receiveValue: { [weak self] _ in
+//                guard let self else { return }
+//                FavoriteService.shared.isFavoriteIds.remove(id)
+//                NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
+//            }.store(in: &subscriptions)
     }
     
 }
@@ -182,6 +223,7 @@ extension ProductSearchViewController: UICollectionViewDelegate {
 extension ProductSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchString = searchText
+        guard !searchString.isEmpty else { return }
         viewModel.requestSearch(page: 0, size: 20, keyword: searchString)
     }
 }

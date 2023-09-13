@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 import SnapKit
+import Moya
+import CombineMoya
 import SwiftKeychainWrapper
 
 final class TempHomeViewController: UIViewController {
@@ -102,6 +104,10 @@ final class TempHomeViewController: UIViewController {
             MyRecruitmentCell.self,
             forCellReuseIdentifier: MyRecruitmentCell.identifier
         )
+        tableView.register(
+            MyRecruitmentOtherCell.self,
+            forCellReuseIdentifier: MyRecruitmentOtherCell.identifier
+        )
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -129,6 +135,10 @@ final class TempHomeViewController: UIViewController {
         tableView.register(
             MyRecruitmentCell.self,
             forCellReuseIdentifier: MyRecruitmentCell.identifier
+        )
+        tableView.register(
+            MyRecruitmentOtherCell.self,
+            forCellReuseIdentifier: MyRecruitmentOtherCell.identifier
         )
         tableView.delegate = self
         tableView.dataSource = self
@@ -297,17 +307,19 @@ final class TempHomeViewController: UIViewController {
         view.backgroundColor = .pointColor1
         configureUI()
         bind()
-        LodingIndicator.showLoading()
-        viewModel.requestUserInfo()
-        viewModel.requestOpen()
-        viewModel.requestTop10()
-        viewModel.requestEnd()
-        
+//        if !(KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? false) {
+//            viewModel.requestToken()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        LodingIndicator.showLoading()
+        viewModel.requestUserInfo()
+        viewModel.requestOpen()
+        viewModel.requestTop10()
+        viewModel.requestEnd()
         viewModel.requestMyParticipation()
         viewModel.requestMyRecuritment()
     }
@@ -418,7 +430,7 @@ final class TempHomeViewController: UIViewController {
         }
         myRecruitmentTableView.snp.makeConstraints {
             $0.top.equalTo(myRecruitmentHeaderView.snp.bottom)
-            $0.height.equalTo(0)
+            $0.height.equalTo(HomeMyProductData.list.count * 137 + 10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
         }
@@ -433,7 +445,7 @@ final class TempHomeViewController: UIViewController {
         }
         myParticipationTableView.snp.makeConstraints {
             $0.top.equalTo(myParticipationHeaderView.snp.bottom)
-            $0.height.equalTo(HomeMyProductData.list.count * 111 + 10)
+            $0.height.equalTo(HomeMyProductData.list.count * 137 + 10)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(10)
         }
@@ -595,7 +607,7 @@ final class TempHomeViewController: UIViewController {
                     myRecruitmentView.isHidden = false
                     recruitmentList = response
                     myRecruitmentTableView.snp.updateConstraints({ make in
-                        make.height.equalTo(response.count * 111 + 10)
+                        make.height.equalTo(response.count * 137 + 10)
                     })
                     
                 }
@@ -618,7 +630,7 @@ final class TempHomeViewController: UIViewController {
                     participationList = response
                     myParticipationView.isHidden = false
                     myParticipationTableView.snp.updateConstraints({ make in
-                        make.height.equalTo(response.count * 111 + 10)
+                        make.height.equalTo(response.count * 137 + 10)
                     })
                 }
                 myParticipationTableView.reloadData()
@@ -632,6 +644,8 @@ final class TempHomeViewController: UIViewController {
                 }
             }.store(in: &subcriptions)
     }
+    
+    
 
 }
 
@@ -705,32 +719,75 @@ extension TempHomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueCell(
-            type: MyRecruitmentCell.self,
-            indexPath: indexPath
-        ) else { return UITableViewCell() }
-        cell.selectionStyle = .none
+//        guard let cell = tableView.dequeueCell(
+//            type: MyRecruitmentCell.self,
+//            indexPath: indexPath
+//        ) else { return UITableViewCell() }
+//
+        
         if tableView == myRecruitmentTableView {
-            cell.draw(item: recruitmentList[indexPath.row])
+            let item = recruitmentList[indexPath.row]
+            if item.category == "ETC" {
+                guard let cell = tableView.dequeueCell(type: MyRecruitmentOtherCell.self, indexPath: indexPath) else {
+                    return UITableViewCell()
+                }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueCell(
+                    type: MyRecruitmentCell.self,
+                    indexPath: indexPath
+                ) else { return UITableViewCell() }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            }
         } else {
-            cell.draw(item: participationList[indexPath.row])
+            let item = participationList[indexPath.row]
+            if item.category == "ETC" {
+                guard let cell = tableView.dequeueCell(type: MyRecruitmentOtherCell.self, indexPath: indexPath) else {
+                    return UITableViewCell()
+                }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueCell(
+                    type: MyRecruitmentCell.self,
+                    indexPath: indexPath
+                ) else { return UITableViewCell() }
+                cell.selectionStyle = .none
+                cell.draw(item: item)
+                return cell
+            }
         }
-        return cell
+        
     }
 }
 
 extension TempHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
+        return 137
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == myRecruitmentTableView {
             let id = recruitmentList[indexPath.row].id
-            navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+            let category = recruitmentList[indexPath.row].category
+            if category != "ETC" {
+                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .recruitment), animated: true)
+            } else {
+                navigationController?.pushViewController(MyPageDetailOtherViewController(id: id, editType: .recruitment), animated: true)
+            }
         } else {
             let id = participationList[indexPath.row].id
-            navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+            let category = participationList[indexPath.row].category
+            if category != "ETC" {
+                navigationController?.pushViewController(MyPageDetailViewController(id: id, editType: .participate), animated: true)
+            } else {
+                navigationController?.pushViewController(MyPageDetailOtherViewController(id: id, editType: .participate), animated: true)
+            }
         }
     }
 }

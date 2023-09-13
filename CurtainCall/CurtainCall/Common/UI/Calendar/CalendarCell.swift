@@ -41,6 +41,10 @@ final class CalendarCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        circleView.backgroundColor = .white
+    }
     
     // MARK: - Helpers
     

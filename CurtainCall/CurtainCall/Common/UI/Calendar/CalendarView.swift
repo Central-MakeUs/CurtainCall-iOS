@@ -111,15 +111,23 @@ final class CalendarView: UIView, CalendarDelegate {
     private var selectedDate: Date?
     private let dateDict: [String: [String]]
     weak var delegate: CalendarViewDelegate?
+    private let isSelectableFuture: Bool
     
     // MARK: - Lifecycles
     
-    init(isSectableDates: [Date]) {
+    init(isSectableDates: [Date], isSelectableFuture: Bool) {
         self.isSectableDates = isSectableDates
         self.dateDict = isSectableDates.convertToYearMonthDayKeyHourValue()
+        self.isSelectableFuture = isSelectableFuture
         super.init(frame: .zero)
         configureUI()
         registerCell()
+    }
+    
+    convenience init(isSectableDates: [Date]) {
+        self.init(isSectableDates: isSectableDates, isSelectableFuture: true)
+        
+        
     }
     
     @available (*, unavailable)
@@ -193,7 +201,7 @@ final class CalendarView: UIView, CalendarDelegate {
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-//        section.interGroupSpacing =
+        //        section.interGroupSpacing =
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -264,14 +272,25 @@ final class CalendarView: UIView, CalendarDelegate {
             } else {
                 dateComponents.day = day - firstWeekIndex + 1
                 guard let date = calendar.date(from: dateComponents) else { return }
-                days.append(Item(
-                    date: date,
-                    isSunday: day % 7 == 0,
-                    isSaturday: day % 7 == 6,
-                    isSelected: selectedDate == date,
-                    isSelectable: dateDict[date.convertToYearMonthDayString()] != nil || isSectableDates.isEmpty
-                )
-                )
+                if !isSelectableFuture {
+                    days.append(
+                        Item(date: date,
+                             isSunday: day % 7 == 0,
+                             isSaturday: day % 7 == 6,
+                             isSelected: selectedDate == date,
+                             isSelectable: date <= Date()
+                        )
+                    )
+                } else {
+                    days.append(
+                        Item(date: date,
+                             isSunday: day % 7 == 0,
+                             isSaturday: day % 7 == 6,
+                             isSelected: selectedDate == date,
+                             isSelectable: dateDict[date.convertToYearMonthDayString()] != nil || isSectableDates.isEmpty
+                        )
+                    )
+                }
             }
         }
         configureSnapshot()
@@ -280,7 +299,7 @@ final class CalendarView: UIView, CalendarDelegate {
     
     private func configureHeight(dayCount: Int) {
         collectionView.snp.updateConstraints {
-                $0.height.equalTo(dayCount > 35 ? 250 : 210)
+            $0.height.equalTo(dayCount > 35 ? 250 : 210)
         }
     }
     
@@ -306,12 +325,17 @@ final class CalendarView: UIView, CalendarDelegate {
 extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dataSource,
-            let item = dataSource.itemIdentifier(for: indexPath),
+              let item = dataSource.itemIdentifier(for: indexPath),
               let date = item.date
         else { return }
         if !isSectableDates.isEmpty && dateDict[date.convertToYearMonthDayString()] == nil {
             return
         }
+        
+        if !isSelectableFuture && date > Date() {
+            return
+        }
+        
         selectedDate = date
         days = days.map { Item(
             date: $0.date,

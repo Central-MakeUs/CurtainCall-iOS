@@ -55,11 +55,35 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func convertToChatDateToKorean() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy.MM.dd (E) a h시 m분"
+        return formatter.string(from: self)
+    }
+    
+    func convertToChatTimeToKorean() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "a h:mm"
+        return formatter.string(from: self)
+    }
+    
     func convertToWeekend() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
         formatter.locale = Locale(identifier: "en_US")
         return formatter.string(from: self).uppercased()
+    }
+    
+    func convertToAPIString() -> String {
+        let formatter1 = DateFormatter()
+        formatter1.locale = Locale(identifier: "ko_KR")
+        let formatter2 = DateFormatter()
+        formatter2.locale = Locale(identifier: "ko_KR")
+        formatter1.dateFormat = "yyyy-MM-dd"
+        formatter2.dateFormat = "HH:mm"
+        return formatter1.string(from: self) + "T" + formatter2.string(from: self)
     }
     
     static func getDuringDate(start: String, end: String) -> [Date] {
@@ -96,6 +120,8 @@ extension Date {
         }
         return result
     }
+    
+    
 }
 
 extension [Date] {

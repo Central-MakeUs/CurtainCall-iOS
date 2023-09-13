@@ -8,6 +8,10 @@
 import UIKit
 
 import Kingfisher
+import Combine
+import Moya
+import CombineMoya
+import SwiftKeychainWrapper
 
 final class ProductSearchCell: UICollectionViewCell {
     
@@ -179,16 +183,18 @@ final class ProductSearchCell: UICollectionViewCell {
         return view
     }()
     
-    private let keepButton: UIButton = {
+    private lazy var keepButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named: ImageNamespace.productKeepDeselect), for: .normal)
         button.setBackgroundImage(UIImage(named: ImageNamespace.productKeepSelect), for: .selected)
+        button.isUserInteractionEnabled = !(KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true)
         return button
     }()
     
     // MARK: - Properties
     
     var id: String?
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     
@@ -201,6 +207,7 @@ final class ProductSearchCell: UICollectionViewCell {
             name: Notification.Name("setKeepButton"),
             object: nil
         )
+        keepButton.addTarget(self, action: #selector(keepButtonTapped), for: .touchUpInside)
     }
     
     @available (*, unavailable)
@@ -292,19 +299,25 @@ final class ProductSearchCell: UICollectionViewCell {
         productRunningTimeLabel.text = item.runtime.isEmpty ? "정보 없음" : item.runtime
         keepButton.isSelected = FavoriteService.shared.isFavoriteIds.contains(item.id)
         let timeInfo = showTimeToDict(showTiems: item.showTimes)
-        if timeInfo.count >= 2 {
-            productScheduleLabel.text = timeInfo[0]
-            productScheduleSubLabel.text = timeInfo[1]
-            scheduleSubStackView.isHidden = false
-        } else if timeInfo.count == 1 {
-            productScheduleLabel.text = timeInfo[0]
-            scheduleSubStackView.isHidden = true
-        } else {
-            productScheduleLabel.text = "정보 없음"
-            scheduleSubStackView.isHidden = true
-        }
+        productScheduleLabel.text = timeInfo.isEmpty ? "정보 없음" : timeInfo
+        scheduleSubStackView.isHidden = true
+//        if timeInfo.count >= 2 {
+//            productScheduleLabel.text = timeInfo[0]
+//            productScheduleSubLabel.text = timeInfo[1]
+//            scheduleSubStackView.isHidden = false
+//        } else if timeInfo.count == 1 {
+//            productScheduleLabel.text = timeInfo[0]
+//            scheduleSubStackView.isHidden = true
+//        } else {
+//            productScheduleLabel.text = "정보 없음"
+//            scheduleSubStackView.isHidden = true
+//        }
         productLocationLabel.text = item.facilityName
         
+    }
+    
+    func keepButtonSelect() {
+        keepButton.isSelected = true
     }
     
     @objc
@@ -314,20 +327,65 @@ final class ProductSearchCell: UICollectionViewCell {
 
     }
     
-    func showTimeToDict(showTiems: [ProductListShowTime]) -> [String] {
+    @objc
+    func keepButtonTapped() {
+        guard let id else { return }
+        let favoriteProvider = MoyaProvider<FavoriteShowAPI>()
+        if keepButton.isSelected {
+//            NotificationCenter.default.post(
+//            name: Notification.Name("deleteKeepButton"),
+//            object: id
+//            )
+            favoriteProvider.requestPublisher(.deleteShow(id: id))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                    }
+                } receiveValue: { [weak self] _ in
+                    guard let self else { return }
+                    keepButton.isSelected = false
+                    FavoriteService.shared.isFavoriteIds.remove(id)
+                    NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
+                }.store(in: &subscriptions)
+            
+        } else {
+//            NotificationCenter.default.post(
+//            name: Notification.Name("putKeepButton"),
+//            object: id
+//            )
+            favoriteProvider.requestPublisher(.putShow(id: id))
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        print(error)
+                    }
+                } receiveValue: { [weak self] _ in
+                    guard let self else { return }
+                    keepButton.isSelected = true
+                    FavoriteService.shared.isFavoriteIds.insert(id)
+                    NotificationCenter.default.post(name: Notification.Name("setKeepButton"), object: nil)
+                }.store(in: &subscriptions)
+        }
+    }
+    
+    func showTimeToDict(showTiems: [ProductListShowTime]) -> String {
         var timeDict: [String: [(String, Int)]] = [:]
+        var weekKR: [(String, Int)] = []
+        
         showTiems.forEach {
             let time = $0.time.split(separator: ":").prefix(2).joined(separator: ":")
             guard let week = WeekDayAPI(rawValue: $0.dayOfWeek) else {
                 return
             }
+            if !weekKR.contains(where: { $0.0 == week.KRname.0 }) {
+                weekKR.append(week.KRname)
+            }
             timeDict[time, default: []].append(week.KRname)
         }
-        var result: [String] = []
-        timeDict.forEach {
-            let sortedWeek = $0.value.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ",")
-            result.append(sortedWeek + " " +  $0.key)
-        }
-        return result
+//        var result: [String] = []
+//        timeDict.forEach {
+//            let sortedWeek = $0.value.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ", ")
+//
+//        }
+        return weekKR.sorted { $0.1 < $1.1 }.map { $0.0 }.joined(separator: ", ")
     }
 }

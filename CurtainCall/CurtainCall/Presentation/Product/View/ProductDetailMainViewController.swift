@@ -16,10 +16,10 @@ final class ProductDetailMainViewController: UIViewController {
     
     // MARK: - UI properties
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
-        scrollView.bounces = false
+        scrollView.delegate = self
         return scrollView
     }()
     
@@ -314,7 +314,7 @@ final class ProductDetailMainViewController: UIViewController {
     private let detailInfoView = DetailInfoView()
     private let detailReviewView = DetailReviewView()
     private let detailLostItemView = DetailLostItemView()
-    
+
     
     // MARK: - Properties
     private let provider = MoyaProvider<ProductAPI>()
@@ -337,6 +337,7 @@ final class ProductDetailMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LodingIndicator.showLoading()
         configureUI()
         addTarget()
         setupInfoView()
@@ -344,6 +345,7 @@ final class ProductDetailMainViewController: UIViewController {
         detailLostItemView.delegate = self
         subButtonTouchUpInside(detailButton)
         requestIsFavorite(id: id)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -423,7 +425,6 @@ final class ProductDetailMainViewController: UIViewController {
         
         headerImageView.snp.makeConstraints {
             $0.top.trailing.leading.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-50)
         }
         posterImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -534,6 +535,7 @@ final class ProductDetailMainViewController: UIViewController {
             setupInfoView()
             reviewButton.isSelected = false
             lostItemButton.isSelected = false
+            scrollView.bounces = true
         case reviewButton:
             if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
                 presentNotLoginPopup()
@@ -542,6 +544,7 @@ final class ProductDetailMainViewController: UIViewController {
             setupReviewView()
             detailButton.isSelected = false
             lostItemButton.isSelected = false
+            scrollView.bounces = false
         case lostItemButton:
             if KeychainWrapper.standard.bool(forKey: .isGuestUser) ?? true {
                 presentNotLoginPopup()
@@ -550,6 +553,7 @@ final class ProductDetailMainViewController: UIViewController {
             setupLostItemView()
             detailButton.isSelected = false
             reviewButton.isSelected = false
+            scrollView.bounces = false
         default:
             fatalError("Error: Not Button")
         }
@@ -636,6 +640,8 @@ final class ProductDetailMainViewController: UIViewController {
         }
     }
     
+   
+    
     private func requestShowDetail(id: String) {
         provider.requestPublisher(.detail(id: id))
             .sink { completion in
@@ -648,6 +654,7 @@ final class ProductDetailMainViewController: UIViewController {
                 if let data = try? response.map(ProductDetailResponse.self) {
                     product = data
                     detailInfoView.showTime = data.showTimes
+                    detailInfoView.introductionImages = data.introductionImages
                     requestFacility(id: data.facilityId)
                     requestLostItem(id: data.facilityId)
                     draw(data: data)
@@ -672,6 +679,7 @@ final class ProductDetailMainViewController: UIViewController {
                     } else {
                         self?.detailReviewView.reviewInfos = data.content
                         self?.detailReviewView.setTableView()
+                        self?.detailReviewView.removeEmptyView()
                         self?.detailReviewView.tableView.reloadData()
                     }
                 }
@@ -709,6 +717,26 @@ final class ProductDetailMainViewController: UIViewController {
                     detailInfoView.draw()
                 }
             }.store(in: &subscriptions)
+        provider.requestPublisher(.same(id: id))
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                print("#$#$", String(data: response.data, encoding: .utf8))
+                if let data = try? response.map(SameShowResponse.self) {
+                    
+                    let randomDatas = data.content.shuffled()
+                    if randomDatas.count > 9 {
+                        detailInfoView.sameShow = Array(randomDatas[0..<10])
+                    } else {
+                        detailInfoView.sameShow = randomDatas
+                    }
+                    
+                }
+            }.store(in: &subscriptions)
 
     }
     
@@ -727,7 +755,9 @@ final class ProductDetailMainViewController: UIViewController {
                         self?.detailLostItemView.setEmptyView()
                     } else {
                         self?.detailLostItemView.lostItems = data.content
+                        self?.detailLostItemView.removeEmptyView()
                         self?.detailLostItemView.setTableView()
+                        
                         self?.detailLostItemView.tableView.reloadData()
                     }
                 } else {
@@ -738,6 +768,7 @@ final class ProductDetailMainViewController: UIViewController {
     }
     
     private func draw(data: ProductDetailResponse) {
+        print("###", data)
         titleLabel.text = data.name
         if let url = URL(string: data.poster) {
             posterImageView.kf.setImage(with: url)
@@ -780,5 +811,19 @@ extension ProductDetailMainViewController: NotLoginPopupDelegate {
     func loginButtonTapped() {
         let loginViewController = LoginViewController(viewModel: LoginViewModel())
         changeRootViewController(UINavigationController(rootViewController: loginViewController))
+    }
+}
+
+extension ProductDetailMainViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("#########")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 1000 {
+            scrollView.backgroundColor = .clear
+        } else {
+            scrollView.backgroundColor = .white
+        }
     }
 }

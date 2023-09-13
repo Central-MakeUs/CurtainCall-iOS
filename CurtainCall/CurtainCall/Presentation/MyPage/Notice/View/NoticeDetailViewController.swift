@@ -38,6 +38,7 @@ final class NoticeDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .body3
         label.textColor = UIColor(rgb: 0x333C53)
+        label.numberOfLines = 0
         return label
     }()
     

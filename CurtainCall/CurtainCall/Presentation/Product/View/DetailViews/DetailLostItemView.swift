@@ -149,6 +149,10 @@ final class DetailLostItemView: UIView {
 
         setNeedsLayout()
     }
+    
+    func removeEmptyView() {
+        emptyView.removeFromSuperview()
+    }
 }
 
 extension DetailLostItemView: UITableViewDataSource {

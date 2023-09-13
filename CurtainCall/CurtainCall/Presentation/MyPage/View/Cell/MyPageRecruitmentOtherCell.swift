@@ -21,6 +21,8 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -40,7 +42,7 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
     
     private let writeDateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .hexE4E7EC
+        label.textColor = .hexBEC2CA
         label.font = .body5
         return label
     }()
@@ -86,14 +88,25 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
         return label
     }()
     
+    private let partyInButton: BottomNextButton = {
+        let button = BottomNextButton()
+        button.setTitle("TALK 입장", for: .normal)
+        button.setNextButton(isSelected: true)
+        button.titleLabel?.font = .body3
+        return button
+    }()
     
     // MARK: - Properties
+    
+    var item: MyRecruitmentContent?
+    weak var delegate: MyPagePartyInDelegate?
     
     // MARK: - Lifecycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        partyInButton.addTarget(self, action: #selector(enterButtonTapped), for: .touchUpInside)
     }
     
     @available (*, unavailable)
@@ -113,7 +126,7 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
         addSubviews(cardView)
         cardView.addSubviews(
             profileImageView, nicknameDateStackView, countLabel,
-            titleLabel, dateBadgeView
+            titleLabel, dateBadgeView, partyInButton
         )
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, writeDateLabel)
         
@@ -134,7 +147,7 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
             $0.centerY.equalTo(profileImageView)
         }
         countLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(20)
+            $0.centerY.equalTo(dateBadgeView)
             $0.trailing.equalToSuperview().inset(20)
         }
         titleLabel.snp.makeConstraints {
@@ -154,8 +167,14 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
         
         dateBadgeView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
-            $0.leading.bottom.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(24)
+        }
+        partyInButton.snp.makeConstraints {
+            $0.top.equalTo(dateBadgeView.snp.bottom).offset(20)
+            $0.height.equalTo(40)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(19)
         }
 
     }
@@ -166,10 +185,17 @@ final class MyPageRecruitmentOtherCell: UICollectionViewCell {
         } else {
             profileImageView.image = UIImage(named: ImageNamespace.defaultProfile)
         }
+        self.item = item
         nicknameLabel.text = item.creatorNickname
         countLabel.text = "\(item.curMemberNum)/\(item.maxMemberNum)"
         titleLabel.text = item.title
-        
+        writeDateLabel.text = item.createdAt.convertAPIDateToDateString() + " " + item.createdAt.convertAPIDateToDateTime()
         dateBadgeLabel.text = item.showAt?.convertAPIDateToDateWeekString() ?? "날짜 미정"
+    }
+    
+    @objc
+    private func enterButtonTapped() {
+        guard let item else { return }
+        delegate?.didTappedPartyInButton(item: item)
     }
 }

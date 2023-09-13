@@ -44,7 +44,7 @@ final class NicknameSettingViewModel: NicknameSettingViewModelInput,
             isValidRegexNickname.send(.blank)
             return
         }
-        guard (6...15) ~= nickname.count else {
+        guard (2...10) ~= nickname.count else {
             isValidRegexNickname.send(.length)
             return
         }

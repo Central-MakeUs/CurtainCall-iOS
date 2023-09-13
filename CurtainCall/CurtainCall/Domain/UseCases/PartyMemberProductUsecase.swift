@@ -12,11 +12,4 @@ protocol PartyMemberProductUsecase {
     func execute() -> AnyPublisher<[ProductPartyInfo], Error>
 }
 
-final class PartyMemberProductInteractor: PartyMemberProductUsecase {
-    func execute() -> AnyPublisher<[ProductPartyInfo], Error> {
-        return Future<[ProductPartyInfo], Error> { promise in
-            promise(.success(ProductPartyInfo.list))
-        }.eraseToAnyPublisher()
-    }
-    
-}
+

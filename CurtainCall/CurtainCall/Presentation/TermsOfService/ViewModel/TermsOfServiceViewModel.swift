@@ -44,11 +44,11 @@ final class TermsOfServiceViewModel: TermsOfServiceViewModelInput, TermsOfServic
         default: fatalError()
         }
         allCheckButtonStateManage()
-        isCheckedRequire.value = isAllCheck.value || isServiceCheck.value
+        isCheckedRequire.value = isAllCheck.value
     }
     
     func allCheckButtonStateManage() {
         isAllCheck.value = isServiceCheck.value && isLocationCheck.value &&
-        isAlarmCheck.value && isMarketingCheck.value
+        isAlarmCheck.value
     }
 }

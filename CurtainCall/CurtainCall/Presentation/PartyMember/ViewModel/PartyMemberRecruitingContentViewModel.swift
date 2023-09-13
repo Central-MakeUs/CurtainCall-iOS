@@ -52,9 +52,11 @@ final class PartyMemberRecruitingContentViewModel {
         provider.requestPublisher(.create(body: body))
             .sink { completion in
                 if case let .failure(error) = completion {
+                    self.isSuccessCreateParty = false
                     return
                 }
             } receiveValue: { [weak self] response in
+                print("#####", String(data: response.data, encoding: .utf8))
                 self?.isSuccessCreateParty = true
             }.store(in: &subscriptions)
     }

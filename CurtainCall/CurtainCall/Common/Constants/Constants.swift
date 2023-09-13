@@ -44,11 +44,15 @@ enum Constants {
     """
     static let LOSTITEM_OTHER_CONTENT_PLACEHOLDER =
     """
-    내용을 적어주세요.
+    내용을 적어주세요. (최대 100자)
     """
     static let REPORT_DETAIL_TEXTVIEW_PLACEHOLDER =
     """
     예시)
     공연 관람 파티원 구하는 게시물에서 욕설을 하고 있습니다.
+    """
+    static let MESSAGE_PLACEHODER =
+    """
+    메시지 입력...
     """
 }

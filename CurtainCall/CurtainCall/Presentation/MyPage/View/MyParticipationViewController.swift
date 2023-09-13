@@ -8,6 +8,8 @@
 import UIKit
 import Combine
 
+import StreamChat
+
 final class MyParticipationViewController: UIViewController {
     
     // MARK: - UI properties
@@ -184,6 +186,7 @@ final class MyParticipationViewController: UIViewController {
                         indexPath: indexPath
                     ) else { return UICollectionViewCell() }
                     cell.setUI(item)
+                    cell.delegate = self
                     return cell
                 } else {
                     guard let cell = collectionView.dequeueCell(
@@ -191,6 +194,7 @@ final class MyParticipationViewController: UIViewController {
                         indexPath: indexPath
                     ) else { return UICollectionViewCell() }
                     cell.setUI(item)
+                    cell.delegate = self
                     return cell
                 }
             }
@@ -250,11 +254,33 @@ extension MyParticipationViewController: UICollectionViewDelegate {
               let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
-        let detailViewController = MyPageDetailViewController(
-            id: item.id,
-            editType: .participate
-        )
-        navigationController?.pushViewController(detailViewController, animated: true)
+        if item.category == "ETC" {
+            let detailViewController = MyPageDetailOtherViewController(
+                id: item.id,
+                editType: .participate
+            )
+            navigationController?.pushViewController(detailViewController, animated: true)
+            
+        } else {
+            let detailViewController = MyPageDetailViewController(
+                id: item.id,
+                editType: .participate
+            )
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
 }
 
+extension MyParticipationViewController: MyPagePartyInDelegate {
+    func didTappedPartyInButton(item: MyRecruitmentContent) {
+        let channelId = ChannelId(type: .messaging, id: "PARTY-\(item.id)")
+        let channelController = ChatClient.shared.channelController(for: channelId)
+        channelController.synchronize { error in
+            if let error {
+                print("### 채널 에러", error.localizedDescription)
+            }
+        }
+        let talkViewController = PartyTalkViewController(item: item, channelController: channelController)
+        navigationController?.pushViewController(talkViewController, animated: true)
+    }
+}

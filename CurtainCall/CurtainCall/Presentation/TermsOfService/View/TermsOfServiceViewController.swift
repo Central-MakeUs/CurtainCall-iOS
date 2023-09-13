@@ -58,7 +58,7 @@ final class TermsOfServiceViewController: UIViewController {
     
     private let allCheckLabelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("전체 동의(선택사항 포함)", for: .normal)
+        button.setTitle("전체 동의(선택 포함)", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.setTitleColor(.black, for: .normal)
         button.contentHorizontalAlignment = .left
@@ -77,22 +77,19 @@ final class TermsOfServiceViewController: UIViewController {
     }()
     private let serviceCheckLabelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("서비스 이용약관(필수)", for: .normal)
+        button.setTitle("[필수] 서비스 이용약관 동의", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.setTitleColor(UIColor(rgb: 0x797979), for: .normal)
         button.contentHorizontalAlignment = .left
         return button
     }()
     
-    private let serviceExpandButton = ExpandButton()
-    
-    private let serviceStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        return stackView
+    private let serviceExpandButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "navigate_next"), for: .normal)
+        return button
     }()
-    
+    private let serviceView = UIView()
     private let locationCheckButton: CheckMarkButton = {
         let button = CheckMarkButton()
         button.tag = 2
@@ -100,19 +97,19 @@ final class TermsOfServiceViewController: UIViewController {
     }()
     private let locationCheckLabelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("위치 (선택)", for: .normal)
+        button.setTitle("[필수] 개인정보 수집·이용 동의", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.setTitleColor(UIColor(rgb: 0x797979), for: .normal)
         button.contentHorizontalAlignment = .left
         return button
     }()
-    private let locationExpandButton = ExpandButton()
-    private let locationStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        return stackView
+    private let locationExpandButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "navigate_next"), for: .normal)
+        return button
     }()
+    
+    private let locationView = UIView()
     
     private let alarmCheckButton: CheckMarkButton = {
         let button = CheckMarkButton()
@@ -121,19 +118,20 @@ final class TermsOfServiceViewController: UIViewController {
     }()
     private let alarmCheckLabelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("알림 (선택)", for: .normal)
+        button.setTitle("[필수] 만 14세 이상 회원입니다.", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.setTitleColor(UIColor(rgb: 0x797979), for: .normal)
         button.contentHorizontalAlignment = .left
         return button
     }()
-    private let alarmExpandButton = ExpandButton()
-    private let alarmStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        return stackView
+    private let alarmExpandButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "navigate_next"), for: .normal)
+        button.isHidden = true
+        return button
     }()
+    
+    private let alarmView = UIView()
     
     private let marketingCheckButton: CheckMarkButton = {
         let button = CheckMarkButton()
@@ -148,11 +146,16 @@ final class TermsOfServiceViewController: UIViewController {
         button.contentHorizontalAlignment = .left
         return button
     }()
-    private let marketingExpandButton = ExpandButton()
+    private let marketingExpandButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "navigate_next"), for: .normal)
+        return button
+    }()
     private let marketingStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
+        stackView.isHidden = true
         return stackView
     }()
     
@@ -208,18 +211,18 @@ final class TermsOfServiceViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubviews(titleLabel, subTitleLabel, verticalStackView)
         verticalStackView.addArrangedSubviews(
-            allCheckStackView, borderView, serviceStackView,
-            locationStackView, alarmStackView, marketingStackView
+            allCheckStackView, borderView, serviceView,
+            locationView, alarmView, marketingStackView
         )
         allCheckStackView.addArrangedSubviews(allCheckButton, allCheckLabelButton)
-        serviceStackView.addArrangedSubviews(
-            serviceCheckButton, serviceCheckLabelButton
+        serviceView.addSubviews(
+            serviceCheckButton, serviceCheckLabelButton, serviceExpandButton
         )
-        locationStackView.addArrangedSubviews(
-            locationCheckButton, locationCheckLabelButton
+        locationView.addSubviews(
+            locationCheckButton, locationCheckLabelButton, locationExpandButton
         )
-        alarmStackView.addArrangedSubviews(
-            alarmCheckButton, alarmCheckLabelButton
+        alarmView.addSubviews(
+            alarmCheckButton, alarmCheckLabelButton, alarmExpandButton
         )
         marketingStackView.addArrangedSubviews(
             marketingCheckButton, marketingCheckLabelButton
@@ -236,13 +239,19 @@ final class TermsOfServiceViewController: UIViewController {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width)
         }
-        
+        [serviceView, locationView, alarmView].forEach {
+            $0.snp.makeConstraints { make in
+                make.height.equalTo(24)
+            }
+        }
         [allCheckButton, serviceCheckButton,
          locationCheckButton,  alarmCheckButton,
           marketingCheckButton,
         ].forEach {
             $0.snp.makeConstraints { make in
+                make.leading.equalToSuperview()
                 make.size.equalTo(24)
+                make.centerY.equalToSuperview()
             }
         }
         nextButton.snp.makeConstraints {
@@ -266,7 +275,22 @@ final class TermsOfServiceViewController: UIViewController {
         borderView.snp.makeConstraints {
             $0.height.equalTo(1)
         }
-        
+        [serviceCheckLabelButton,
+        locationCheckLabelButton,
+         alarmCheckLabelButton].forEach {
+            $0.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(34)
+                make.centerY.equalToSuperview()
+            }
+        }
+        [serviceExpandButton,
+         locationExpandButton,
+         alarmExpandButton].forEach {
+            $0.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview()
+            }
+        }
     }
     
     private func configureNavigation() {
@@ -280,6 +304,8 @@ final class TermsOfServiceViewController: UIViewController {
             $0.addTarget(self, action: #selector(checkButtonTouchUpInside), for: .touchUpInside)
         }
         nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
+        serviceExpandButton.addTarget(self, action: #selector(serviceButtonTapped), for: .touchUpInside)
+        locationExpandButton.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
     }
     
     private func bind() {
@@ -328,6 +354,16 @@ final class TermsOfServiceViewController: UIViewController {
     @objc
     func nextButtonTouchUpInside() {
         moveToNicknameSettingViewController()
+    }
+    
+    @objc
+    private func serviceButtonTapped() {
+        navigationController?.pushViewController(TermsOfUseViewController(), animated: true)
+    }
+    
+    @objc
+    private func privacyButtonTapped() {
+        navigationController?.pushViewController(PrivacyPolicyViewController(), animated: true)
     }
     
 

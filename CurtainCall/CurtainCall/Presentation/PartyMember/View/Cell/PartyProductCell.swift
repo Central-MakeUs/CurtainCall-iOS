@@ -39,6 +39,7 @@ final class PartyProductCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -272,7 +273,6 @@ final class PartyProductCell: UICollectionViewCell {
             $0.trailing.lessThanOrEqualToSuperview().inset(50)
             $0.height.equalTo(23)
         }
-        
     }
     
     func drawViewDotLine(view: UIView) {

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MyPagePartyInDelegate: AnyObject {
+    func didTappedPartyInButton(item: MyRecruitmentContent)
+}
+
 final class MyPageRecruitmentCell: UICollectionViewCell {
     
     // MARK: - UI properties
@@ -36,6 +40,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 21
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -143,7 +148,18 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         return label
     }()
     
+    private let partyInButton: BottomNextButton = {
+        let button = BottomNextButton()
+        button.setTitle("TALK 입장", for: .normal)
+        button.setNextButton(isSelected: true)
+        button.titleLabel?.font = .body3
+        return button
+    }()
+    
     // MARK: - Properties
+    
+    var item: MyRecruitmentContent?
+    weak var delegate: MyPagePartyInDelegate?
     
     // MARK: - Lifecycles
 
@@ -152,6 +168,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         configureUI()
         clipsToBounds = true
         layer.applySketchShadow(color: .black, alpha: 0.1, x: 0, y: 4, blur: 4, spread: 0)
+        partyInButton.addTarget(self, action: #selector(enterButtonTapped), for: .touchUpInside)
     }
     
     @available(*, unavailable)
@@ -172,7 +189,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
         addSubviews(cardView, productLabelView)
         cardView.addSubviews(
             profileImageView, nicknameDateStackView, countLabel, titleLabel,
-            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView
+            posterImageView, dateBadgeView, timeBadgeView, locationBadgeView, partyInButton
         )
         productLabelView.addSubview(productTitleLabel)
         nicknameDateStackView.addArrangedSubviews(nicknameLabel, dateLabel)
@@ -220,7 +237,6 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
             $0.leading.equalToSuperview().offset(20)
             $0.height.equalTo(87)
             $0.width.equalTo(66)
-            $0.bottom.equalToSuperview().inset(20)
         }
         
         dateBadgeImageView.snp.makeConstraints {
@@ -270,6 +286,12 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
             $0.trailing.lessThanOrEqualToSuperview().inset(50)
             $0.height.equalTo(23)
         }
+        partyInButton.snp.makeConstraints {
+            $0.top.equalTo(posterImageView.snp.bottom).offset(16)
+            $0.height.equalTo(40)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(19)
+        }
         
     }
     
@@ -291,6 +313,7 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
     }
 
     func setUI(_ item: MyRecruitmentContent) {
+        self.item = item
         productTitleLabel.text = "\(item.showName ?? "")"
         if let urlString = item.creatorImageUrl, let url = URL(string: urlString) {
             profileImageView.kf.setImage(with: url)
@@ -316,5 +339,11 @@ final class MyPageRecruitmentCell: UICollectionViewCell {
 //        dateBadgeLabel.text = item.productDate.convertToYearMonthDayWeekString()
 //        timeBadgeLabel.text = item.productDate.convertToHourMinString()
         locationBadgeLabel.text = item.facilityName
+    }
+    
+    @objc
+    private func enterButtonTapped() {
+        guard let item else { return }
+        delegate?.didTappedPartyInButton(item: item)
     }
 }

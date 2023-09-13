@@ -15,7 +15,7 @@ final class GuideDictViewController: UIViewController {
         let label = UILabel()
         label.font = .subTitle1
         label.textColor = .title
-        label.text = "📚 알쏭달쏭 용어 사진"
+        label.text = "📚 알쏭달쏭 용어 사전"
         return label
     }()
     
@@ -44,7 +44,7 @@ final class GuideDictViewController: UIViewController {
     
     private let ticketingButton: GuideCategoryButton = {
         let button = GuideCategoryButton()
-        button.setTitle("예메 및 좌석", for: .normal)
+        button.setTitle("예매 및 좌석", for: .normal)
         button.guideType = .ticketing
         return button
     }()

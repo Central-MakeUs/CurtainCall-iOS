@@ -12,6 +12,7 @@ final class ExpandButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setImage(UIImage(named: ImageNamespace.ExpandButtonArrowBottom), for: .normal)
+        setImage(UIImage(named: ImageNamespace.ExpandButtonArrowUp), for: .selected)
     }
     
     @available (*, unavailable)
